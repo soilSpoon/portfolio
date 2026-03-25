@@ -8,18 +8,18 @@ basics:
 summaries:
   default: |
     React·TypeScript 기반 7년차 프론트엔드 엔지니어. B2B SaaS
-    아키텍처 설계부터 성능 최적화, 반응형·접근성까지 주도해왔으며, AI 에이전트를 활용한 효율적
+    아키텍처 설계부터 성능 최적화, 반응형·접근성까지 수행해왔으며, AI 에이전트를 활용한 효율적
     개발 워크플로우를 구축합니다.
   general_md: |
-    React·TypeScript 기반 **7년차** 프론트엔드 엔지니어. B2B SaaS(출근노트) 프론트엔드를 1인 주도로 4년간 865 커밋·526 PR을 기여했고, OpenCASCADE 3D CAD 엔진의 WASM 브라우저 이식으로 프론트엔드의 경계를 넓혀왔습니다. Jotai(21k)·SWC(33k)·Astro(57k) 등 **22개 오픈소스 프로젝트에 49개 PR merged**.
+    React·TypeScript 기반 **7년차** 프론트엔드 엔지니어. B2B SaaS(출근노트) 프론트엔드를 4년간 설계·운영하며 디자인 시스템, 상태관리 아키텍처, 대량 데이터 최적화를 수행. OpenCASCADE 3D CAD 엔진의 WASM 브라우저 이식으로 프론트엔드의 경계를 넓혀왔습니다. Jotai·SWC·Astro 등 **23개 오픈소스 프로젝트에 직접 기여**.
   instructor: |
     7년간 실무 풀스택 개발 경험을 기반으로 웹 프론트엔드 강의를 진행하고 있습니다. 프로젝트 초기 설계부터 운영까지 전 과정을 경험한 실무 중심의 강의가 가능하며, 학습자 수준에 맞는 눈높이 교육에 강점이 있습니다.
   freelancer: |
-    7년간 B2B/SaaS 서비스를 설계부터 운영까지 주도해온 풀스택 개발자입니다. 프로젝트 초기 구성, 기술 스택 선정, 아키텍처 설계, 성능 최적화, CI/CD 구축까지 서비스 전체 생명주기를 독립적으로 수행할 수 있습니다. 원격 근무 기반으로 외주 및 프리랜서 프로젝트를 수행합니다.
+    7년간 B2B/SaaS 서비스를 설계부터 운영까지 수행해온 풀스택 개발자입니다. 프로젝트 초기 구성, 기술 스택 선정, 아키텍처 설계, 성능 최적화, CI/CD 구축까지 서비스 전체 생명주기를 독립적으로 수행할 수 있습니다. 원격 근무 기반으로 외주 및 프리랜서 프로젝트를 수행합니다.
   toss: |
     React·TypeScript 기반 7년차 프론트엔드 엔지니어.
     Jotai·Emotion·React Query 등 상태관리 아키텍처 설계, 디자인 시스템 구축, 대량 데이터 렌더링 최적화,
-    웹 접근성까지 주도해왔습니다.
+    웹 접근성까지 수행해왔습니다.
 highlight_bullets:
   default:
     - B2B SaaS(출근노트) 프론트엔드 설계·운영 — 디자인 시스템, 상태관리 아키텍처, 대량 데이터 렌더링 최적화
@@ -28,13 +28,13 @@ highlight_bullets:
     - Claude Code·Codex·ampcode 등 AI 코딩 도구를 적극 활용한 개발 워크플로우 구축
   toss:
     - B2B SaaS 프론트엔드 — Chakra UI 디자인 시스템, React Query/Jotai/Zustand 3계층 상태관리, 수천 행 가상화 최적화
-    - webpack 내부 수정으로 React Fast Refresh 구현 — laravel-mix에 12개 PR merged, SWC·Jotai·Valtio 등 오픈소스 기여
+    - webpack 내부 수정으로 React Fast Refresh 구현 — laravel-mix에 직접 기여, SWC·Jotai·Valtio 등 오픈소스 기여
     - OpenCASCADE WASM 브라우저 이식 + Next.js SSR 호환 — AI 챗봇 UI로 복잡한 워크플로우 단순화
 experience:
   - company: 주식회사 에브리심
     role: 제품개발 책임
     dates: 2025.03 – 재직중
-    description: 드론/CFD 시뮬레이션 스타트업(everysim.io). OpenCASCADE 3D CAD 엔진의 WASM 브라우저 이식을 주도하여 데스크탑 설치 없이 브라우저에서 CAD 모델링 및 시뮬레이션 워크플로우 실행 가능하게 구현.
+    description: 드론/CFD 시뮬레이션 스타트업(everysim.io). OpenCASCADE 3D CAD 엔진의 WASM 브라우저 이식으로 데스크탑 설치 없이 브라우저에서 CAD 모델링 및 시뮬레이션 워크플로우 실행 가능하게 구현.
     description_instructor: C++, Nest.js, Next.js, WASM
     tags:
       - all
@@ -42,7 +42,7 @@ experience:
     role: 개발 주임
     dates: 2018.09 – 2023.11
     duration: 5년 3개월
-    description: B2B 산업 솔루션 기업. 근태 SaaS(출근노트, gwnote.com), 포스코 제철소 MES(철판 결함 분석), 하드웨어 모니터링 서비스 등 3개 제품의 프론트엔드를 1인 주도 개발·운영.
+    description: B2B 산업 솔루션 기업. 근태 SaaS(출근노트, gwnote.com), 포스코 제철소 MES(철판 결함 분석), 하드웨어 모니터링 서비스 등 3개 제품의 프론트엔드 설계·개발·운영.
     description_instructor: PHP/Laravel, React/TypeScript
     tags:
       - all
@@ -58,7 +58,7 @@ projects:
     org: 에브리심
     role: 제품개발 책임
     url: https://everydrone.io
-    contributor_info: "22명 중 커밋 #1 기여자"
+    contributor_info: 22명 규모 팀 프로젝트
     tags:
       - general
       - toss
@@ -106,7 +106,7 @@ projects:
       - text: C++ 메셔(CM2+GMSH 기반)를 서버 네이티브로 구축 — CFD/FEA용 고품질 메시 생성, JSON 기반 경계 조건 설정
         tags:
           - general_md
-      - text: "260개 커밋·409개 파일 생성으로 v1.0 시뮬레이션 파이프라인 완성 (22명 중 커밋 #1)"
+      - text: 프로토타입 수준 코드베이스를 상용 아키텍처로 재설계 — WASM-JS 계층 분리, 디자인 시스템 표준화, 인증·인프라 체계 구축
         tags:
           - general_md
     details:
@@ -191,7 +191,7 @@ projects:
 
           - 사용자 이탈 단계를 정량적으로 파악 — **데이터 기반 제품 방향성 결정 체계 확립**
           - 국가·언어별 유입 패턴 파악으로 다국어 대응 및 타겟 시장 우선순위 도출
-      - title: v1.0 릴리즈 — WASM-JS 분리 아키텍처 + 디자인 시스템 표준화
+      - title: 프로토타입 → 상용 아키텍처 재설계 — WASM-JS 분리 + 디자인 시스템 표준화
         tags:
           - general
           - toss
@@ -228,7 +228,7 @@ projects:
       - text: C++ 시뮬레이션 → WASM 브라우저 실행, Nest.js API, Next.js 프론트
         tags:
           - freelancer
-      - text: 제품 전 영역 주도 개발
+      - text: 제품 전 영역 설계·개발
         tags:
           - freelancer
   - slug: gwnote
@@ -237,7 +237,7 @@ projects:
     org: 씨엠유니버스
     role: 풀스택 개발자
     url: https://new.gwnote.com/
-    contributor_info: 865 commits · 526+ PRs
+    contributor_info: 4년 프론트엔드 설계·운영
     tags:
       - general
       - toss
@@ -292,7 +292,7 @@ projects:
       - text: Self-hosted → ARC 전환, CI 3단계 병렬화, Husky + lint-staged로 커밋 전 린트 자동화
         tags:
           - general
-      - text: jQuery/PHP 5 → React/Laravel 전면 전환 주도 — 컴포넌트 기반 UI 개발 체계 구축
+      - text: jQuery/PHP 5 → React/Laravel 전면 전환 — 컴포넌트 기반 UI 개발 체계 구축
         tags:
           - toss
       - text: Chakra UI 기반 디자인 시스템 53개 공통 컴포넌트 구축 — 346개 파일에서 재사용, 신규 페이지 개발 시간 50% 단축
@@ -340,7 +340,7 @@ projects:
 
           #### 적용 결과
 
-          - 865 커밋, 526+ PRs. 공통 컴포넌트 조합만으로 신규 페이지 구성 — 개발 시간 **50% 단축**
+          - 공통 컴포넌트 조합만으로 신규 페이지 구성 — 개발 시간 **50% 단축**
           - 이 아키텍처 위에 노무법인 시스템 **6개 모듈** 안정적 신규 개발 완료
           - 상태관리 계층 분리로 불필요한 리렌더링 제거
           - WAI-ARIA 기반 접근성 적용으로 키보드만으로 주요 업무 수행 가능
@@ -385,7 +385,7 @@ projects:
           - 권한 로직 **중앙 집중화**로 노무법인 전체 시스템(6개 모듈) 안정적 추가 완료
           - 신규 권한 레벨 추가 시 설정만 변경 — **영향 범위 최소화**
           - API + 프론트 이중 검증으로 데이터 접근 보안 확보
-      - title: jQuery/PHP 5 → React/Laravel 전환 주도
+      - title: jQuery/PHP 5 → React/Laravel 전환 — 기술 스택 선정부터 마이그레이션
         tags:
           - general
         content: |
@@ -478,7 +478,7 @@ projects:
       - text: "출근노트: 근태 및 급여 관리 SaaS 풀스택 개발 (B2B2C, 5단계 권한 체계)"
         tags:
           - instructor
-      - text: B2B2C 5단계 권한 체계, 프로젝트 초기 세팅부터 주도
+      - text: B2B2C 5단계 권한 체계 설계, 프로젝트 초기 세팅부터 운영까지
         tags:
           - freelancer
       - text: 대량 급여 정산 데이터 처리 최적화 (캐싱, 쿼리 구조 개선)
@@ -562,7 +562,7 @@ projects:
     title: GSS — 포스코 철판 결함 분석 시스템 (MES)
     dates: 2019.12 – 2023.11
     org: 씨엠유니버스
-    role: 풀스택 개발자 (MES 차공정 주도)
+    role: 풀스택 개발자 (MES 차공정 담당)
     tags:
       - general
       - toss
@@ -636,7 +636,7 @@ projects:
     tags:
       - instructor
     bullets:
-      - text: "GSS: 철판 결함 분석 시스템 MES 차공정 주도 개발 (실시간 데이터 처리)"
+      - text: "GSS: 철판 결함 분석 시스템 MES 차공정 개발 (실시간 데이터 처리)"
         tags:
           - instructor
   - slug: csmnote
@@ -748,7 +748,7 @@ projects:
           #### 적용 결과
 
           - 클라우드 프로바이더만 필요한 다운스트림에서 **~200MB+ 빌드 비용 절감**
-      - title: 프론트엔드 핵심 인프라 기여 — Astro, Tremor, laravel/framework 등
+      - title: Astro·Tremor·laravel/framework 등 인기 라이브러리 기여
         tags:
           - general
           - toss
@@ -939,13 +939,14 @@ other:
       - general
       - toss
 oss:
-  summary: 100+ stars 오픈소스 23개 프로젝트에 53개 PR merged — 소스 분석 후 직접 기여
-  summary_md: 22개 프로젝트에 49개 PR merged (100+ stars 프로젝트 대상)
+  # 2026-03-25 gh api 기준: 100+ stars 23개 프로젝트, 전체 외부 31개
+  summary: Astro·laravel-mix·Goose 등 23개 오픈소스 프로젝트에 직접 기여 — 소스 분석 후 PR 제출
+  summary_md: Astro·laravel-mix·Goose 등 23개 오픈소스 프로젝트에 직접 기여
   tags:
     - general
     - toss
   highlights:
-    - text: 100+ stars 오픈소스 23개 프로젝트에 53개 PR merged — 소스 분석 후 직접 기여
+    - text: Astro·laravel-mix·Goose 등 23개 오픈소스 프로젝트에 직접 기여 — 소스 분석 후 PR 제출
       tags:
         - general
         - toss
@@ -955,7 +956,7 @@ oss:
     - text: Astro · SWC · Jotai · Valtio · Snowpack · Tremor 등에 기여
       tags:
         - toss
-    - text: "laravel-mix: webpack 내부 수정 — React Fast Refresh 구현, dev-server 4.0 마이그레이션 등 12개 PR merged"
+    - text: "laravel-mix: webpack 내부 수정 — React Fast Refresh 구현, dev-server 4.0 마이그레이션 등 직접 기여"
       tags:
         - general
         - toss
@@ -963,10 +964,10 @@ oss:
       tags:
         - general
         - toss
-    - text: "**laravel-mix** (5.2k stars): React Fast Refresh 기능 추가, webpack-dev-server 4.0 마이그레이션, HMR HTTPS 복구 등 **12개 PR** — 라이브러리 HMR 아키텍처에 직접 기여"
+    - text: "**laravel-mix** (5.2k stars): React Fast Refresh 기능 추가, webpack-dev-server 4.0 마이그레이션, HMR HTTPS 복구 등 — 라이브러리 HMR 아키텍처에 직접 기여"
       tags:
         - general_md
-    - text: "**react-refresh-webpack-plugin** (3.2k stars): type-fest 호환성, wds 버전 업데이트 — **3개 PR**"
+    - text: "**react-refresh-webpack-plugin** (3.2k stars): type-fest 호환성, wds 버전 업데이트"
       tags:
         - general_md
     - text: "**Jotai**(21k) · **SWC**(33k) · **Astro**(57k) · **Valtio**(10k) · **Snowpack**(19k) · **Tremor**(16k) · **laravel/framework**(34k) 등 프론트엔드 핵심 인프라에 지속 기여"
