@@ -1,0 +1,50 @@
+/* =============================================
+   Preloader
+   ============================================= */
+.preloader {
+	position: fixed;
+	inset: 0;
+	/* 로딩 중 화면 전체를 덮음. 완료 후 GSAP이 autoAlpha:0으로 페이드아웃 */
+	z-index: var(--z-preloader);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/* 기본 배경색 (html.light/dark 클래스 적용 전 fallback) */
+	background-color: var(--main-light);
+}
+
+html.dark .preloader {
+	background-color: var(--main-dark);
+}
+
+/* 로고 SVG 마스크 - 해당 모양으로만 내부가 보임 */
+.ob-fill-mask {
+	mask-image: url('/ob-logomark.svg');
+	-webkit-mask-image: url('/ob-logomark.svg');
+	mask-size: contain;
+	-webkit-mask-size: contain;
+	mask-repeat: no-repeat;
+	-webkit-mask-repeat: no-repeat;
+	mask-position: center;
+	-webkit-mask-position: center;
+}
+
+/* fill bar - 다크모드: 밝은 색, 라이트모드: 어두운 색 */
+html.dark .ob-fill-fill {
+	background-color: var(--main-light);
+}
+html.light .ob-fill-fill {
+	background-color: var(--main-dark);
+}
+
+/* SVG path 초기 상태: 숨김 (GSAP이 draw-in 애니메이션 실행) */
+.pre-svg-path {
+	stroke-dasharray: 1000;
+	stroke-dashoffset: 1000;
+}
+html.dark .pre-svg-path {
+	stroke: var(--main-light);
+}
+html.light .pre-svg-path {
+	stroke: var(--main-dark);
+}
