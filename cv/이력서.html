@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이대희 이력서</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    @page { size: 210mm 297mm; margin: 0; }
+
+    html, body {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 11.5px;
+      line-height: 1.6;
+      color: #2d2d2d;
+      background: #fff;
+      width: 210mm;
+      height: 297mm;
+      overflow: hidden;
+    }
+
+    .page {
+      width: 210mm;
+      height: 297mm;
+      margin: 0 auto;
+      display: flex;
+      overflow: hidden;
+    }
+
+    /* -- Sidebar -- */
+    .sidebar {
+      width: 72mm;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      padding: 30px 18px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex-shrink: 0;
+    }
+
+    .sidebar .name {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 1px;
+      text-align: center;
+      padding-bottom: 14px;
+      border-bottom: 2px solid #4a90d9;
+    }
+
+    .sidebar .role {
+      font-size: 11.5px;
+      font-weight: 300;
+      color: #a0b4d0;
+      text-align: center;
+      margin-top: 5px;
+      letter-spacing: 0.5px;
+    }
+
+    .sidebar h3 {
+      font-size: 11px;
+      font-weight: 700;
+      color: #4a90d9;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #2d2d4e;
+    }
+
+    .sidebar .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 6px;
+      font-size: 9.5px;
+      color: #ccc;
+      word-break: break-all;
+    }
+
+    .sidebar .contact-item svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      fill: #4a90d9;
+    }
+
+    .sidebar .contact-item a { color: #ccc; text-decoration: none; }
+
+    .sidebar .skill-category { margin-bottom: 8px; }
+
+    .sidebar .skill-category-title {
+      font-size: 9.5px;
+      font-weight: 500;
+      color: #a0b4d0;
+      margin-bottom: 4px;
+    }
+
+    .sidebar .skill-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+
+    .sidebar .skill-tag {
+      background: #2d2d4e;
+      color: #d0d0e0;
+      padding: 2.5px 7px;
+      border-radius: 3px;
+      font-size: 8.8px;
+    }
+
+    .sidebar .skill-tag.highlight {
+      background: #3a4a6e;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .sidebar .cert-item {
+      font-size: 9.5px;
+      color: #ccc;
+      margin-bottom: 4px;
+    }
+
+    .sidebar .cert-item span { color: #777; font-size: 8.5px; }
+
+    .sidebar .edu-item { margin-bottom: 8px; }
+
+    .sidebar .edu-name {
+      font-size: 9.5px;
+      font-weight: 500;
+      color: #e0e0e0;
+    }
+
+    .sidebar .edu-detail { font-size: 8.5px; color: #999; }
+
+    .sidebar .etc-item {
+      font-size: 9px;
+      color: #aaa;
+      margin-bottom: 4px;
+    }
+
+    /* -- Main Content -- */
+    .main {
+      flex: 1;
+      padding: 30px 26px 28px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .main .profile {
+      font-size: 11px;
+      color: #444;
+      line-height: 1.7;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .main h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a2e;
+      letter-spacing: 0.5px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid #4a90d9;
+      margin-bottom: 8px;
+    }
+
+    .section { display: flex; flex-direction: column; gap: 14px; }
+
+    .project { display: flex; flex-direction: column; gap: 2px; }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .project-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+
+    .project-period {
+      font-size: 9px;
+      color: #888;
+      white-space: nowrap;
+    }
+
+    .project-sub {
+      font-size: 9.5px;
+      color: #666;
+      margin-bottom: 4px;
+    }
+
+    .project-sub a { color: #4a90d9; text-decoration: none; }
+
+    .project ul { padding-left: 16px; margin: 0; }
+
+    .project li {
+      font-size: 10.2px;
+      color: #444;
+      margin-bottom: 2.5px;
+      line-height: 1.55;
+    }
+
+    .project .tech {
+      font-size: 9px;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    .career-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+
+    .career-name { font-size: 11px; font-weight: 500; }
+
+    .career-period { font-size: 9.5px; color: #888; }
+
+    .career-role { font-size: 9.5px; color: #666; }
+
+    .oss-summary {
+      font-size: 10px;
+      color: #444;
+      line-height: 1.65;
+    }
+
+    .oss-summary strong { color: #1a1a2e; }
+
+    .side-project { display: flex; flex-direction: column; gap: 2px; }
+
+    .side-project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .side-project-title {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+
+    .side-project li {
+      font-size: 9px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    @media print {
+      html, body {
+        margin: 0; padding: 0;
+        width: 210mm; height: 297mm;
+        overflow: hidden;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .page { width: 210mm; height: 297mm; margin: 0; overflow: hidden; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <div>
+        <div class="name">이대희</div>
+        <div class="role">Frontend Developer</div>
+      </div>
+
+      <div>
+        <h3>Contact</h3>
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.21 2.2z"/></svg>
+          010-9382-0872
+        </div>
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          lee111dae11@proton.me
+        </div>
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.806 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.3 1.23A11.51 11.51 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .322.216.694.825.576C20.565 21.795 24 17.298 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          <a href="https://github.com/soilSpoon">github.com/soilSpoon</a>
+        </div>
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+          <a href="https://www.linkedin.com/in/mlz37">linkedin.com/in/mlz37</a>
+        </div>
+      </div>
+
+      <div>
+        <h3>Skills</h3>
+        <div class="skill-category">
+          <div class="skill-category-title">Frontend</div>
+          <div class="skill-tags">
+            <span class="skill-tag highlight">TypeScript</span>
+            <span class="skill-tag highlight">React</span>
+            <span class="skill-tag highlight">Next.js</span>
+            <span class="skill-tag highlight">Jotai</span>
+            <span class="skill-tag">Zustand</span>
+            <span class="skill-tag">React Query</span>
+            <span class="skill-tag">Zod</span>
+            <span class="skill-tag">Chakra UI</span>
+            <span class="skill-tag">Emotion</span>
+            <span class="skill-tag">Electron</span>
+            <span class="skill-tag">React Native</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-title">Build & Tooling</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Vite</span>
+            <span class="skill-tag">SWC</span>
+            <span class="skill-tag">Webpack</span>
+            <span class="skill-tag">WASM</span>
+            <span class="skill-tag">Storybook</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-title">Backend</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Nest.js</span>
+            <span class="skill-tag">Laravel</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">Redis</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-title">DevOps</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">GitHub Actions</span>
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">Vercel</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3>Education</h3>
+        <div class="edu-item">
+          <div class="edu-name">국가평생교육진흥원 학점은행제</div>
+          <div class="edu-detail">컴퓨터공학 학사 | 2024~ 재학</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-name">세명컴퓨터고등학교</div>
+          <div class="edu-detail">스마트보안솔루션학과 | 2016–2019</div>
+        </div>
+      </div>
+
+      <div>
+        <h3>Certifications</h3>
+        <div class="cert-item">정보처리기사 <span>2022</span></div>
+      </div>
+
+      <div>
+        <h3>Other</h3>
+        <div class="etc-item">Upstage AI Lab 2기 수료 (2024)</div>
+        <div class="etc-item">산업기능요원 복무 (2020–2022)</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="profile">
+        React와 TypeScript 기반으로 <strong>7년간</strong> 대규모 B2B SaaS의 프론트엔드 아키텍처를 설계하고,
+        컴포넌트 시스템 구축과 성능 최적화를 주도해왔습니다.
+        Jotai, SWC 등 프론트엔드 생태계 오픈소스에 직접 기여하며, 도구의 한계를 코드로 해결하는 개발자입니다.
+      </div>
+
+      <!-- 경력 -->
+      <div>
+        <h2>경력</h2>
+        <div>
+          <div class="career-item">
+            <span class="career-name">주식회사 에브리심 — <span class="career-role">제품개발 책임</span></span>
+            <span class="career-period">2025.03 – 재직중</span>
+          </div>
+          <div class="career-item">
+            <span class="career-name">씨엠유니버스(주) — <span class="career-role">개발 주임</span></span>
+            <span class="career-period">2018.09 – 2023.11 (5년 3개월)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 프로젝트 -->
+      <div>
+        <h2>프로젝트</h2>
+        <div class="section">
+
+          <div class="project">
+            <div class="project-header">
+              <span class="project-title">에브리드론 — 드론/CFD 시뮬레이션 플랫폼</span>
+              <span class="project-period">2025.03 – 2026.01</span>
+            </div>
+            <div class="project-sub">에브리심 · 제품개발 책임 · 260 commits</div>
+            <ul>
+              <li>C++ CFD 엔진을 Emscripten으로 WASM 컴파일, JS↔C++ 데이터 교환 인터페이스 설계로 브라우저 실행 구현</li>
+              <li>Next.js 기반 시뮬레이션 프론트엔드 — DraggableDialog z-index 스택 관리, 다단계 워크플로우 상태 동기화</li>
+              <li>NextAuth 인증 시스템 통합, PostHog 이벤트 트래킹 (heatmap, feature flags, 클라이언트 IP 추적)</li>
+              <li>Storybook 기반 Sim 디자인 시스템 컴포넌트 개발, 모노레포 아키텍처 설계</li>
+            </ul>
+            <div class="tech">Next.js · TypeScript · Nest.js · C++/WASM · Prisma · PostHog · Storybook</div>
+          </div>
+
+          <div class="project">
+            <div class="project-header">
+              <span class="project-title">출근노트 — 근태 및 급여 관리 SaaS</span>
+              <span class="project-period">2020.08 – 2025.03</span>
+            </div>
+            <div class="project-sub">씨엠유니버스 · 풀스택 개발자 · <a href="https://new.gwnote.com/">gwnote.com</a> · 865 commits</div>
+            <ul>
+              <li>Chakra UI 기반 디자인 시스템 구축, 공통 컴포넌트 라이브러리(DataTable, FormField, PermissionGate) 개발</li>
+              <li>Jotai/Zustand/React Query 상태관리 아키텍처 — 서버·전역·로컬 상태 계층 분리</li>
+              <li>수천 명 급여 정산 렌더링 최적화 — React.memo, useMemo, staleTime 조정으로 UI 프리징 해소</li>
+              <li>B2B2C 5단계 권한 체계 — usePermission/PermissionGate 패턴, 라우트 권한 가드 구현</li>
+              <li>노무법인 시스템 전체(대시보드, 부관리자 관리, 기본정보, 계정 찾기) 신규 설계 및 개발</li>
+              <li>React Native + WebView 하이브리드 모바일 앱 (Android/iOS) 개발 및 네이티브 기능 통합</li>
+              <li>GitHub Actions Self-hosted runner, 의존성 캐싱, Node.js 20 업그레이드로 CI 최적화</li>
+            </ul>
+            <div class="tech">React · TypeScript · Jotai · Zustand · React Query · Zod · Chakra UI · React Native · Laravel · Redis · MySQL</div>
+          </div>
+
+          <div class="project">
+            <div class="project-header">
+              <span class="project-title">GSS — 철판 결함 분석 시스템 (MES)</span>
+              <span class="project-period">2019.12 – 2023.11</span>
+            </div>
+            <div class="project-sub">씨엠유니버스 · 풀스택 개발자 (MES 차공정 주도)</div>
+            <ul>
+              <li>Electron + React 기반 실시간 데이터 시각화 대시보드 — WebSocket 대량 데이터 메모이제이션 · 배치 렌더링</li>
+              <li>결함 좌표·크기·등급 기반 코일 품질 판정 규칙 엔진 설계 — 제철소별 설정 파일 기반 판정</li>
+              <li>중간 가공 데이터를 메모리 파이프라인으로 전환하여 디스크 사용량 절감</li>
+              <li>기존 레거시 MES 시스템 분석 후 최소 변경으로 차공정 모듈 독립 연동</li>
+            </ul>
+            <div class="tech">Electron · TypeScript · React · Next.js · Ant Design · Laravel · MySQL · WebSocket</div>
+          </div>
+
+          <div class="project">
+            <div class="project-header">
+              <span class="project-title">ESM — 하드웨어 모니터링 서비스</span>
+              <span class="project-period">2020.07 – 2020.12</span>
+            </div>
+            <div class="project-sub">씨엠유니버스 · 풀스택 개발자 · <a href="https://cmu.kr/product/">cmu.kr/product</a></div>
+            <ul>
+              <li>SNMP·ICMP·SSH 멀티 프로토콜 수집기를 공통 인터페이스로 추상화 — 플러그인 구조 설계</li>
+              <li>고객사별 대시보드·알림 규칙을 설정 파일로 분리, 코드 수정 없이 커스터마이징 대응</li>
+            </ul>
+            <div class="tech">Electron · TypeScript · React · SCSS · Laravel · MySQL</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 오픈소스 기여 -->
+      <div>
+        <h2>오픈소스 기여</h2>
+        <div class="oss-summary">
+          <strong>22개 프로젝트에 49개 PR merged</strong> (100+ stars 프로젝트 대상)<br>
+          <strong>Jotai</strong>(21k stars), <strong>SWC</strong>(33k stars) 등 프론트엔드 핵심 도구에 직접 기여<br>
+          laravel-mix: React Fast Refresh · webpack-dev-server 4.0 등 <strong>12개 PR</strong> ·
+          react-refresh-webpack-plugin: <strong>3개 PR</strong><br>
+          Astro(57.7k) · Valtio(10.2k) · Snowpack(19.4k) · Tremor(16.5k) · laravel/framework(34.6k) 등
+        </div>
+      </div>
+
+      <!-- 사이드 프로젝트 -->
+      <div>
+        <h2>사이드 프로젝트</h2>
+        <div class="side-project">
+          <div class="side-project-header">
+            <span class="side-project-title">슈퍼워크 바닥가 — M2E 신발 가격 트래커</span>
+            <span class="project-period">2022.07~</span>
+          </div>
+          <div class="project-sub"><a href="https://superwalk.vercel.app/">superwalk.vercel.app</a> · DAU ~50 · 인프라 비용 0원</div>
+          <ul>
+            <li style="font-size:9px;color:#555;">Next.js + Chakra UI + React Query 프론트엔드, Chart.js 기반 가격 추이 시각화</li>
+            <li style="font-size:9px;color:#555;">Drizzle ORM + Neon PostgreSQL, Vercel KV 캐싱, i18next 다국어 지원</li>
+          </ul>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>

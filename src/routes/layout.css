@@ -1,0 +1,424 @@
+/* =============================================
+   폰트 (Ataero Retina OB Edition 대체 — 시스템 폰트)
+   실제 폰트는 라이센스 필요 → DM Sans / Inter로 대체
+   ============================================= */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+
+@import 'tailwindcss';
+
+/* =============================================
+   CSS 변수 & 글로벌 스타일
+   itsoffbrand.com 분석 기반
+   ============================================= */
+
+:root {
+  /* 색상 */
+  --main-dark:       #1d1d1d;
+  --main-dark-alt:   #252525;
+  --main-light:      #e5e4e0;
+  --main-light-alt:  #f1f0ec;
+  --primary-color:   #ff642f;
+
+  /* 회색 (투명도 기반) */
+  --dark-grey:   rgba(218, 218, 218, 0.2);
+  --dark-grey60: rgba(218, 218, 218, 0.6);
+  --light-grey:  rgba(111, 111, 111, 0.2);
+  --light-grey60:rgba(111, 111, 111, 0.6);
+  --grey-rotate: #bfbebe;
+
+  /* Border Radius */
+  --large-radius: 6.25em;
+  --med-radius:   1.375em;
+  --small-radius: 0.625em;
+
+  /* 3D */
+  --perspective: 4000px;
+}
+
+/* vw 기반 폰트 사이즈 (1em ≈ 1vw) */
+html {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 1.0582010582010584vw;
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: clip;
+  cursor: none; /* 커스텀 커서 사용 */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* =============================================
+   다크 / 라이트 모드
+   ============================================= */
+html.dark body {
+  background-color: var(--main-dark);
+  color: var(--main-light);
+}
+html.light body {
+  background-color: var(--main-light);
+  color: var(--main-dark);
+}
+
+/* 텍스트 선택 */
+::selection {
+  background: var(--main-dark);
+  color: var(--main-light);
+  text-shadow: none;
+}
+
+/* =============================================
+   Preloader
+   ============================================= */
+.preloader {
+  position: fixed;
+  inset: 0;
+  /* 원본과 동일: z-index: -5 (배경 레이어)
+     orb-w(z-index:-2)보다 뒤에 있어서 orb가 프리로더 위에 보임
+     page content(z-index:0)보다 뒤에 있어서 hero 텍스트도 항상 보임
+     → 프리로더 = "배경" / 페이지 콘텐츠 = "항상 위에 보임" */
+  z-index: -5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html.dark .preloader {
+  background-color: var(--main-dark);
+}
+html.light .preloader {
+  background-color: var(--main-light);
+}
+
+/* 로고 SVG 마스크 - 해당 모양으로만 내부가 보임 */
+.ob-fill-mask {
+  mask-image: url('/ob-logomark.svg');
+  -webkit-mask-image: url('/ob-logomark.svg');
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+}
+
+/* fill bar - 다크모드: 밝은 색, 라이트모드: 어두운 색 */
+html.dark .ob-fill-fill {
+  background-color: var(--main-light);
+}
+html.light .ob-fill-fill {
+  background-color: var(--main-dark);
+}
+
+/* SVG 선 색상 */
+html.dark .pre-svg-path {
+  stroke: var(--main-light);
+}
+html.light .pre-svg-path {
+  stroke: var(--main-dark);
+}
+
+/* =============================================
+   유틸리티
+   ============================================= */
+[pointer-none] {
+  pointer-events: none !important;
+  user-select: none;
+}
+[pointer-auto] {
+  pointer-events: auto !important;
+}
+.o-hidden {
+  overflow: hidden;
+}
+
+/* =============================================
+   섹션 공통
+   ============================================= */
+.s {
+  width: 100%;
+}
+
+/* =============================================
+   공통 레이아웃 — spacer, grid-main, container
+   ============================================= */
+.c {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  margin: 0 auto;
+  position: relative;
+}
+.grid-main {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 1.25em;
+}
+.spacer-10 { height: 10vw; }
+.spacer-5  { height: 5vw; }
+
+/* =============================================
+   공통 타이포그래피
+   ============================================= */
+.h-a {
+  font-size: 6.75em;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.h-b {
+  font-size: 3.5em;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.h-c {
+  font-size: 1.8em;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.h-eyebrow {
+  font-size: 0.85em;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0;
+  line-height: 1.4;
+}
+.text-small {
+  font-size: 0.8em;
+  line-height: 1.6;
+}
+.text-mini {
+  font-size: 0.65em;
+  letter-spacing: 0.03em;
+}
+.caps { text-transform: uppercase; }
+.op-60 { opacity: 0.6; }
+
+/* mb-diff 역할: mix-blend-mode difference overlay */
+:global(.mbm-diff) {
+  mix-blend-mode: difference;
+  color: var(--main-light);
+  user-select: none;
+}
+
+/* eb-wrap: eyebrow wrap, sticky */
+.eb-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.eb-wrap.is-sticky {
+  position: sticky;
+  top: 2em;
+}
+
+/* 버튼 공통 스타일 */
+.btn-w {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.8em 1.6em;
+  border: 1px solid currentColor;
+  border-radius: var(--large-radius);
+  text-decoration: none;
+  color: inherit;
+  font-size: 0.85em;
+  transition: background 0.3s, color 0.3s;
+  cursor: pointer;
+  background: transparent;
+}
+.btn-w:hover {
+  background: var(--text-color);
+  color: var(--bg-color);
+}
+.btn-inner { display: flex; align-items: center; gap: 0.4em; }
+.btn-txt { font-size: 0.85em; }
+.btn-icon-w { display: flex; align-items: center; opacity: 0.7; }
+
+/* h-eyebrow outline variant */
+.h-eyebrow.is--outline {
+  -webkit-text-stroke: 1px currentColor;
+  color: transparent;
+}
+
+/* =============================================
+   cursor: none 전역 (커스텀 커서 사용)
+   ============================================= */
+a, button, [data-cursor-hover] {
+  cursor: none;
+}
+
+/* =============================================
+   SplitType 스타일
+   ============================================= */
+.word {
+  display: inline-block;
+}
+.char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+.line {
+  display: block;
+  overflow: hidden;
+}
+
+/* =============================================
+   Three.js 캔버스
+   ============================================= */
+canvas {
+  display: block;
+  border-radius: 50%;
+  background-color: transparent !important;
+}
+
+/* =============================================
+   CSS 변수 — 모드별 색상 보조
+   ============================================= */
+html.dark {
+  --text-color: var(--main-light);
+  --bg-color: var(--main-dark);
+  --border-color: rgba(218, 218, 218, 0.2);
+}
+html.light {
+  --text-color: var(--main-dark);
+  --bg-color: var(--main-light);
+  --border-color: rgba(111, 111, 111, 0.2);
+}
+
+/* =============================================
+   전역 Orb (fixed overlay)
+   ============================================= */
+/* will-change for orb + cursor (from original bundle) */
+[data-orb], [orb-out-w], [orb-outline], [data-cursor] {
+  will-change: transform;
+}
+
+.orb-w {
+  position: fixed;
+  inset: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -2;
+  pointer-events: none;
+  overflow-x: clip; /* 원본: [data-orb-wrap] { overflow-x: clip } */
+}
+.orb {
+  position: absolute;
+  border-radius: 100%;
+  /* GSAP 로드 전 flash 방지: 초기에는 0 크기 + 투명 */
+  width: 0;
+  height: 0;
+  opacity: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+/* is-pre: CSS에는 유지 (원본도 동일), 실제 HTML에는 사용 안 함 */
+.orb.is-pre {
+  width: 3.3em;
+  min-width: auto;
+  height: 3.3em;
+  min-height: auto;
+  transform: translate(8em, 8.1em);
+}
+.orb canvas {
+  border-radius: 0;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: transparent !important;
+}
+.orb-outline-w {
+  position: absolute;
+  width: 80vh;
+  height: 80vh;
+  z-index: -2;
+}
+.orb-outline-w.is-2 {
+  width: 100vh;
+  height: 100vh;
+}
+.orb-outline-r {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.orb-outline {
+  position: absolute;
+  border: 1px dashed rgba(111, 111, 111, 0.4);
+  border-radius: 100%;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+/* =============================================
+   page-w 콘텐츠 래퍼
+   ============================================= */
+.page-w {
+  position: relative;
+  /* z-index: 1 제거 — z-index 지정 시 새로운 stacking context 생성됨.
+     stacking context가 생기면 자식 .s.is-hsc 의 mix-blend-mode: darken 이
+     body 배경색과 블렌딩되지 못하고 context 내부에서만 동작 → 흰 배경 노출.
+     orb(.orb-w z-index:-2)는 음수 z-index이므로 z-index 없이도 콘텐츠 뒤에 위치 */
+  width: 100%;
+  overflow-x: clip;
+}
+
+/* =============================================
+   pagew-grid (배경 가이드, 시각적)
+   ============================================= */
+.pagew-grid {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.03;
+}
+.pagew-block.is--1 {
+  border-right: 1px solid currentColor;
+}
+.pagew-block.is--2 {
+  border-right: 1px solid currentColor;
+}
+
+/* =============================================
+   page-wipe 트랜지션
+   ============================================= */
+.page-wipe-w {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* =============================================
+   선택 색상 (라이트 모드)
+   ============================================= */
+html.light ::selection {
+  background: var(--main-dark);
+  color: var(--main-light);
+}
