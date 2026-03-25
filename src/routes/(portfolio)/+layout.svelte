@@ -47,6 +47,7 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
+<div class="portfolio">
 <!-- ─── 커스텀 커서 ─────────────────────────────────────────────────────────── -->
 <Cursor />
 
@@ -85,6 +86,7 @@
 <!-- ─── 페이지 콘텐츠 ─────────────────────────────────────────────────────── -->
 <div data-page-wrapper class="page-w">
 	{@render children()}
+</div>
 </div>
 
 <div style="display:none">

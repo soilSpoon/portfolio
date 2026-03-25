@@ -50,14 +50,10 @@
 <style>
 	@reference "tailwindcss";
 
-	:global(body) {
-		margin: 0;
-		padding: 0;
-		background: #f0f1f3;
-	}
-
-	/* Tailwind 유틸리티가 생성되지 않아 직접 지정 */
+	/* --spacing 오버라이드: portfolio의 @theme { --spacing: 0.25em }이
+	   :root에 전파되므로, CV에서는 표준 rem 기반으로 복원 */
 	.cv-root {
+		--spacing: 0.25rem;
 		max-width: 800px;
 		margin-left: auto;
 		margin-right: auto;

@@ -39,7 +39,7 @@
 	--dur-med: 0.6s;
 
 	/* z-index 스케일 (@theme에 없음) */
-	--z-preloader: 5000;
+	--z-preloader: -5;
 	--z-orb-wrapper: -2;
 	--z-orb-canvas: -1;
 	--z-orb-outline: -2;

@@ -49,11 +49,15 @@ html {
 *::before,
 *::after {
 	box-sizing: inherit;
+}
+.portfolio *,
+.portfolio *::before,
+.portfolio *::after {
 	margin: 0;
 	padding: 0;
 }
 
-body {
+body:has(.portfolio) {
 	font-size: 1.0582010582010584vw;
 	font-family:
 		'DM Sans',
@@ -66,7 +70,7 @@ body {
 	cursor: none; /* 커스텀 커서 사용 */
 }
 
-a {
+.portfolio a {
 	color: inherit;
 	text-decoration: none;
 }
@@ -74,23 +78,23 @@ a {
 /* =============================================
    다크 / 라이트 모드
    ============================================= */
-html.dark body {
+html.dark body:has(.portfolio) {
 	background-color: transparent;
 	color: var(--main-light);
 }
-html.light body {
+html.light body:has(.portfolio) {
 	background-color: transparent;
 	color: var(--main-dark);
 }
-html.dark {
+html.dark:has(.portfolio) {
 	background-color: var(--main-dark);
 }
-html.light {
+html.light:has(.portfolio) {
 	background-color: var(--main-light);
 }
 
 /* 텍스트 선택 */
-::selection {
+.portfolio ::selection {
 	background: var(--main-dark);
 	color: var(--main-light);
 	text-shadow: none;
@@ -242,9 +246,9 @@ html.light {
 /* =============================================
    cursor: none 전역 (커스텀 커서 사용)
    ============================================= */
-a,
-button,
-[data-cursor-hover] {
+.portfolio a,
+.portfolio button,
+.portfolio [data-cursor-hover] {
 	cursor: none;
 }
 
@@ -275,7 +279,7 @@ button,
 /* =============================================
    선택 색상 (라이트 모드)
    ============================================= */
-html.light ::selection {
+html.light .portfolio ::selection {
 	background: var(--main-dark);
 	color: var(--main-light);
 }

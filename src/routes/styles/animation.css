@@ -6,11 +6,11 @@
 /* =============================================
    유틸리티 — 포인터 이벤트
    ============================================= */
-[pointer-none] {
+.portfolio [pointer-none] {
 	pointer-events: none !important;
 	user-select: none;
 }
-[pointer-auto] {
+.portfolio [pointer-auto] {
 	pointer-events: auto !important;
 }
 
@@ -33,6 +33,7 @@
    FOUC 방지 — GSAP 로드 전 초기 숨김 상태
    JS(GSAP)가 로드되면 inline style로 override됨.
    새로고침 시 메인 화면이 잠깐 보이는 현상 방지.
+   preloader(z:5000)가 화면을 덮으므로 추가 숨김 불필요.
    ============================================= */
 
 /* HUD: preloader 완료 후 GSAP이 슬라이드인 */
