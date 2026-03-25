@@ -14,11 +14,11 @@
 		if (isDark) {
 			html.classList.remove('light');
 			html.classList.add('dark');
-			localStorage.setItem('colorMode', 'dark');
+			localStorage.setItem('theme', 'dark');
 		} else {
 			html.classList.remove('dark');
 			html.classList.add('light');
-			localStorage.setItem('colorMode', 'light');
+			localStorage.setItem('theme', 'light');
 		}
 	}
 
@@ -115,9 +115,9 @@
 
 					<!-- 소셜 링크 -->
 					<div class="hud-menu-socials">
-						<a href="https://twitter.com/itsoffbrand" class="hud-social-link" target="_blank" rel="noopener">Twitter</a>
-						<a href="https://instagram.com/itsoffbrand" class="hud-social-link" target="_blank" rel="noopener">Instagram</a>
-						<a href="https://linkedin.com/company/itsoffbrand" class="hud-social-link" target="_blank" rel="noopener">LinkedIn</a>
+						<a href="https://twitter.com/itsoffbrand" class="hud-social-link" target="_blank" rel="noopener noreferrer">Twitter</a>
+						<a href="https://instagram.com/itsoffbrand" class="hud-social-link" target="_blank" rel="noopener noreferrer">Instagram</a>
+						<a href="https://linkedin.com/company/itsoffbrand" class="hud-social-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
 					</div>
 				</div>
 			</div>
@@ -189,14 +189,15 @@
 		opacity: 0.4;
 	}
 	.hud-scroll-line-top {
-		height: 5rem;
+		/* rem → em: 전체 시스템이 1em≈1vw 기반이므로 vw 비례 스케일링 적용 */
+		height: 5em;
 		transform-origin: top center;
 		animation: scrollPulse 4s infinite ease-in-out;
 	}
-	.hud-scroll-line-btm { height: 3.5rem; }
+	.hud-scroll-line-btm { height: 3.5em; }
 	.hud-scroll-dot {
-		width: 0.5rem;
-		height: 0.5rem;
+		width: 0.5em;
+		height: 0.5em;
 		border-radius: 50%;
 		background: currentColor;
 		opacity: 0.5;
@@ -289,7 +290,7 @@
 		gap: 0.2em;
 	}
 	.hud-menu-link {
-		font-size: 3.5em;
+		font-size: var(--fs-h-b);
 		font-weight: 400;
 		text-transform: uppercase;
 		text-decoration: none;
@@ -344,7 +345,7 @@
 		gap: 2em;
 	}
 	.hud-social-link {
-		font-size: 0.8em;
+		font-size: var(--fs-small);
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
 		text-decoration: none;

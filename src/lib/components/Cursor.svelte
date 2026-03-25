@@ -2,10 +2,15 @@
 	import { onMount } from 'svelte';
 
 	onMount(() => {
+		// mounted 플래그: async import 완료 전 언마운트 시 이벤트 리스너 누수 방지
+		let mounted = true;
 		let cleanup: (() => void) | undefined;
 
 		(async () => {
 			const { gsap } = await import('gsap');
+
+			// 컴포넌트가 import 완료 전에 언마운트된 경우 조기 종료
+			if (!mounted) return;
 
 			const cursor = document.querySelector<HTMLElement>('[data-cursor]');
 			if (!cursor) return;
@@ -15,10 +20,9 @@
 
 			// 마우스 이동 추적
 			const onMouseMove = (e: MouseEvent) => {
-				const scale =
-					cursor.classList.contains('mask')
-						? 0
-						: cursor.classList.contains('hover')
+				const scale = cursor.classList.contains('mask')
+					? 0
+					: cursor.classList.contains('hover')
 						? 0.55
 						: 1;
 				gsap.to(cursor, {
@@ -60,7 +64,10 @@
 			};
 		})();
 
-		return () => cleanup?.();
+		return () => {
+			mounted = false; // async가 완료되기 전에 호출되면 이벤트 등록 자체를 막음
+			cleanup?.();
+		};
 	});
 </script>
 

@@ -31,6 +31,19 @@
   --med-radius:   1.375em;
   --small-radius: 0.625em;
 
+  /* 타이포그래피 스케일 */
+  --fs-h-a:     6.75em;
+  --fs-h-b:     3.5em;
+  --fs-h-c:     1.8em;
+  --fs-eyebrow: 0.85em;
+  --fs-small:   0.8em;
+  --fs-mini:    0.65em;
+
+  /* 애니메이션 토큰 */
+  --ease-smooth: cubic-bezier(0.38, 0.005, 0.215, 1);
+  --dur-fast:    0.3s;
+  --dur-med:     0.6s;
+
   /* 3D */
   --perspective: 4000px;
 }
@@ -173,7 +186,7 @@ html.light .pre-svg-path {
    공통 타이포그래피
    ============================================= */
 .h-a {
-  font-size: 6.75em;
+  font-size: var(--fs-h-a);
   font-weight: 400;
   text-transform: uppercase;
   line-height: 1;
@@ -181,7 +194,7 @@ html.light .pre-svg-path {
   margin: 0;
 }
 .h-b {
-  font-size: 3.5em;
+  font-size: var(--fs-h-b);
   font-weight: 400;
   text-transform: uppercase;
   line-height: 1;
@@ -189,14 +202,14 @@ html.light .pre-svg-path {
   margin: 0;
 }
 .h-c {
-  font-size: 1.8em;
+  font-size: var(--fs-h-c);
   font-weight: 400;
   line-height: 1;
   letter-spacing: -0.01em;
   margin: 0;
 }
 .h-eyebrow {
-  font-size: 0.85em;
+  font-size: var(--fs-eyebrow);
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -204,11 +217,11 @@ html.light .pre-svg-path {
   line-height: 1.4;
 }
 .text-small {
-  font-size: 0.8em;
+  font-size: var(--fs-small);
   line-height: 1.6;
 }
 .text-mini {
-  font-size: 0.65em;
+  font-size: var(--fs-mini);
   letter-spacing: 0.03em;
 }
 .caps { text-transform: uppercase; }
@@ -242,8 +255,8 @@ html.light .pre-svg-path {
   border-radius: var(--large-radius);
   text-decoration: none;
   color: inherit;
-  font-size: 0.85em;
-  transition: background 0.3s, color 0.3s;
+  font-size: var(--fs-eyebrow);
+  transition: background var(--dur-fast) ease, color var(--dur-fast) ease;
   cursor: pointer;
   background: transparent;
 }
@@ -421,4 +434,34 @@ html.light {
 html.light ::selection {
   background: var(--main-dark);
   color: var(--main-light);
+}
+
+/* =============================================
+   FOUC 방지 — GSAP 로드 전 초기 숨김 상태
+   JS(GSAP)가 로드되면 inline style로 override됨.
+   새로고침 시 메인 화면이 잠깐 보이는 현상 방지.
+   ============================================= */
+
+/* HUD: preloader 완료 후 GSAP이 슬라이드인 */
+.hud-brand-w .hud-brand-link {
+  opacity: 0;
+  transform: translateY(-101%);
+}
+.hud-scroll-w {
+  opacity: 0;
+}
+.hud-menu-o .hud-menu-w {
+  opacity: 0;
+  transform: translateY(101%);
+}
+
+/* 히어로 텍스트 블록: x:10em/-10em으로 화면 밖 (body overflow:clip으로 클립)
+   Preloader.svelte runOutro에서 gsap.set으로 확인 후,
+   preloader:done 시 gsap.to(x:0)으로 slide-in */
+[hh-tb="1"],
+[hh-tb="3"] {
+  transform: translateX(10em);
+}
+[hh-tb="2"] {
+  transform: translateX(-10em);
 }

@@ -91,13 +91,9 @@
 	}
 
 	/* ─── 타이포그래피 ───────────────────────────────────────────────────────── */
+	/* .h-a 는 layout.css 글로벌 스타일 사용 — 중복 선언 제거 */
+	/* hero 전용 추가 속성만 여기서 선언 */
 	.h-a {
-		font-size: 6.75em;
-		font-weight: 400;
-		text-transform: uppercase;
-		line-height: 1;
-		letter-spacing: -0.02em;
-		margin: 0;
 		color: var(--text-color, inherit);
 		will-change: transform;
 		white-space: nowrap;

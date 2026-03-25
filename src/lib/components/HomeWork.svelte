@@ -6,76 +6,9 @@
 	//     .grid-main.hcs-grid-w → grid-area: 1/5/2/13 (8-col inner grid)
 	//   Each .hcs-item-w → grid-area: span1/span4 (4 of 8 cols = 2 per row)
 
-	const crossSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 162 162" xml:space="preserve"><path class="hcs-cross-svg" d="M108 88.7c-10.8 0-19.7 8.8-19.7 19.7v47.4c0 1.9-1.5 3.4-3.4 3.4h-8.6c-1.9 0-3.4-1.5-3.4-3.4v-47.4c0-10.8-8.8-19.7-19.7-19.7H6.4c-1.9 0-3.4-1.5-3.4-3.4v-8c0-1.9 1.5-3.4 3.4-3.4h46.9c10.8 0 19.7-8.8 19.6-19.7V6.4c0-1.9 1.5-3.4 3.4-3.4H85c1.9 0 3.4 1.5 3.4 3.4v47.8c0 10.8 8.8 19.7 19.7 19.7h46.6c1.9 0 3.4 1.5 3.4 3.4v8c0 1.9-1.5 3.4-3.4 3.4H108z" style="fill-rule:evenodd;clip-rule:evenodd;" fill="white"/></svg>`;
+	import { projects } from '$lib/data/projects';
 
-	const projects = [
-		{
-			slug: 'lando-norris',
-			name: 'Lando Norris',
-			tags: ['● Brand & Design', '△ Development', '⁂ WebGL, 3d'],
-			imgClass: 'is-lando',
-		},
-		{
-			slug: 'vizcom',
-			name: 'Vizcom',
-			tags: ['● Design', '△ Development', '⁂ WebGL, 3d'],
-			imgClass: 'is--vizcom',
-		},
-		{
-			slug: 'aether1',
-			name: 'Aether 1',
-			tags: ['● Design', '△ Development', '⁂ WebGL, 3d'],
-			imgClass: 'is--aether',
-		},
-		{
-			slug: 'bella',
-			name: 'Bella Kitchenwear',
-			tags: ['● Design', '△ Development', '⁂ WebGL, 3d'],
-			imgClass: 'is--bella',
-		},
-		{
-			slug: 'jasper',
-			name: 'Jasper',
-			tags: ['● Design', '⁂ W Motion / Rive'],
-			imgClass: 'is--jasp',
-		},
-		{
-			slug: 'slack-annual-report',
-			name: 'Slack',
-			tags: ['● Content', '⁂ 3d'],
-			imgClass: 'is--slack',
-		},
-		{
-			slug: 'aptos-labs',
-			name: 'Aptos Labs',
-			tags: ['● Brand', '△ Development', '⁂ WebGL, 3d'],
-			imgClass: 'is--totem is--aptos',
-		},
-		{
-			slug: 'webflow',
-			name: 'Webflow.com',
-			tags: ['● Design', '△ Development'],
-			imgClass: 'is--wf',
-		},
-		{
-			slug: 'david-lee-artist',
-			name: 'David Lee, Artist',
-			tags: ['● Brand & Design', '△ Development'],
-			imgClass: 'is--dl',
-		},
-		{
-			slug: 'cmcc',
-			name: 'Cmcc',
-			tags: ['● Design', '△ Development'],
-			imgClass: 'is--cmcc',
-		},
-		{
-			slug: 'the-online-school',
-			name: 'The Online School',
-			tags: ['● Design', '△ Development'],
-			imgClass: 'is--tos',
-		},
-	];
+	const crossSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 162 162" xml:space="preserve"><path class="hcs-cross-svg" d="M108 88.7c-10.8 0-19.7 8.8-19.7 19.7v47.4c0 1.9-1.5 3.4-3.4 3.4h-8.6c-1.9 0-3.4-1.5-3.4-3.4v-47.4c0-10.8-8.8-19.7-19.7-19.7H6.4c-1.9 0-3.4-1.5-3.4-3.4v-8c0-1.9 1.5-3.4 3.4-3.4h46.9c10.8 0 19.7-8.8 19.6-19.7V6.4c0-1.9 1.5-3.4 3.4-3.4H85c1.9 0 3.4 1.5 3.4 3.4v47.8c0 10.8 8.8 19.7 19.7 19.7h46.6c1.9 0 3.4 1.5 3.4 3.4v8c0 1.9-1.5 3.4-3.4 3.4H108z" style="fill-rule:evenodd;clip-rule:evenodd;" fill="white"/></svg>`;
 </script>
 
 <!-- home-work ScrollTrigger 트리거 -->
@@ -226,7 +159,7 @@
 		display: flex;
 		flex-direction: column;
 		transform: translateY(1em);
-		transition: transform 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+		transition: transform var(--dur-med) var(--ease-smooth);
 	}
 	.hcs-item-w:hover .hcs-info-w { transform: translateY(0); }
 	.hcs-title-w {
@@ -236,7 +169,7 @@
 		margin-top: 0.3em;
 	}
 	.hcs-cross-w {
-		transition: transform 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+		transition: transform var(--dur-med) var(--ease-smooth);
 		flex-shrink: 0;
 		width: 2em;
 		height: 2em;
@@ -255,7 +188,7 @@
 		background-repeat: no-repeat;
 		background-color: rgba(200, 200, 200, 0.1);
 		transform: scale(1.05);
-		transition: transform 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+		transition: transform var(--dur-med) var(--ease-smooth);
 	}
 	.hcs-item-w:hover .hcs-img-w { transform: scale(1.0); }
 

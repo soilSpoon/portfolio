@@ -152,18 +152,18 @@
 		flex-wrap: wrap;
 	}
 
-	/* CTA 버튼 */
+	/* CTA 버튼 — 전역 .btn-w 기반, 패딩/반경만 동일하게 명시 */
 	.btn-w.is-large {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.5em;
 		padding: 0.8em 1.6em;
 		border: 1px solid currentColor;
-		border-radius: 6.25em;
+		border-radius: var(--large-radius);
 		text-decoration: none;
 		color: inherit;
-		font-size: 0.85em;
-		transition: background 0.3s, color 0.3s;
+		font-size: var(--fs-eyebrow);
+		transition: background var(--dur-fast) ease, color var(--dur-fast) ease;
 	}
 	.btn-w.is-large:hover {
 		background: var(--text-color);
@@ -203,10 +203,11 @@
 		font-size: 0.75em;
 		opacity: 0.5;
 	}
+	/* footer 내 text-small/mini: 전역(0.8/0.65em)보다 작게 — 의도적 로컬 override */
 	.text-small { font-size: 0.75em; }
 	.text-small.caps { text-transform: uppercase; letter-spacing: 0.08em; }
 	.op-60 { opacity: 0.6; }
-	.text-mini { font-size: 0.65em; }
+	.text-mini { font-size: var(--fs-mini); }
 
 	/* ─── 하단 바 ─── */
 	.ft-bottom {

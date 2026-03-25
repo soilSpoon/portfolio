@@ -8,26 +8,33 @@
 	import HUD from '$lib/components/HUD.svelte';
 	import Orb from '$lib/components/Orb.svelte';
 	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
 
 	let { children } = $props();
 
-	let preloaderDone = $state(false);
 	let currentPath = $derived(page.url.pathname);
 
 	onMount(() => {
-		// 다크/라이트 모드 초기화
-		const saved = localStorage.getItem('colorMode');
-		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-		const mode = saved ?? (prefersDark ? 'dark' : 'light');
-		document.documentElement.classList.add(mode);
-	});
+		if (!browser) return;
 
-	function handlePreloaderDone() {
-		preloaderDone = true;
-	}
+		const root = document.documentElement;
+		const savedTheme = localStorage.getItem('theme') ?? 'light';
+		root.classList.remove('light', 'dark');
+		root.classList.add(savedTheme === 'dark' ? 'dark' : 'light');
+	});
 </script>
 
 <svelte:head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>OFF+BRAND — Creative Digital Agency</title>
+	<meta name="description" content="A founder-led Scottish born, global digital marketing, branding & web design agency. We push the boundaries of digital creativity." />
+	<meta property="og:title" content="OFF+BRAND — Creative Digital Agency" />
+	<meta property="og:description" content="A founder-led Scottish born, global digital marketing, branding & web design agency." />
+	<meta property="og:type" content="website" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="OFF+BRAND — Creative Digital Agency" />
+	<meta name="twitter:description" content="A founder-led Scottish born, global digital marketing, branding & web design agency." />
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
@@ -78,7 +85,8 @@
 </div>
 
 <!-- ─── 프리로더 ──────────────────────────────────────────────────────────── -->
-<Preloader onDone={handlePreloaderDone} />
+<!-- onDone 불필요: preloader:done 커스텀 이벤트 + dataset.preloaderDone으로 제어 -->
+<Preloader />
 
 <!-- ─── 페이지 콘텐츠 ─────────────────────────────────────────────────────── -->
 <div class="page-w">

@@ -1,45 +1,5 @@
 <script lang="ts">
-	// Section 6: Recognitions + Awards (52개)
-	// 원본 구조:
-	//   section.s > .c >
-	//     .spacer-10
-	//     .grid-main.t-flex >
-	//       .eb-wrap.is-sticky > "Recognitions + Awards" + count:52
-	//       .haw-sub-group > 4 award groups
-
-	const awards = [
-		{
-			num: '01',
-			name: 'Awwwards',
-			items: [
-				{ label: 'Site of the day', count: '07' },
-				{ label: 'Developer award', count: '06' },
-				{ label: 'Honors', count: '18' },
-			],
-		},
-		{
-			num: '02',
-			name: 'FWA',
-			items: [
-				{ label: 'FWA of the day', count: '04' },
-			],
-		},
-		{
-			num: '03',
-			name: 'CSS Design Awards',
-			items: [
-				{ label: 'Site of the day', count: '8' },
-			],
-		},
-		{
-			num: '04',
-			name: 'Orpetron',
-			items: [
-				{ label: 'Site of the day', count: '8' },
-				{ label: 'Site of the month', count: '1' },
-			],
-		},
-	];
+	import { awards } from '$lib/data/awards';
 </script>
 
 <section class="s">
@@ -96,25 +56,11 @@
 		align-self: start;
 	}
 
-	.h-eyebrow {
-		font-size: 0.85em;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		font-weight: 400;
-		margin: 0;
-		line-height: 1.4;
-	}
-
-	/* h-c: 중형 타이포그래피 */
+	/* h-c: 중형 타이포그래피 — font-size는 전역 var, margin만 로컬 override */
 	.h-c {
-		font-size: 1.8em;
-		font-weight: 400;
-		text-transform: uppercase;
-		line-height: 1;
-		letter-spacing: -0.01em;
+		font-size: var(--fs-h-c);
 		margin: 0.3em 0;
 	}
-	.h-c.caps { text-transform: uppercase; }
 
 	.haw-sub-group {
 		grid-column: 4 / 13;  /* cols 4-12 */
@@ -143,13 +89,13 @@
 		align-items: center;
 	}
 	.text-small.caps {
-		font-size: 0.75em;
+		font-size: 0.75em;   /* 전역 --fs-small(0.8em)보다 작은 로컬 사이즈 */
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
 	}
 	.text-mini {
-		font-size: 0.65em;
-		letter-spacing: 0.05em;
+		font-size: var(--fs-mini);
+		letter-spacing: 0.05em;   /* 전역 0.03em보다 넓은 로컬 간격 */
 	}
 	.float-count {
 		font-variant-numeric: tabular-nums;
