@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { awards } from '$lib/data/awards';
+	import { experiences } from '$lib/data/awards';
 </script>
 
 <section class="w-full">
@@ -12,42 +12,44 @@
 				<div class="t-flex overflow-hidden">
 					<div class="overflow-hidden">
 						<h2 split-text="" stagger-scroll="1" class="text-eyebrow font-normal uppercase tracking-[0.08em] leading-[1.4]">
-							Recognitions<br />+ Awards
+							Experience
 						</h2>
 					</div>
 					<div class="overflow-hidden">
-						<div split-text="" stagger-scroll="1" class="text-mini tracking-[0.05em] tabular-nums">52</div>
+						<div split-text="" stagger-scroll="1" class="text-mini tracking-[0.05em] tabular-nums">7+ years</div>
 					</div>
 				</div>
 			</div>
 
-			<!-- 어워드 목록 -->
+			<!-- 경력 목록 -->
 			<div class="col-start-4 col-end-13 flex flex-col">
-				{#each awards as award (award.name)}
-					<div class="relative border-b border-[var(--border-color,rgba(218,218,218,0.2))] py-8">
+				{#each experiences as exp (exp.company)}
+					<div class="relative border-b border-border py-8">
 						<div class="flex flex-col gap-2">
 							<div class="overflow-hidden">
-								<p split-text="" stagger-scroll="1" class="text-mini tracking-[0.05em]">{award.num}</p>
+								<p split-text="" stagger-scroll="1" class="text-mini tracking-[0.05em]">{exp.num}</p>
 							</div>
 							<div class="overflow-hidden">
-								<p split-text="" stagger-scroll="1" class="text-h-c leading-none tracking-[-0.01em] uppercase my-[0.3em]">{award.name}</p>
+								<p split-text="" stagger-scroll="1" class="text-h-c leading-none tracking-[-0.01em] uppercase my-[0.3em]">{exp.company}</p>
+							</div>
+							<div class="overflow-hidden">
+								<p split-text="" stagger-scroll="1" class="text-[0.85em] leading-[1.4] opacity-70">{exp.role} — {exp.dates}</p>
 							</div>
 							<div class="mt-2 flex flex-col gap-[0.3em]">
-								{#each award.items as item (item.label)}
+								{#each exp.details as detail (detail.label)}
 									<div class="flex items-center justify-between">
 										<div class="overflow-hidden">
-											<p split-text="" stagger-scroll="1" class="text-[0.75em] leading-[1.6] uppercase tracking-[0.05em]">{item.label}</p>
+											<p split-text="" stagger-scroll="1" class="text-[0.75em] leading-[1.6] uppercase tracking-[0.05em]">{detail.label}</p>
 										</div>
 										<div class="overflow-hidden">
 											<div split-text="" stagger-scroll="1" class="text-mini tracking-[0.05em] tabular-nums">
-												{item.count}
+												{detail.value}
 											</div>
 										</div>
 									</div>
 								{/each}
 							</div>
 						</div>
-						<div class="absolute inset-x-0 bottom-0 h-px bg-current opacity-15"></div>
 					</div>
 				{/each}
 			</div>

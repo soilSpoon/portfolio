@@ -30,7 +30,6 @@ export class OrbClass {
 	private angle = Math.PI / 2;
 	private angleChangeSpeed = 1;
 	private el: HTMLDivElement;
-	private _matcapLoaded = false;
 	private _initialized = false;
 
 	constructor(el: HTMLDivElement) {
@@ -118,13 +117,6 @@ export class OrbClass {
 		this.simulationMaterial = this.buildSimulationMaterial(THREE);
 		this.renderingMaterial = this.buildRenderingMaterial(THREE);
 
-		// ─ Fallback: 실제 matcap 로딩 전 흰색 텍스처로 검은 구체 방지
-		const whitePx = new Uint8Array([200, 200, 220, 255]);
-		const whiteTex = new THREE.DataTexture(whitePx, 1, 1, THREE.RGBAFormat);
-		whiteTex.needsUpdate = true;
-		this.renderingMaterial.uniforms.matcapTexture.value = whiteTex;
-		this.renderingMaterial.uniforms.matcapTexture2.value = whiteTex;
-
 		// ─ Interaction uniforms
 		this.interactionMaterial.uniforms.center.value.set(-1, -1);
 		this.interactionMaterial.uniforms.center2.value.set(-1, -1);
@@ -152,11 +144,9 @@ export class OrbClass {
 		this.sphere = new THREE.Mesh(sphereGeo, this.renderingMaterial);
 		this.scene.add(this.sphere);
 
-		// ─ 초기 matcap 텍스처 로드
+		// ─ 초기 다크/라이트 모드 설정 (procedural — 텍스처 불필요)
 		const isDark = !document.documentElement.classList.contains('light');
-		this.setTexture(
-			isDark ? '/ob/textures/ob_texture-old-2.jpg' : '/ob/textures/ob_texture-old.webp'
-		);
+		this.renderingMaterial.uniforms.textureMix.value = isDark ? 0 : 1;
 
 		this.addListeners();
 		this.resize();
@@ -301,15 +291,17 @@ void main(){
 		});
 	}
 
-	// ── RenderingMaterial shader ──────────────────────────────────────────────
+	// ── RenderingMaterial shader (procedural matcap — no texture) ─────────────
 	private buildRenderingMaterial(THREE: typeof import('three')): import('three').ShaderMaterial {
 		return new THREE.ShaderMaterial({
 			vertexShader: /* glsl */ `
 uniform sampler2D uTexture;
 varying vec2 vUv;
 varying vec3 vPosition;
+varying vec3 vNormal;
 void main(){
   vUv=uv;
+  vNormal=normalize(normalMatrix*normal);
   vec4 data=texture2D(uTexture,uv);
   vec3 transformed=position;
   transformed+=normal*data.r*0.7;
@@ -318,25 +310,23 @@ void main(){
 }`,
 			fragmentShader: /* glsl */ `
 uniform sampler2D uTexture;
-uniform sampler2D matcapTexture;
-uniform sampler2D matcapTexture2;
 uniform float textureMix;
 uniform vec2 size;
 uniform vec3 eye;
 uniform vec3 lightDirection;
 uniform float angle;
+uniform float time;
 varying vec2 vUv;
 varying vec3 vPosition;
-vec2 matcap(vec3 eye,vec3 normal){
-  vec3 reflected=reflect(eye,normal);
-  float m=2.8284271247461903*sqrt(reflected.z+1.0);
-  return reflected.xy/m+0.5;
+varying vec3 vNormal;
+
+vec2 matcap(vec3 e,vec3 n){
+  vec3 r=reflect(e,n);
+  float m=2.8284271247461903*sqrt(r.z+1.0);
+  return r.xy/m+0.5;
 }
 float lambert(vec3 N,vec3 L){
-  vec3 nrmN=normalize(N);
-  vec3 nrmL=normalize(L);
-  float result=dot(nrmN,nrmL);
-  return max(result,0.0);
+  return max(dot(normalize(N),normalize(L)),0.0);
 }
 float blendOverlay(float base,float blend){
   return base<0.5?(2.0*base*blend):(1.0-2.0*(1.0-base)*(1.0-blend));
@@ -346,35 +336,78 @@ vec3 blendOverlay(vec3 base,vec3 blend){
 }
 vec2 rotateUV(vec2 uv,float rotation){
   float mid=0.5;
-  return vec2(cos(rotation)*(uv.x-mid)+sin(rotation)*(uv.y-mid)+mid,cos(rotation)*(uv.y-mid)-sin(rotation)*(uv.x-mid)+mid);
+  return vec2(cos(rotation)*(uv.x-mid)+sin(rotation)*(uv.y-mid)+mid,
+              cos(rotation)*(uv.y-mid)-sin(rotation)*(uv.x-mid)+mid);
 }
+
+// Procedural matcap — 4-color gradient based on view-space normal
+vec3 proceduralMatcap(vec2 uv,vec3 shadow,vec3 mid,vec3 highlight,vec3 rim){
+  // Directional light from top-right
+  float l=dot(uv-0.5,vec2(0.35,0.55))+0.5;
+  l=clamp(l,0.0,1.0);
+  // Three-zone gradient
+  vec3 c=mix(shadow,mid,smoothstep(0.0,0.45,l));
+  c=mix(c,highlight,smoothstep(0.4,0.95,l));
+  // Rim glow at silhouette edges
+  float dist=length(uv-0.5)*2.0;
+  float r=smoothstep(0.65,1.0,dist);
+  c=mix(c,rim,r*0.5);
+  return c;
+}
+
 void main(){
   vec4 data=texture2D(uTexture,vUv);
-  vec3 tangent=vec3(1.0/size.x,texture2D(uTexture,vec2(vUv.x+(1.0/size.x),vUv.y)).r-data.r,0.0);
-  vec3 bitangent=vec3(0.0,texture2D(uTexture,vec2(vUv.x,vUv.y+(1.0/size.y))).r-data.r,1.0/size.y);
+  vec3 tangent=vec3(1.0/size.x,texture2D(uTexture,vec2(vUv.x+1.0/size.x,vUv.y)).r-data.r,0.0);
+  vec3 bitangent=vec3(0.0,texture2D(uTexture,vec2(vUv.x,vUv.y+1.0/size.y)).r-data.r,1.0/size.y);
   vec3 normal=normalize(cross(tangent,bitangent));
   normal=vec3(normal.x,sqrt(1.0-dot(normal.xz,normal.xz)),normal.z);
-  vec2 matcapUv=matcap(eye,normal).xy;
-  vec3 cyan=vec3(0.47,0.729,0.9);
+
+  vec2 mcUv=matcap(eye,normal).xy;
+  vec2 rotUv=rotateUV(mcUv,angle);
+
+  // Dark palette (blue-gray metallic)
+  vec3 dShadow=vec3(0.10,0.13,0.14);
+  vec3 dMid=vec3(0.35,0.42,0.47);
+  vec3 dHigh=vec3(0.65,0.72,0.76);
+  vec3 dRim=vec3(0.45,0.55,0.65);
+
+  // Light palette (silver/chrome)
+  vec3 lShadow=vec3(0.28,0.29,0.34);
+  vec3 lMid=vec3(0.50,0.51,0.57);
+  vec3 lHigh=vec3(0.80,0.80,0.86);
+  vec3 lRim=vec3(0.40,0.40,0.46);
+
+  vec3 darkC=proceduralMatcap(rotUv,dShadow,dMid,dHigh,dRim);
+  vec3 lightC=proceduralMatcap(rotUv,lShadow,lMid,lHigh,lRim);
+  vec3 color=mix(darkC,lightC,textureMix);
+
+  // Subtle time-based color drift — keeps the orb feeling alive
+  float drift=sin(time*0.15)*0.012;
+  color+=vec3(drift*0.4,-drift*0.2,drift);
+
+  // Fresnel rim accent (subtle blue glow at edges)
+  float fresnel=pow(1.0-max(dot(normalize(eye),normal),0.0),3.0);
+  vec3 fresnelColor=vec3(0.15,0.35,0.75);
+  color+=fresnelColor*fresnel*0.12;
+
+  // Lighting
   float light=lambert(normal,lightDirection);
-  float specularStrength=0.025;
+  vec3 specColor=vec3(0.20,0.40,0.85);
   vec3 viewDir=normalize(eye-vPosition);
   vec3 reflectDir=reflect(lightDirection,normal);
-  float spec=pow(max(dot(viewDir,reflectDir),0.0),8.0);
-  vec3 specular=specularStrength*spec*cyan;
-  vec2 rotatedUv=rotateUV(vUv,angle);
-  vec3 color=mix(texture2D(matcapTexture,rotatedUv).rgb,texture2D(matcapTexture2,rotatedUv).rgb,textureMix);
+  float spec=pow(max(dot(viewDir,reflectDir),0.0),12.0);
+  vec3 specular=0.08*spec*specColor;
+
   gl_FragColor=vec4(blendOverlay(color,vec3(light))+specular,1.0);
 }`,
 			uniforms: {
 				uTexture: { value: null },
-				matcapTexture: { value: null },
-				matcapTexture2: { value: null },
 				textureMix: { value: 0 },
 				size: { value: new THREE.Vector2(128, 128) },
 				eye: { value: new THREE.Vector3() },
 				lightDirection: { value: new THREE.Vector3(0, 1, 1) },
-				angle: { value: Math.PI / 2 }
+				angle: { value: Math.PI / 2 },
+				time: { value: 0 }
 			}
 		});
 	}
@@ -440,7 +473,9 @@ void main(){
 
 		// 시간 업데이트
 		this.timer.update();
-		this.interactionMaterial.uniforms.time.value = this.timer.getElapsed();
+		const elapsed = this.timer.getElapsed();
+		this.interactionMaterial.uniforms.time.value = elapsed;
+		this.renderingMaterial.uniforms.time.value = elapsed;
 
 		// 진동하는 라이트 방향 (margin 안에서 왕복)
 		this.angle += 0.01 * this.angleChangeSpeed;
@@ -488,48 +523,10 @@ void main(){
 		this.camera.updateProjectionMatrix();
 	}
 
-	// ── 텍스처 교체 (크로스페이드) ────────────────────────────────────────────
-	/**
-	 * matcap 텍스처 교체.
-	 * 첫 로드: 즉시 적용 (fallback DataTexture 대체).
-	 * 이후: 사용 중인 슬롯의 반대편에 로드 후 300ms crossfade.
-	 */
-	setTexture(url: string): void {
-		import('three')
-			.then(({ TextureLoader }) => {
-				new TextureLoader().load(
-					url,
-					(tex) => this._applyTexture(tex),
-					undefined,
-					(err) => console.warn('[Orb] 텍스처 로드 실패:', url, err)
-				);
-			})
-			.catch((err) => console.error('[Orb] Three.js 로드 실패 (setTexture):', err));
-	}
-
-	private _applyTexture(tex: import('three').Texture): void {
-		const u = this.renderingMaterial.uniforms;
-		if (!this._matcapLoaded) {
-			// 첫 번째 텍스처: 두 슬롯 모두 즉시 적용 (DataTexture 대체)
-			u.matcapTexture.value = tex;
-			u.matcapTexture2.value = tex;
-			u.textureMix.value = 0;
-			this._matcapLoaded = true;
-			return;
-		}
-		// 크로스페이드: 덜 사용 중인 슬롯에 새 텍스처 로드 후 mix 애니메이션
-		const useSlot2 = u.textureMix.value < 0.5;
-		if (useSlot2) {
-			u.matcapTexture2.value = tex;
-			this._animateMix(1);
-		} else {
-			u.matcapTexture.value = tex;
-			this._animateMix(0);
-		}
-	}
-
-	/** textureMix uniform을 target 값으로 300ms 동안 선형 보간 */
-	private _animateMix(target: number): void {
+	// ── 다크/라이트 모드 전환 (procedural — 텍스처 불필요) ─────────────────
+	/** textureMix: 0=dark palette, 1=light palette. 300ms crossfade. */
+	setMode(isDark: boolean): void {
+		const target = isDark ? 0 : 1;
 		const u = this.renderingMaterial.uniforms;
 		const start = performance.now();
 		const from = u.textureMix.value;

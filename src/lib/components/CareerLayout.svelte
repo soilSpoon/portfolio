@@ -39,13 +39,6 @@
 					{#each project.details ?? [] as detail}
 						<div class="career-detail">
 							<h3>{detail.title}</h3>
-							{#if detail.tags.length}
-								<div class="detail-tags">
-									{#each detail.tags as tag}
-										<span class="detail-tag">{tag}</span>
-									{/each}
-								</div>
-							{/if}
 							<div class="career-markdown">
 								<!-- eslint-disable-next-line svelte/no-at-html-tags -- trusted YAML content rendered at build time -->
 								{@html marked(detail.content, { breaks: true })}
@@ -146,24 +139,6 @@
 		font-size: 1.0625rem;
 		font-weight: 700;
 		color: #333d4b;
-	}
-
-	/* ── Detail tags ── */
-	.detail-tags {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.3rem;
-		margin-bottom: 0.5rem;
-	}
-
-	.detail-tag {
-		display: inline-block;
-		padding: 0.125rem 0.5rem;
-		font-size: 0.75rem;
-		font-weight: 500;
-		color: var(--accent, #3182f6);
-		background: color-mix(in srgb, var(--accent, #3182f6) 8%, transparent);
-		border-radius: 9999px;
 	}
 
 	/* ── Markdown rendered content ── */
@@ -346,12 +321,5 @@
 			text-decoration: none;
 		}
 
-		.detail-tag {
-			border: 1px solid #d1d5db;
-			background: transparent;
-			color: #374151;
-			font-size: 7pt;
-			padding: 1pt 4pt;
-		}
 	}
 </style>

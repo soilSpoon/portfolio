@@ -1,43 +1,35 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import LogoSvg from './LogoSvg.svelte';
-	// Section 8: Footer
-	// 원본 구조:
-	//   section.s.is-footer > .c.is-footer > .ft-content-w >
-	//     .spacer-5
-	//     .grid-main.is-footer >
-	//       .grid-main.ft-cta-grid:  "How about / we do a thing / or two, [CTA] / To+Gether"
-	//       .grid-main.ft-nav-w.mbm-diff: Sitemap + Services + Social + Legal
-	//       .ft-bottom: 로고 + copyright + address
 </script>
 
 <section class="w-full relative">
 	<div class="w-full max-w-full px-[2vw]">
-		<div class="ft-content-w border-t border-[var(--border-color,rgba(218,218,218,0.2))]">
+		<div class="border-t border-border">
 			<div class="h-[5vw]"></div>
 
 			<div class="flex flex-col gap-16">
 				<!-- ─── CTA 영역 ───────────────────────── -->
-				<div class="grid-main ft-cta-grid flex flex-col gap-[0.1em]">
+				<div class="flex flex-col gap-[0.1em]">
 					<div class="mix-blend-difference text-main-light select-none">
 						<div class="overflow-hidden">
-							<div stagger-scroll="" split-text="" class="text-[5em] font-normal uppercase leading-none tracking-[-0.02em] overflow-hidden">How about</div>
+							<div stagger-scroll="" split-text="" class="text-[6em] font-normal uppercase leading-none tracking-[-0.02em] overflow-hidden">Let's build</div>
 						</div>
 					</div>
 					<div class="mix-blend-difference text-main-light select-none">
 						<div class="overflow-hidden">
-							<div stagger-scroll="" split-text="" class="text-[5em] font-normal uppercase leading-none tracking-[-0.02em] overflow-hidden">we do a thing</div>
+							<div stagger-scroll="" split-text="" class="text-[6em] font-normal uppercase leading-none tracking-[-0.02em] overflow-hidden">something</div>
 						</div>
 					</div>
-					<div class="ft-cta-row flex flex-wrap items-center gap-8">
+					<div class="flex flex-wrap items-center gap-8">
 						<div class="mix-blend-difference text-main-light select-none">
 							<div class="overflow-hidden">
-								<div stagger-scroll="" split-text="" class="text-[5em] font-normal uppercase leading-none tracking-[-0.02em] overflow-hidden">or two,</div>
+								<div stagger-scroll="" split-text="" class="text-[6em] font-normal uppercase leading-none tracking-[-0.02em] overflow-hidden">efficient,</div>
 							</div>
 						</div>
 						<a
-							href={resolve('/')}
-							class="inline-flex items-center gap-2 rounded-[var(--radius-lg)] border border-current px-[1.6em] py-[0.8em] text-eyebrow text-inherit no-underline transition-[background,color] duration-300 ease-[ease] hover:bg-[var(--text-color)] hover:text-[var(--bg-color)]"
+							href="mailto:lee111dae11@proton.me"
+							class="inline-flex items-center gap-2 rounded-[var(--radius-lg)] border border-current px-[1.6em] py-[0.8em] text-eyebrow text-inherit no-underline transition-[background,color] duration-300 ease-[ease] hover:bg-text hover:text-bg"
 						>
 							<div class="flex items-center gap-2">
 								<div class="overflow-hidden">
@@ -49,56 +41,56 @@
 					</div>
 					<div class="mix-blend-difference text-main-light select-none">
 						<div class="overflow-hidden">
-							<div stagger-scroll="" split-text="" class="text-[5em] font-normal uppercase leading-none tracking-[-0.02em] overflow-hidden">To+Gether</div>
+							<div stagger-scroll="" split-text="" class="text-[6em] font-normal uppercase leading-none tracking-[-0.02em] overflow-hidden">To+Gether</div>
 						</div>
 					</div>
 				</div>
 
 				<!-- ─── 네비게이션 그리드 ───────────────── -->
 				<div class="grid grid-cols-4 gap-8 mix-blend-difference text-main-light select-none">
-					<div class="ft-nav-col flex flex-col gap-4">
+					<div class="flex flex-col gap-4">
 						<div class="overflow-hidden">
 							<p split-text="" stagger-scroll="1" class="text-[0.75em] leading-[1.6] uppercase tracking-[0.08em] opacity-60">Sitemap</p>
 						</div>
-						<div class="ft-nav-link-w flex flex-col gap-2">
+						<div class="flex flex-col gap-2">
 							<a
 								href={resolve('/')}
-								class="page-link-w flex items-center gap-[0.3em] text-[0.75em] text-inherit no-underline opacity-70 transition-opacity duration-200 hover:opacity-100"
+								class="flex items-center gap-[0.3em] text-[0.75em] text-inherit no-underline opacity-70 transition-opacity duration-200 hover:opacity-100"
 							>
 								<span class="text-[0.75em]">Home</span>
 								<span class="opacity-60"><span class="text-[0.75em]">→</span></span>
 							</a>
 							<a
 								href={resolve('/cv')}
-								class="page-link-w flex items-center gap-[0.3em] text-[0.75em] text-inherit no-underline opacity-70 transition-opacity duration-200 hover:opacity-100"
+								class="flex items-center gap-[0.3em] text-[0.75em] text-inherit no-underline opacity-70 transition-opacity duration-200 hover:opacity-100"
 							>
 								<span class="text-[0.75em]">CV</span>
 								<span class="opacity-60"><span class="text-[0.75em]">→</span></span>
 							</a>
 						</div>
 					</div>
-					<div class="ft-nav-col flex flex-col gap-4">
+					<div class="flex flex-col gap-4">
 						<div class="overflow-hidden">
-							<p split-text="" stagger-scroll="1" class="text-[0.75em] leading-[1.6] uppercase tracking-[0.08em] opacity-60">Services</p>
+							<p split-text="" stagger-scroll="1" class="text-[0.75em] leading-[1.6] uppercase tracking-[0.08em] opacity-60">Skills</p>
 						</div>
-						<div class="ft-nav-link-w flex flex-col gap-2">
-							{#each ['Brand Identity', 'Digital Experiences', 'Motion', 'WebGL/VR', 'UX/UI'] as svc (svc)}
-								<span class="ft-service-item block text-[0.75em] opacity-50">{svc}</span>
+						<div class="flex flex-col gap-2">
+							{#each ['React / TypeScript', 'Next.js / SvelteKit', 'C++ / WASM', 'Nest.js / Laravel', 'AI Agents'] as skill (skill)}
+								<span class="block text-[0.75em] opacity-50">{skill}</span>
 							{/each}
 						</div>
 					</div>
-					<div class="ft-nav-col flex flex-col gap-4">
+					<div class="flex flex-col gap-4">
 						<div class="overflow-hidden">
-							<p split-text="" stagger-scroll="1" class="text-[0.75em] leading-[1.6] uppercase tracking-[0.08em] opacity-60">Social</p>
+							<p split-text="" stagger-scroll="1" class="text-[0.75em] leading-[1.6] uppercase tracking-[0.08em] opacity-60">Links</p>
 						</div>
-						<div class="ft-nav-link-w flex flex-col gap-2">
-							{#each [['Twitter / X', 'https://twitter.com/itsoffbrand'], ['Instagram', 'https://instagram.com/itsoffbrand'], ['LinkedIn', 'https://linkedin.com/company/itsoffbrand']] as [name, url] (name)}
+						<div class="flex flex-col gap-2">
+							{#each [['GitHub', 'https://github.com/soilSpoon'], ['LinkedIn', 'https://linkedin.com/in/mlz37']] as [name, url] (name)}
 								<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external URL -->
 								<a
 									href={url}
 									target="_blank"
 									rel="noopener"
-									class="page-link-w flex items-center gap-[0.3em] text-[0.75em] text-inherit no-underline opacity-70 transition-opacity duration-200 hover:opacity-100"
+									class="flex items-center gap-[0.3em] text-[0.75em] text-inherit no-underline opacity-70 transition-opacity duration-200 hover:opacity-100"
 								>
 									<span class="text-[0.75em]">{name}</span>
 									<span class="opacity-60"><span class="text-[0.75em]">↗</span></span>
@@ -110,24 +102,17 @@
 
 				<!-- ─── 하단 바 ───────────────────────── -->
 				<div
-					class="ft-bottom mix-blend-difference text-main-light select-none flex items-center justify-between border-t border-[var(--border-color,rgba(218,218,218,0.2))] pt-6 pb-8"
+					class="mix-blend-difference text-main-light select-none flex items-center justify-between border-t border-border pt-6 pb-8"
 				>
-					<div class="ft-logo-w h-8 w-8 opacity-40">
-						<LogoSvg />
+					<div class="h-8 w-8 opacity-40">
+						<LogoSvg class="h-full w-full" />
 					</div>
-					<div class="ft-copy flex flex-col gap-[0.3em] text-right">
-						<p class="text-[var(--font-size-mini)] tracking-[0.03em] opacity-60">© 2025 OFF+BRAND. All rights reserved.</p>
-						<p class="text-[var(--font-size-mini)] tracking-[0.03em] opacity-60">Glasgow, Scotland · offbrand.studio</p>
+					<div class="flex flex-col gap-[0.3em] text-right">
+						<p class="text-[var(--font-size-mini)] tracking-[0.03em] opacity-60">© 2025 이대희. All rights reserved.</p>
+						<p class="text-[var(--font-size-mini)] tracking-[0.03em] opacity-60">lee111dae11@proton.me</p>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-
-<style>
-	.ft-logo-w :global(svg) {
-		width: 100%;
-		height: 100%;
-	}
-</style>

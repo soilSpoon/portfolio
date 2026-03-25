@@ -204,13 +204,18 @@
 </script>
 
 {#if visible}
-	<div data-preloader class="preloader" aria-hidden="true" aria-label="Loading">
-		<div class="ob-mask-wrap">
-			<div class="ob-mask-outline">
-				<svg viewBox="0 0 162 162" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+	<div
+		data-preloader
+		class="fixed inset-0 -z-5 flex items-center justify-center bg-main-light dark:bg-main-dark"
+		aria-hidden="true"
+		aria-label="Loading"
+	>
+		<div class="relative h-[20em] w-[20em]">
+			<div class="absolute inset-0 h-full w-full">
+				<svg class="h-full w-full overflow-visible" viewBox="0 0 162 162" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 					<path
 						bind:this={pathX}
-						class="pre-svg-path"
+						class="pre-svg-path stroke-main-dark dark:stroke-main-light [stroke-dasharray:1000] [stroke-dashoffset:1000]"
 						fill="none"
 						stroke-width="0.5"
 						stroke-miterlimit="10"
@@ -223,7 +228,7 @@
 					/>
 					<path
 						bind:this={pathC}
-						class="pre-svg-path"
+						class="pre-svg-path stroke-main-dark dark:stroke-main-light [stroke-dasharray:1000] [stroke-dashoffset:1000]"
 						fill="none"
 						stroke-width="0.5"
 						stroke-miterlimit="10"
@@ -234,22 +239,25 @@
 				</svg>
 			</div>
 
-			<div class="ob-fill-mask" bind:this={maskEl}>
-				<div class="ob-fill-fill" bind:this={fillEl}></div>
+			<div
+				class="absolute inset-0 h-full w-full mask-[url('/ob-logomark.svg')] mask-contain mask-no-repeat mask-center [clip-path:inset(0%_0%_0%_0%)]"
+				bind:this={maskEl}
+			>
+				<div class="h-full w-full scale-y-0 origin-bottom bg-main-dark dark:bg-main-light" bind:this={fillEl}></div>
 			</div>
 		</div>
 
-		<div class="pre-info-w">
-			<div class="pre-info-inner">
+		<div class="fixed bottom-[2.5em] left-[2.5em]">
+			<div class="flex items-center gap-[1.5em]">
 				<div class="overflow-hidden">
-					<div class="pre-text-wrap">
+					<div class="flex gap-[0.05em]">
 						{#each BUILD_CHARS as char, i (i)}
-							<span class="pre-char">{char}</span>
+							<span class="pre-char inline-block text-[0.75em] tracking-[0.1em] uppercase opacity-60">{char}</span>
 						{/each}
 					</div>
 				</div>
 				<div class="overflow-hidden">
-					<div class="pre-percent" bind:this={prePercentEl}>
+					<div class="text-[0.75em] tracking-[0.05em] tabular-nums opacity-60" bind:this={prePercentEl}>
 						{percentValue}%
 					</div>
 				</div>
@@ -258,110 +266,3 @@
 	</div>
 {/if}
 
-<style>
-	/* ── from preloader.css ── */
-	.preloader {
-		position: fixed;
-		inset: 0;
-		z-index: -5;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background-color: var(--color-main-light);
-	}
-	:global(html.dark) .preloader {
-		background-color: var(--color-main-dark);
-	}
-
-	:global(html.dark) .ob-fill-fill {
-		background-color: var(--color-main-light);
-	}
-	:global(html.light) .ob-fill-fill {
-		background-color: var(--color-main-dark);
-	}
-
-	.pre-svg-path {
-		stroke-dasharray: 1000;
-		stroke-dashoffset: 1000;
-	}
-	:global(html.dark) .pre-svg-path {
-		stroke: var(--color-main-light);
-	}
-	:global(html.light) .pre-svg-path {
-		stroke: var(--color-main-dark);
-	}
-
-	.ob-mask-wrap {
-		position: relative;
-		width: 20em;
-		height: 20em;
-	}
-
-	.ob-mask-outline {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-	}
-
-	.ob-mask-outline svg {
-		width: 100%;
-		height: 100%;
-		overflow: visible;
-	}
-
-	.ob-fill-mask {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		clip-path: inset(0% 0% 0% 0%);
-		mask-image: url('/ob-logomark.svg');
-		-webkit-mask-image: url('/ob-logomark.svg');
-		mask-size: contain;
-		-webkit-mask-size: contain;
-		mask-repeat: no-repeat;
-		-webkit-mask-repeat: no-repeat;
-		mask-position: center;
-		-webkit-mask-position: center;
-	}
-
-	.ob-fill-fill {
-		width: 100%;
-		height: 100%;
-		transform: scaleY(0);
-		transform-origin: bottom center;
-	}
-
-	.pre-info-w {
-		position: fixed;
-		bottom: 2.5em;
-		left: 2.5em;
-	}
-
-	.pre-info-inner {
-		display: flex;
-		align-items: center;
-		gap: 1.5em;
-	}
-
-	.pre-text-wrap {
-		display: flex;
-		gap: 0.05em;
-	}
-
-	.pre-char {
-		display: inline-block;
-		font-size: 0.75em;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		opacity: 0.6;
-	}
-
-	.pre-percent {
-		font-size: 0.75em;
-		letter-spacing: 0.05em;
-		font-variant-numeric: tabular-nums;
-		opacity: 0.6;
-	}
-</style>

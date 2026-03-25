@@ -27,7 +27,7 @@ export function splitAllText(SplitType: SplitTypeCtor): void {
 		});
 	};
 
-	splitOnce('.is-home-hero [split-hero]', 'chars,words');
+	splitOnce('[data-home-hero] [split-hero]', 'chars,words');
 	splitOnce('[stagger-lines]', 'lines');
 	splitOnce('[stagger-scroll]', 'words');
 	splitOnce('[split-text]', 'words');
