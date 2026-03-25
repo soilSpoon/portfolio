@@ -4,17 +4,17 @@
 	const CORNER_SVG = `<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 0V8M0 4H8" stroke="currentColor" stroke-width="0.8" opacity="0.4"/></svg>`;
 </script>
 
-<section class="s">
-	<div class="c">
-		<div data-hide="m" class="spacer-10"></div>
-		<div data-client-section="" class="grid-main is-home-client">
+<section class="w-full">
+	<div class="w-full max-w-full px-[2vw] mx-auto relative">
+		<div data-hide="m" class="h-[10vw]"></div>
+		<div data-client-section="" class="grid grid-cols-12 gap-x-5 items-start">
 			<!-- "Trusted by + Leaders" 헤딩 -->
 			<div class="[grid-column:1/3] flex flex-col gap-[0.3em]">
 				<div class="t-flex overflow-hidden">
-					<h2 split-text="" stagger-scroll="1" class="h-eyebrow is-clients-eyebrow">Trusted by</h2>
+					<h2 split-text="" stagger-scroll="1" class="text-eyebrow font-normal uppercase tracking-[0.1em] leading-[1.2]">Trusted by</h2>
 				</div>
 				<div class="t-flex overflow-hidden">
-					<h2 data-client-tag="" class="h-eyebrow is--outline is-clients-eyebrow">Leaders</h2>
+					<h2 data-client-tag="" class="text-eyebrow font-normal uppercase tracking-[0.1em] leading-[1.2]" style="-webkit-text-stroke: 1px currentColor; color: transparent;">Leaders</h2>
 				</div>
 			</div>
 
@@ -55,36 +55,16 @@
 </section>
 
 <style>
-	/* grid-main.is-home-client: 12열 그리드 (global override) */
-	:global(.grid-main.is-home-client) {
-		display: grid;
-		grid-template-columns: repeat(12, 1fr);
-		column-gap: 1.25em;
-		align-items: start;
-	}
-
-	/* SVG 로고 크기 제어 */
+	/* SVG 로고 크기 제어 — {@html} injects SVGs not visible to compiler */
 	.home-client__grid-img :global(svg) {
 		width: 100%;
 		height: auto;
 		max-height: 2.5em;
 	}
-	/* 다크 모드: 로고 → 흰색 (brightness(0) = black, invert(1) = white) */
 	:global(html.dark) .home-client__grid-img :global(svg) {
 		filter: brightness(0) invert(1);
 	}
-	/* 라이트 모드: 로고 → 검정색 */
 	:global(html.light) .home-client__grid-img :global(svg) {
 		filter: brightness(0);
-	}
-
-	/* .h-eyebrow: overrides global letter-spacing (0.1em vs global 0.08em) and line-height (1.2 vs global 1.4) for clients section */
-	.is-clients-eyebrow {
-		font-size: var(--fs-eyebrow);
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		font-weight: 400;
-		margin: 0;
-		line-height: 1.2;
 	}
 </style>
