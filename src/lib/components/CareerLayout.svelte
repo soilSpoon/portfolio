@@ -65,45 +65,46 @@
 	.career-layout {
 		max-width: 800px;
 		margin: 0 auto;
-		padding: 3rem 2rem;
+		padding: 2rem 2rem;
 		font-family: var(--font-family, 'Toss Product Sans', sans-serif);
 		font-size: 1rem;
-		line-height: 1.625;
-		color: #111827;
+		line-height: 1.45;
+		color: #191f28;
 	}
 
 	/* ── Header ── */
 	.career-header {
-		margin-bottom: 2.5rem;
-		padding-bottom: 1.5rem;
+		margin-bottom: 1.5rem;
+		padding-bottom: 1rem;
 		border-bottom: var(--heading-border-width, 2px) solid var(--accent, #3182f6);
 	}
 
 	.career-header h1 {
 		margin: 0 0 0.25rem;
-		font-size: 1.875rem;
-		font-weight: 700;
+		font-size: 2.125rem;
+		font-weight: 800;
 		line-height: 1.2;
-		color: #111827;
+		color: #191f28;
+		letter-spacing: -0.02em;
 	}
 
 	.career-subtitle {
-		margin: 0 0 0.75rem;
-		font-size: 0.925rem;
+		margin: 0 0 0.5rem;
+		font-size: 0.9rem;
 		color: #6b7280;
 	}
 
 	.career-intro {
 		margin: 0;
-		font-size: 0.925rem;
+		font-size: 0.9rem;
 		color: #6b7280;
 	}
 
 	/* ── Project sections ── */
 	.career-project {
-		padding-top: 2rem;
-		padding-bottom: 2rem;
-		border-top: 1px solid #e5e7eb;
+		padding-top: 1.25rem;
+		padding-bottom: 1.25rem;
+		border-top: 1px solid #c9ccd1;
 	}
 
 	.career-project:first-of-type {
@@ -111,48 +112,48 @@
 	}
 
 	.career-project h2 {
-		margin: 0 0 0.75rem;
-		font-size: 1.3rem;
+		margin: 0 0 0.5rem;
+		font-size: 1.375rem;
 		font-weight: 700;
-		color: #111827;
-		padding-bottom: 0.375rem;
+		color: #191f28;
+		padding-bottom: 0.3rem;
 		border-bottom: var(--heading-border-width, 2px) solid var(--accent, #3182f6);
 	}
 
 	/* ── Project meta ── */
 	.project-meta {
-		margin-bottom: 1.5rem;
-		padding: 0.75rem 1rem;
+		margin-bottom: 1rem;
+		padding: 0.5rem 0.75rem;
 		background: #f9fafb;
 		border-radius: 0.375rem;
-		font-size: 0.875rem;
-		line-height: 1.7;
+		font-size: 0.8125rem;
+		line-height: 1.5;
 		color: #374151;
 	}
 
 	.project-meta :global(strong) {
-		color: #111827;
+		color: #191f28;
 		font-weight: 600;
 	}
 
 	/* ── Detail block ── */
 	.career-detail {
-		margin-top: 1.75rem;
+		margin-top: 1.125rem;
 	}
 
 	.career-detail h3 {
-		margin: 0 0 0.5rem;
-		font-size: 1.05rem;
-		font-weight: 600;
-		color: #1f2937;
+		margin: 0 0 0.3rem;
+		font-size: 1.0625rem;
+		font-weight: 700;
+		color: #333d4b;
 	}
 
 	/* ── Detail tags ── */
 	.detail-tags {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.375rem;
-		margin-bottom: 0.75rem;
+		gap: 0.3rem;
+		margin-bottom: 0.5rem;
 	}
 
 	.detail-tag {
@@ -167,38 +168,38 @@
 
 	/* ── Markdown rendered content ── */
 	:global(.career-markdown h4) {
-		margin-top: 1rem;
-		margin-bottom: 0.25rem;
-		font-size: 0.95rem;
-		font-weight: 600;
-		color: #374151;
+		margin-top: 0.75rem;
+		margin-bottom: 0.2rem;
+		font-size: 0.9375rem;
+		font-weight: 700;
+		color: #333d4b;
 	}
 
 	:global(.career-markdown p) {
-		margin: 0.375rem 0;
-		font-size: 0.925rem;
-		color: #4b5563;
+		margin: 0.25rem 0;
+		font-size: 0.9rem;
+		color: #191f28;
 	}
 
 	:global(.career-markdown ul) {
-		margin: 0.25rem 0;
-		padding-left: 1.25rem;
+		margin: 0.2rem 0;
+		padding-left: 1rem;
 	}
 
 	:global(.career-markdown ol) {
-		margin: 0.25rem 0;
-		padding-left: 1.25rem;
+		margin: 0.2rem 0;
+		padding-left: 1rem;
 	}
 
 	:global(.career-markdown li) {
-		margin: 0.125rem 0;
+		margin: 0.1rem 0;
 		font-size: 0.875rem;
-		color: #4b5563;
+		color: #191f28;
 	}
 
 	:global(.career-markdown strong) {
 		font-weight: 600;
-		color: #111827;
+		color: #191f28;
 	}
 
 	:global(.career-markdown a) {
@@ -212,23 +213,23 @@
 
 	:global(.career-markdown code) {
 		padding: 0.125rem 0.375rem;
-		font-size: 0.875rem;
+		font-size: 0.8125rem;
 		background: #f3f4f6;
 		border-radius: 0.25rem;
 	}
 
 	:global(.career-markdown blockquote) {
-		margin: 0.25rem 0;
-		padding: 0.25rem 0 0.25rem 0.75rem;
-		border-left: 3px solid #d1d5db;
+		margin: 0.2rem 0;
+		padding: 0.2rem 0 0.2rem 0.625rem;
+		border-left: 3px solid #c9ccd1;
 		font-size: 0.875rem;
 		color: #6b7280;
 	}
 
 	:global(.career-markdown hr) {
-		margin: 1.75rem 0;
+		margin: 1.25rem 0;
 		border: none;
-		border-top: 1px solid #e5e7eb;
+		border-top: 1px solid #c9ccd1;
 	}
 
 	/* ── Print styles ── */
@@ -237,18 +238,30 @@
 			max-width: none;
 			padding: 0;
 			margin: 0;
-			font-size: 10pt;
-			line-height: 1.45;
+			font-size: 9.5pt;
+			line-height: 1.35;
+			color: #000;
 		}
 
 		.career-header {
-			margin-bottom: 12pt;
-			padding-bottom: 8pt;
+			margin-bottom: 8pt;
+			padding-bottom: 6pt;
 		}
 
 		.career-header h1 {
-			font-size: 16pt;
-			margin-bottom: 4pt;
+			font-size: 17pt;
+			font-weight: 800;
+			margin-bottom: 3pt;
+		}
+
+		.career-subtitle,
+		.career-intro {
+			font-size: 8.5pt;
+		}
+
+		.career-project {
+			padding-top: 8pt;
+			padding-bottom: 8pt;
 		}
 
 		.career-project + .career-project {
@@ -261,44 +274,71 @@
 			font-size: 12pt;
 			break-after: avoid;
 			margin-top: 0;
-			margin-bottom: 4pt;
+			margin-bottom: 3pt;
+			padding-bottom: 2pt;
+		}
+
+		.career-detail {
+			margin-top: 6pt;
 		}
 
 		.career-detail h3 {
-			font-size: 10.5pt;
+			font-size: 10pt;
 			break-after: avoid;
+			margin-bottom: 2pt;
 		}
 
 		.project-meta {
-			font-size: 9pt;
+			font-size: 8.5pt;
+			line-height: 1.4;
+			margin-bottom: 6pt;
+			padding: 4pt 6pt;
 			break-after: avoid;
+		}
+
+		.detail-tags {
+			margin-bottom: 3pt;
 		}
 
 		:global(.career-markdown h4) {
 			font-size: 9.5pt;
 			break-after: avoid;
-			margin-top: 5pt;
-			margin-bottom: 2pt;
+			margin-top: 4pt;
+			margin-bottom: 1pt;
 		}
 
 		:global(.career-markdown p) {
-			font-size: 9.5pt;
+			font-size: 9pt;
+			margin: 1.5pt 0;
 			orphans: 3;
 			widows: 3;
 		}
 
 		:global(.career-markdown li) {
-			font-size: 9.5pt;
+			font-size: 9pt;
+			margin: 0.5pt 0;
 		}
 
 		:global(.career-markdown ul),
 		:global(.career-markdown ol) {
+			margin: 1pt 0;
+			padding-left: 12pt;
 			break-inside: avoid;
 		}
 
 		:global(.career-markdown h4 + p),
 		:global(.career-markdown h4 + ul) {
 			break-before: avoid;
+		}
+
+		:global(.career-markdown blockquote) {
+			margin: 1pt 0;
+			padding: 1pt 0 1pt 6pt;
+			font-size: 8.5pt;
+		}
+
+		:global(.career-markdown hr) {
+			margin: 8pt 0;
 		}
 
 		:global(.career-markdown a) {
@@ -310,6 +350,8 @@
 			border: 1px solid #d1d5db;
 			background: transparent;
 			color: #374151;
+			font-size: 7pt;
+			padding: 1pt 4pt;
 		}
 	}
 </style>

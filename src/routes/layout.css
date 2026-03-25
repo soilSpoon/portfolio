@@ -75,7 +75,7 @@
 	--dur-med: 0.6s;
 
 	/* z-index 스케일 */
-	--z-preloader: -5;
+	--z-preloader: 5000;
 	--z-orb-wrapper: -2;
 	--z-orb-canvas: -1;
 	--z-orb-outline: -2;
@@ -121,12 +121,18 @@ a {
    다크 / 라이트 모드
    ============================================= */
 html.dark body {
-	background-color: var(--main-dark);
+	background-color: transparent;
 	color: var(--main-light);
 }
 html.light body {
-	background-color: var(--main-light);
+	background-color: transparent;
 	color: var(--main-dark);
+}
+html.dark {
+	background-color: var(--main-dark);
+}
+html.light {
+	background-color: var(--main-light);
 }
 
 /* 텍스트 선택 */
