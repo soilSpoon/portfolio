@@ -14,21 +14,21 @@
 </script>
 
 <!-- home-work ScrollTrigger 트리거 -->
-<section home-work="" class="s">
+<section home-work="" class="s relative">
 	<div class="c">
 		<div class="spacer-10"></div>
 		<!-- 12열 그리드: left sticky (cols 1-2) + right grid (cols 5-12) -->
-		<div class="grid-main is-hw">
+		<div class="is-hw grid w-full grid-cols-12 gap-5">
 			<!-- ─── Left: sticky eyebrow + CTA (cols 1-2) ──────────────── -->
-			<div class="eb-wrap is-sticky hw-left">
-				<div class="o-hidden">
+			<div class="hw-left eb-wrap sticky top-20 col-span-2 flex flex-col gap-y-[2rem] self-start">
+				<div class="overflow-hidden">
 					<h3 stagger-scroll="1" class="h-eyebrow">Featured work</h3>
 				</div>
 				<div btn-reveal="" class="page-btn-w">
-					<div class="o-hidden is-flex">
+					<div class="flex overflow-hidden">
 						<a reveal-target="" href={resolve('/')} class="btn-w">
 							<div class="btn-inner">
-								<div class="o-hidden">
+								<div class="overflow-hidden">
 									<div stagger-text="" class="btn-txt">All Work</div>
 								</div>
 								<div class="btn-icon-w">
@@ -44,7 +44,7 @@
 			</div>
 
 			<!-- ─── Right: 8-col work grid (cols 5-12) ─────────────────── -->
-			<div class="grid-main hcs-grid-w hw-right">
+			<div class="hcs-grid-w relative z-1 col-[5/13] grid grid-flow-dense grid-cols-8 gap-5">
 				{#each projects as project (project.slug)}
 					<a hover-anim="" href={resolve('/')} class="hcs-item-w">
 						<div class="hcs-content-w">
@@ -77,51 +77,35 @@
 </section>
 
 <style>
-	/* ─── 섹션 ────────────────────────────────────────────────────────────── */
-	.s {
-		position: relative;
+	/* ─── 타이포그래피 overrides (component-specific, differ from global) ── */
+	/* .h-eyebrow: overrides global — larger font-size (1em vs 0.85em), tighter letter-spacing (0.05em vs 0.08em), line-height 1 vs 1.4 */
+	.h-eyebrow {
+		font-size: 1em;
+		font-weight: 400;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		line-height: 1;
+		margin: 0;
 	}
-	.spacer-10 {
-		height: 10vw;
+	/* .text-small.caps: overrides global — larger font-size (1em vs 0.8em), different letter-spacing for work card labels */
+	.text-small.caps {
+		font-size: 1em;
+		font-weight: 400;
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
+		margin: 0;
 	}
-
-	/* ─── is-hw 그리드: 12열 ──────────────────────────────────────────────── */
-	.grid-main.is-hw {
-		display: grid;
-		grid-template-columns: repeat(12, 1fr);
-		column-gap: 1.25em;
-		row-gap: 1.25em;
-		width: 100%;
-	}
-
-	/* Left: cols 1-2 (span 2), sticky top:5em */
-	.hw-left {
-		grid-column: 1 / 3;
-		align-self: start;
-		position: sticky;
-		top: 5em;
-		display: flex;
-		flex-direction: column;
-		row-gap: 2rem;
-	}
-
-	/* Right: cols 5-12 (8-col inner grid) */
-	.hw-right {
-		grid-column: 5 / 13;
+	/* .text-mini: overrides global — adds text-transform, line-height, opacity, margin for work card tags */
+	.text-mini {
+		font-size: 0.75em;
+		font-weight: 400;
+		text-transform: uppercase;
+		line-height: 1;
+		opacity: 0.7;
+		margin: 0;
 	}
 
-	/* ─── hcs-grid-w: 8열 그리드, 각 item 4열 span ──────────────────────── */
-	.grid-main.hcs-grid-w {
-		display: grid;
-		grid-template-columns: repeat(8, 1fr);
-		grid-auto-flow: dense;
-		gap: 1.25em;
-		position: relative;
-		z-index: 1;
-	}
-
-	/* ─── 각 work item: 8열 중 4열 span = 2 per row, 1:1 비율 ──────────────── */
-	/* 원본: grid-area: span 1/span 4/span 1/span 4 + aspect-ratio: 1/1 */
+	/* ─── work item: 8열 중 4열 span, 1:1, GSAP targets y/opacity ─────── */
 	.hcs-item-w {
 		grid-column: span 4;
 		aspect-ratio: 1 / 1;
@@ -138,6 +122,7 @@
 		will-change: transform, opacity;
 	}
 
+	/* ─── content / titles layout ─────────────────────────────────────── */
 	.hcs-content-w {
 		flex-direction: column;
 		justify-content: flex-end;
@@ -160,6 +145,8 @@
 		max-width: 80%;
 		overflow: hidden;
 	}
+
+	/* ─── hover effects (parent:hover child — can't express in Tailwind) ── */
 	.hcs-info-w {
 		display: flex;
 		flex-direction: column;
@@ -169,12 +156,14 @@
 	.hcs-item-w:hover .hcs-info-w {
 		transform: translateY(0);
 	}
+
 	.hcs-title-w {
 		display: flex;
 		flex-direction: column;
 		gap: 0.15em;
 		margin-top: 0.3em;
 	}
+
 	.hcs-cross-w {
 		transition: transform var(--dur-med) var(--ease-smooth);
 		flex-shrink: 0;
@@ -186,7 +175,7 @@
 		height: 100%;
 	}
 
-	/* ─── 배경 이미지 (z-index:-1, 원본과 동일) ───────────────────────────── */
+	/* ─── 배경 이미지 (hover scale transition) ────────────────────────── */
 	.hcs-img-w {
 		position: absolute;
 		inset: 0;
@@ -206,7 +195,7 @@
 
 	/* 그라데이션 오버레이 */
 	.hcs-item-w::after {
-		content: \'\';
+		content: '';
 		position: absolute;
 		inset: 0;
 		background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 60%);
@@ -214,7 +203,7 @@
 		z-index: 1;
 	}
 
-	/* ─── 배경 이미지 URLs ─────────────────────────────────────────────────── */
+	/* ─── 배경 이미지 URLs ─────────────────────────────────────────────── */
 	:global(.hcs-img-w.is-lando) {
 		background-image: url('https://cdn.prod.website-files.com/64cf4cc8c9b14fe4cb3c54b4/68ece3e91ef2f1125c5b57eb_lando-cs-hero-img.jpg');
 	}
@@ -252,38 +241,7 @@
 		background-position: 50%;
 	}
 
-	/* ─── 타이포그래피 ───────────────────────────────────────────────────── */
-	.h-eyebrow {
-		font-size: 1em;
-		font-weight: 400;
-		letter-spacing: 0.05em;
-		text-transform: uppercase;
-		line-height: 1;
-		margin: 0;
-	}
-	.text-small.caps {
-		font-size: 1em;
-		font-weight: 400;
-		text-transform: uppercase;
-		letter-spacing: 0.03em;
-		margin: 0;
-	}
-	.text-mini {
-		font-size: 0.75em;
-		font-weight: 400;
-		text-transform: uppercase;
-		line-height: 1;
-		opacity: 0.7;
-		margin: 0;
-	}
-	.o-hidden {
-		overflow: hidden;
-	}
-	.is-flex {
-		display: flex;
-	}
-
-	/* ─── CTA 버튼 ───────────────────────────────────────────────────────── */
+	/* ─── CTA 버튼: overrides global .btn-w — different padding, adds overflow:hidden for fill animation */
 	.btn-w {
 		border: 1px solid var(--border-color, rgba(120, 120, 120, 0.4));
 		background-color: transparent;
@@ -295,6 +253,7 @@
 		color: inherit;
 		padding: 0.6em 1.2em;
 	}
+	/* .btn-inner: overrides global — adds position:relative + z-index:1 for stacking above .btn-bg-fill */
 	.btn-inner {
 		display: flex;
 		align-items: center;
@@ -302,10 +261,12 @@
 		position: relative;
 		z-index: 1;
 	}
+	/* .btn-txt: overrides global — different font-size (0.8em vs 0.85em), adds letter-spacing */
 	.btn-txt {
 		font-size: 0.8em;
 		letter-spacing: 0.05em;
 	}
+	/* .btn-icon-w: overrides global — only opacity (0.6 vs global 0.7), removes display:flex */
 	.btn-icon-w {
 		opacity: 0.6;
 	}

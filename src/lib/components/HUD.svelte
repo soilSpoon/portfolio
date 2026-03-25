@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { resolve } from '$app/paths';
+	import LogoSvg from './LogoSvg.svelte';
 	interface Props {
 		currentPath?: string;
 	}
@@ -41,27 +42,30 @@
 	        .hud-scroll-w  — bottom-left (position: absolute; inset: auto auto 0% 0%)
 	        .hud-menu-o    — top-right 메뉴 오버레이 (버튼 + bg + nav + 다크/라이트 토글 포함)
 -->
-<div class="hud-w">
-	<div class="c is-hud">
-		<div class="hud-content">
+<div class="hud-w pointer-events-none fixed inset-0">
+	<div class="c is-hud relative h-full w-full px-[2vw]">
+		<div class="hud-content pointer-events-none relative h-full w-full">
 			<!-- ─── 브랜드 로고 (top-left) ──────────────────────────────────── -->
-			<div class="hud-brand-w">
-				<a href={resolve('/')} class="hud-brand-link" aria-label="OFF+BRAND home">
+			<div class="hud-brand-w pointer-events-auto absolute inset-[0%_auto_auto_0%] pt-6">
+				<a
+					href={resolve('/')}
+					data-hud-brand
+					class="hud-brand-link block h-[2.2em] w-[2.2em] no-underline"
+					aria-label="OFF+BRAND home"
+				>
 					<div class="hud-brand-img w-embed">
-						<svg viewBox="0 0 162 162" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-							<path
-								d="M108 88.7c-10.8 0-19.7 8.8-19.7 19.7v47.4c0 1.9-1.5 3.4-3.4 3.4h-8.6c-1.9 0-3.4-1.5-3.4-3.4v-47.4c0-10.8-8.8-19.7-19.7-19.7H6.4c-1.9 0-3.4-1.5-3.4-3.4v-8c0-1.9 1.5-3.4 3.4-3.4h46.9c10.8 0 19.7-8.8 19.6-19.7V6.4c0-1.9 1.5-3.4 3.4-3.4H85c1.9 0 3.4 1.5 3.4 3.4v47.8c0 10.8 8.8 19.7 19.7 19.7h46.6c1.9 0 3.4 1.5 3.4 3.4v8c0 1.9-1.5 3.4-3.4 3.4H108z"
-								style="fill-rule:evenodd;clip-rule:evenodd;"
-								fill="var(--text-color, currentColor)"
-							/>
-						</svg>
+						<LogoSvg />
 					</div>
 				</a>
 			</div>
 
-			<!-- ─── 스크롤 인디케이터 (bottom-left) ──────────────────────────── -->
-			<div class="hud-scroll-w" aria-hidden="true">
-				<div class="hud-scroll-inner">
+			<!-- ─── 스크롤 인디케이터 (bottom-right, 메뉴 버튼 왼쪽) ──────────────────────────── -->
+			<div
+				data-hud-scroll
+				class="hud-scroll-w pointer-events-none absolute inset-[auto_4em_0%_auto] flex items-end pb-6"
+				aria-hidden="true"
+			>
+				<div class="hud-scroll-inner flex flex-col items-center gap-y-[0.2em]">
 					<div class="hud-scroll-line-top"></div>
 					<div class="hud-scroll-dot"></div>
 					<div class="hud-scroll-line-btm"></div>
@@ -69,74 +73,87 @@
 			</div>
 
 			<!-- ─── 우상단 네비게이션 링크 ─────────────────────────────────── -->
-			<div class="hud-nav-w"></div>
+			<div
+				class="hud-nav-w pointer-events-auto absolute top-6 right-16 flex items-center gap-8"
+			></div>
 
 			<!-- ─── 메뉴 오버레이 (.hud-menu-o) — 버튼 + 배경 + 콘텐츠 포함 ── -->
-			<div class="hud-menu-o" class:is-open={menuOpen}>
+			<div
+				class="hud-menu-o pointer-events-none absolute inset-[auto_0%_0%_auto]"
+				class:is-open={menuOpen}
+			>
 				<!-- 메뉴 햄버거 버튼 -->
 				<button
 					type="button"
 					aria-label="menu"
 					aria-expanded={menuOpen}
-					class="hud-menu-w"
+					data-hud-menu
+					class="hud-menu-w pointer-events-auto absolute right-0 bottom-6 cursor-pointer border-none bg-none p-[0.76rem_0.48rem]"
 					class:is-open={menuOpen}
 					onclick={toggleMenu}
 				>
-					<div class="hud-menu-c">
-						<div class="hud-menu-line is-1"></div>
-						<div class="hud-menu-line is-2"></div>
-						<div class="hud-menu-line is-3"></div>
+					<div class="hud-menu-c relative flex h-[1.5rem] w-[2rem] flex-col justify-between">
+						<div class="hud-menu-line is-1 block h-px w-[1.5rem] bg-current"></div>
+						<div class="hud-menu-line is-2 block h-px w-[1.5rem] bg-current"></div>
+						<div class="hud-menu-line is-3 block h-px w-[1.5rem] bg-current"></div>
 					</div>
 				</button>
 
 				<!-- 메뉴 배경 (작은 원에서 전체화면으로 확장) -->
-				<div class="hud-menu-bg"></div>
+				<div class="hud-menu-bg pointer-events-none fixed inset-0"></div>
 
 				<!-- 메뉴 콘텐츠: nav + 다크/라이트 토글 + 소셜 -->
-				<div class="hud-menu-content">
-					<nav class="hud-menu-link-w" aria-label="Main navigation">
+				<div
+					class="hud-menu-content pointer-events-none fixed inset-0 flex flex-col items-start justify-center gap-[2.5rem] pl-[4vw]"
+				>
+					<nav class="hud-menu-link-w flex flex-col gap-[0.2em]" aria-label="Main navigation">
 						<a
 							href={resolve('/')}
-							class="hud-menu-link o-hidden menu-l2"
+							class="hud-menu-link menu-l2 block overflow-hidden no-underline"
 							class:active={currentPath === '/'}>Home</a
 						>
 					</nav>
 
 					<!-- 다크/라이트 토글 (메뉴 안) -->
-					<div class="hud-mode-o-hidden">
+					<div class="hud-mode-o-hidden overflow-hidden">
 						<button
 							type="button"
 							aria-label="Toggle colour theme"
 							aria-pressed={!isDark}
 							mode-toggle={isDark ? 'dark' : 'light'}
-							class="hud-mode-toggle-w"
+							class="hud-mode-toggle-w pointer-events-auto cursor-pointer border-none bg-none p-0"
 							onclick={toggleMode}
 						>
-							<div class="mode-toggle-track">
-								<div class="mode-toggle-inner">
-									<div class="mode-toggle-btn" class:is-light={!isDark}></div>
+							<div
+								class="mode-toggle-track h-[1.2em] w-[2.4em] overflow-hidden rounded-[6em] border border-current"
+							>
+								<div class="mode-toggle-inner relative h-full w-full">
+									<div
+										class="mode-toggle-btn absolute top-1/2 h-[0.8em] w-[0.8em] rounded-full bg-current"
+										class:is-light={!isDark}
+									></div>
 								</div>
 							</div>
 						</button>
 					</div>
 
 					<!-- 소셜 링크 -->
-					<div class="hud-menu-socials">
+					<div class="hud-menu-socials flex gap-8">
 						<a
 							href="https://twitter.com/itsoffbrand"
-							class="hud-social-link"
+							class="hud-social-link no-underline"
 							target="_blank"
 							rel="noopener noreferrer">Twitter</a
 						>
 						<a
 							href="https://instagram.com/itsoffbrand"
-							class="hud-social-link"
+							class="hud-social-link no-underline"
 							target="_blank"
 							rel="noopener noreferrer">Instagram</a
 						>
 						<a
 							href="https://linkedin.com/company/itsoffbrand"
-							class="hud-social-link"
+							class="hud-social-link no-underline"
 							target="_blank"
 							rel="noopener noreferrer">LinkedIn</a
 						>
@@ -152,61 +169,18 @@
 <!-- /.hud-w -->
 
 <style>
-	/* ─── HUD 컨테이너 ──────────────────────────────────────────────────────── */
+	/* ─── HUD 컨테이너 z-index ──────────────────────────────────────────── */
 	.hud-w {
-		position: fixed;
-		inset: 0;
-		z-index: 1000;
-		pointer-events: none;
-	}
-	.c.is-hud {
-		position: relative;
-		width: 100%;
-		height: 100%;
-		padding-left: 2vw;
-		padding-right: 2vw;
-	}
-	/* hud-content: full 100% × 100% container, absolute children positioned within */
-	.hud-content {
-		position: relative;
-		width: 100%;
-		height: 100%;
-		pointer-events: none;
+		z-index: var(--z-hud);
 	}
 
-	/* ─── 브랜드 로고 (top-left absolute) ─────────────────────────────────── */
-	.hud-brand-w {
-		position: absolute;
-		inset: 0% auto auto 0%;
-		padding-top: 1.5em;
-		pointer-events: all;
-	}
-	.hud-brand-link {
-		display: block;
-		width: 2.2em;
-		height: 2.2em;
-		text-decoration: none;
-	}
-	.hud-brand-img svg {
+	/* ─── 브랜드 로고 SVG sizing ─────────────────────────────────────────── */
+	.hud-brand-img :global(svg) {
 		width: 100%;
 		height: 100%;
 	}
 
-	/* ─── 스크롤 인디케이터 (bottom-right, 메뉴 버튼 왼쪽) ─────────────────── */
-	.hud-scroll-w {
-		position: absolute;
-		inset: auto 4em 0% auto; /* 우하단, 메뉴 버튼 왼쪽 */
-		padding-bottom: 1.5em;
-		display: flex;
-		align-items: flex-end;
-		pointer-events: none;
-	}
-	.hud-scroll-inner {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		row-gap: 0.2em;
-	}
+	/* ─── 스크롤 인디케이터 lines/dot ─────────────────────────────────────── */
 	.hud-scroll-line-top,
 	.hud-scroll-line-btm {
 		width: 1px;
@@ -214,7 +188,6 @@
 		opacity: 0.4;
 	}
 	.hud-scroll-line-top {
-		/* rem → em: 전체 시스템이 1em≈1vw 기반이므로 vw 비례 스케일링 적용 */
 		height: 5em;
 		transform-origin: top center;
 		animation: scrollPulse 4s infinite ease-in-out;
@@ -244,45 +217,24 @@
 		}
 	}
 
-	/* ─── 메뉴 오버레이 (.hud-menu-o) ────────────────────────────────────── */
+	/* ─── 메뉴 오버레이 z-index ──────────────────────────────────────────── */
 	.hud-menu-o {
-		position: absolute;
-		inset: auto 0% 0% auto; /* bottom-right (원본 레이아웃) */
 		z-index: 999;
-		pointer-events: none;
 	}
 	.hud-menu-o.is-open {
 		pointer-events: all;
 	}
 
-	/* ─── 메뉴 버튼 (bottom-right, 원본 레이아웃) ───────────────────────── */
+	/* ─── 메뉴 버튼 z-index ──────────────────────────────────────────────── */
 	.hud-menu-w {
-		background: none;
-		border: none;
-		cursor: pointer;
-		padding: 0.76rem 0.48rem;
-		pointer-events: all;
-		position: absolute;
-		bottom: 1.5em;
-		right: 0;
 		z-index: 1001;
 	}
-	.hud-menu-c {
-		width: 2rem;
-		height: 1.5rem;
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-	}
+
+	/* ─── 메뉴 라인 애니메이션 ───────────────────────────────────────────── */
 	.hud-menu-line {
-		width: 1.5rem;
-		height: 1px;
-		background: currentColor;
 		transition:
 			transform 0.3s ease,
 			opacity 0.3s ease;
-		display: block;
 	}
 	.hud-menu-w.is-open .hud-menu-line.is-1 {
 		transform: translateY(0.6rem) rotate(45deg);
@@ -296,12 +248,9 @@
 
 	/* ─── 메뉴 배경 ──────────────────────────────────────────────────────── */
 	.hud-menu-bg {
-		position: fixed;
-		inset: 0;
 		background: var(--bg-color, #1d1d1d);
 		opacity: 0;
 		transition: opacity 0.4s ease;
-		pointer-events: none;
 		z-index: 0;
 	}
 	.hud-menu-o.is-open .hud-menu-bg {
@@ -311,39 +260,25 @@
 
 	/* ─── 메뉴 콘텐츠 ────────────────────────────────────────────────────── */
 	.hud-menu-content {
-		position: fixed;
-		inset: 0;
 		z-index: 1;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: flex-start;
-		padding-left: 4vw;
-		gap: 2.5rem;
 		opacity: 0;
-		pointer-events: none;
 		transition: opacity 0.3s ease 0.1s;
 	}
 	.hud-menu-o.is-open .hud-menu-content {
 		opacity: 1;
 		pointer-events: all;
 	}
-	.hud-menu-link-w {
-		display: flex;
-		flex-direction: column;
-		gap: 0.2em;
-	}
+
+	/* ─── 메뉴 링크 스타일 ───────────────────────────────────────────────── */
 	.hud-menu-link {
 		font-size: var(--fs-h-b);
 		font-weight: 400;
 		text-transform: uppercase;
-		text-decoration: none;
 		color: var(--text-color, #e5e4e0);
 		line-height: 1;
 		letter-spacing: -0.02em;
 		transition: opacity 0.2s ease;
 		opacity: 0.5;
-		display: block;
 	}
 	.hud-menu-link.active,
 	.hud-menu-link:hover {
@@ -351,38 +286,12 @@
 	}
 
 	/* ─── 모드 토글 ──────────────────────────────────────────────────────── */
-	.hud-mode-o-hidden {
-		overflow: hidden;
-	}
-	.hud-mode-toggle-w {
-		background: none;
-		border: none;
-		cursor: pointer;
-		padding: 0;
-		pointer-events: all;
-	}
 	.mode-toggle-track {
-		width: 2.4em;
-		height: 1.2em;
-		border: 1px solid currentColor;
-		border-radius: 6em;
-		overflow: hidden;
 		opacity: 0.6;
 	}
-	.mode-toggle-inner {
-		width: 100%;
-		height: 100%;
-		position: relative;
-	}
 	.mode-toggle-btn {
-		position: absolute;
 		left: 2px;
-		top: 50%;
 		transform: translateY(-50%);
-		width: 0.8em;
-		height: 0.8em;
-		border-radius: 50%;
-		background: currentColor;
 		transition: left 0.3s ease;
 	}
 	.mode-toggle-btn.is-light {
@@ -390,31 +299,15 @@
 	}
 
 	/* ─── 소셜 링크 ──────────────────────────────────────────────────────── */
-	.hud-menu-socials {
-		display: flex;
-		gap: 2em;
-	}
 	.hud-social-link {
 		font-size: var(--fs-small);
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
-		text-decoration: none;
 		color: currentColor;
 		opacity: 0.5;
 		transition: opacity 0.2s ease;
 	}
 	.hud-social-link:hover {
 		opacity: 1;
-	}
-
-	/* ─── 우상단 네비게이션 링크 ──────────────────────────────────────────── */
-	.hud-nav-w {
-		position: absolute;
-		top: 1.5em;
-		right: 4em;
-		display: flex;
-		align-items: center;
-		gap: 2em;
-		pointer-events: all;
 	}
 </style>

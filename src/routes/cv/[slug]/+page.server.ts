@@ -2,7 +2,8 @@ import { error } from '@sveltejs/kit';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { marked } from 'marked';
-import { CV_ENTRIES, getCvEntry } from '$lib/data/cv';
+import { CV_ENTRIES, getCvEntry, getCvFile } from '$lib/data/cv';
+import { getLocale } from '$lib/paraglide/runtime';
 
 export function entries() {
 	return CV_ENTRIES.map((e) => ({ slug: e.slug }));
@@ -10,16 +11,19 @@ export function entries() {
 
 export async function load({ params }) {
 	const entry = getCvEntry(params.slug);
-	if (!entry) error(404, '이력서를 찾을 수 없습니다');
+	if (!entry) error(404, 'CV not found');
 
-	const filePath = resolve('cv', entry.file);
+	const locale = getLocale();
+	const file = getCvFile(entry, locale);
+	const filePath = resolve('cv', file);
 	const markdown = readFileSync(filePath, 'utf-8');
 	const html = await marked(markdown);
 
 	return {
-		title: entry.title,
-		subtitle: entry.subtitle,
+		titleKey: entry.titleKey,
+		subtitleKey: entry.subtitleKey,
 		slug: entry.slug,
-		html
+		html,
+		locale
 	};
 }

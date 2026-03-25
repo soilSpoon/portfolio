@@ -91,7 +91,7 @@
 <Preloader />
 
 <!-- ─── 페이지 콘텐츠 ─────────────────────────────────────────────────────── -->
-<div class="page-w">
+<div data-page-wrapper class="page-w">
 	{@render children()}
 </div>
 

@@ -1,4 +1,24 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from ko-kr!"
+	"hello_world": "Hello, {name} from ko-kr!",
+	"cv_page_title": "이력서 — 이대희",
+	"cv_page_heading": "이력서",
+	"cv_page_description": "이대희 — 풀스택 개발자",
+	"cv_list": "목록",
+	"cv_save_as_pdf": "PDF로 저장",
+	"cv_enter_pin": "PIN 입력",
+	"cv_confirm": "확인",
+	"cv_pin_incorrect": "PIN이 올바르지 않습니다",
+	"cv_pdf_download": "PDF 다운로드",
+	"cv_view_web": "웹으로 보기",
+	"cv_download_title": "{title} 다운로드 — 이대희",
+	"cv_detail_title": "{title} — 이대희",
+	"cv_resume_title": "이력서",
+	"cv_resume_subtitle": "풀스택 개발자 이대희",
+	"cv_resume_instructor_title": "이력서 (강사)",
+	"cv_resume_instructor_subtitle": "웹 개발 강사 이대희",
+	"cv_resume_freelancer_title": "이력서 (프리랜서)",
+	"cv_resume_freelancer_subtitle": "풀스택 웹 개발자 이대희",
+	"cv_career_title": "경력기술서",
+	"cv_career_subtitle": "프로젝트별 기술적 문제 해결 과정"
 }

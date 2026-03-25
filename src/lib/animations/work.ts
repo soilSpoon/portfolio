@@ -1,5 +1,6 @@
 import type { AnimCtx, STType } from './types';
 import { duration } from '$lib/design/tokens';
+import { WORK } from './config';
 
 type STInstance = InstanceType<STType>;
 type GSAPWithOptionalMorph = AnimCtx['gsap'] & {
@@ -27,7 +28,7 @@ export function setupWork({ gsap, ST }: AnimCtx): void {
 	const items = homeWork.querySelectorAll<HTMLElement>('.hcs-item-w');
 	gsap.set(items, { y: '0em' });
 
-	if (window.innerWidth <= 991) return;
+	if (window.innerWidth <= WORK.desktopMinWidth) return;
 
 	items.forEach((item, idx) => {
 		const isOdd = (idx + 1) % 2 !== 0;
@@ -38,7 +39,11 @@ export function setupWork({ gsap, ST }: AnimCtx): void {
 			scrub: true,
 			onUpdate: (self: STInstance) => {
 				gsap.to(item, {
-					y: gsap.utils.interpolate('0em', isOdd ? '-10em' : '10em', self.progress),
+					y: gsap.utils.interpolate(
+						'0em',
+						isOdd ? WORK.parallaxOdd : WORK.parallaxEven,
+						self.progress
+					),
 					overwrite: 'auto'
 				});
 			}
@@ -51,14 +56,14 @@ export function setupWork({ gsap, ST }: AnimCtx): void {
 		const svgPath = item.querySelector<SVGPathElement>('.hcs-cross-svg');
 		const words = item.querySelectorAll<HTMLElement>('.hcs-title-w .word');
 
-		gsap.set(words, { y: '0.75em' });
+		gsap.set(words, { y: WORK.wordOffsetY });
 
 		item.addEventListener('mouseenter', () => {
 			if (svgPath && morphSVG) {
 				gsap.to(svgPath, { morphSVG: MORPH_ARROW_PATH, duration: duration.med });
 			}
 			gsap.killTweensOf(words);
-			gsap.to(words, { y: 0, stagger: 0.1, duration: duration.fast });
+			gsap.to(words, { y: 0, stagger: WORK.enterStagger, duration: duration.fast });
 		});
 
 		item.addEventListener('mouseleave', () => {
@@ -66,7 +71,7 @@ export function setupWork({ gsap, ST }: AnimCtx): void {
 				gsap.to(svgPath, { morphSVG: svgPath, duration: duration.med });
 			}
 			gsap.killTweensOf(words);
-			gsap.to(words, { y: '0.75em', stagger: 0.05, duration: duration.med });
+			gsap.to(words, { y: WORK.wordOffsetY, stagger: WORK.leaveStagger, duration: duration.med });
 		});
 	});
 }

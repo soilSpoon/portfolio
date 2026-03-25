@@ -1,4 +1,6 @@
 import type { AnimCtx } from './types';
+import { GRID } from './config';
+import { setScrollRevealHidden } from './common';
 
 /**
  * HomeGrid 섹션 애니메이션.
@@ -17,7 +19,7 @@ export function setupGrid({ gsap }: AnimCtx): void {
 	const overlayHeading = document.querySelector<HTMLElement>('.hg-grid-overlay [split-text]');
 	const wordElems = document.querySelectorAll<HTMLElement>('.hg-grid-overlay [split-text] .word');
 
-	gsap.set(gridTexts, { fontSize: '3em' });
+	gsap.set(gridTexts, { fontSize: GRID.textSizeInit });
 
 	const gridTL = gsap.timeline({
 		defaults: { ease: 'none' },
@@ -33,29 +35,29 @@ export function setupGrid({ gsap }: AnimCtx): void {
 	gridTL
 		.set(gridItems, {
 			transformOrigin: '50% 0%',
-			z: () => gsap.utils.random(-6000, -100),
-			rotationX: () => gsap.utils.random(-65, -25),
-			autoAlpha: 0.5
+			z: () => gsap.utils.random(GRID.zRange[0], GRID.zRange[1]),
+			rotationX: () => gsap.utils.random(GRID.rotXRange[0], GRID.rotXRange[1]),
+			autoAlpha: GRID.initAlpha
 		})
-		.to(gridWrap, { scale: 0.8 }, 0)
+		.to(gridWrap, { scale: GRID.wrapScale }, 0)
 		.to(
 			gridItems,
 			{
-				xPercent: () => gsap.utils.random(-150, 150),
-				yPercent: () => gsap.utils.random(-300, 300),
+				xPercent: () => gsap.utils.random(GRID.xPercentRange[0], GRID.xPercentRange[1]),
+				yPercent: () => gsap.utils.random(GRID.yPercentRange[0], GRID.yPercentRange[1]),
 				rotationX: 0,
-				autoAlpha: 2
+				autoAlpha: GRID.finalAlpha
 			},
 			0
 		)
-		.to(gridWrap, { z: 6500 }, 0)
-		.fromTo(gridItemsInner, { scale: 2 }, { scale: 1 }, 0)
-		.fromTo(gridTexts, { fontSize: '1.2em' }, { fontSize: '0.7em' }, 0);
+		.to(gridWrap, { z: GRID.wrapZ }, 0)
+		.fromTo(gridItemsInner, { scale: GRID.innerScaleFrom }, { scale: GRID.innerScaleTo }, 0)
+		.fromTo(gridTexts, { fontSize: GRID.textSizeFrom }, { fontSize: GRID.textSizeTo }, 0);
 
 	if (!wordElems.length) return;
 
 	if (overlayHeading) gsap.set(overlayHeading, { autoAlpha: 1 });
-	gsap.set(wordElems, { autoAlpha: 0, yPercent: 101, willChange: 'transform, opacity' });
+	setScrollRevealHidden(gsap, wordElems, 'down');
 
 	gsap
 		.timeline({
@@ -70,17 +72,17 @@ export function setupGrid({ gsap }: AnimCtx): void {
 		.to(wordElems, {
 			autoAlpha: 1,
 			yPercent: 0,
-			stagger: { each: 0.05, from: 'random' as const },
-			duration: 2,
-			ease: 'power4.inOut',
+			stagger: GRID.overlayWords.stagger,
+			duration: GRID.overlayWords.duration,
+			ease: GRID.overlayWords.ease,
 			overwrite: 'auto'
 		})
 		.to(wordElems, {
 			autoAlpha: 0,
 			yPercent: 101,
-			stagger: { each: 0.05, from: 'start' as const },
-			duration: 2,
-			ease: 'power4.inOut',
+			stagger: GRID.overlayWordsExit.stagger,
+			duration: GRID.overlayWordsExit.duration,
+			ease: GRID.overlayWordsExit.ease,
 			overwrite: 'auto'
 		});
 }

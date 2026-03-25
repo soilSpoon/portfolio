@@ -9,30 +9,43 @@
 		<div data-hide="m" class="spacer-10"></div>
 		<div data-client-section="" class="grid-main is-home-client">
 			<!-- "Trusted by + Leaders" 헤딩 -->
-			<div class="eb-wrap is--clients">
-				<div class="o-hidden t-flex">
-					<h2 split-text="" stagger-scroll="1" class="h-eyebrow">Trusted by</h2>
+			<div class="[grid-column:1/3] flex flex-col gap-[0.3em]">
+				<div class="t-flex overflow-hidden">
+					<h2 split-text="" stagger-scroll="1" class="h-eyebrow is-clients-eyebrow">Trusted by</h2>
 				</div>
-				<div class="o-hidden t-flex">
-					<h2 data-client-tag="" class="h-eyebrow is--outline is--clients">Leaders</h2>
+				<div class="t-flex overflow-hidden">
+					<h2 data-client-tag="" class="h-eyebrow is--outline is-clients-eyebrow">Leaders</h2>
 				</div>
 			</div>
 
 			<!-- 클라이언트 로고 그리드 -->
-			<div class="home-client__grid-w">
+			<div class="[grid-column:3/13] grid grid-cols-5 items-stretch gap-0">
 				{#each clients as client (client.name)}
-					<div data-client-item={client.name} class="home-client__grid-item">
-						<div class="home-client__grid-img w-embed">
+					<div
+						data-client-item={client.name}
+						class="relative flex cursor-default items-center justify-center p-[1.5em_1em] opacity-50 transition-opacity duration-300 ease-in-out hover:opacity-100"
+					>
+						<div class="home-client__grid-img w-embed flex w-full items-center justify-center">
 							<!-- eslint-disable-next-line svelte/no-at-html-tags -- trusted static SVG data -->
 							{@html client.svg}
 						</div>
 						<!-- eslint-disable svelte/no-at-html-tags -- trusted static SVG constant -->
-						<div class="home-client__corner-w">
-							<span class="home-client__corner-img is-1">{@html CORNER_SVG}</span>
-							<span class="home-client__corner-img is-2">{@html CORNER_SVG}</span>
-							<span class="home-client__corner-img is-3">{@html CORNER_SVG}</span>
-							<span class="home-client__corner-img is-4">{@html CORNER_SVG}</span>
-							<div class="home-client__border"></div>
+						<div class="pointer-events-none absolute inset-0">
+							<span class="absolute top-0 left-0 block h-[0.6em] w-[0.6em] opacity-40"
+								>{@html CORNER_SVG}</span
+							>
+							<span class="absolute top-0 right-0 block h-[0.6em] w-[0.6em] opacity-40"
+								>{@html CORNER_SVG}</span
+							>
+							<span class="absolute bottom-0 left-0 block h-[0.6em] w-[0.6em] opacity-40"
+								>{@html CORNER_SVG}</span
+							>
+							<span class="absolute right-0 bottom-0 block h-[0.6em] w-[0.6em] opacity-40"
+								>{@html CORNER_SVG}</span
+							>
+							<div
+								class="absolute inset-0 border border-[var(--border-color,rgba(111,111,111,0.2))]"
+							></div>
 						</div>
 					</div>
 				{/each}
@@ -42,9 +55,7 @@
 </section>
 
 <style>
-	/* grid-main.is-home-client: 12열 그리드
-	   - eb-wrap.is--clients: span 2 cols (cols1-2)
-	   - home-client__grid-w: cols 3-12 */
+	/* grid-main.is-home-client: 12열 그리드 (global override) */
 	:global(.grid-main.is-home-client) {
 		display: grid;
 		grid-template-columns: repeat(12, 1fr);
@@ -52,45 +63,7 @@
 		align-items: start;
 	}
 
-	/* cols 1-2 (span 2) */
-	.eb-wrap.is--clients {
-		grid-column: 1 / 3;
-		display: flex;
-		flex-direction: column;
-		gap: 0.3em;
-	}
-
-	/* cols 3-12 (10 cols) + 5열 로고 그리드 */
-	.home-client__grid-w {
-		grid-column: 3 / 13;
-		display: grid;
-		grid-template-columns: repeat(5, 1fr);
-		gap: 0;
-		align-items: stretch;
-	}
-
-	/* 각 클라이언트 아이템 */
-	.home-client__grid-item {
-		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 1.5em 1em;
-		opacity: 0.5;
-		transition: opacity 0.3s ease;
-		cursor: default;
-	}
-	.home-client__grid-item:hover {
-		opacity: 1;
-	}
-
-	/* SVG 로고 래퍼 */
-	.home-client__grid-img {
-		width: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
+	/* SVG 로고 크기 제어 */
 	.home-client__grid-img :global(svg) {
 		width: 100%;
 		height: auto;
@@ -105,57 +78,13 @@
 		filter: brightness(0);
 	}
 
-	/* 코너 데코레이터 */
-	.home-client__corner-w {
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
-	}
-	.home-client__corner-img {
-		position: absolute;
-		display: block;
-		width: 0.6em;
-		height: 0.6em;
-		opacity: 0.4;
-	}
-	.home-client__corner-img.is-1 {
-		top: 0;
-		left: 0;
-	}
-	.home-client__corner-img.is-2 {
-		top: 0;
-		right: 0;
-	}
-	.home-client__corner-img.is-3 {
-		bottom: 0;
-		left: 0;
-	}
-	.home-client__corner-img.is-4 {
-		bottom: 0;
-		right: 0;
-	}
-	.home-client__border {
-		position: absolute;
-		inset: 0;
-		border: 1px solid var(--border-color, rgba(111, 111, 111, 0.2));
-	}
-
-	.spacer-10 {
-		height: 10vw;
-	}
-	.o-hidden {
-		overflow: hidden;
-	}
-	.h-eyebrow {
+	/* .h-eyebrow: overrides global letter-spacing (0.1em vs global 0.08em) and line-height (1.2 vs global 1.4) for clients section */
+	.is-clients-eyebrow {
 		font-size: var(--fs-eyebrow);
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
 		font-weight: 400;
 		margin: 0;
 		line-height: 1.2;
-	}
-	.h-eyebrow.is--outline {
-		-webkit-text-stroke: 1px currentColor;
-		color: transparent;
 	}
 </style>

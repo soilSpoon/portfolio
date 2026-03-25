@@ -36,6 +36,13 @@
 		"typescript-eslint": "^8.57.1",
 		"vite": "^8.0.0"
 	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"esbuild",
+			"@tailwindcss/oxide",
+			"lightningcss"
+		]
+	},
 	"dependencies": {
 		"@types/three": "^0.183.1",
 		"gsap": "^3.14.2",

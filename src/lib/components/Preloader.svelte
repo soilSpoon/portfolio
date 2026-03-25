@@ -8,6 +8,13 @@
 		markVisited
 	} from '$lib/animations/intro-state';
 	import { HERO_TEXT_BLOCK_SELECTORS, SELECTORS } from '$lib/animations/selectors';
+	import {
+		ORB,
+		ORB_OUTLINE_REVEAL,
+		HERO_CHARS,
+		HERO_TEXT_BLOCK_OFFSETS,
+		PRELOADER
+	} from '$lib/animations/config';
 
 	interface Props {
 		onDone?: () => void;
@@ -23,15 +30,12 @@
 	let maskEl = $state<HTMLElement | null>(null);
 	let prePercentEl = $state<HTMLElement | null>(null);
 
-	const LOAD_EASE =
-		'M0,0,C0,0,0.13,0.34,0.238,0.442,0.305,0.506,0.322,0.514,0.396,0.54,' +
-		'0.478,0.568,0.468,0.56,0.522,0.584,0.572,0.606,0.61,0.719,0.714,0.826,' +
-		'0.798,0.912,1,1,1,1';
-
 	const BUILD_CHARS = ['b', 'u', 'i', 'l', 'd'];
 
 	onMount(async () => {
-		const loaderDuration = isFirstVisit() ? 4 : 1;
+		const loaderDuration = isFirstVisit()
+			? PRELOADER.firstVisitDuration
+			: PRELOADER.returnVisitDuration;
 		markVisited();
 
 		const { gsap } = await import('gsap');
@@ -50,24 +54,32 @@
 			gsap.set(pathX, { strokeDasharray: xLen, strokeDashoffset: xLen });
 			gsap.set(pathC, { strokeDasharray: cLen, strokeDashoffset: cLen });
 
-			gsap.to(pathX, { strokeDashoffset: 0, duration: 1, ease: 'power1.inOut' });
-			gsap.to(pathC, { strokeDashoffset: 0, duration: 1, ease: 'power1.inOut' });
+			gsap.to(pathX, {
+				strokeDashoffset: 0,
+				duration: PRELOADER.svgDrawDuration,
+				ease: PRELOADER.svgDrawEase
+			});
+			gsap.to(pathC, {
+				strokeDashoffset: 0,
+				duration: PRELOADER.svgDrawDuration,
+				ease: PRELOADER.svgDrawEase
+			});
 		}
 
 		gsap.to(chars, {
-			delay: 0.5,
+			delay: PRELOADER.charsDelay,
 			yPercent: 0,
-			duration: 1,
-			ease: 'power4.inOut',
-			stagger: { each: 0.03, from: 'random' }
+			duration: HERO_CHARS.duration,
+			ease: HERO_CHARS.ease,
+			stagger: HERO_CHARS.stagger
 		});
 
 		if (prePercentEl) {
 			gsap.to(prePercentEl, {
-				delay: 0.5,
+				delay: PRELOADER.charsDelay,
 				yPercent: 0,
-				duration: 1,
-				ease: 'power4.inOut'
+				duration: HERO_CHARS.duration,
+				ease: HERO_CHARS.ease
 			});
 		}
 
@@ -75,7 +87,7 @@
 		gsap.to(counter, {
 			value: 100,
 			duration: loaderDuration,
-			delay: 0.5,
+			delay: PRELOADER.charsDelay,
 			ease: 'none',
 			onUpdate: () => {
 				percentValue = Math.round(counter.value);
@@ -86,56 +98,71 @@
 			gsap.to(fillEl, {
 				scaleY: 1,
 				duration: loaderDuration,
-				ease: CustomEase.create('loadEase', LOAD_EASE),
-				delay: 1.5,
+				ease: CustomEase.create('loadEase', PRELOADER.loadEasePath),
+				delay: PRELOADER.fillDelay,
 				onComplete: runOutro
 			});
 		}
 
 		function runOutro() {
 			gsap.to(chars, {
-				delay: 0.5,
+				delay: PRELOADER.outroDelay,
 				yPercent: -101,
-				duration: 1,
-				ease: 'power4.inOut',
-				stagger: { each: 0.03, from: 'random' }
+				duration: HERO_CHARS.duration,
+				ease: HERO_CHARS.ease,
+				stagger: HERO_CHARS.stagger
 			});
 			if (prePercentEl) {
-				gsap.to(prePercentEl, { delay: 0.5, yPercent: 100, duration: 1, ease: 'power4.inOut' });
+				gsap.to(prePercentEl, {
+					delay: PRELOADER.outroDelay,
+					yPercent: 100,
+					duration: HERO_CHARS.duration,
+					ease: HERO_CHARS.ease
+				});
 			}
 			if (maskEl) {
 				gsap.to(maskEl, {
-					delay: 0.5,
+					delay: PRELOADER.outroDelay,
 					clipPath: 'inset(0% 0% 100% 0%)',
-					duration: 0.8,
+					duration: PRELOADER.maskDuration,
 					ease: 'power2.inOut'
 				});
 			}
 			if (pathX && pathC) {
 				const xLen = pathX.getTotalLength();
 				const cLen = pathC.getTotalLength();
-				gsap.to(pathX, { strokeDashoffset: xLen, delay: 0.5, duration: 1, ease: 'power1.inOut' });
-				gsap.to(pathC, { strokeDashoffset: cLen, delay: 0.5, duration: 1, ease: 'power1.inOut' });
+				gsap.to(pathX, {
+					strokeDashoffset: xLen,
+					delay: PRELOADER.outroDelay,
+					duration: PRELOADER.svgDrawDuration,
+					ease: PRELOADER.svgDrawEase
+				});
+				gsap.to(pathC, {
+					strokeDashoffset: cLen,
+					delay: PRELOADER.outroDelay,
+					duration: PRELOADER.svgDrawDuration,
+					ease: PRELOADER.svgDrawEase
+				});
 			}
 
 			const orbEl = document.querySelector<HTMLElement>(SELECTORS.orb);
 			if (orbEl) {
-				gsap.set(orbEl, { x: '8em', y: '8.1em' });
+				gsap.set(orbEl, { x: ORB.INIT_X, y: ORB.INIT_Y });
 				gsap.to(orbEl, {
 					autoAlpha: 1,
-					x: '8em',
-					y: '8.1em',
-					width: '4.3em',
-					height: '4.3em',
+					x: ORB.INIT_X,
+					y: ORB.INIT_Y,
+					width: ORB.TINY,
+					height: ORB.TINY,
 					duration: 1
 				});
 				gsap.to(orbEl, {
 					x: 0,
 					y: 0,
-					width: '80vh',
-					height: '80vh',
-					minHeight: '45em',
-					minWidth: '45em',
+					width: ORB.FULL,
+					height: ORB.FULL,
+					minHeight: ORB.MIN,
+					minWidth: ORB.MIN,
 					duration: 1,
 					ease: 'power2.inOut',
 					delay: 1,
@@ -145,7 +172,7 @@
 						onDone?.();
 						gsap.to('.preloader', {
 							autoAlpha: 0,
-							duration: 0.2,
+							duration: PRELOADER.fadeDuration,
 							ease: 'none',
 							onComplete: () => {
 								visible = false;
@@ -158,28 +185,27 @@
 			const outlineEl1 = document.querySelector<HTMLElement>(SELECTORS.orbOutline1);
 			const outlineEl2 = document.querySelector<HTMLElement>(SELECTORS.orbOutline2);
 			if (outlineEl1) {
-				gsap.to(outlineEl1, { autoAlpha: 1, scale: 1, duration: 2, ease: 'power2.inOut' });
+				gsap.to(outlineEl1, { autoAlpha: 1, scale: 1, ...ORB_OUTLINE_REVEAL });
 				animateOrbOutlineBreathing(gsap, outlineEl1, outlineEl2);
 			}
 			if (outlineEl2) {
 				gsap.to(outlineEl2, {
 					autoAlpha: 1,
 					scale: 1,
-					duration: 2,
-					ease: 'power2.inOut',
+					...ORB_OUTLINE_REVEAL,
 					delay: 1
 				});
 			}
 
 			HERO_TEXT_BLOCK_SELECTORS.forEach((selector, index) => {
-				gsap.set(selector, { x: index === 1 ? '-10em' : '10em' });
+				gsap.set(selector, { x: HERO_TEXT_BLOCK_OFFSETS[index].x });
 			});
 			gsap.to(SELECTORS.heroChars, {
 				delay: 1,
-				y: '0%',
-				duration: 1,
-				ease: 'power4.inOut',
-				stagger: { each: 0.03, from: 'random' }
+				y: HERO_CHARS.visibleY,
+				duration: HERO_CHARS.duration,
+				ease: HERO_CHARS.ease,
+				stagger: HERO_CHARS.stagger
 			});
 		}
 	});

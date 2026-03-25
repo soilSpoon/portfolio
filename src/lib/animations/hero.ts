@@ -1,25 +1,22 @@
 import type { AnimCtx, GsapType, LenisInstance } from './types';
 import { SELECTORS } from './selectors';
+import {
+	ORB,
+	ORB_OUTLINE_BREATHING,
+	ORB_OUTLINE_REVEAL,
+	ORB_ROTATION,
+	HUD_INTRO,
+	HERO_CHARS,
+	HERO_TEXT_BLOCK_OFFSETS,
+	HERO_TEXT_BLOCK_ANIM,
+	HERO_SCROLL_DRIFT
+} from './config';
 
-// ── Orb 애니메이션 상수 ────────────────────────────────────────────────────────
-// 프리로더 로고 레이아웃 기준: 도트 중심 ≈ (8em, 8.1em) from viewport center
-const ORB = {
-	INIT_X: '8em',
-	INIT_Y: '8.1em',
-	TINY: '4.3em',
-	FULL: '80vh',
-	MIN: '45em'
-} as const;
-
-const HUD_INTRO = {
-	duration: 1,
-	ease: 'power1.out'
-} as const;
-
+// ── [hh-tb] 블록 정의 (selector + config 매핑) ─────────────────────────────────
 const HERO_TEXT_BLOCK_INTRO = [
-	{ selector: SELECTORS.heroTextBlock1, delay: 0, x: '10em' },
-	{ selector: SELECTORS.heroTextBlock2, delay: 0.1, x: '-10em' },
-	{ selector: SELECTORS.heroTextBlock3, delay: 0.2, x: '10em' }
+	{ selector: SELECTORS.heroTextBlock1, ...HERO_TEXT_BLOCK_OFFSETS[0] },
+	{ selector: SELECTORS.heroTextBlock2, ...HERO_TEXT_BLOCK_OFFSETS[1] },
+	{ selector: SELECTORS.heroTextBlock3, ...HERO_TEXT_BLOCK_OFFSETS[2] }
 ] as const;
 
 // ── 인터페이스 ─────────────────────────────────────────────────────────────────
@@ -44,8 +41,8 @@ function animateHeroTextBlocks(gsap: GsapType, onComplete: () => void, baseDelay
 		gsap.to(selector, {
 			x: 0,
 			delay: baseDelay + delay,
-			duration: 1,
-			ease: 'power2.inOut',
+			duration: HERO_TEXT_BLOCK_ANIM.duration,
+			ease: HERO_TEXT_BLOCK_ANIM.ease,
 			onComplete: index === HERO_TEXT_BLOCK_INTRO.length - 1 ? onComplete : undefined
 		});
 	});
@@ -62,22 +59,30 @@ export function animateOrbOutlineBreathing(
 	out2: HTMLElement | null
 ): void {
 	gsap.to(out1, {
-		scale: 1.3,
-		duration: 2,
-		ease: 'power2.inOut',
-		delay: 2,
+		scale: ORB_OUTLINE_BREATHING.out1.scale,
+		duration: ORB_OUTLINE_BREATHING.out1.duration,
+		ease: ORB_OUTLINE_BREATHING.out1.ease,
+		delay: ORB_OUTLINE_BREATHING.out1.delay,
 		onComplete: () => {
-			gsap.to(out1, { scale: 1.2, duration: 2, ease: 'power2.inOut' });
+			gsap.to(out1, {
+				scale: ORB_OUTLINE_BREATHING.out1Rest.scale,
+				duration: ORB_OUTLINE_BREATHING.out1Rest.duration,
+				ease: ORB_OUTLINE_BREATHING.out1Rest.ease
+			});
 		}
 	});
 	if (out2) {
 		gsap.to(out2, {
-			scale: 0.9,
-			duration: 2.5,
-			ease: 'power2.inOut',
-			delay: 3,
+			scale: ORB_OUTLINE_BREATHING.out2.scale,
+			duration: ORB_OUTLINE_BREATHING.out2.duration,
+			ease: ORB_OUTLINE_BREATHING.out2.ease,
+			delay: ORB_OUTLINE_BREATHING.out2.delay,
 			onComplete: () => {
-				gsap.to(out1, { scale: 1.2, duration: 2, ease: 'power2.inOut' });
+				gsap.to(out1, {
+					scale: ORB_OUTLINE_BREATHING.out1Rest.scale,
+					duration: ORB_OUTLINE_BREATHING.out1Rest.duration,
+					ease: ORB_OUTLINE_BREATHING.out1Rest.ease
+				});
 			}
 		});
 	}
@@ -93,7 +98,7 @@ export function setHeroInitialState(gsap: GsapType): void {
 	const { orb, out1, out2 } = getOrbEls();
 	const allChars = document.querySelectorAll<HTMLElement>(SELECTORS.heroChars);
 
-	if (allChars.length) gsap.set(allChars, { y: '-101%' });
+	if (allChars.length) gsap.set(allChars, { y: HERO_CHARS.hiddenY });
 
 	if (orb && document.documentElement.dataset.preloaderDone === 'true') {
 		orb.classList.remove('is-pre');
@@ -123,8 +128,8 @@ export function setHeroInitialState(gsap: GsapType): void {
  */
 export function startOrbRotation(gsap: GsapType): void {
 	const { out1, out2 } = getOrbEls();
-	if (out1) gsap.to(out1, { rotation: 360, duration: 100, repeat: -1, ease: 'none' });
-	if (out2) gsap.to(out2, { rotation: -360, duration: 80, repeat: -1, ease: 'none' });
+	if (out1) gsap.to(out1, { ...ORB_ROTATION.out1 });
+	if (out2) gsap.to(out2, { ...ORB_ROTATION.out2 });
 }
 
 /**
@@ -192,20 +197,20 @@ export function runHeroIntro({ gsap, lenis, fromPreloader, onComplete }: HeroInt
 	}
 
 	if (out1) {
-		gsap.to(out1, { autoAlpha: 1, scale: 1, duration: 2, ease: 'power2.inOut' });
+		gsap.to(out1, { autoAlpha: 1, scale: 1, ...ORB_OUTLINE_REVEAL });
 		animateOrbOutlineBreathing(gsap, out1, out2);
 	}
 	if (out2) {
-		gsap.to(out2, { delay: 1, autoAlpha: 1, scale: 1, duration: 2, ease: 'power2.inOut' });
+		gsap.to(out2, { delay: 1, autoAlpha: 1, scale: 1, ...ORB_OUTLINE_REVEAL });
 	}
 
 	// chars: orb Phase2와 동시 (delay:1)
 	gsap.to(SELECTORS.heroChars, {
-		y: '0%',
+		y: HERO_CHARS.visibleY,
 		delay: 1,
-		duration: 1,
-		ease: 'power4.inOut',
-		stagger: { each: 0.03, from: 'random' }
+		duration: HERO_CHARS.duration,
+		ease: HERO_CHARS.ease,
+		stagger: HERO_CHARS.stagger
 	});
 
 	// [hh-tb]: chars 완료 후 순차 슬라이드인 (delay:2 / 2.1 / 2.2)
@@ -232,9 +237,9 @@ export function setupHeroScroll({ gsap }: AnimCtx): void {
 
 	(
 		[
-			{ sel: SELECTORS.heroTextBlock1, x: '-20em' },
-			{ sel: SELECTORS.heroTextBlock2, x: '-10em' },
-			{ sel: SELECTORS.heroTextBlock3, x: '-5em' }
+			{ sel: SELECTORS.heroTextBlock1, ...HERO_SCROLL_DRIFT[0] },
+			{ sel: SELECTORS.heroTextBlock2, ...HERO_SCROLL_DRIFT[1] },
+			{ sel: SELECTORS.heroTextBlock3, ...HERO_SCROLL_DRIFT[2] }
 		] as const
 	).forEach(({ sel, x }) => {
 		gsap.to(sel, { x, ease: 'power2.out', scrollTrigger: trigger });
@@ -243,9 +248,9 @@ export function setupHeroScroll({ gsap }: AnimCtx): void {
 	const chars = homeSection.querySelectorAll<HTMLElement>('[split-hero] .char');
 	if (chars.length) {
 		gsap.to(chars, {
-			y: '101%',
+			y: HERO_CHARS.exitY,
 			autoAlpha: 0,
-			stagger: { each: 0.03, from: 'random' },
+			stagger: HERO_CHARS.stagger,
 			scrollTrigger: trigger
 		});
 	}

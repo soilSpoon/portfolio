@@ -2,18 +2,18 @@
 	import { VID, gridItems as items } from '$lib/data/grid';
 </script>
 
-<section class="s is-hg">
-	<div class="c hg-c">
-		<div class="spacer-10"></div>
+<section class="s is-hg relative">
+	<div class="c hg-c relative w-full px-[2vw]">
+		<div class="spacer-10 h-[10em]"></div>
 
 		<!-- ① 텍스트 오버레이: position:absolute;inset:0 → sticky child로 텍스트 고정 -->
 		<!-- mix-blend-mode:difference 가 grid 위에서 색상 반전 효과 만듦 -->
-		<div pointer-none="" class="hg-grid-overlay mbm-diff">
-			<div class="hg-grid-overlay-sticky">
+		<div pointer-none="" class="hg-grid-overlay mbm-diff pointer-events-none absolute inset-0">
+			<div class="hg-grid-overlay-sticky sticky top-0 h-screen">
 				<!-- position:absolute;bottom:3em;left:0 — 하단 좌측 고정 -->
-				<div class="c is-hg-o">
+				<div class="c is-hg-o absolute bottom-[3em] left-0 w-full px-[2vw]">
 					<h2 split-text="" class="h-b">
-						<span class="span-hidden">****</span>
+						<span class="invisible">****</span>
 						Elevating Brands in Unexpected Ways.
 					</h2>
 				</div>
@@ -21,8 +21,8 @@
 		</div>
 
 		<!-- ② 실제 그리드 콘텐츠 -->
-		<div class="hg-grid-track">
-			<div class="spacer-10"></div>
+		<div class="hg-grid-track relative">
+			<div class="spacer-10 h-[10em]"></div>
 			<div class="hg-grid-w">
 				<div grid-anim="" class="hg-grid">
 					{#each items as item, i (i)}
@@ -34,10 +34,10 @@
 						{:else if item.type === 'vid'}
 							<div class="hg-grid-item">
 								<div class="hg-grid-inner is-{item.inner}">
-									<div class="hg-img-w">
-										<div class="hg-img-overlay"></div>
+									<div class="hg-img-w absolute inset-0">
+										<div class="hg-img-overlay absolute inset-0"></div>
 									</div>
-									<div class="hg-vid-w">
+									<div class="hg-vid-w absolute inset-0">
 										<video home-vid="" playsinline loop muted autoplay data-object-fit="cover">
 											<source src="{VID}/OFF_siteclips_{item.vid}.mp4" />
 										</video>
@@ -47,8 +47,8 @@
 						{:else}
 							<div class="hg-grid-item">
 								<div class="hg-grid-inner is-{item.inner}">
-									<div class="hg-img-w">
-										<div class="hg-img-overlay"></div>
+									<div class="hg-img-w absolute inset-0">
+										<div class="hg-img-overlay absolute inset-0"></div>
 									</div>
 								</div>
 							</div>
@@ -61,55 +61,9 @@
 </section>
 
 <style>
-	/* ─── 섹션 ────────────────────────────────────────── */
-	.s.is-hg {
-		position: relative;
-	}
-
-	/* .c: position:relative (overlay의 절대위치 기준점) */
-	.c.hg-c {
-		position: relative;
-		width: 100%;
-		padding-left: 2vw;
-		padding-right: 2vw;
-	}
-	.spacer-10 {
-		height: 10em;
-	}
-
-	/* ─── 오버레이: .c 전체를 덮는 절대 위치 ─────────── */
-	/* 원본: z-index:10;position:absolute;inset:0% */
+	/* ─── 오버레이 z-index ─────────────────────────────── */
 	.hg-grid-overlay {
-		position: absolute;
-		inset: 0%;
 		z-index: 10;
-		pointer-events: none;
-	}
-
-	/* ─── 스티키 컨테이너: 100vh 고정 ────────────────── */
-	/* 원본: height:100vh;position:sticky;top:0 */
-	.hg-grid-overlay-sticky {
-		height: 100vh;
-		position: sticky;
-		top: 0;
-	}
-
-	/* ─── 텍스트: 스티키 하단 좌측 배치 ─────────────── */
-	/* 원본: position:absolute;inset:auto auto 3em 0% */
-	.c.is-hg-o {
-		position: absolute;
-		bottom: 3em;
-		left: 0;
-		padding-left: 2vw;
-		padding-right: 2vw;
-		width: 100%;
-	}
-
-	/* ─── mix-blend-mode (injected CSS 복원) ─────────── */
-	:global(.mbm-diff) {
-		mix-blend-mode: difference;
-		color: var(--main-light);
-		user-select: none;
 	}
 
 	/* SplitType .line overflow 마스크 */
@@ -118,6 +72,7 @@
 	}
 
 	/* ─── 헤딩 ─────────────────────────────────────────── */
+	/* .h-b: overrides global font-size (5em vs global 3.5em) for grid overlay heading */
 	.h-b {
 		font-size: 5em;
 		font-weight: 400;
@@ -125,14 +80,6 @@
 		line-height: 1;
 		letter-spacing: -0.02em;
 		margin: 0;
-	}
-	.span-hidden {
-		visibility: hidden;
-	}
-
-	/* ─── 그리드 트랙 ─────────────────────────────────── */
-	.hg-grid-track {
-		position: relative;
 	}
 
 	/* ─── 그리드 래퍼 ──────────────────────────────────── */
@@ -201,13 +148,7 @@
 		background-size: cover;
 		background-position: 50%;
 	}
-	.hg-img-w {
-		position: absolute;
-		inset: 0;
-	}
 	.hg-img-overlay {
-		position: absolute;
-		inset: 0;
 		z-index: 1;
 	}
 	:global(html.dark) .hg-img-overlay {
@@ -217,8 +158,6 @@
 		background: rgba(255, 255, 255, 0.3);
 	}
 	.hg-vid-w {
-		position: absolute;
-		inset: 0;
 		z-index: 2;
 	}
 	.hg-vid-w video {

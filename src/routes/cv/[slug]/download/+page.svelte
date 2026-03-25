@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { resolve } from '$app/paths';
+	import * as m from '$lib/paraglide/messages';
 
 	let { data } = $props();
 
-	// PIN을 변경하려면 이 값을 수정하세요
 	const DOWNLOAD_PIN = '0938';
 
 	let pin = $state('');
@@ -16,7 +16,7 @@
 			authorized = true;
 			error = '';
 		} else {
-			error = 'PIN이 올바르지 않습니다';
+			error = m.cv_pin_incorrect();
 		}
 	}
 
@@ -30,34 +30,47 @@
 </script>
 
 <svelte:head>
-	<title>{data.title} 다운로드 — 이대희</title>
+	<title>{m.cv_download_title({ title: m[data.titleKey]() })}</title>
 	<meta name="robots" content="noindex, nofollow" />
 </svelte:head>
 
 {#if !authorized}
-	<div class="pin-gate">
-		<div class="pin-card">
-			<h2>PDF 다운로드</h2>
-			<p>{data.title}</p>
-			<div class="pin-input-group">
+	<div class="flex min-h-[60vh] items-center justify-center">
+		<div class="text-center">
+			<h2 class="mb-1 border-none text-xl font-semibold">{m.cv_pdf_download()}</h2>
+			<p class="mb-6 text-sm text-gray-400">{m[data.titleKey]()}</p>
+			<div class="flex justify-center gap-2">
 				<input
 					type="password"
 					bind:value={pin}
 					onkeydown={handleKeydown}
-					placeholder="PIN 입력"
+					placeholder={m.cv_enter_pin()}
 					autocomplete="off"
+					class="font-inherit w-[140px] rounded-md border border-gray-300 px-4 py-2.5 text-center text-base tracking-widest outline-none focus:border-gray-500"
 				/>
-				<button onclick={checkPin}>확인</button>
+				<button
+					onclick={checkPin}
+					class="font-inherit cursor-pointer rounded-md border-none bg-gray-900 px-5 py-2.5 text-sm text-white hover:bg-gray-700"
+				>
+					{m.cv_confirm()}
+				</button>
 			</div>
 			{#if error}
-				<p class="pin-error">{error}</p>
+				<p class="mt-3 text-sm text-red-600">{error}</p>
 			{/if}
 		</div>
 	</div>
 {:else}
-	<div class="download-bar no-print">
-		<a href={resolve(`/cv/${data.slug}`)}>← 웹으로 보기</a>
-		<button onclick={handlePrint}>PDF로 저장</button>
+	<div class="no-print mb-6 flex items-center justify-between border-b border-gray-100 py-3">
+		<a href={resolve(`/cv/${data.slug}`)} class="text-sm text-blue-600 no-underline hover:underline"
+			>&larr; {m.cv_view_web()}</a
+		>
+		<button
+			onclick={handlePrint}
+			class="font-inherit cursor-pointer rounded-md border-none bg-gray-900 px-5 py-2 text-sm text-white hover:bg-gray-700"
+		>
+			{m.cv_save_as_pdf()}
+		</button>
 	</div>
 
 	<article>
@@ -65,108 +78,3 @@
 		{@html data.html}
 	</article>
 {/if}
-
-<style>
-	/* ── PIN 입력 화면 ─────────────────────────────────── */
-	.pin-gate {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		min-height: 60vh;
-	}
-
-	.pin-card {
-		text-align: center;
-	}
-
-	.pin-card h2 {
-		font-size: 1.25rem;
-		font-weight: 600;
-		margin: 0 0 0.25rem;
-		border: none;
-	}
-
-	.pin-card > p {
-		color: #888;
-		font-size: 0.9rem;
-		margin-bottom: 1.5rem;
-	}
-
-	.pin-input-group {
-		display: flex;
-		gap: 0.5rem;
-		justify-content: center;
-	}
-
-	.pin-input-group input {
-		padding: 0.6rem 1rem;
-		border: 1px solid #ddd;
-		border-radius: 6px;
-		font-size: 1rem;
-		width: 140px;
-		text-align: center;
-		letter-spacing: 0.2em;
-		outline: none;
-		font-family: inherit;
-	}
-
-	.pin-input-group input:focus {
-		border-color: #888;
-	}
-
-	.pin-input-group button {
-		padding: 0.6rem 1.25rem;
-		background: #111;
-		color: #fff;
-		border: none;
-		border-radius: 6px;
-		font-size: 0.9rem;
-		cursor: pointer;
-		font-family: inherit;
-	}
-
-	.pin-input-group button:hover {
-		background: #333;
-	}
-
-	.pin-error {
-		color: #dc2626;
-		font-size: 0.85rem;
-		margin-top: 0.75rem;
-	}
-
-	/* ── 다운로드 바 ───────────────────────────────────── */
-	.download-bar {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 0.75rem 0;
-		margin-bottom: 1.5rem;
-		border-bottom: 1px solid #eee;
-	}
-
-	.download-bar a {
-		color: #2563eb;
-		text-decoration: none;
-		font-size: 0.875rem;
-	}
-
-	.download-bar a:hover {
-		text-decoration: underline;
-	}
-
-	.download-bar button {
-		padding: 0.5rem 1.25rem;
-		background: #111;
-		color: #fff;
-		border: none;
-		border-radius: 6px;
-		font-size: 0.875rem;
-		cursor: pointer;
-		font-family: inherit;
-	}
-
-	.download-bar button:hover {
-		background: #333;
-	}
-</style>

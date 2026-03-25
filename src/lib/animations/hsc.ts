@@ -1,4 +1,5 @@
 import type { AnimCtx, STType } from './types';
+import { HSC } from './config';
 
 type STInstance = InstanceType<STType>;
 
@@ -20,35 +21,39 @@ export function setupHSC({ gsap, ST }: AnimCtx): void {
 	const hscTextInner = hscTrack.querySelector<HTMLElement>('.h-c.is-anim');
 	const hscWords = hscTrack.querySelectorAll<HTMLElement>('.word');
 
-	if (hscText) gsap.set(hscText, { autoAlpha: 0, x: '50vw' });
-	if (hscTextInner) gsap.set(hscTextInner, { autoAlpha: 0, y: '2em' });
+	if (hscText) gsap.set(hscText, { autoAlpha: 0, x: HSC.textSlideX });
+	if (hscTextInner) gsap.set(hscTextInner, { autoAlpha: 0, y: HSC.textInnerY });
 	if (hscWords.length) gsap.set(hscWords, { yPercent: 0, willChange: 'transform' });
 
 	const t = (extra?: object) => ({ trigger: '[hsc-track]', scrub: true, ...extra });
 
 	if (hscScale) {
 		gsap.to(hscScale, {
-			scale: 29,
+			scale: HSC.logoScale,
 			scrollTrigger: t({ start: 'top top', end: 'bottom top' })
 		});
 	}
 
 	if (hscImg) {
 		gsap.to(hscImg, {
-			width: '20.5em',
-			height: '20.5em',
+			width: HSC.imgSize,
+			height: HSC.imgSize,
 			scrollTrigger: t({ start: 'top top', end: 'bottom top' })
 		});
 		gsap.fromTo(
 			hscImg,
 			{ scale: 0, rotation: 0 },
-			{ scale: 1, rotation: 45, scrollTrigger: t({ start: 'top center', end: 'top top' }) }
+			{
+				scale: 1,
+				rotation: HSC.imgRotation,
+				scrollTrigger: t({ start: 'top center', end: 'top top' })
+			}
 		);
 	}
 
 	if (hscRotate) {
 		gsap.to(hscRotate, {
-			rotation: 180,
+			rotation: HSC.logoRotation,
 			scrollTrigger: t({ start: 'top top', end: 'bottom top' })
 		});
 	}
@@ -62,7 +67,7 @@ export function setupHSC({ gsap, ST }: AnimCtx): void {
 		gsap.fromTo(
 			hscText,
 			{ y: '0vh' },
-			{ y: '20vh', scrollTrigger: t({ start: 'bottom bottom', end: 'bottom+=100 center' }) }
+			{ y: HSC.textExitY, scrollTrigger: t({ start: 'bottom bottom', end: 'bottom+=100 center' }) }
 		);
 	}
 
@@ -88,8 +93,8 @@ export function setupHSC({ gsap, ST }: AnimCtx): void {
 		end: 'bottom top',
 		onUpdate: (self: STInstance) => {
 			gsap.to('.s.is-hsc', {
-				scale: 1 - 0.1 * self.progress,
-				boxShadow: `0 0 0 ${1.5 * self.progress}px var(--light-grey)`
+				scale: 1 - HSC.sectionScaleFactor * self.progress,
+				boxShadow: `0 0 0 ${HSC.sectionShadowMax * self.progress}px var(--light-grey)`
 			});
 		}
 	});

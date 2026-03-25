@@ -14,10 +14,10 @@
 
 		<!-- 메인 태그라인: cols 3-12 -->
 		<div class="grid-main">
-			<div class="mbm-diff hm-heading-col">
-				<div class="o-hidden">
+			<div class="mbm-diff col-start-3 col-end-12">
+				<div class="overflow-hidden">
 					<h2 stagger-scroll="" split-text="" class="h-b">
-						<span class="span-hidden">****</span>
+						<span class="invisible">****</span>
 						With EMOTION + INNOVATION, We push THE BOUNDARIES OF DIGITAL CREATIVITY.
 					</h2>
 				</div>
@@ -27,18 +27,18 @@
 		<div class="spacer-10 mob-2"></div>
 
 		<!-- 설명 텍스트 두 열: left=cols2-4, right=cols5-8 -->
-		<div class="grid-main hm-text-grid">
-			<div class="mbm-diff hm-desc-col">
-				<div class="o-hidden">
+		<div class="grid-main">
+			<div class="mbm-diff col-start-2 col-end-4">
+				<div class="overflow-hidden">
 					<p split-text="" stagger-scroll="1" class="text-small caps">
 						We are a founder-led Scottish born, global digital marketing, branding &amp; web design
 						agency.
 					</p>
 				</div>
-				<div link-reveal="" class="o-hidden link-wrap hide-m">
-					<div class="o-hidden">
+				<div link-reveal="" class="link-wrap hide-m overflow-hidden">
+					<div class="overflow-hidden">
 						<a reveal-target="" stagger-el="" href={resolve('/')} class="page-link-w">
-							<div class="o-hidden page-link-inner">
+							<div class="page-link-inner overflow-hidden">
 								<div split-text="" stagger-text="" class="text-small btn-txt">About Us</div>
 								<div class="btn-icon-w"><div class="text-small btn-txt">-&gt;</div></div>
 							</div>
@@ -47,8 +47,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="mbm-diff hm-body-col">
-				<div class="o-hidden">
+			<div class="mbm-diff col-start-5 col-end-8">
+				<div class="overflow-hidden">
 					<p stagger-lines="2" split-text="" class="text-small">
 						Every brand has a story, from startups finding their voice to titans refining their
 						legacy. We ensure that tale shines brilliantly. With a blend of rapid iteration and
@@ -63,25 +63,8 @@
 </section>
 
 <style>
-	/* ─── 헤딩 그리드: cols 3-12 */
-	.hm-heading-col {
-		grid-column: 3 / 12;
-	}
-
-	/* ─── 텍스트 그리드 (12열) */
-	.hm-text-grid {
-		display: grid;
-		grid-template-columns: repeat(12, 1fr);
-		column-gap: 1.25em;
-	}
-	.hm-desc-col {
-		grid-column: 2 / 4;
-	}
-	.hm-body-col {
-		grid-column: 5 / 8;
-	}
-
 	/* ─── 타이포그래피 */
+	/* .text-small: overrides global font-size (0.85em vs global 0.8em) for mission section readability */
 	.text-small {
 		font-size: 0.85em;
 		line-height: 1.6;
@@ -112,6 +95,7 @@
 		align-items: center;
 		gap: 0.3em;
 	}
+	/* ─── link-track hover animation (complex pseudo state — keep in CSS) */
 	.link-track {
 		position: absolute;
 		bottom: -2px;
@@ -130,14 +114,6 @@
 	.page-link-w:hover .link-track-fill {
 		width: 100%;
 	}
-
-	.span-hidden {
-		visibility: hidden;
-	}
-	.spacer-10 {
-		height: 10vw;
-	}
-	.o-hidden {
-		overflow: hidden;
-	}
+	/* .spacer-10: uses global definition from layout.css */
+	/* overflow-hidden: Tailwind utility (replaces global .o-hidden) */
 </style>

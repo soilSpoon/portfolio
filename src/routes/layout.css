@@ -7,6 +7,36 @@
 @import 'tailwindcss';
 
 /* =============================================
+   Tailwind 커스텀 테마 — em 기반 스케일
+   body { font-size: 1.0582vw } 에서 1em ≈ 1vw
+   --spacing: 0.25em 이므로:
+     p-1=0.25em, p-4=1em, p-8=2em, gap-5=1.25em, w-80=20em
+   ============================================= */
+@theme {
+	--spacing: 0.25em;
+
+	/* 타이포그래피 */
+	--font-size-h-a: 6.75em;
+	--font-size-h-b: 3.5em;
+	--font-size-h-c: 1.8em;
+	--font-size-eyebrow: 0.85em;
+	--font-size-sm: 0.8em;
+	--font-size-mini: 0.65em;
+
+	/* Border radius */
+	--radius-lg: 6.25em;
+	--radius-md: 1.375em;
+	--radius-sm: 0.625em;
+
+	/* 색상 */
+	--color-main-dark: #1d1d1d;
+	--color-main-dark-alt: #252525;
+	--color-main-light: #e5e4e0;
+	--color-main-light-alt: #f1f0ec;
+	--color-primary: #ff642f;
+}
+
+/* =============================================
    CSS 변수 & 글로벌 스타일
    itsoffbrand.com 분석 기반
    ============================================= */
@@ -43,6 +73,15 @@
 	--ease-smooth: cubic-bezier(0.38, 0.005, 0.215, 1);
 	--dur-fast: 0.3s;
 	--dur-med: 0.6s;
+
+	/* z-index 스케일 */
+	--z-preloader: -5;
+	--z-orb-wrapper: -2;
+	--z-orb-canvas: -1;
+	--z-orb-outline: -2;
+	--z-hud: 1000;
+	--z-cursor: 2000;
+	--z-page-wipe: 9000;
 
 	/* 3D */
 	--perspective: 4000px;
@@ -107,7 +146,7 @@ html.light body {
      orb-w(z-index:-2)보다 뒤에 있어서 orb가 프리로더 위에 보임
      page content(z-index:0)보다 뒤에 있어서 hero 텍스트도 항상 보임
      → 프리로더 = "배경" / 페이지 콘텐츠 = "항상 위에 보임" */
-	z-index: -5;
+	z-index: var(--z-preloader);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -195,50 +234,55 @@ html.light .pre-svg-path {
 /* =============================================
    공통 타이포그래피
    ============================================= */
-.h-a {
-	font-size: var(--fs-h-a);
-	font-weight: 400;
-	text-transform: uppercase;
-	line-height: 1;
-	letter-spacing: normal;
-	margin: 0;
+@layer components {
+	.h-a {
+		font-size: var(--font-size-h-a);
+		font-weight: 400;
+		text-transform: uppercase;
+		line-height: 1;
+		letter-spacing: normal;
+		margin: 0;
+	}
+	.h-b {
+		font-size: var(--font-size-h-b);
+		font-weight: 400;
+		text-transform: uppercase;
+		line-height: 1;
+		letter-spacing: -0.02em;
+		margin: 0;
+	}
+	.h-c {
+		font-size: var(--font-size-h-c);
+		font-weight: 400;
+		line-height: 1;
+		letter-spacing: -0.01em;
+		margin: 0;
+	}
+	.h-eyebrow {
+		font-size: var(--font-size-eyebrow);
+		font-weight: 400;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		margin: 0;
+		line-height: 1.4;
+	}
+	.text-small {
+		font-size: var(--font-size-sm);
+		line-height: 1.6;
+	}
+	.text-mini {
+		font-size: var(--font-size-mini);
+		letter-spacing: 0.03em;
+	}
 }
-.h-b {
-	font-size: var(--fs-h-b);
-	font-weight: 400;
-	text-transform: uppercase;
-	line-height: 1;
-	letter-spacing: -0.02em;
-	margin: 0;
-}
-.h-c {
-	font-size: var(--fs-h-c);
-	font-weight: 400;
-	line-height: 1;
-	letter-spacing: -0.01em;
-	margin: 0;
-}
-.h-eyebrow {
-	font-size: var(--fs-eyebrow);
-	font-weight: 400;
-	text-transform: uppercase;
-	letter-spacing: 0.08em;
-	margin: 0;
-	line-height: 1.4;
-}
-.text-small {
-	font-size: var(--fs-small);
-	line-height: 1.6;
-}
-.text-mini {
-	font-size: var(--fs-mini);
-	letter-spacing: 0.03em;
-}
-.caps {
-	text-transform: uppercase;
-}
-.op-60 {
-	opacity: 0.6;
+
+@layer utilities {
+	.caps {
+		text-transform: uppercase;
+	}
+	.op-60 {
+		opacity: 0.6;
+	}
 }
 
 /* mb-diff 역할: mix-blend-mode difference overlay */
@@ -364,7 +408,7 @@ html.light {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	z-index: -2;
+	z-index: var(--z-orb-wrapper);
 	pointer-events: none;
 	overflow-x: clip; /* 원본: [data-orb-wrap] { overflow-x: clip } */
 }
@@ -375,7 +419,7 @@ html.light {
 	width: 0;
 	height: 0;
 	opacity: 0;
-	z-index: -1;
+	z-index: var(--z-orb-canvas);
 	overflow: hidden;
 }
 /* is-pre: CSS에는 유지 (원본도 동일), 실제 HTML에는 사용 안 함 */
@@ -396,7 +440,7 @@ html.light {
 	position: absolute;
 	width: 80vh;
 	height: 80vh;
-	z-index: -2;
+	z-index: var(--z-orb-outline);
 }
 .orb-outline-w.is-2 {
 	width: 100vh;
@@ -413,7 +457,7 @@ html.light {
 	border-radius: 100%;
 	width: 100%;
 	height: 100%;
-	z-index: -2;
+	z-index: var(--z-orb-outline);
 }
 
 /* =============================================
@@ -454,7 +498,7 @@ html.light {
 .page-wipe-w {
 	position: fixed;
 	inset: 0;
-	z-index: 9000;
+	z-index: var(--z-page-wipe);
 	pointer-events: none;
 	opacity: 0;
 }
@@ -474,14 +518,14 @@ html.light ::selection {
    ============================================= */
 
 /* HUD: preloader 완료 후 GSAP이 슬라이드인 */
-.hud-brand-w .hud-brand-link {
+.hud-brand-w [data-hud-brand] {
 	opacity: 0;
 	transform: translateY(-101%);
 }
-.hud-scroll-w {
+[data-hud-scroll] {
 	opacity: 0;
 }
-.hud-menu-o .hud-menu-w {
+.hud-menu-o [data-hud-menu] {
 	opacity: 0;
 	transform: translateY(101%);
 }

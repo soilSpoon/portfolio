@@ -1,5 +1,13 @@
 <script lang="ts">
+	import './cv.css';
+	import { getLocale, setLocale } from '$lib/paraglide/runtime';
 	let { children } = $props();
+
+	function toggleLocale() {
+		const current = getLocale();
+		const next = current === 'en' ? 'ko-kr' : 'en';
+		setLocale(next);
+	}
 </script>
 
 <svelte:head>
@@ -11,125 +19,83 @@
 	/>
 </svelte:head>
 
-<div class="cv-root">
+<div
+	class="cv-root mx-auto max-w-[800px] px-8 py-12 font-[Noto_Sans_KR,sans-serif] text-base leading-relaxed text-gray-900"
+>
+	<div class="no-print mb-4 flex justify-end">
+		<button
+			onclick={toggleLocale}
+			class="cursor-pointer rounded-md border border-gray-300 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-50"
+		>
+			{getLocale() === 'en' ? '한국어' : 'English'}
+		</button>
+	</div>
 	{@render children()}
 </div>
 
 <style>
+	@reference "tailwindcss";
+
 	:global(body) {
 		margin: 0;
 		padding: 0;
 		background: #fff;
 	}
 
-	.cv-root {
-		font-family:
-			'Noto Sans KR',
-			-apple-system,
-			BlinkMacSystemFont,
-			'Segoe UI',
-			Roboto,
-			sans-serif;
-		font-size: 16px;
-		line-height: 1.7;
-		color: #1a1a1a;
-		max-width: 800px;
-		margin: 0 auto;
-		padding: 3rem 2rem;
-	}
-
-	/* ── 마크다운 렌더링 스타일 ──────────────────────────── */
+	/* ── 마크다운 렌더링 스타일 (Tailwind @apply 불가 — :global 필요) ── */
 	:global(.cv-root h1) {
-		font-size: 2rem;
-		font-weight: 700;
-		margin: 0 0 0.25rem;
-		padding-bottom: 0;
-		border-bottom: none;
-		line-height: 1.3;
+		@apply mb-1 text-3xl leading-tight font-bold;
 	}
 
 	:global(.cv-root h2) {
-		font-size: 1.25rem;
-		font-weight: 600;
-		margin: 2rem 0 0.75rem;
-		padding-bottom: 0.4rem;
-		border-bottom: 2px solid #e5e5e5;
-		color: #111;
+		@apply mt-8 mb-3 border-b-2 border-gray-200 pb-1.5 text-xl font-semibold text-gray-900;
 	}
 
 	:global(.cv-root h3) {
-		font-size: 1.05rem;
-		font-weight: 600;
-		margin: 1.5rem 0 0.4rem;
-		color: #222;
+		@apply mt-6 mb-1.5 text-[1.05rem] font-semibold text-gray-800;
 	}
 
 	:global(.cv-root h4) {
-		font-size: 0.95rem;
-		font-weight: 600;
-		margin: 1rem 0 0.3rem;
-		color: #333;
+		@apply mt-4 mb-1 text-[0.95rem] font-semibold text-gray-700;
 	}
 
 	:global(.cv-root p) {
-		margin: 0.4rem 0;
-		color: #333;
-		font-size: 0.925rem;
+		@apply my-1.5 text-[0.925rem] text-gray-700;
 	}
 
 	:global(.cv-root h1 + p) {
-		color: #555;
-		font-size: 0.9rem;
-		margin-bottom: 0.75rem;
+		@apply mb-3 text-sm text-gray-500;
 	}
 
 	:global(.cv-root ul) {
-		margin: 0.3rem 0;
-		padding-left: 1.25rem;
+		@apply my-1 pl-5;
 	}
 
 	:global(.cv-root li) {
-		margin: 0.2rem 0;
-		font-size: 0.9rem;
-		color: #333;
+		@apply my-0.5 text-sm text-gray-700;
 	}
 
 	:global(.cv-root hr) {
-		border: none;
-		border-top: 1px solid #eee;
-		margin: 1.75rem 0;
+		@apply my-7 border-t border-gray-100;
 	}
 
 	:global(.cv-root blockquote) {
-		margin: 0.25rem 0 0.5rem;
-		padding: 0.3rem 0 0.3rem 0.75rem;
-		border-left: 3px solid #ddd;
-		color: #555;
-		font-size: 0.875rem;
+		@apply my-1 border-l-3 border-gray-300 py-1 pl-3 text-sm text-gray-500;
 	}
 
 	:global(.cv-root strong) {
-		font-weight: 600;
-		color: #111;
+		@apply font-semibold text-gray-900;
 	}
 
 	:global(.cv-root a) {
-		color: #2563eb;
-		text-decoration: none;
-	}
-
-	:global(.cv-root a:hover) {
-		text-decoration: underline;
+		@apply text-blue-600 no-underline hover:underline;
 	}
 
 	:global(.cv-root code) {
-		background: #f3f4f6;
-		padding: 0.1rem 0.35rem;
-		border-radius: 3px;
-		font-size: 0.85rem;
+		@apply rounded bg-gray-100 px-1.5 py-0.5 text-sm;
 	}
 
-	/* ── 프린트 스타일 ──────────────────────────────────── */
+	/* ── 프린트 스타일 ── */
 	@media print {
 		.cv-root {
 			max-width: none;
@@ -153,10 +119,7 @@
 			page-break-after: avoid;
 		}
 
-		:global(.cv-root p) {
-			font-size: 10pt;
-		}
-
+		:global(.cv-root p),
 		:global(.cv-root li) {
 			font-size: 10pt;
 		}

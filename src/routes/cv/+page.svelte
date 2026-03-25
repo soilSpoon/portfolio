@@ -1,59 +1,26 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { CV_ENTRIES } from '$lib/data/cv';
+	import * as m from '$lib/paraglide/messages';
 </script>
 
 <svelte:head>
-	<title>이력서 — 이대희</title>
+	<title>{m.cv_page_title()}</title>
 </svelte:head>
 
-<h1>이력서</h1>
-<p>이대희 — 풀스택 개발자</p>
+<h1>{m.cv_page_heading()}</h1>
+<p>{m.cv_page_description()}</p>
 
 <hr />
 
-<nav class="cv-nav">
+<nav class="mt-6 grid gap-4">
 	{#each CV_ENTRIES as entry (entry.slug)}
-		<a href={resolve(`/cv/${entry.slug}`)} class="cv-card">
-			<strong>{entry.title}</strong>
-			<span>{entry.subtitle}</span>
+		<a
+			href={resolve(`/cv/${entry.slug}`)}
+			class="flex flex-col gap-1 rounded-lg border border-gray-200 px-6 py-5 text-inherit no-underline transition-all hover:border-gray-400 hover:shadow-md"
+		>
+			<strong class="text-[1.05rem] text-gray-900">{m[entry.titleKey]()}</strong>
+			<span class="text-sm text-gray-500">{m[entry.subtitleKey]()}</span>
 		</a>
 	{/each}
 </nav>
-
-<style>
-	.cv-nav {
-		display: grid;
-		gap: 1rem;
-		margin-top: 1.5rem;
-	}
-
-	.cv-card {
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-		padding: 1.25rem 1.5rem;
-		border: 1px solid #e5e5e5;
-		border-radius: 8px;
-		text-decoration: none;
-		color: inherit;
-		transition:
-			border-color 0.2s,
-			box-shadow 0.2s;
-	}
-
-	.cv-card:hover {
-		border-color: #999;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-	}
-
-	.cv-card strong {
-		font-size: 1.05rem;
-		color: #111;
-	}
-
-	.cv-card span {
-		font-size: 0.875rem;
-		color: #666;
-	}
-</style>

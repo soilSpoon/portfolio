@@ -6,112 +6,69 @@
 </script>
 
 <!-- home-hero ScrollTrigger 트리거 -->
-<section home-hero="" class="s">
-	<div class="c is-home-hero">
+<section home-hero="" class="s relative">
+	<div class="c is-home-hero mx-auto h-screen w-full max-w-none px-[2vw]">
 		<!-- 그리드: 12열, 7행 -->
-		<div class="grid-main is-home-hero">
+		<div
+			class="grid-main is-home-hero grid h-full w-full grid-cols-12 grid-rows-[1fr_min-content_1fr_min-content_1fr_min-content_1fr] gap-x-5 gap-y-0"
+		>
 			<!-- row 2, col 2-9: "A different" -->
-			<div class="hh-text-block hh-1">
-				<div hh-tb="1" class="hh-transform">
-					<div class="hh-text-ovf">
-						<h1 split-hero="" class="h-a">A different</h1>
+			<div class="hh-text-block hh-1 col-[2/9] row-[2/3] justify-self-start overflow-visible">
+				<div hh-tb="1" class="hh-transform will-change-transform">
+					<div class="hh-text-ovf overflow-hidden">
+						<h1
+							split-hero=""
+							class="h-a whitespace-nowrap text-[var(--text-color,inherit)] will-change-transform"
+						>
+							A different
+						</h1>
 					</div>
 				</div>
 			</div>
 
 			<!-- row 4, col 7-12: "Creative" -->
-			<div class="hh-text-block hh-2">
-				<div hh-tb="2" class="hh-transform">
-					<div class="hh-text-ovf">
-						<h1 split-hero="" class="h-a">Creative</h1>
+			<div class="hh-text-block hh-2 col-[7/12] row-[4/5] justify-self-end overflow-visible">
+				<div hh-tb="2" class="hh-transform will-change-transform">
+					<div class="hh-text-ovf overflow-hidden">
+						<h1
+							split-hero=""
+							class="h-a whitespace-nowrap text-[var(--text-color,inherit)] will-change-transform"
+						>
+							Creative
+						</h1>
 					</div>
 				</div>
 			</div>
 
 			<!-- row 6, col 3-9: "approach" -->
-			<div class="hh-text-block hh-3">
-				<div hh-tb="3" class="hh-transform">
-					<div class="hh-text-ovf">
-						<h1 split-hero="" class="h-a">approach</h1>
+			<div class="hh-text-block hh-3 col-[3/9] row-[6/7] justify-self-start overflow-visible">
+				<div hh-tb="3" class="hh-transform will-change-transform">
+					<div class="hh-text-ovf overflow-hidden">
+						<h1
+							split-hero=""
+							class="h-a whitespace-nowrap text-[var(--text-color,inherit)] will-change-transform"
+						>
+							approach
+						</h1>
 					</div>
 				</div>
 			</div>
 
 			<!-- row 7, col 5-9: "scroll ↓" -->
-			<div class="hh-text-block is--scroll hh-4">
-				<div hh-tb="4" class="hh-transform">
-					<div class="hh-text-ovf">
-						<div split-hero="" class="text-regular caps">scroll ↓</div>
+			<div
+				class="hh-text-block is--scroll hh-4 col-[5/9] row-[7/8] justify-self-center overflow-visible"
+			>
+				<div hh-tb="4" class="hh-transform will-change-transform">
+					<div class="hh-text-ovf overflow-hidden">
+						<div
+							split-hero=""
+							class="text-regular caps text-[1em] tracking-[0.08em] uppercase opacity-50"
+						>
+							scroll ↓
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-
-<style>
-	/* ─── Hero 섹션 ─────────────────────────────────────────────────────────── */
-	section.s {
-		position: relative;
-	}
-	.c.is-home-hero {
-		height: 100vh;
-		width: 100%;
-		max-width: none;
-		padding-left: 2vw;
-		padding-right: 2vw;
-		margin: 0 auto;
-	}
-	.grid-main.is-home-hero {
-		width: 100%;
-		height: 100%;
-		display: grid;
-		grid-template-columns: repeat(12, 1fr);
-		grid-template-rows: 1fr min-content 1fr min-content 1fr min-content 1fr;
-		column-gap: 1.25em;
-		row-gap: 0;
-	}
-
-	/* ─── hh-text-block 그리드 배치 ─────────────────────────────────────────── */
-	.hh-text-block {
-		overflow: visible;
-	}
-	.hh-1 {
-		grid-area: 2 / 2 / 3 / 9;
-		justify-self: start;
-	}
-	.hh-2 {
-		grid-area: 4 / 7 / 5 / 12;
-		justify-self: end;
-	}
-	.hh-3 {
-		grid-area: 6 / 3 / 7 / 9;
-		justify-self: start;
-	}
-	.hh-4 {
-		grid-area: 7 / 5 / 8 / 9;
-		justify-self: center;
-	}
-
-	.hh-transform {
-		will-change: transform;
-	}
-	.hh-text-ovf {
-		overflow: hidden;
-	}
-
-	/* ─── 타이포그래피 ───────────────────────────────────────────────────────── */
-	/* .h-a 는 layout.css 글로벌 스타일 사용 — 중복 선언 제거 */
-	/* hero 전용 추가 속성만 여기서 선언 */
-	.h-a {
-		color: var(--text-color, inherit);
-		will-change: transform;
-		white-space: nowrap;
-	}
-	.text-regular.caps {
-		font-size: 1em;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		opacity: 0.5;
-	}
-</style>

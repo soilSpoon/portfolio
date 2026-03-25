@@ -87,7 +87,7 @@
 	.cursor-w {
 		position: fixed;
 		inset: 0%;
-		z-index: 2000;
+		z-index: var(--z-cursor);
 		pointer-events: none;
 		user-select: none;
 		mix-blend-mode: difference;

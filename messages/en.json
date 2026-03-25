@@ -1,4 +1,24 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from en!"
+	"hello_world": "Hello, {name} from en!",
+	"cv_page_title": "Resume — Daehee Lee",
+	"cv_page_heading": "Resume",
+	"cv_page_description": "Daehee Lee — Full-Stack Developer",
+	"cv_list": "List",
+	"cv_save_as_pdf": "Save as PDF",
+	"cv_enter_pin": "Enter PIN",
+	"cv_confirm": "Confirm",
+	"cv_pin_incorrect": "Incorrect PIN",
+	"cv_pdf_download": "PDF Download",
+	"cv_view_web": "View on web",
+	"cv_download_title": "{title} Download — Daehee Lee",
+	"cv_detail_title": "{title} — Daehee Lee",
+	"cv_resume_title": "Resume",
+	"cv_resume_subtitle": "Full-Stack Developer Daehee Lee",
+	"cv_resume_instructor_title": "Resume (Instructor)",
+	"cv_resume_instructor_subtitle": "Web Development Instructor Daehee Lee",
+	"cv_resume_freelancer_title": "Resume (Freelancer)",
+	"cv_resume_freelancer_subtitle": "Full-Stack Web Developer Daehee Lee",
+	"cv_career_title": "Career Description",
+	"cv_career_subtitle": "Technical problem-solving by project"
 }
