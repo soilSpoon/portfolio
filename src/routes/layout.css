@@ -203,10 +203,6 @@ html.light .pre-svg-path {
 [pointer-auto] {
 	pointer-events: auto !important;
 }
-.o-hidden {
-	overflow: hidden;
-}
-
 /* =============================================
    섹션 공통
    ============================================= */
@@ -428,14 +424,6 @@ html.light {
 	z-index: var(--z-orb-canvas);
 	overflow: hidden;
 }
-/* is-pre: CSS에는 유지 (원본도 동일), 실제 HTML에는 사용 안 함 */
-.orb.is-pre {
-	width: 3.3em;
-	min-width: auto;
-	height: 3.3em;
-	min-height: auto;
-	transform: translate(8em, 8.1em);
-}
 .orb canvas {
 	border-radius: 0;
 	width: 100% !important;
@@ -477,25 +465,6 @@ html.light {
      orb(.orb-w z-index:-2)는 음수 z-index이므로 z-index 없이도 콘텐츠 뒤에 위치 */
 	width: 100%;
 	overflow-x: clip;
-}
-
-/* =============================================
-   pagew-grid (배경 가이드, 시각적)
-   ============================================= */
-.pagew-grid {
-	position: fixed;
-	inset: 0;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	z-index: 0;
-	pointer-events: none;
-	display: none; /* 원본에 없는 그리드 라인 숨김 */
-}
-.pagew-block.is--1 {
-	border-right: 1px solid currentColor;
-}
-.pagew-block.is--2 {
-	border-right: 1px solid currentColor;
 }
 
 /* =============================================

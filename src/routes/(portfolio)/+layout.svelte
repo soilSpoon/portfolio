@@ -70,14 +70,6 @@
 	</div>
 </div>
 
-<!-- ─── pagew-grid (배경 그리드 가이드) ───────────────────────────────────── -->
-<div class="pagew-grid">
-	<div class="pagew-block is--1"></div>
-	<div class="pagew-block is--2"></div>
-	<div class="pagew-block is--1"></div>
-	<div class="pagew-block is--2"></div>
-</div>
-
 <!-- ─── 페이지 wipe 트랜지션 레이어 ──────────────────────────────────────── -->
 <div class="page-wipe-w">
 	<div class="page-wipe-inner">

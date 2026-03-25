@@ -241,14 +241,14 @@
 
 		<div class="pre-info-w">
 			<div class="pre-info-inner">
-				<div class="o-hidden">
+				<div class="overflow-hidden">
 					<div class="pre-text-wrap">
 						{#each BUILD_CHARS as char, i (i)}
 							<span class="pre-char">{char}</span>
 						{/each}
 					</div>
 				</div>
-				<div class="o-hidden">
+				<div class="overflow-hidden">
 					<div class="pre-percent" bind:this={prePercentEl}>
 						{percentValue}%
 					</div>
