@@ -172,31 +172,25 @@
 		z-index: -1;
 		width: 100%;
 		height: 100vh;
-		background-image: linear-gradient(
-			255deg,
-			#facb0e,
-			#f06ba8 30%,
-			#78bae6 65%,
-			#fff
-		);
+		background-image: linear-gradient(255deg, #facb0e, #f06ba8 30%, #78bae6 65%, #fff);
 	}
 	/* Pseudo-element: 두 번째 그라데이션이 5초 주기로 페이드인/아웃 */
 	.hs-track-ul::before {
 		content: '';
 		position: absolute;
 		inset: 0;
-		background-image: linear-gradient(
-			255deg,
-			#f06ba8,
-			#facb0e 30%,
-			#78bae6 65%,
-			#fff
-		);
+		background-image: linear-gradient(255deg, #f06ba8, #facb0e 30%, #78bae6 65%, #fff);
 		animation: loopGradient 5s infinite;
 	}
 	@keyframes loopGradient {
-		0%   { opacity: 0; }
-		50%  { opacity: 1; }
-		100% { opacity: 0; }
+		0% {
+			opacity: 0;
+		}
+		50% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0;
+		}
 	}
 </style>

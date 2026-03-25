@@ -11,7 +11,7 @@ export function setupGrid({ gsap }: AnimCtx): void {
 
 	const gridItems = gridWrap.querySelectorAll<HTMLElement>('.hg-grid-item');
 	const gridItemsInner = [...gridItems].map((item) =>
-		item.querySelector<HTMLElement>('.hg-grid-inner'),
+		item.querySelector<HTMLElement>('.hg-grid-inner')
 	);
 	const gridTexts = gridWrap.querySelectorAll<HTMLElement>('.text-small');
 	const overlayHeading = document.querySelector<HTMLElement>('.hg-grid-overlay [split-text]');
@@ -26,8 +26,8 @@ export function setupGrid({ gsap }: AnimCtx): void {
 			start: 'top bottom+=5%',
 			end: 'bottom top-=5%',
 			scrub: true,
-			id: 'gridTimelineTrigger',
-		},
+			id: 'gridTimelineTrigger'
+		}
 	});
 
 	gridTL
@@ -35,15 +35,19 @@ export function setupGrid({ gsap }: AnimCtx): void {
 			transformOrigin: '50% 0%',
 			z: () => gsap.utils.random(-6000, -100),
 			rotationX: () => gsap.utils.random(-65, -25),
-			autoAlpha: 0.5,
+			autoAlpha: 0.5
 		})
 		.to(gridWrap, { scale: 0.8 }, 0)
-		.to(gridItems, {
-			xPercent: () => gsap.utils.random(-150, 150),
-			yPercent: () => gsap.utils.random(-300, 300),
-			rotationX: 0,
-			autoAlpha: 2,
-		}, 0)
+		.to(
+			gridItems,
+			{
+				xPercent: () => gsap.utils.random(-150, 150),
+				yPercent: () => gsap.utils.random(-300, 300),
+				rotationX: 0,
+				autoAlpha: 2
+			},
+			0
+		)
 		.to(gridWrap, { z: 6500 }, 0)
 		.fromTo(gridItemsInner, { scale: 2 }, { scale: 1 }, 0)
 		.fromTo(gridTexts, { fontSize: '1.2em' }, { fontSize: '0.7em' }, 0);
@@ -53,15 +57,16 @@ export function setupGrid({ gsap }: AnimCtx): void {
 	if (overlayHeading) gsap.set(overlayHeading, { autoAlpha: 1 });
 	gsap.set(wordElems, { autoAlpha: 0, yPercent: 101, willChange: 'transform, opacity' });
 
-	gsap.timeline({
-		scrollTrigger: {
-			trigger: gridWrap,
-			start: 'top bottom-=40%',
-			end: 'center top',
-			scrub: true,
-			id: 'wordsTimelineTrigger',
-		},
-	})
+	gsap
+		.timeline({
+			scrollTrigger: {
+				trigger: gridWrap,
+				start: 'top bottom-=40%',
+				end: 'center top',
+				scrub: true,
+				id: 'wordsTimelineTrigger'
+			}
+		})
 		.to(wordElems, {
 			autoAlpha: 1,
 			yPercent: 0,

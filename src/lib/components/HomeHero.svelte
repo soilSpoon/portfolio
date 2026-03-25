@@ -10,7 +10,6 @@
 	<div class="c is-home-hero">
 		<!-- 그리드: 12열, 7행 -->
 		<div class="grid-main is-home-hero">
-
 			<!-- row 2, col 2-9: "A different" -->
 			<div class="hh-text-block hh-1">
 				<div hh-tb="1" class="hh-transform">
@@ -46,7 +45,6 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </section>
@@ -78,10 +76,22 @@
 	.hh-text-block {
 		overflow: visible;
 	}
-	.hh-1 { grid-area: 2 / 2 / 3 / 9;  justify-self: start; }
-	.hh-2 { grid-area: 4 / 7 / 5 / 12; justify-self: end;   }
-	.hh-3 { grid-area: 6 / 3 / 7 / 9;  justify-self: start; }
-	.hh-4 { grid-area: 7 / 5 / 8 / 9;  justify-self: center; }
+	.hh-1 {
+		grid-area: 2 / 2 / 3 / 9;
+		justify-self: start;
+	}
+	.hh-2 {
+		grid-area: 4 / 7 / 5 / 12;
+		justify-self: end;
+	}
+	.hh-3 {
+		grid-area: 6 / 3 / 7 / 9;
+		justify-self: start;
+	}
+	.hh-4 {
+		grid-area: 7 / 5 / 8 / 9;
+		justify-self: center;
+	}
 
 	.hh-transform {
 		will-change: transform;

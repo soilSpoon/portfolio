@@ -39,11 +39,7 @@ function getOrbEls() {
 	};
 }
 
-function animateHeroTextBlocks(
-	gsap: GsapType,
-	onComplete: () => void,
-	baseDelay = 0
-): void {
+function animateHeroTextBlocks(gsap: GsapType, onComplete: () => void, baseDelay = 0): void {
 	HERO_TEXT_BLOCK_INTRO.forEach(({ selector, delay }, index) => {
 		gsap.to(selector, {
 			x: 0,
@@ -63,16 +59,26 @@ function animateHeroTextBlocks(
 export function animateOrbOutlineBreathing(
 	gsap: GsapType,
 	out1: HTMLElement,
-	out2: HTMLElement | null,
+	out2: HTMLElement | null
 ): void {
 	gsap.to(out1, {
-		scale: 1.3, duration: 2, ease: 'power2.inOut', delay: 2,
-		onComplete: () => { gsap.to(out1, { scale: 1.2, duration: 2, ease: 'power2.inOut' }); },
+		scale: 1.3,
+		duration: 2,
+		ease: 'power2.inOut',
+		delay: 2,
+		onComplete: () => {
+			gsap.to(out1, { scale: 1.2, duration: 2, ease: 'power2.inOut' });
+		}
 	});
 	if (out2) {
 		gsap.to(out2, {
-			scale: 0.9, duration: 2.5, ease: 'power2.inOut', delay: 3,
-			onComplete: () => { gsap.to(out1, { scale: 1.2, duration: 2, ease: 'power2.inOut' }); },
+			scale: 0.9,
+			duration: 2.5,
+			ease: 'power2.inOut',
+			delay: 3,
+			onComplete: () => {
+				gsap.to(out1, { scale: 1.2, duration: 2, ease: 'power2.inOut' });
+			}
 		});
 	}
 }
@@ -93,9 +99,12 @@ export function setHeroInitialState(gsap: GsapType): void {
 		orb.classList.remove('is-pre');
 		gsap.set(orb, {
 			autoAlpha: 0,
-			width: '0em', height: '0em',
-			minHeight: 'auto', minWidth: 'auto',
-			x: ORB.INIT_X, y: ORB.INIT_Y,
+			width: '0em',
+			height: '0em',
+			minHeight: 'auto',
+			minWidth: 'auto',
+			x: ORB.INIT_X,
+			y: ORB.INIT_Y
 		});
 	}
 	if (out1) gsap.set(out1, { autoAlpha: 0, scale: 0 });
@@ -114,8 +123,8 @@ export function setHeroInitialState(gsap: GsapType): void {
  */
 export function startOrbRotation(gsap: GsapType): void {
 	const { out1, out2 } = getOrbEls();
-	if (out1) gsap.to(out1, { rotation:  360, duration: 100, repeat: -1, ease: 'none' });
-	if (out2) gsap.to(out2, { rotation: -360, duration: 80,  repeat: -1, ease: 'none' });
+	if (out1) gsap.to(out1, { rotation: 360, duration: 100, repeat: -1, ease: 'none' });
+	if (out2) gsap.to(out2, { rotation: -360, duration: 80, repeat: -1, ease: 'none' });
 }
 
 /**
@@ -160,15 +169,25 @@ export function runHeroIntro({ gsap, lenis, fromPreloader, onComplete }: HeroInt
 	if (orb) {
 		// 초기 상태 확인 (orb가 이전 페이지에서 scroll path로 이동해 있을 수 있음)
 		gsap.set(orb, {
-			autoAlpha: 0, width: '0em', height: '0em', minHeight: 'auto', minWidth: 'auto',
+			autoAlpha: 0,
+			width: '0em',
+			height: '0em',
+			minHeight: 'auto',
+			minWidth: 'auto'
 		});
 		// Phase 1 (0~1s): 프리로더 도트 위치(8em, 8.1em)에서 tiny dot 등장
 		gsap.to(orb, { autoAlpha: 1, width: ORB.TINY, height: ORB.TINY, duration: 1 });
 		// Phase 2 (delay:1, 1s): 중앙(0,0)으로 이동하며 full orb로 성장
 		gsap.to(orb, {
-			x: 0, y: 0,
-			width: ORB.FULL, height: ORB.FULL, minHeight: ORB.MIN, minWidth: ORB.MIN,
-			duration: 1, ease: 'power2.inOut', delay: 1,
+			x: 0,
+			y: 0,
+			width: ORB.FULL,
+			height: ORB.FULL,
+			minHeight: ORB.MIN,
+			minWidth: ORB.MIN,
+			duration: 1,
+			ease: 'power2.inOut',
+			delay: 1
 		});
 	}
 
@@ -182,15 +201,22 @@ export function runHeroIntro({ gsap, lenis, fromPreloader, onComplete }: HeroInt
 
 	// chars: orb Phase2와 동시 (delay:1)
 	gsap.to(SELECTORS.heroChars, {
-		y: '0%', delay: 1, duration: 1, ease: 'power4.inOut',
-		stagger: { each: 0.03, from: 'random' },
+		y: '0%',
+		delay: 1,
+		duration: 1,
+		ease: 'power4.inOut',
+		stagger: { each: 0.03, from: 'random' }
 	});
 
 	// [hh-tb]: chars 완료 후 순차 슬라이드인 (delay:2 / 2.1 / 2.2)
-	animateHeroTextBlocks(gsap, () => {
-		lenis.start();
-		onComplete();
-	}, 2);
+	animateHeroTextBlocks(
+		gsap,
+		() => {
+			lenis.start();
+			onComplete();
+		},
+		2
+	);
 }
 
 /**
@@ -198,27 +224,29 @@ export function runHeroIntro({ gsap, lenis, fromPreloader, onComplete }: HeroInt
  * [hh-tb]가 좌측으로 드리프트, chars가 fade out.
  * Lenis.start() 이후에 호출.
  */
-// ST는 이 함수에서 사용하지 않음 — AnimCtx 시그니처 일관성 유지를 위해 _ST로 명시
-export function setupHeroScroll({ gsap, ST: _ST }: AnimCtx): void {
+export function setupHeroScroll({ gsap }: AnimCtx): void {
 	const homeSection = document.querySelector<HTMLElement>(SELECTORS.homeHero);
 	if (!homeSection) return;
 
 	const trigger = { trigger: homeSection, start: 'top top', end: 'bottom top', scrub: true };
 
-	([
-		{ sel: SELECTORS.heroTextBlock1, x: '-20em' },
-		{ sel: SELECTORS.heroTextBlock2, x: '-10em' },
-		{ sel: SELECTORS.heroTextBlock3, x: '-5em' }
-	] as const).forEach(({ sel, x }) => {
+	(
+		[
+			{ sel: SELECTORS.heroTextBlock1, x: '-20em' },
+			{ sel: SELECTORS.heroTextBlock2, x: '-10em' },
+			{ sel: SELECTORS.heroTextBlock3, x: '-5em' }
+		] as const
+	).forEach(({ sel, x }) => {
 		gsap.to(sel, { x, ease: 'power2.out', scrollTrigger: trigger });
 	});
 
 	const chars = homeSection.querySelectorAll<HTMLElement>('[split-hero] .char');
 	if (chars.length) {
 		gsap.to(chars, {
-			y: '101%', autoAlpha: 0,
+			y: '101%',
+			autoAlpha: 0,
 			stagger: { each: 0.03, from: 'random' },
-			scrollTrigger: trigger,
+			scrollTrigger: trigger
 		});
 	}
 }

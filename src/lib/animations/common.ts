@@ -22,7 +22,7 @@ export function setupCommonReveal({ gsap }: AnimCtx): void {
 			ease: 'power4.inOut',
 			stagger: { each: 0.05, from: 'random' },
 			overwrite: 'auto',
-			scrollTrigger: { trigger: el, start: '20% bottom', once: true },
+			scrollTrigger: { trigger: el, start: '20% bottom', once: true }
 		});
 	});
 
@@ -39,7 +39,7 @@ export function setupCommonReveal({ gsap }: AnimCtx): void {
 			ease: 'power4.inOut',
 			stagger: { each: 0.05, from: 'start' },
 			overwrite: 'auto',
-			scrollTrigger: { trigger: el, start: '20% bottom', once: true },
+			scrollTrigger: { trigger: el, start: '20% bottom', once: true }
 		});
 	});
 
@@ -54,7 +54,7 @@ export function setupCommonReveal({ gsap }: AnimCtx): void {
 			duration: 1,
 			ease: 'power1.out',
 			overwrite: 'auto',
-			scrollTrigger: { trigger: btn, start: '20% bottom', once: true },
+			scrollTrigger: { trigger: btn, start: '20% bottom', once: true }
 		});
 	});
 }

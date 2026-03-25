@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	// Section 8: Footer
 	// 원본 구조:
 	//   section.s.is-footer > .c.is-footer > .ft-content-w >
@@ -15,20 +16,25 @@
 			<div class="spacer-5"></div>
 
 			<div class="grid-main is-footer">
-
 				<!-- ─── CTA 영역 ───────────────────────── -->
 				<div class="grid-main ft-cta-grid">
 					<div class="mbm-diff">
-						<div stagger-scroll="" split-text="" class="h-a is-sub">How about</div>
+						<div class="o-hidden">
+							<div stagger-scroll="" split-text="" class="h-a is-sub">How about</div>
+						</div>
 					</div>
 					<div class="mbm-diff">
-						<div stagger-scroll="" split-text="" class="h-a is-sub">we do a thing</div>
+						<div class="o-hidden">
+							<div stagger-scroll="" split-text="" class="h-a is-sub">we do a thing</div>
+						</div>
 					</div>
 					<div class="ft-cta-row">
 						<div class="mbm-diff is-nb">
-							<div stagger-scroll="" split-text="" class="h-a is-sub">or two,</div>
+							<div class="o-hidden">
+								<div stagger-scroll="" split-text="" class="h-a is-sub">or two,</div>
+							</div>
 						</div>
-						<a href="/contact" class="btn-w is-large">
+						<a href={resolve('/')} class="btn-w is-large">
 							<div class="btn-inner">
 								<div class="o-hidden">
 									<div split-text="" stagger-text="" class="btn-txt">Get in touch</div>
@@ -38,49 +44,51 @@
 						</a>
 					</div>
 					<div class="mbm-diff">
-						<div stagger-scroll="" split-text="" class="h-a is-sub">To+Gether</div>
+						<div class="o-hidden">
+							<div stagger-scroll="" split-text="" class="h-a is-sub">To+Gether</div>
+						</div>
 					</div>
 				</div>
 
 				<!-- ─── 네비게이션 그리드 ───────────────── -->
 				<div class="grid-main ft-nav-w mbm-diff">
 					<div class="ft-nav-col">
-						<p split-text="" stagger-scroll="1" class="text-small caps op-60">Sitemap</p>
+						<div class="o-hidden">
+							<p split-text="" stagger-scroll="1" class="text-small caps op-60">Sitemap</p>
+						</div>
 						<div class="ft-nav-link-w">
-							{#each ['Home', 'About Us', 'Work', 'Contact'] as link}
-								<a href="/{link.toLowerCase().replace(' ', '-')}" class="page-link-w">
-									<span class="text-small btn-txt">{link}</span>
-									<span class="btn-icon-w"><span class="text-small btn-txt">→</span></span>
-								</a>
-							{/each}
+							<a href={resolve('/')} class="page-link-w">
+								<span class="text-small btn-txt">Home</span>
+								<span class="btn-icon-w"><span class="text-small btn-txt">→</span></span>
+							</a>
+							<a href={resolve('/cv')} class="page-link-w">
+								<span class="text-small btn-txt">CV</span>
+								<span class="btn-icon-w"><span class="text-small btn-txt">→</span></span>
+							</a>
 						</div>
 					</div>
 					<div class="ft-nav-col">
-						<p split-text="" stagger-scroll="1" class="text-small caps op-60">Services</p>
+						<div class="o-hidden">
+							<p split-text="" stagger-scroll="1" class="text-small caps op-60">Services</p>
+						</div>
 						<div class="ft-nav-link-w">
-							{#each ['Brand Identity', 'Digital Experiences', 'Motion', 'WebGL/VR', 'UX/UI'] as svc}
+							{#each ['Brand Identity', 'Digital Experiences', 'Motion', 'WebGL/VR', 'UX/UI'] as svc (svc)}
 								<span class="text-small ft-service-item">{svc}</span>
 							{/each}
 						</div>
 					</div>
 					<div class="ft-nav-col">
-						<p split-text="" stagger-scroll="1" class="text-small caps op-60">Social</p>
+						<div class="o-hidden">
+							<p split-text="" stagger-scroll="1" class="text-small caps op-60">Social</p>
+						</div>
 						<div class="ft-nav-link-w">
-							{#each [['Twitter / X', 'https://twitter.com/itsoffbrand'], ['Instagram', 'https://instagram.com/itsoffbrand'], ['LinkedIn', 'https://linkedin.com/company/itsoffbrand']] as [name, url]}
+							{#each [['Twitter / X', 'https://twitter.com/itsoffbrand'], ['Instagram', 'https://instagram.com/itsoffbrand'], ['LinkedIn', 'https://linkedin.com/company/itsoffbrand']] as [name, url] (name)}
+								<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external URL -->
 								<a href={url} target="_blank" rel="noopener" class="page-link-w">
 									<span class="text-small btn-txt">{name}</span>
 									<span class="btn-icon-w"><span class="text-small btn-txt">↗</span></span>
 								</a>
 							{/each}
-						</div>
-					</div>
-					<div class="ft-nav-col">
-						<p split-text="" stagger-scroll="1" class="text-small caps op-60">Legal</p>
-						<div class="ft-nav-link-w">
-							<a href="/privacy" class="page-link-w">
-								<span class="text-small btn-txt">Privacy</span>
-								<span class="btn-icon-w"><span class="text-small btn-txt">→</span></span>
-							</a>
 						</div>
 					</div>
 				</div>
@@ -89,7 +97,11 @@
 				<div class="ft-bottom mbm-diff">
 					<div class="ft-logo-w">
 						<svg viewBox="0 0 162 162" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-							<path d="M108 88.7c-10.8 0-19.7 8.8-19.7 19.7v47.4c0 1.9-1.5 3.4-3.4 3.4h-8.6c-1.9 0-3.4-1.5-3.4-3.4v-47.4c0-10.8-8.8-19.7-19.7-19.7H6.4c-1.9 0-3.4-1.5-3.4-3.4v-8c0-1.9 1.5-3.4 3.4-3.4h46.9c10.8 0 19.7-8.8 19.6-19.7V6.4c0-1.9 1.5-3.4 3.4-3.4H85c1.9 0 3.4 1.5 3.4 3.4v47.8c0 10.8 8.8 19.7 19.7 19.7h46.6c1.9 0 3.4 1.5 3.4 3.4v8c0 1.9-1.5 3.4-3.4 3.4H108z" style="fill-rule:evenodd;clip-rule:evenodd;" fill="currentColor"/>
+							<path
+								d="M108 88.7c-10.8 0-19.7 8.8-19.7 19.7v47.4c0 1.9-1.5 3.4-3.4 3.4h-8.6c-1.9 0-3.4-1.5-3.4-3.4v-47.4c0-10.8-8.8-19.7-19.7-19.7H6.4c-1.9 0-3.4-1.5-3.4-3.4v-8c0-1.9 1.5-3.4 3.4-3.4h46.9c10.8 0 19.7-8.8 19.6-19.7V6.4c0-1.9 1.5-3.4 3.4-3.4H85c1.9 0 3.4 1.5 3.4 3.4v47.8c0 10.8 8.8 19.7 19.7 19.7h46.6c1.9 0 3.4 1.5 3.4 3.4v8c0 1.9-1.5 3.4-3.4 3.4H108z"
+								style="fill-rule:evenodd;clip-rule:evenodd;"
+								fill="currentColor"
+							/>
 						</svg>
 					</div>
 					<div class="ft-copy">
@@ -97,7 +109,6 @@
 						<p class="text-mini op-60">Glasgow, Scotland · offbrand.studio</p>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
@@ -119,7 +130,7 @@
 		max-width: none;
 	}
 	.ft-content-w {
-		border-top: 1px solid var(--border-color, rgba(218,218,218,0.2));
+		border-top: 1px solid var(--border-color, rgba(218, 218, 218, 0.2));
 	}
 
 	/* grid-main.is-footer: 3열 */
@@ -163,13 +174,19 @@
 		text-decoration: none;
 		color: inherit;
 		font-size: var(--fs-eyebrow);
-		transition: background var(--dur-fast) ease, color var(--dur-fast) ease;
+		transition:
+			background var(--dur-fast) ease,
+			color var(--dur-fast) ease;
 	}
 	.btn-w.is-large:hover {
 		background: var(--text-color);
 		color: var(--bg-color);
 	}
-	.btn-inner { display: flex; align-items: center; gap: 0.5em; }
+	.btn-inner {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+	}
 
 	/* ─── Nav Grid ─── */
 	:global(.grid-main.ft-nav-w) {
@@ -197,17 +214,28 @@
 		transition: opacity 0.2s;
 		font-size: 0.75em;
 	}
-	.page-link-w:hover { opacity: 1; }
+	.page-link-w:hover {
+		opacity: 1;
+	}
 	.ft-service-item {
 		display: block;
 		font-size: 0.75em;
 		opacity: 0.5;
 	}
 	/* footer 내 text-small/mini: 전역(0.8/0.65em)보다 작게 — 의도적 로컬 override */
-	.text-small { font-size: 0.75em; }
-	.text-small.caps { text-transform: uppercase; letter-spacing: 0.08em; }
-	.op-60 { opacity: 0.6; }
-	.text-mini { font-size: var(--fs-mini); }
+	.text-small {
+		font-size: 0.75em;
+	}
+	.text-small.caps {
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+	.op-60 {
+		opacity: 0.6;
+	}
+	.text-mini {
+		font-size: var(--fs-mini);
+	}
 
 	/* ─── 하단 바 ─── */
 	.ft-bottom {
@@ -215,10 +243,25 @@
 		justify-content: space-between;
 		align-items: center;
 		padding-bottom: 2em;
-		border-top: 1px solid var(--border-color, rgba(218,218,218,0.2));
+		border-top: 1px solid var(--border-color, rgba(218, 218, 218, 0.2));
 		padding-top: 1.5em;
 	}
-	.ft-logo-w { width: 2em; height: 2em; opacity: 0.4; }
-	.ft-logo-w svg { width: 100%; height: 100%; }
-	.ft-copy { display: flex; flex-direction: column; gap: 0.3em; text-align: right; }
+	.ft-logo-w {
+		width: 2em;
+		height: 2em;
+		opacity: 0.4;
+	}
+	.ft-logo-w svg {
+		width: 100%;
+		height: 100%;
+	}
+	.ft-copy {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3em;
+		text-align: right;
+	}
+	.o-hidden {
+		overflow: hidden;
+	}
 </style>

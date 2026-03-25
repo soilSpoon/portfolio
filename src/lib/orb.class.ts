@@ -14,10 +14,7 @@ export class OrbClass {
 	private scene!: import('three').Scene;
 	private fboScene!: import('three').Scene;
 	// Material 타입을 직접 지정해 render()에서 as any 제거
-	private fboPlane!: import('three').Mesh<
-		import('three').PlaneGeometry,
-		import('three').Material
-	>;
+	private fboPlane!: import('three').Mesh<import('three').PlaneGeometry, import('three').Material>;
 	private sphere!: import('three').Mesh;
 	private fbos!: [import('three').WebGLRenderTarget, import('three').WebGLRenderTarget];
 	private interactionMaterial!: import('three').ShaderMaterial;
@@ -86,8 +83,11 @@ export class OrbClass {
 		// ─ Float 텍스처 지원 확인
 		const glCtx = this.renderer.getContext();
 		const exts = glCtx.getSupportedExtensions() ?? [];
-		const texType: typeof THREE.FloatType | typeof THREE.HalfFloatType =
-			exts.includes('EXT_color_buffer_float') ? THREE.FloatType : THREE.HalfFloatType;
+		const texType: typeof THREE.FloatType | typeof THREE.HalfFloatType = exts.includes(
+			'EXT_color_buffer_float'
+		)
+			? THREE.FloatType
+			: THREE.HalfFloatType;
 
 		if (!exts.includes('EXT_color_buffer_float') && !exts.includes('EXT_color_buffer_half_float')) {
 			console.warn('[Orb] Float/HalfFloat 텍스처 미지원 — HalfFloat fallback 사용');
@@ -98,11 +98,11 @@ export class OrbClass {
 			format: THREE.RGBAFormat,
 			type: texType,
 			wrapS: THREE.ClampToEdgeWrapping,
-			wrapT: THREE.ClampToEdgeWrapping,
+			wrapT: THREE.ClampToEdgeWrapping
 		};
 		this.fbos = [
 			new THREE.WebGLRenderTarget(256, 256, fboOpts),
-			new THREE.WebGLRenderTarget(128, 128, fboOpts),
+			new THREE.WebGLRenderTarget(128, 128, fboOpts)
 		];
 
 		// ─ FBO quad (VS: gl_Position=vec4(pos,1.0) → 항상 화면 채움)
@@ -139,7 +139,7 @@ export class OrbClass {
 		this.simulationMaterial.uniforms.uTexture.value = this.fbos[0].texture;
 		this.simulationMaterial.uniforms.size.value.set(
 			this.fbos[0].width / 2,
-			this.fbos[0].height / 2,
+			this.fbos[0].height / 2
 		);
 
 		// ─ Rendering uniforms
@@ -155,7 +155,7 @@ export class OrbClass {
 		// ─ 초기 matcap 텍스처 로드
 		const isDark = !document.documentElement.classList.contains('light');
 		this.setTexture(
-			isDark ? '/ob/textures/ob_texture-old-2.jpg' : '/ob/textures/ob_texture-old.webp',
+			isDark ? '/ob/textures/ob_texture-old-2.jpg' : '/ob/textures/ob_texture-old.webp'
 		);
 
 		this.addListeners();
@@ -165,10 +165,7 @@ export class OrbClass {
 
 		// ─ Auto-pulse: 200ms마다 랜덤 파문 생성
 		this.intervalId = setInterval(() => {
-			this.interactionMaterial.uniforms.center2.value.set(
-				0.5 + Math.random() * 0.5,
-				Math.random(),
-			);
+			this.interactionMaterial.uniforms.center2.value.set(0.5 + Math.random() * 0.5, Math.random());
 			setTimeout(() => {
 				this.interactionMaterial.uniforms.center2.value.set(-1, -1);
 			}, 10);
@@ -178,7 +175,7 @@ export class OrbClass {
 
 		// preloader:done 이후 orb가 최종 크기(80vh)에 도달하면 버퍼 동기화
 		window.addEventListener('preloader:done', () => setTimeout(() => this.resize(), 300), {
-			once: true,
+			once: true
 		});
 	}
 
@@ -262,17 +259,17 @@ void main(){
   gl_FragColor=data;
 }`,
 			uniforms: {
-				time:           { value: 0 },
-				uTexture:       { value: null },
-				center:         { value: new THREE.Vector2(-1, -1) },
-				center2:        { value: new THREE.Vector2(-1, -1) },
-				radius:         { value: 0.05 },
-				strength:       { value: 0.05 },
-				noiseSpeed:     { value: 0.1 },
+				time: { value: 0 },
+				uTexture: { value: null },
+				center: { value: new THREE.Vector2(-1, -1) },
+				center2: { value: new THREE.Vector2(-1, -1) },
+				radius: { value: 0.05 },
+				strength: { value: 0.05 },
+				noiseSpeed: { value: 0.1 },
 				noiseAmplitude: { value: 0.005 },
 				noiseFrequency: { value: 3 },
-				mouseDown:      { value: false },
-			},
+				mouseDown: { value: false }
+			}
 		});
 	}
 
@@ -299,8 +296,8 @@ void main(){
 }`,
 			uniforms: {
 				uTexture: { value: null },
-				size:     { value: new THREE.Vector2(128, 128) },
-			},
+				size: { value: new THREE.Vector2(128, 128) }
+			}
 		});
 	}
 
@@ -370,15 +367,15 @@ void main(){
   gl_FragColor=vec4(blendOverlay(color,vec3(light))+specular,1.0);
 }`,
 			uniforms: {
-				uTexture:       { value: null },
-				matcapTexture:  { value: null },
+				uTexture: { value: null },
+				matcapTexture: { value: null },
 				matcapTexture2: { value: null },
-				textureMix:     { value: 0 },
-				size:           { value: new THREE.Vector2(128, 128) },
-				eye:            { value: new THREE.Vector3() },
+				textureMix: { value: 0 },
+				size: { value: new THREE.Vector2(128, 128) },
+				eye: { value: new THREE.Vector3() },
 				lightDirection: { value: new THREE.Vector3(0, 1, 1) },
-				angle:          { value: Math.PI / 2 },
-			},
+				angle: { value: Math.PI / 2 }
+			}
 		});
 	}
 
@@ -424,15 +421,13 @@ void main(){
 		const rect = this.el.getBoundingClientRect();
 
 		// 마우스 → 정규화 좌표 (-1 ~ 1)
-		this.normalizedMousePosition.x =
-			((this.mousePosition.x - rect.left) / rect.width) * 2 - 1;
-		this.normalizedMousePosition.y =
-			-((this.mousePosition.y - rect.top) / rect.height) * 2 + 1;
+		this.normalizedMousePosition.x = ((this.mousePosition.x - rect.left) / rect.width) * 2 - 1;
+		this.normalizedMousePosition.y = -((this.mousePosition.y - rect.top) / rect.height) * 2 + 1;
 
 		// Raycasting — new THREE.Vector2()로 타입 단언(as unknown as Vector2) 제거
 		const coords = new this.THREE.Vector2(
 			this.normalizedMousePosition.x,
-			this.normalizedMousePosition.y,
+			this.normalizedMousePosition.y
 		);
 		this.raycaster.setFromCamera(coords, this.camera);
 
@@ -460,7 +455,7 @@ void main(){
 		this.renderingMaterial.uniforms.lightDirection.value.set(
 			Math.cos(this.angle),
 			Math.sin(this.angle),
-			1,
+			1
 		);
 		this.renderingMaterial.uniforms.angle.value = this.angle;
 
@@ -506,7 +501,7 @@ void main(){
 					url,
 					(tex) => this._applyTexture(tex),
 					undefined,
-					(err) => console.warn('[Orb] 텍스처 로드 실패:', url, err),
+					(err) => console.warn('[Orb] 텍스처 로드 실패:', url, err)
 				);
 			})
 			.catch((err) => console.error('[Orb] Three.js 로드 실패 (setTexture):', err));

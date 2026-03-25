@@ -13,14 +13,12 @@
 		const observer = new MutationObserver(() => {
 			const isDark = !document.documentElement.classList.contains('light');
 			orb.setTexture(
-				isDark
-					? '/ob/textures/ob_texture-old-2.jpg'
-					: '/ob/textures/ob_texture-old.webp',
+				isDark ? '/ob/textures/ob_texture-old-2.jpg' : '/ob/textures/ob_texture-old.webp'
 			);
 		});
 		observer.observe(document.documentElement, {
 			attributes: true,
-			attributeFilter: ['class'],
+			attributeFilter: ['class']
 		});
 
 		return () => {

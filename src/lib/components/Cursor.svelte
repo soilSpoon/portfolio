@@ -30,7 +30,7 @@
 					y: e.clientY,
 					scale,
 					duration: 0.3,
-					ease: 'power2.out',
+					ease: 'power2.out'
 				});
 			};
 			document.addEventListener('mousemove', onMouseMove);

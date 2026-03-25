@@ -7,29 +7,42 @@
 		<div class="spacer-10"></div>
 
 		<div class="grid-main t-flex">
-
 			<!-- 좌측 sticky 헤딩 -->
 			<div class="eb-wrap is-sticky">
 				<div class="o-hidden t-flex">
-					<h2 split-text="" stagger-scroll="1" class="h-eyebrow">
-						Recognitions<br/>+ Awards
-					</h2>
-					<div split-text="" stagger-scroll="1" class="text-mini float-count is-eyebrow">52</div>
+					<div class="o-hidden">
+						<h2 split-text="" stagger-scroll="1" class="h-eyebrow">
+							Recognitions<br />+ Awards
+						</h2>
+					</div>
+					<div class="o-hidden">
+						<div split-text="" stagger-scroll="1" class="text-mini float-count is-eyebrow">52</div>
+					</div>
 				</div>
 			</div>
 
 			<!-- 어워드 목록 -->
 			<div class="haw-sub-group">
-				{#each awards as award}
+				{#each awards as award (award.name)}
 					<div class="haw-grid-row">
 						<div class="haw-grid-item">
-							<p split-text="" stagger-scroll="1" class="text-mini">{award.num}</p>
-							<p split-text="" stagger-scroll="1" class="h-c caps">{award.name}</p>
+							<div class="o-hidden">
+								<p split-text="" stagger-scroll="1" class="text-mini">{award.num}</p>
+							</div>
+							<div class="o-hidden">
+								<p split-text="" stagger-scroll="1" class="h-c caps">{award.name}</p>
+							</div>
 							<div class="haw-item-sub-wrap">
-								{#each award.items as item}
+								{#each award.items as item (item.label)}
 									<div class="rel is-h-flex">
-										<p split-text="" stagger-scroll="1" class="text-small caps">{item.label}</p>
-										<div split-text="" stagger-scroll="1" class="text-mini float-count is-haw">{item.count}</div>
+										<div class="o-hidden">
+											<p split-text="" stagger-scroll="1" class="text-small caps">{item.label}</p>
+										</div>
+										<div class="o-hidden">
+											<div split-text="" stagger-scroll="1" class="text-mini float-count is-haw">
+												{item.count}
+											</div>
+										</div>
 									</div>
 								{/each}
 							</div>
@@ -38,7 +51,6 @@
 					</div>
 				{/each}
 			</div>
-
 		</div>
 	</div>
 </section>
@@ -50,7 +62,7 @@
 	}
 
 	.eb-wrap.is-sticky {
-		grid-column: 1 / 4;   /* cols 1-3 */
+		grid-column: 1 / 4; /* cols 1-3 */
 		position: sticky;
 		top: 2em;
 		align-self: start;
@@ -63,12 +75,12 @@
 	}
 
 	.haw-sub-group {
-		grid-column: 4 / 13;  /* cols 4-12 */
+		grid-column: 4 / 13; /* cols 4-12 */
 		display: flex;
 		flex-direction: column;
 	}
 	.haw-grid-row {
-		border-bottom: 1px solid var(--border-color, rgba(218,218,218,0.2));
+		border-bottom: 1px solid var(--border-color, rgba(218, 218, 218, 0.2));
 		padding: 2em 0;
 		position: relative;
 	}
@@ -89,13 +101,13 @@
 		align-items: center;
 	}
 	.text-small.caps {
-		font-size: 0.75em;   /* 전역 --fs-small(0.8em)보다 작은 로컬 사이즈 */
+		font-size: 0.75em; /* 전역 --fs-small(0.8em)보다 작은 로컬 사이즈 */
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
 	}
 	.text-mini {
 		font-size: var(--fs-mini);
-		letter-spacing: 0.05em;   /* 전역 0.03em보다 넓은 로컬 간격 */
+		letter-spacing: 0.05em; /* 전역 0.03em보다 넓은 로컬 간격 */
 	}
 	.float-count {
 		font-variant-numeric: tabular-nums;
@@ -108,5 +120,8 @@
 		height: 1px;
 		background: currentColor;
 		opacity: 0.15;
+	}
+	.o-hidden {
+		overflow: hidden;
 	}
 </style>

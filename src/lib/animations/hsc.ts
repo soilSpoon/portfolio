@@ -29,26 +29,27 @@ export function setupHSC({ gsap, ST }: AnimCtx): void {
 	if (hscScale) {
 		gsap.to(hscScale, {
 			scale: 29,
-			scrollTrigger: t({ start: 'top top', end: 'bottom top' }),
+			scrollTrigger: t({ start: 'top top', end: 'bottom top' })
 		});
 	}
 
 	if (hscImg) {
 		gsap.to(hscImg, {
-			width: '20.5em', height: '20.5em',
-			scrollTrigger: t({ start: 'top top', end: 'bottom top' }),
+			width: '20.5em',
+			height: '20.5em',
+			scrollTrigger: t({ start: 'top top', end: 'bottom top' })
 		});
 		gsap.fromTo(
 			hscImg,
 			{ scale: 0, rotation: 0 },
-			{ scale: 1, rotation: 45, scrollTrigger: t({ start: 'top center', end: 'top top' }) },
+			{ scale: 1, rotation: 45, scrollTrigger: t({ start: 'top center', end: 'top top' }) }
 		);
 	}
 
 	if (hscRotate) {
 		gsap.to(hscRotate, {
 			rotation: 180,
-			scrollTrigger: t({ start: 'top top', end: 'bottom top' }),
+			scrollTrigger: t({ start: 'top top', end: 'bottom top' })
 		});
 	}
 
@@ -61,21 +62,22 @@ export function setupHSC({ gsap, ST }: AnimCtx): void {
 		gsap.fromTo(
 			hscText,
 			{ y: '0vh' },
-			{ y: '20vh', scrollTrigger: t({ start: 'bottom bottom', end: 'bottom+=100 center' }) },
+			{ y: '20vh', scrollTrigger: t({ start: 'bottom bottom', end: 'bottom+=100 center' }) }
 		);
 	}
 
 	if (hscTextInner) {
 		gsap.to(hscTextInner, {
-			autoAlpha: 1, y: '0em',
-			scrollTrigger: t({ start: 'top center', end: 'top top' }),
+			autoAlpha: 1,
+			y: '0em',
+			scrollTrigger: t({ start: 'top center', end: 'top top' })
 		});
 	}
 
 	hscWords.forEach((el, idx) => {
 		gsap.to(el, {
 			yPercent: idx % 2 === 0 ? -101 : 101,
-			scrollTrigger: t({ start: 'bottom bottom-=100', end: 'bottom center-=100' }),
+			scrollTrigger: t({ start: 'bottom bottom-=100', end: 'bottom center-=100' })
 		});
 	});
 
@@ -87,8 +89,8 @@ export function setupHSC({ gsap, ST }: AnimCtx): void {
 		onUpdate: (self: STInstance) => {
 			gsap.to('.s.is-hsc', {
 				scale: 1 - 0.1 * self.progress,
-				boxShadow: `0 0 0 ${1.5 * self.progress}px var(--light-grey)`,
+				boxShadow: `0 0 0 ${1.5 * self.progress}px var(--light-grey)`
 			});
-		},
+		}
 	});
 }

@@ -1,7 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { animateOrbOutlineBreathing } from '$lib/animations/hero';
-	import { dispatchIntroDone, isFirstVisit, markIntroDone, markVisited } from '$lib/animations/intro-state';
+	import {
+		dispatchIntroDone,
+		isFirstVisit,
+		markIntroDone,
+		markVisited
+	} from '$lib/animations/intro-state';
 	import { HERO_TEXT_BLOCK_SELECTORS, SELECTORS } from '$lib/animations/selectors';
 
 	interface Props {
@@ -99,7 +104,12 @@
 				gsap.to(prePercentEl, { delay: 0.5, yPercent: 100, duration: 1, ease: 'power4.inOut' });
 			}
 			if (maskEl) {
-				gsap.to(maskEl, { delay: 0.5, clipPath: 'inset(0% 0% 100% 0%)', duration: 0.8, ease: 'power2.inOut' });
+				gsap.to(maskEl, {
+					delay: 0.5,
+					clipPath: 'inset(0% 0% 100% 0%)',
+					duration: 0.8,
+					ease: 'power2.inOut'
+				});
 			}
 			if (pathX && pathC) {
 				const xLen = pathX.getTotalLength();
@@ -117,7 +127,7 @@
 					y: '8.1em',
 					width: '4.3em',
 					height: '4.3em',
-					duration: 1,
+					duration: 1
 				});
 				gsap.to(orbEl, {
 					x: 0,
@@ -152,7 +162,13 @@
 				animateOrbOutlineBreathing(gsap, outlineEl1, outlineEl2);
 			}
 			if (outlineEl2) {
-				gsap.to(outlineEl2, { autoAlpha: 1, scale: 1, duration: 2, ease: 'power2.inOut', delay: 1 });
+				gsap.to(outlineEl2, {
+					autoAlpha: 1,
+					scale: 1,
+					duration: 2,
+					ease: 'power2.inOut',
+					delay: 1
+				});
 			}
 
 			HERO_TEXT_BLOCK_SELECTORS.forEach((selector, index) => {
@@ -173,11 +189,7 @@
 	<div class="preloader" aria-hidden="true" aria-label="Loading">
 		<div class="ob-mask-wrap">
 			<div class="ob-mask-outline">
-				<svg
-					viewBox="0 0 162 162"
-					xmlns="http://www.w3.org/2000/svg"
-					aria-hidden="true"
-				>
+				<svg viewBox="0 0 162 162" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 					<path
 						bind:this={pathX}
 						class="pre-svg-path"
@@ -213,7 +225,7 @@
 			<div class="pre-info-inner">
 				<div class="o-hidden">
 					<div class="pre-text-wrap">
-						{#each BUILD_CHARS as char}
+						{#each BUILD_CHARS as char, i (i)}
 							<span class="pre-char">{char}</span>
 						{/each}
 					</div>

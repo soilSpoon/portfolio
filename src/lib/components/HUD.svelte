@@ -1,12 +1,17 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	interface Props { currentPath?: string; }
+	import { resolve } from '$app/paths';
+	interface Props {
+		currentPath?: string;
+	}
 	let { currentPath = '/' }: Props = $props();
 
 	let menuOpen = $state(false);
 	let isDark = $state(true);
 
-	function toggleMenu() { menuOpen = !menuOpen; }
+	function toggleMenu() {
+		menuOpen = !menuOpen;
+	}
 
 	function toggleMode() {
 		isDark = !isDark;
@@ -39,10 +44,9 @@
 <div class="hud-w">
 	<div class="c is-hud">
 		<div class="hud-content">
-
 			<!-- ─── 브랜드 로고 (top-left) ──────────────────────────────────── -->
 			<div class="hud-brand-w">
-				<a href="/" class="hud-brand-link" aria-label="OFF+BRAND home">
+				<a href={resolve('/')} class="hud-brand-link" aria-label="OFF+BRAND home">
 					<div class="hud-brand-img w-embed">
 						<svg viewBox="0 0 162 162" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 							<path
@@ -63,6 +67,9 @@
 					<div class="hud-scroll-line-btm"></div>
 				</div>
 			</div>
+
+			<!-- ─── 우상단 네비게이션 링크 ─────────────────────────────────── -->
+			<div class="hud-nav-w"></div>
 
 			<!-- ─── 메뉴 오버레이 (.hud-menu-o) — 버튼 + 배경 + 콘텐츠 포함 ── -->
 			<div class="hud-menu-o" class:is-open={menuOpen}>
@@ -88,11 +95,11 @@
 				<!-- 메뉴 콘텐츠: nav + 다크/라이트 토글 + 소셜 -->
 				<div class="hud-menu-content">
 					<nav class="hud-menu-link-w" aria-label="Main navigation">
-						<a href="/" class="hud-menu-link o-hidden menu-l2" class:active={currentPath === '/'}>Home</a>
-						<a href="/about" class="hud-menu-link o-hidden menu-l2" class:active={currentPath.startsWith('/about')}>About Us</a>
-						<a href="/work" class="hud-menu-link o-hidden menu-l2" class:active={currentPath.startsWith('/work')}>Work</a>
-						<a href="/services" class="hud-menu-link o-hidden menu-l2" class:active={currentPath.startsWith('/services')}>Services</a>
-						<a href="/contact" class="hud-menu-link o-hidden menu-l2" class:active={currentPath.startsWith('/contact')}>Contact</a>
+						<a
+							href={resolve('/')}
+							class="hud-menu-link o-hidden menu-l2"
+							class:active={currentPath === '/'}>Home</a
+						>
 					</nav>
 
 					<!-- 다크/라이트 토글 (메뉴 안) -->
@@ -115,16 +122,34 @@
 
 					<!-- 소셜 링크 -->
 					<div class="hud-menu-socials">
-						<a href="https://twitter.com/itsoffbrand" class="hud-social-link" target="_blank" rel="noopener noreferrer">Twitter</a>
-						<a href="https://instagram.com/itsoffbrand" class="hud-social-link" target="_blank" rel="noopener noreferrer">Instagram</a>
-						<a href="https://linkedin.com/company/itsoffbrand" class="hud-social-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+						<a
+							href="https://twitter.com/itsoffbrand"
+							class="hud-social-link"
+							target="_blank"
+							rel="noopener noreferrer">Twitter</a
+						>
+						<a
+							href="https://instagram.com/itsoffbrand"
+							class="hud-social-link"
+							target="_blank"
+							rel="noopener noreferrer">Instagram</a
+						>
+						<a
+							href="https://linkedin.com/company/itsoffbrand"
+							class="hud-social-link"
+							target="_blank"
+							rel="noopener noreferrer">LinkedIn</a
+						>
 					</div>
 				</div>
 			</div>
+		</div>
+		<!-- /.hud-content -->
+	</div>
+	<!-- /.c.is-hud -->
+</div>
 
-		</div><!-- /.hud-content -->
-	</div><!-- /.c.is-hud -->
-</div><!-- /.hud-w -->
+<!-- /.hud-w -->
 
 <style>
 	/* ─── HUD 컨테이너 ──────────────────────────────────────────────────────── */
@@ -167,10 +192,10 @@
 		height: 100%;
 	}
 
-	/* ─── 스크롤 인디케이터 (bottom-left absolute) ─────────────────────────── */
+	/* ─── 스크롤 인디케이터 (bottom-right, 메뉴 버튼 왼쪽) ─────────────────── */
 	.hud-scroll-w {
 		position: absolute;
-		inset: auto auto 0% 0%;
+		inset: auto 4em 0% auto; /* 우하단, 메뉴 버튼 왼쪽 */
 		padding-bottom: 1.5em;
 		display: flex;
 		align-items: flex-end;
@@ -194,7 +219,9 @@
 		transform-origin: top center;
 		animation: scrollPulse 4s infinite ease-in-out;
 	}
-	.hud-scroll-line-btm { height: 3.5em; }
+	.hud-scroll-line-btm {
+		height: 3.5em;
+	}
 	.hud-scroll-dot {
 		width: 0.5em;
 		height: 0.5em;
@@ -203,15 +230,24 @@
 		opacity: 0.5;
 	}
 	@keyframes scrollPulse {
-		0%   { transform: scale3d(1, 0, 1); opacity: 0; }
-		50%  { transform: scale3d(1, 1, 1); opacity: 1; }
-		100% { transform: scale3d(1, 0, 1); opacity: 0; }
+		0% {
+			transform: scale3d(1, 0, 1);
+			opacity: 0;
+		}
+		50% {
+			transform: scale3d(1, 1, 1);
+			opacity: 1;
+		}
+		100% {
+			transform: scale3d(1, 0, 1);
+			opacity: 0;
+		}
 	}
 
 	/* ─── 메뉴 오버레이 (.hud-menu-o) ────────────────────────────────────── */
 	.hud-menu-o {
 		position: absolute;
-		inset: 0% 0% auto auto;   /* top-right */
+		inset: auto 0% 0% auto; /* bottom-right (원본 레이아웃) */
 		z-index: 999;
 		pointer-events: none;
 	}
@@ -219,7 +255,7 @@
 		pointer-events: all;
 	}
 
-	/* ─── 메뉴 버튼 (top-right) ──────────────────────────────────────────── */
+	/* ─── 메뉴 버튼 (bottom-right, 원본 레이아웃) ───────────────────────── */
 	.hud-menu-w {
 		background: none;
 		border: none;
@@ -227,7 +263,7 @@
 		padding: 0.76rem 0.48rem;
 		pointer-events: all;
 		position: absolute;
-		top: 1.5em;
+		bottom: 1.5em;
 		right: 0;
 		z-index: 1001;
 	}
@@ -243,12 +279,20 @@
 		width: 1.5rem;
 		height: 1px;
 		background: currentColor;
-		transition: transform 0.3s ease, opacity 0.3s ease;
+		transition:
+			transform 0.3s ease,
+			opacity 0.3s ease;
 		display: block;
 	}
-	.hud-menu-w.is-open .hud-menu-line.is-1 { transform: translateY(0.6rem) rotate(45deg); }
-	.hud-menu-w.is-open .hud-menu-line.is-2 { opacity: 0; }
-	.hud-menu-w.is-open .hud-menu-line.is-3 { transform: translateY(-0.6rem) rotate(-45deg); }
+	.hud-menu-w.is-open .hud-menu-line.is-1 {
+		transform: translateY(0.6rem) rotate(45deg);
+	}
+	.hud-menu-w.is-open .hud-menu-line.is-2 {
+		opacity: 0;
+	}
+	.hud-menu-w.is-open .hud-menu-line.is-3 {
+		transform: translateY(-0.6rem) rotate(-45deg);
+	}
 
 	/* ─── 메뉴 배경 ──────────────────────────────────────────────────────── */
 	.hud-menu-bg {
@@ -302,10 +346,14 @@
 		display: block;
 	}
 	.hud-menu-link.active,
-	.hud-menu-link:hover { opacity: 1; }
+	.hud-menu-link:hover {
+		opacity: 1;
+	}
 
 	/* ─── 모드 토글 ──────────────────────────────────────────────────────── */
-	.hud-mode-o-hidden { overflow: hidden; }
+	.hud-mode-o-hidden {
+		overflow: hidden;
+	}
 	.hud-mode-toggle-w {
 		background: none;
 		border: none;
@@ -337,7 +385,9 @@
 		background: currentColor;
 		transition: left 0.3s ease;
 	}
-	.mode-toggle-btn.is-light { left: calc(100% - 0.9em); }
+	.mode-toggle-btn.is-light {
+		left: calc(100% - 0.9em);
+	}
 
 	/* ─── 소셜 링크 ──────────────────────────────────────────────────────── */
 	.hud-menu-socials {
@@ -353,5 +403,18 @@
 		opacity: 0.5;
 		transition: opacity 0.2s ease;
 	}
-	.hud-social-link:hover { opacity: 1; }
+	.hud-social-link:hover {
+		opacity: 1;
+	}
+
+	/* ─── 우상단 네비게이션 링크 ──────────────────────────────────────────── */
+	.hud-nav-w {
+		position: absolute;
+		top: 1.5em;
+		right: 4em;
+		display: flex;
+		align-items: center;
+		gap: 2em;
+		pointer-events: all;
+	}
 </style>

@@ -8,7 +8,6 @@
 	<div class="c">
 		<div data-hide="m" class="spacer-10"></div>
 		<div data-client-section="" class="grid-main is-home-client">
-
 			<!-- "Trusted by + Leaders" 헤딩 -->
 			<div class="eb-wrap is--clients">
 				<div class="o-hidden t-flex">
@@ -21,11 +20,13 @@
 
 			<!-- 클라이언트 로고 그리드 -->
 			<div class="home-client__grid-w">
-				{#each clients as client}
+				{#each clients as client (client.name)}
 					<div data-client-item={client.name} class="home-client__grid-item">
 						<div class="home-client__grid-img w-embed">
+							<!-- eslint-disable-next-line svelte/no-at-html-tags -- trusted static SVG data -->
 							{@html client.svg}
 						</div>
+						<!-- eslint-disable svelte/no-at-html-tags -- trusted static SVG constant -->
 						<div class="home-client__corner-w">
 							<span class="home-client__corner-img is-1">{@html CORNER_SVG}</span>
 							<span class="home-client__corner-img is-2">{@html CORNER_SVG}</span>
@@ -36,7 +37,6 @@
 					</div>
 				{/each}
 			</div>
-
 		</div>
 	</div>
 </section>
@@ -80,7 +80,9 @@
 		transition: opacity 0.3s ease;
 		cursor: default;
 	}
-	.home-client__grid-item:hover { opacity: 1; }
+	.home-client__grid-item:hover {
+		opacity: 1;
+	}
 
 	/* SVG 로고 래퍼 */
 	.home-client__grid-img {
@@ -116,18 +118,34 @@
 		height: 0.6em;
 		opacity: 0.4;
 	}
-	.home-client__corner-img.is-1 { top: 0; left: 0; }
-	.home-client__corner-img.is-2 { top: 0; right: 0; }
-	.home-client__corner-img.is-3 { bottom: 0; left: 0; }
-	.home-client__corner-img.is-4 { bottom: 0; right: 0; }
+	.home-client__corner-img.is-1 {
+		top: 0;
+		left: 0;
+	}
+	.home-client__corner-img.is-2 {
+		top: 0;
+		right: 0;
+	}
+	.home-client__corner-img.is-3 {
+		bottom: 0;
+		left: 0;
+	}
+	.home-client__corner-img.is-4 {
+		bottom: 0;
+		right: 0;
+	}
 	.home-client__border {
 		position: absolute;
 		inset: 0;
-		border: 1px solid var(--border-color, rgba(111,111,111,0.2));
+		border: 1px solid var(--border-color, rgba(111, 111, 111, 0.2));
 	}
 
-	.spacer-10 { height: 10vw; }
-	.o-hidden { overflow: hidden; }
+	.spacer-10 {
+		height: 10vw;
+	}
+	.o-hidden {
+		overflow: hidden;
+	}
 	.h-eyebrow {
 		font-size: var(--fs-eyebrow);
 		text-transform: uppercase;

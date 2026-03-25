@@ -1,4 +1,5 @@
 import type SplitTypeClass from 'split-type';
+import type { TypesList } from 'split-type';
 
 type SplitTypeCtor = typeof SplitTypeClass;
 
@@ -18,7 +19,7 @@ type SplitTypeCtor = typeof SplitTypeClass;
 export function splitAllText(SplitType: SplitTypeCtor): void {
 	const processed = new WeakSet<HTMLElement>();
 
-	const splitOnce = (selector: string, types: string) => {
+	const splitOnce = (selector: string, types: TypesList) => {
 		document.querySelectorAll<HTMLElement>(selector).forEach((el) => {
 			if (processed.has(el)) return;
 			new SplitType(el, { types });

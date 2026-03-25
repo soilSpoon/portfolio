@@ -1,7 +1,18 @@
 import * as THREE from 'three';
 import { DEFAULT_SIMULATION_CONFIG, DPR_CAP, INITIAL_TEXTURE_MIX } from './constants';
-import { INTERACTION_FRAGMENT_SHADER, INTERACTION_VERTEX_SHADER, RENDER_FRAGMENT_SHADER, RENDER_VERTEX_SHADER } from './shaders';
-import type { PointerState, RenderingResources, SimulationConfig, SimulationResources, WebGLRenderer } from './types';
+import {
+	INTERACTION_FRAGMENT_SHADER,
+	INTERACTION_VERTEX_SHADER,
+	RENDER_FRAGMENT_SHADER,
+	RENDER_VERTEX_SHADER
+} from './shaders';
+import type {
+	PointerState,
+	RenderingResources,
+	SimulationConfig,
+	SimulationResources,
+	WebGLRenderer
+} from './types';
 
 export function createPointerState(): PointerState {
 	return { x: 0, y: 0, moved: false, mousedown: false };
