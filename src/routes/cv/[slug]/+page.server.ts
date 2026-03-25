@@ -17,7 +17,13 @@ export async function load({ params }) {
 	const file = getCvFile(entry, locale);
 	const filePath = resolve('cv', file);
 	const markdown = readFileSync(filePath, 'utf-8');
-	const html = await marked(markdown);
+	const rawHtml = await marked(markdown, { breaks: true });
+
+	// hr 기준으로 섹션을 나눠 각 프로젝트를 <section>으로 감싸기 (PDF 페이지 넘김용)
+	const sections = rawHtml.split('<hr>');
+	const html = sections
+		.map((s) => `<section class="cv-section">${s}</section>`)
+		.join('\n');
 
 	return {
 		titleKey: entry.titleKey,

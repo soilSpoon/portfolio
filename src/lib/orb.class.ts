@@ -71,7 +71,8 @@ export class OrbClass {
 		this.el.appendChild(this.renderer.domElement);
 
 		// ─ Camera (구체 + FBO passes 공통 사용)
-		this.camera = new THREE.PerspectiveCamera(60, w / h, 0.1, 2);
+		// DEBUG: increased far plane from 2 to 100
+		this.camera = new THREE.PerspectiveCamera(60, w / h, 0.1, 100);
 		this.camera.position.z = 2.4;
 
 		// ─ Scenes
@@ -150,7 +151,17 @@ export class OrbClass {
 		// ─ 반구 지오메트리: SphereGeometry(1, 100, 100, 0, Math.PI)
 		const sphereGeo = new THREE.SphereGeometry(1, 100, 100, 0, Math.PI);
 		this.sphere = new THREE.Mesh(sphereGeo, this.renderingMaterial);
+		this.sphere.frustumCulled = false; // Disable frustum culling to debug
+		this.renderingMaterial.side = THREE.DoubleSide; // Render both sides
 		this.scene.add(this.sphere);
+		
+		// DEBUG: Add a simple test cube with basic material
+		const testCubeGeo = new THREE.BoxGeometry(2, 2, 2);
+		const testCubeMat = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+		const testCube = new THREE.Mesh(testCubeGeo, testCubeMat);
+		testCube.position.z = 0;
+		this.scene.add(testCube);
+		console.log('[OrbClass] Sphere + test cube created');
 
 		// ─ 초기 matcap 텍스처 로드
 		const isDark = !document.documentElement.classList.contains('light');
@@ -349,6 +360,10 @@ vec2 rotateUV(vec2 uv,float rotation){
   return vec2(cos(rotation)*(uv.x-mid)+sin(rotation)*(uv.y-mid)+mid,cos(rotation)*(uv.y-mid)-sin(rotation)*(uv.x-mid)+mid);
 }
 void main(){
+  // DEBUG: output solid blue to test if shader runs
+  gl_FragColor=vec4(0.0,0.0,1.0,1.0);
+  return;
+  
   vec4 data=texture2D(uTexture,vUv);
   vec3 tangent=vec3(1.0/size.x,texture2D(uTexture,vec2(vUv.x+(1.0/size.x),vUv.y)).r-data.r,0.0);
   vec3 bitangent=vec3(0.0,texture2D(uTexture,vec2(vUv.x,vUv.y+(1.0/size.y))).r-data.r,1.0/size.y);
@@ -411,7 +426,12 @@ void main(){
 	};
 
 	// ── rAF 루프 ──────────────────────────────────────────────────────────────
+	private _updateCount = 0;
 	private update = () => {
+		this._updateCount++;
+		if (this._updateCount <= 3 || this._updateCount % 300 === 0) {
+			console.log('[OrbClass update] frame', this._updateCount, 'initialized:', this._initialized);
+		}
 		// init() 완료 전에는 프레임 스킵
 		if (!this._initialized) {
 			this.frameId = window.requestAnimationFrame(this.update);
@@ -463,7 +483,20 @@ void main(){
 		this.frameId = window.requestAnimationFrame(this.update);
 	};
 
+	private _renderCount = 0;
 	private render(): void {
+		this._renderCount++;
+		if (this._renderCount % 300 === 0) {
+			const sphereVisible = this.sphere?.visible;
+			const matTexExists = !!this.renderingMaterial?.uniforms?.matcapTexture?.value;
+			const camPos = this.camera?.position;
+			const rendererSize = this.renderer?.getSize(new this.THREE.Vector2());
+			console.log('[OrbClass render] frame', this._renderCount, 
+				'sphereVisible:', sphereVisible, 
+				'matcap:', matTexExists,
+				'camZ:', camPos?.z,
+				'rendererSize:', rendererSize?.x, rendererSize?.y);
+		}
 		// Pass 1: interaction → fbos[0]
 		this.fboPlane.material = this.interactionMaterial;
 		this.renderer.setRenderTarget(this.fbos[0]);
@@ -476,11 +509,32 @@ void main(){
 
 		// Pass 3: 화면에 구체 렌더
 		this.renderer.setRenderTarget(null);
+		// DEBUG: clear to green before rendering
+		this.renderer.setClearColor(0x00ff00, 1);
+		this.renderer.clear();
+		
+		// DEBUG: Read pixel immediately after clear
+		if (this._renderCount === 300) {
+			const gl = this.renderer.getContext();
+			const pixels = new Uint8Array(4);
+			gl.readPixels(647, 647, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
+			console.log('[OrbClass render] pixel after clear:', Array.from(pixels));
+		}
+		
 		this.renderer.render(this.scene, this.camera);
+		
+		// DEBUG: Read pixel after scene render
+		if (this._renderCount === 300) {
+			const gl = this.renderer.getContext();
+			const pixels = new Uint8Array(4);
+			gl.readPixels(647, 647, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
+			console.log('[OrbClass render] pixel after scene render:', Array.from(pixels));
+		}
 	}
 
 	resize(): void {
 		const { offsetWidth: w, offsetHeight: h } = this.el;
+		console.log('[OrbClass resize] w:', w, 'h:', h);
 		if (w === 0 || h === 0) return;
 		// updateStyle:false → CSS(width:100% !important)가 display 크기 제어
 		this.renderer.setSize(w, h, false);

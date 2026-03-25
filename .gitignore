@@ -1,5 +1,4 @@
 node_modules
-deno.lock
 
 # Output
 .output
@@ -22,6 +21,7 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
 # Paraglide
 src/lib/paraglide
 project.inlang/cache/
@@ -29,4 +29,5 @@ project.inlang/cache/
 # Local
 benchmark/
 .playwright-mcp/
+.superpowers/
 cv/

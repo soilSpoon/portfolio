@@ -3,7 +3,7 @@
 >
 	<!-- ─── Sidebar ─── -->
 	<aside
-		class="flex h-full min-h-0 flex-col gap-[20px] bg-[#191F28] px-[16px] pt-[28px] pb-[26px]"
+		class="flex h-full min-h-0 flex-col gap-[20px] bg-[#202632] px-[16px] pt-[28px] pb-[26px]"
 	>
 		<div class="border-b border-white/10 pb-[12px]">
 			<div class="text-center text-[24px] font-bold tracking-[0.5px] text-white">이대희</div>
@@ -12,7 +12,7 @@
 
 		<div>
 			<div
-				class="mb-[6px] border-b border-[#2B3240] pb-[4px] text-[9px] font-bold tracking-[1.2px] text-[#3182F6] uppercase"
+				class="mb-[6px] border-b border-[#2B3240] pb-[4px] text-[9px] font-bold tracking-[1.2px] text-[#0064FF] uppercase"
 			>
 				Contact
 			</div>
@@ -60,7 +60,7 @@
 
 		<div>
 			<div
-				class="mb-[6px] border-b border-[#2B3240] pb-[4px] text-[9px] font-bold tracking-[1.2px] text-[#3182F6] uppercase"
+				class="mb-[6px] border-b border-[#2B3240] pb-[4px] text-[9px] font-bold tracking-[1.2px] text-[#0064FF] uppercase"
 			>
 				Skills
 			</div>
@@ -69,10 +69,10 @@
 					<div class="mb-[3px] text-[8px] font-bold tracking-[0.5px] text-[#6B7684] uppercase">
 						{cat.label}
 					</div>
-					<div class="flex flex-wrap gap-[4px]">
+					<div class="flex flex-wrap gap-[5px]">
 						{#each cat.tags as t}
 							<span
-								class="rounded-full bg-[#2B3240] px-[6px] py-[2px] text-[7.8px] font-medium text-[#DDE3EA]"
+								class="rounded-full bg-[#2B3240] px-[7px] py-[2.5px] text-[7.8px] font-medium text-[#DDE3EA]"
 								>{t}</span
 							>
 						{/each}
@@ -83,7 +83,7 @@
 
 		<div>
 			<div
-				class="mb-[6px] border-b border-[#2B3240] pb-[4px] text-[9px] font-bold tracking-[1.2px] text-[#3182F6] uppercase"
+				class="mb-[6px] border-b border-[#2B3240] pb-[4px] text-[9px] font-bold tracking-[1.2px] text-[#0064FF] uppercase"
 			>
 				Education
 			</div>
@@ -103,7 +103,7 @@
 
 		<div>
 			<div
-				class="mb-[6px] border-b border-[#2B3240] pb-[4px] text-[9px] font-bold tracking-[1.2px] text-[#3182F6] uppercase"
+				class="mb-[6px] border-b border-[#2B3240] pb-[4px] text-[9px] font-bold tracking-[1.2px] text-[#0064FF] uppercase"
 			>
 				Certifications
 			</div>
@@ -116,7 +116,7 @@
 
 		<div>
 			<div
-				class="mb-[6px] border-b border-[#2B3240] pb-[4px] text-[9px] font-bold tracking-[1.2px] text-[#3182F6] uppercase"
+				class="mb-[6px] border-b border-[#2B3240] pb-[4px] text-[9px] font-bold tracking-[1.2px] text-[#0064FF] uppercase"
 			>
 				Other
 			</div>
@@ -128,37 +128,33 @@
 	</aside>
 
 	<!-- ─── Main ─── -->
-	<main class="flex min-w-0 flex-col gap-[12px] px-[24px] pt-[22px] pb-[18px]">
+	<main class="flex min-w-0 flex-col gap-[14px] px-[28px] pt-[28px] pb-[24px]">
 		<!-- Profile -->
 		<div class="min-w-0 border-b border-[#E5E8EB] pb-[8px] break-keep">
 			<p class="m-0 mb-[9px] text-[11px] leading-[1.65] text-[#4E5968]">
-				React·TypeScript 기반 <strong class="text-[#333D4B]">7년차</strong> 프론트엔드 엔지니어. B2B SaaS
-				아키텍처 설계부터 성능 최적화, 반응형·접근성까지 주도해왔으며, AI 에이전트를 활용한 효율적
-				개발 워크플로우를 구축합니다.
+				React·TypeScript 기반 <strong class="text-[#333D4B]">7년차</strong> 프론트엔드 엔지니어.
+				Jotai·Emotion·React Query 등 상태관리 아키텍처 설계, 디자인 시스템 구축, 대량 데이터 렌더링 최적화,
+				웹 접근성까지 주도해왔습니다.
 			</p>
 			<ul class="bullet-list">
 				<li>
-					B2B SaaS(출근노트) 프론트엔드 설계·운영 — 디자인 시스템, 상태관리 아키텍처, 대량 데이터
-					렌더링 최적화
+					B2B SaaS 프론트엔드 — Chakra UI 디자인 시스템, React Query/Jotai/Zustand 3계층 상태관리, 수천 행 가상화 최적화
 				</li>
 				<li>
-					OpenCASCADE 3D CAD 엔진의 WASM 브라우저 이식 — 데스크탑 설치 없이 브라우저에서 CAD 모델링
-					실현
+					webpack 내부 수정으로 React Fast Refresh 구현 — laravel-mix에 12개 PR merged, SWC·Jotai·Valtio 등 오픈소스 기여
 				</li>
 				<li>
-					Astro·SWC·Jotai 등 오픈소스에 직접 기여 — 필요한 기능이나 버그를 소스 분석
-					후 PR로 해결
+					OpenCASCADE WASM 브라우저 이식 + Next.js SSR 호환 — AI 챗봇 UI로 복잡한 워크플로우 단순화
 				</li>
-				<li>Claude Code·Codex·ampcode 등 AI 코딩 도구를 적극 활용한 개발 워크플로우 구축</li>
 			</ul>
 		</div>
 
 		<!-- 경력~사이드 프로젝트 -->
-		<div class="grid flex-1 auto-rows-max content-between gap-[12px]">
+		<div class="grid flex-1 auto-rows-max content-between gap-[14px]">
 			<!-- 경력 -->
 			<section class="min-w-0 space-y-[5px]">
 				<h2
-					class="m-0 mb-[6px] border-b-2 border-[#3182F6] pb-[4px] text-[14px] font-bold tracking-[0.3px] text-[#333D4B]"
+					class="m-0 mb-[6px] border-b border-[#0064FF]/40 pb-[4px] text-[14px] font-bold tracking-[0.3px] text-[#333D4B]"
 				>
 					경력
 				</h2>
@@ -179,7 +175,7 @@
 			<!-- 프로젝트 -->
 			<section class="min-w-0 space-y-[8px]">
 				<h2
-					class="m-0 mb-[6px] border-b-2 border-[#3182F6] pb-[4px] text-[14px] font-bold tracking-[0.3px] text-[#333D4B]"
+					class="m-0 mb-[6px] border-b border-[#0064FF]/40 pb-[4px] text-[14px] font-bold tracking-[0.3px] text-[#333D4B]"
 				>
 					프로젝트
 				</h2>
@@ -194,23 +190,23 @@
 						<div class="text-[9px] text-[#8B95A1] [overflow-wrap:anywhere]">
 							에브리심 · 제품개발 책임 · <a
 								href="https://everydrone.io"
-								class="text-[#3182F6] underline decoration-[#3182F6]/30">everydrone.io</a
+								class="text-[#0064FF] underline decoration-[#0064FF]/30">everydrone.io</a
 							>
 						</div>
 						<ul class="bullet-list">
 							<li>
-								OpenCASCADE(3D CAD 엔진)를 Emscripten/WASM 컴파일 — SSR 호환 로딩, 브라우저 CAD 모델링
-								구현
+								통합 디자인 시스템 + Storybook 기반 컴포넌트 단위 개발·테스트 자동화
 							</li>
 							<li>
-								5단계 시뮬레이션 워크플로우 설계 — DraggableDialog z-index 스택, 단계 간 상태 의존성
-								자동 무효화
+								OpenCASCADE WASM 컴파일 — d.ts 자동 생성, Next.js SSR 호환(dynamic import + Suspense)
+							</li>
+							<li>
+								AI SDK v5 기반 챗봇 프론트엔드 — 스트리밍 응답 렌더링, 클라이언트 사이드 도구 실행으로 시뮬레이션 직접 제어
 							</li>
 							<li>PostHog 이벤트 트래킹으로 UX 병목 식별 — heatmap 분석 기반 UI 개선</li>
-							<li>Storybook 기반 디자인 시스템·컴포넌트 테스트 자동화, 모노레포 아키텍처 설계</li>
 						</ul>
 						<div class="text-[8px] text-[#8B95A1] [overflow-wrap:anywhere]">
-							Next.js · TypeScript · Nest.js · C++/WASM · Prisma · PostHog · Storybook
+							Next.js · TypeScript · Nest.js · WASM/Emscripten · AI SDK · Prisma · PostHog · Storybook
 						</div>
 					</article>
 
@@ -224,7 +220,7 @@
 						<div class="text-[9px] text-[#8B95A1] [overflow-wrap:anywhere]">
 							씨엠유니버스 · 풀스택 개발자 · <a
 								href="https://new.gwnote.com/"
-								class="text-[#3182F6] underline decoration-[#3182F6]/30">gwnote.com</a
+								class="text-[#0064FF] underline decoration-[#0064FF]/30">gwnote.com</a
 							>
 						</div>
 						<ul class="bullet-list">
@@ -243,35 +239,11 @@
 								B2B2C 5단계 권한 체계 — PermissionGate 중앙 집중화, 노무법인 6개 모듈 신규 개발
 							</li>
 							<li>React Native + WebView 하이브리드 모바일 앱 — iOS/Android 플랫폼 차이 대응, 스토어 배포</li>
-							<li>
-								Self-hosted → ARC 전환, CI 3단계 병렬화, Husky + lint-staged로 커밋 전 린트 자동화
-							</li>
+							<li>jQuery/PHP 5 → React/Laravel 전면 전환 주도 — 컴포넌트 기반 UI 개발 체계 구축</li>
 						</ul>
 						<div class="text-[8px] text-[#8B95A1] [overflow-wrap:anywhere]">
 							React · TypeScript · Jotai · Zustand · React Query · Zod · Emotion · Chakra UI · React Native ·
 							Laravel · Redis · MySQL
-						</div>
-					</article>
-
-					<article class="space-y-[3px]">
-						<div class="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-[8px]">
-							<span class="min-w-0 text-[12px] font-bold text-[#333D4B]"
-								>ESM — 하드웨어 모니터링 서비스</span
-							>
-							<span class="shrink-0 pl-[8px] text-right text-[9px] text-[#8B95A1]">2020.07 – 2020.12</span>
-						</div>
-						<div class="text-[9px] text-[#8B95A1] [overflow-wrap:anywhere]">
-							씨엠유니버스 · 풀스택 개발자 · <a
-								href="https://cmu.kr/product/"
-								class="text-[#3182F6] underline decoration-[#3182F6]/30">cmu.kr/product</a
-							>
-						</div>
-						<ul class="bullet-list">
-							<li>SNMP·ICMP·SSH 멀티 프로토콜 수집기 공통 인터페이스 추상화 — 플러그인 구조</li>
-							<li>고객사별 대시보드·알림 규칙을 설정 파일로 분리</li>
-						</ul>
-						<div class="text-[8px] text-[#8B95A1] [overflow-wrap:anywhere]">
-							Electron · TypeScript · React · SCSS · Laravel · MySQL
 						</div>
 					</article>
 
@@ -300,7 +272,7 @@
 			<!-- 오픈소스 기여 -->
 			<section class="min-w-0 space-y-[5px]">
 				<h2
-					class="m-0 mb-[6px] border-b-2 border-[#3182F6] pb-[4px] text-[14px] font-bold tracking-[0.3px] text-[#333D4B]"
+					class="m-0 mb-[6px] border-b border-[#0064FF]/40 pb-[4px] text-[14px] font-bold tracking-[0.3px] text-[#333D4B]"
 				>
 					오픈소스 기여
 				</h2>
@@ -308,12 +280,11 @@
 					<li>100+ stars 오픈소스 23개 프로젝트에 53개 PR merged — 소스 분석 후 직접 기여</li>
 					<li>
 						<a href="https://github.com/withastro/astro" class="oss-link">Astro</a> ·
-						<a href="https://github.com/laravel/framework" class="oss-link">laravel/framework</a
-						> · <a href="https://github.com/block/goose" class="oss-link">Goose</a> · <a href="https://github.com/swc-project/swc" class="oss-link">SWC</a> ·
+						<a href="https://github.com/swc-project/swc" class="oss-link">SWC</a> ·
 						<a href="https://github.com/pmndrs/jotai" class="oss-link">Jotai</a> ·
+						<a href="https://github.com/pmndrs/valtio" class="oss-link">Valtio</a> ·
 						<a href="https://github.com/FredKSchott/snowpack" class="oss-link">Snowpack</a> ·
-						<a href="https://github.com/tremorlabs/tremor" class="oss-link">Tremor</a> ·
-						<a href="https://github.com/pmndrs/valtio" class="oss-link">Valtio</a> 등에 기여
+						<a href="https://github.com/tremorlabs/tremor" class="oss-link">Tremor</a> 등에 기여
 					</li>
 					<li>
 						<a href="https://github.com/laravel-mix/laravel-mix" class="oss-link">laravel-mix</a>:
@@ -330,7 +301,7 @@
 			<!-- 사이드 프로젝트 -->
 			<section class="min-w-0 space-y-[5px]">
 				<h2
-					class="m-0 mb-[6px] border-b-2 border-[#3182F6] pb-[4px] text-[14px] font-bold tracking-[0.3px] text-[#333D4B]"
+					class="m-0 mb-[6px] border-b border-[#0064FF]/40 pb-[4px] text-[14px] font-bold tracking-[0.3px] text-[#333D4B]"
 				>
 					사이드 프로젝트
 				</h2>
@@ -343,7 +314,7 @@
 				<div class="text-[9px] text-[#8B95A1] [overflow-wrap:anywhere]">
 					<a
 						href="https://superwalk.vercel.app/"
-						class="text-[#3182F6] underline decoration-[#3182F6]/30">superwalk.vercel.app</a
+						class="text-[#0064FF] underline decoration-[#0064FF]/30">superwalk.vercel.app</a
 					> · 인프라 비용 0원
 				</div>
 				<ul class="bullet-list">
@@ -354,7 +325,6 @@
 		</div>
 	</main>
 </div>
-
 <style>
 	@reference "tailwindcss";
 

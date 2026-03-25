@@ -1,1 +1,68 @@
 @import 'tailwindcss';
+
+/* ── 프린트 스타일 (@page, body, .cv-root, .no-print는 svelte:head 인라인으로 이동) ── */
+@media print {
+	.cv-markdown h1 {
+		font-size: 16pt;
+		margin-bottom: 4pt;
+	}
+
+	.cv-markdown h2 {
+		font-size: 12pt;
+		break-after: avoid;
+		margin-top: 14pt;
+		margin-bottom: 4pt;
+	}
+
+	.cv-markdown h3 {
+		font-size: 10.5pt;
+		break-after: avoid;
+		margin-top: 10pt;
+	}
+
+	.cv-markdown h4 {
+		font-size: 9.5pt;
+		break-after: avoid;
+		margin-top: 5pt;
+		margin-bottom: 2pt;
+	}
+
+	.cv-markdown p,
+	.cv-markdown li {
+		font-size: 9.5pt;
+	}
+
+	.cv-markdown ul,
+	.cv-markdown ol {
+		break-inside: avoid;
+	}
+
+	/* 프로젝트 섹션 단위 페이지 넘김 */
+	.cv-section {
+		break-inside: auto;
+	}
+	.cv-section + .cv-section {
+		break-before: always;
+		margin-top: 0;
+		border-top: none;
+		padding-top: 0;
+	}
+
+	/* h3(세부 섹션) 아래 h4·p·ul이 다음 페이지로 밀리지 않도록 */
+	.cv-markdown h3 + h4,
+	.cv-markdown h4 + p,
+	.cv-markdown h4 + ul {
+		break-before: avoid;
+	}
+
+	.cv-markdown h4 ~ p,
+	.cv-markdown h4 ~ ul {
+		orphans: 3;
+		widows: 3;
+	}
+
+	.cv-markdown a {
+		color: #111;
+		text-decoration: none;
+	}
+}

@@ -3,6 +3,7 @@
 	import { resolve } from '$app/paths';
 	import * as m from '$lib/paraglide/messages';
 	import ResumeSidebar from '$lib/components/ResumeSidebar.svelte';
+	import ResumeSidebarToss from '$lib/components/ResumeSidebarToss.svelte';
 	let { data } = $props();
 
 	function handlePrint() {
@@ -13,9 +14,22 @@
 <svelte:head>
 	<title>{m.cv_detail_title({ title: m[data.titleKey]() })}</title>
 	<meta name="robots" content="noindex" />
+	{#if data.slug === 'resume' || data.slug === 'resume-toss'}
+		{@html `<style>
+			@media print {
+				@page { size: A4; margin: 0; }
+				html, body { margin: 0; padding: 0; width: 210mm; height: 297mm; }
+				.cv-root:has(.resume-page) {
+					padding: 0 !important;
+					margin: 0 !important;
+					max-width: none !important;
+				}
+			}
+		</style>`}
+	{/if}
 </svelte:head>
 
-{#if data.slug === 'resume'}
+{#if data.slug === 'resume' || data.slug === 'resume-toss'}
 	<div class="no-print mb-6 flex items-center justify-between">
 		<nav class="flex items-center gap-2 text-sm text-gray-400">
 			<a href={resolve('/cv')} class="text-blue-600 no-underline hover:underline"
@@ -31,14 +45,26 @@
 			PDF 저장
 		</button>
 	</div>
-	<ResumeSidebar />
+	{#if data.slug === 'resume-toss'}
+		<ResumeSidebarToss />
+	{:else}
+		<ResumeSidebar />
+	{/if}
 {:else}
-	<nav class="no-print mb-6 flex items-center gap-2 text-sm text-gray-400">
-		<a href={resolve('/cv')} class="text-blue-600 no-underline hover:underline">{m.cv_list()}</a>
-		<span>/</span>
-		<span>{m[data.titleKey]()}</span>
-	</nav>
-	<article>
+	<div class="no-print mb-6 flex items-center justify-between">
+		<nav class="flex items-center gap-2 text-sm text-gray-400">
+			<a href={resolve('/cv')} class="text-blue-600 no-underline hover:underline">{m.cv_list()}</a>
+			<span>/</span>
+			<span>{m[data.titleKey]()}</span>
+		</nav>
+		<button
+			onclick={handlePrint}
+			class="cursor-pointer rounded-md border-none bg-gray-900 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-gray-700"
+		>
+			PDF 저장
+		</button>
+	</div>
+	<article class="cv-markdown">
 		<!-- eslint-disable-next-line svelte/no-at-html-tags -- trusted local markdown rendered at build time -->
 		{@html data.html}
 	</article>

@@ -26,6 +26,20 @@ export const CV_ENTRIES = [
 		file_en: 'career_en.md',
 		titleKey: 'cv_career_title',
 		subtitleKey: 'cv_career_subtitle'
+	},
+	{
+		slug: 'resume-toss',
+		file: '이력서.md',
+		file_en: 'resume_en.md',
+		titleKey: 'cv_resume_toss_title',
+		subtitleKey: 'cv_resume_toss_subtitle'
+	},
+	{
+		slug: 'career-toss',
+		file: '경력기술서_toss.md',
+		file_en: '경력기술서_toss.md',
+		titleKey: 'cv_career_toss_title',
+		subtitleKey: 'cv_career_toss_subtitle'
 	}
 ] as const;
 

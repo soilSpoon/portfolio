@@ -20,5 +20,9 @@
 	"cv_resume_freelancer_title": "이력서 (프리랜서)",
 	"cv_resume_freelancer_subtitle": "풀스택 웹 개발자 이대희",
 	"cv_career_title": "경력기술서",
-	"cv_career_subtitle": "프로젝트별 기술적 문제 해결 과정"
+	"cv_career_subtitle": "프로젝트별 기술적 문제 해결 과정",
+	"cv_resume_toss_title": "이력서 (토스)",
+	"cv_resume_toss_subtitle": "Frontend Developer (Desktop) 지원용",
+	"cv_career_toss_title": "경력기술서 (토스)",
+	"cv_career_toss_subtitle": "Frontend Developer (Desktop) 지원용"
 }

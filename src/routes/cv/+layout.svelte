@@ -16,6 +16,21 @@
 		href="https://static.toss.im/tps/main.css"
 		rel="stylesheet"
 	/>
+	{@html `<style>
+		@media print {
+			@page { size: A4; margin: 18mm 20mm; }
+			body { background: #fff !important; margin: 0; }
+			.no-print, .inspector-root { display: none !important; }
+			.cv-root {
+				max-width: none !important;
+				padding: 0 !important;
+				margin: 0 !important;
+				font-size: 10pt !important;
+				line-height: 1.45 !important;
+				background: #fff !important;
+			}
+		}
+	</style>`}
 </svelte:head>
 
 <div
@@ -41,107 +56,75 @@
 		background: #f0f1f3;
 	}
 
+	/* Tailwind 유틸리티가 생성되지 않아 직접 지정 */
+	.cv-root {
+		max-width: 800px;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 3rem 2rem;
+		font-family: 'Toss Product Sans', sans-serif;
+		font-size: 1rem;
+		line-height: 1.625;
+		color: #111827;
+	}
+
 	/* ── 마크다운 렌더링 스타일 (Tailwind @apply 불가 — :global 필요) ── */
-	:global(.cv-root h1) {
+	:global(.cv-markdown h1) {
 		@apply mb-1 text-3xl leading-tight font-bold;
 	}
 
-	:global(.cv-root h2) {
+	:global(.cv-markdown h2) {
 		@apply mt-8 mb-3 border-b-2 border-gray-200 pb-1.5 text-xl font-semibold text-gray-900;
 	}
 
-	:global(.cv-root h3) {
+	:global(.cv-markdown h3) {
 		@apply mt-6 mb-1.5 text-[1.05rem] font-semibold text-gray-800;
 	}
 
-	:global(.cv-root h4) {
+	:global(.cv-markdown h4) {
 		@apply mt-4 mb-1 text-[0.95rem] font-semibold text-gray-700;
 	}
 
-	:global(.cv-root p) {
+	:global(.cv-markdown p) {
 		@apply my-1.5 text-[0.925rem] text-gray-700;
 	}
 
-	:global(.cv-root h1 + p) {
+	:global(.cv-markdown h1 + p) {
 		@apply mb-3 text-sm text-gray-500;
 	}
 
-	:global(.cv-root ul) {
+	:global(.cv-markdown ul) {
 		@apply my-1 pl-5;
 	}
 
-	:global(.cv-root li) {
+	:global(.cv-markdown li) {
 		@apply my-0.5 text-sm text-gray-700;
 	}
 
-	:global(.cv-root hr) {
+	:global(.cv-markdown hr) {
 		@apply my-7 border-t border-gray-100;
 	}
 
-	:global(.cv-root blockquote) {
+	/* hr → section 분할 후 섹션 간 시각적 구분 (화면용) */
+	:global(.cv-markdown .cv-section + .cv-section) {
+		@apply mt-7 border-t border-gray-100 pt-7;
+	}
+
+	:global(.cv-markdown blockquote) {
 		@apply my-1 border-l-3 border-gray-300 py-1 pl-3 text-sm text-gray-500;
 	}
 
-	:global(.cv-root strong) {
+	:global(.cv-markdown strong) {
 		@apply font-semibold text-gray-900;
 	}
 
-	:global(.cv-root a) {
+	:global(.cv-markdown a) {
 		@apply text-blue-600 no-underline hover:underline;
 	}
 
-	:global(.cv-root code) {
+	:global(.cv-markdown code) {
 		@apply rounded bg-gray-100 px-1.5 py-0.5 text-sm;
 	}
 
-	/* ── 프린트 스타일 ── */
-	@media print {
-		.cv-root {
-			max-width: none;
-			padding: 0;
-			font-size: 10.5pt;
-			line-height: 1.5;
-		}
-
-		:global(.cv-root h1) {
-			font-size: 18pt;
-		}
-
-		:global(.cv-root h2) {
-			font-size: 13pt;
-			page-break-after: avoid;
-			margin-top: 14pt;
-		}
-
-		:global(.cv-root h3) {
-			font-size: 11pt;
-			page-break-after: avoid;
-		}
-
-		:global(.cv-root p),
-		:global(.cv-root li) {
-			font-size: 10pt;
-		}
-
-		:global(.cv-root ul, .cv-root ol) {
-			page-break-inside: avoid;
-		}
-
-		:global(.cv-root hr) {
-			margin: 10pt 0;
-		}
-
-		:global(.cv-root a) {
-			color: #111;
-			text-decoration: none;
-		}
-
-		:global(body) {
-			background: #fff;
-		}
-
-		:global(.no-print) {
-			display: none !important;
-		}
-	}
+	/* 프린트 스타일은 cv.css (글로벌)로 이동 — @page는 scoped에서 무시됨 */
 </style>

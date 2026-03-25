@@ -17,7 +17,11 @@ export async function load({ params }) {
 	const file = getCvFile(entry, locale);
 	const filePath = resolve('cv', file);
 	const markdown = readFileSync(filePath, 'utf-8');
-	const html = await marked(markdown);
+	const rawHtml = await marked(markdown);
+	const sections = rawHtml.split('<hr>');
+	const html = sections
+		.map((s) => `<section class="cv-section">${s}</section>`)
+		.join('\n');
 
 	return {
 		titleKey: entry.titleKey,
