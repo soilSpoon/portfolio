@@ -25,7 +25,7 @@ export function setupWork({ gsap, ST }: AnimCtx): void {
 	const homeWork = document.querySelector<HTMLElement>('[home-work]');
 	if (!homeWork) return;
 
-	const items = homeWork.querySelectorAll<HTMLElement>('.hcs-item-w');
+	const items = homeWork.querySelectorAll<HTMLElement>('[data-work-item]');
 	gsap.set(items, { y: '0em' });
 
 	if (window.innerWidth <= WORK.desktopMinWidth) return;
@@ -53,8 +53,8 @@ export function setupWork({ gsap, ST }: AnimCtx): void {
 	const morphSVG = (gsap as GSAPWithOptionalMorph).plugins?.morphSVG ?? null;
 
 	items.forEach((item) => {
-		const svgPath = item.querySelector<SVGPathElement>('.hcs-cross-svg');
-		const words = item.querySelectorAll<HTMLElement>('.hcs-title-w .word');
+		const svgPath = item.querySelector<SVGPathElement>('[data-work-cross]');
+		const words = item.querySelectorAll<HTMLElement>('[data-work-title] .word');
 
 		gsap.set(words, { y: WORK.wordOffsetY });
 
