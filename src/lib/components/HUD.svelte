@@ -171,7 +171,7 @@
 <style>
 	/* ─── HUD 컨테이너 z-index ──────────────────────────────────────────── */
 	.hud-w {
-		z-index: var(--z-hud);
+		z-index: 1000;
 	}
 
 	/* ─── 브랜드 로고 SVG sizing ─────────────────────────────────────────── */
@@ -271,7 +271,7 @@
 
 	/* ─── 메뉴 링크 스타일 ───────────────────────────────────────────────── */
 	.hud-menu-link {
-		font-size: var(--fs-h-b);
+		font-size: var(--font-size-h-b);
 		font-weight: 400;
 		text-transform: uppercase;
 		color: var(--text-color, #e5e4e0);
@@ -300,7 +300,7 @@
 
 	/* ─── 소셜 링크 ──────────────────────────────────────────────────────── */
 	.hud-social-link {
-		font-size: var(--fs-small);
+		font-size: var(--font-size-sm);
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
 		color: currentColor;
