@@ -11,13 +11,13 @@ export function setupGrid({ gsap }: AnimCtx): void {
 	const gridWrap = document.querySelector<HTMLElement>('[grid-anim]');
 	if (!gridWrap) return;
 
-	const gridItems = gridWrap.querySelectorAll<HTMLElement>('.hg-grid-item');
+	const gridItems = gridWrap.querySelectorAll<HTMLElement>('[data-grid-item]');
 	const gridItemsInner = [...gridItems].map((item) =>
-		item.querySelector<HTMLElement>('.hg-grid-inner')
+		item.querySelector<HTMLElement>('[data-grid-inner]')
 	);
-	const gridTexts = gridWrap.querySelectorAll<HTMLElement>('.text-small');
-	const overlayHeading = document.querySelector<HTMLElement>('.hg-grid-overlay [split-text]');
-	const wordElems = document.querySelectorAll<HTMLElement>('.hg-grid-overlay [split-text] .word');
+	const gridTexts = gridWrap.querySelectorAll<HTMLElement>('[data-grid-text]');
+	const overlayHeading = document.querySelector<HTMLElement>('[data-grid-overlay] [split-text]');
+	const wordElems = document.querySelectorAll<HTMLElement>('[data-grid-overlay] [split-text] .word');
 
 	gsap.set(gridTexts, { fontSize: GRID.textSizeInit });
 
