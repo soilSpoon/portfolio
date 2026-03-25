@@ -1,0 +1,16 @@
+variant: instructor
+title: "이력서 (강사)"
+subtitle: 웹 개발 강사 이대희
+summary: instructor
+theme: default
+modes: [resume]
+
+sections:
+  - type: teaching_capabilities
+  - type: teaching_experience
+    filter: [instructor]
+  - type: experience
+    filter: [all]
+    style: compact
+  - type: skills
+    filter: [instructor]

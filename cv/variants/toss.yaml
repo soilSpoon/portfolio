@@ -1,0 +1,16 @@
+variant: toss
+title: "이력서 (토스)"
+subtitle: "Frontend Developer (Desktop) 지원용"
+summary: toss
+highlight_bullets: toss
+theme: toss
+
+sections:
+  - type: experience
+    filter: [all]
+  - type: projects
+    filter: [toss, all]
+    max: 4
+  - type: oss
+  - type: sideProjects
+    filter: [toss, all]

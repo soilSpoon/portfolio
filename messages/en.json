@@ -12,17 +12,5 @@
 	"cv_pdf_download": "PDF Download",
 	"cv_view_web": "View on web",
 	"cv_download_title": "{title} Download — Daehee Lee",
-	"cv_detail_title": "{title} — Daehee Lee",
-	"cv_resume_title": "Resume",
-	"cv_resume_subtitle": "Full-Stack Developer Daehee Lee",
-	"cv_resume_instructor_title": "Resume (Instructor)",
-	"cv_resume_instructor_subtitle": "Web Development Instructor Daehee Lee",
-	"cv_resume_freelancer_title": "Resume (Freelancer)",
-	"cv_resume_freelancer_subtitle": "Full-Stack Web Developer Daehee Lee",
-	"cv_career_title": "Career Description",
-	"cv_career_subtitle": "Technical problem-solving by project",
-	"cv_resume_toss_title": "Resume (Toss)",
-	"cv_resume_toss_subtitle": "For Frontend Developer (Desktop)",
-	"cv_career_toss_title": "Career Description (Toss)",
-	"cv_career_toss_subtitle": "For Frontend Developer (Desktop)"
+	"cv_detail_title": "{title} — Daehee Lee"
 }

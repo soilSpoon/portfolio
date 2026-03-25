@@ -30,4 +30,10 @@ project.inlang/cache/
 benchmark/
 .playwright-mcp/
 .superpowers/
-cv/
+cv/*.pdf
+cv/*.html
+cv/*.css
+cv/*.md
+cv/original/
+cv/benchmark/
+!cv/master.yaml

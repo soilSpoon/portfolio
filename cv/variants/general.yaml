@@ -1,0 +1,16 @@
+variant: general
+title: 이력서
+subtitle: 풀스택 개발자 이대희
+summary: default
+highlight_bullets: default
+theme: default
+
+sections:
+  - type: experience
+    filter: [all]
+  - type: projects
+    filter: [general, all]
+    max: 4
+  - type: oss
+  - type: sideProjects
+    filter: [general, all]

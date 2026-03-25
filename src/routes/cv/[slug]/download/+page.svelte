@@ -2,6 +2,8 @@
 	import { browser } from '$app/environment';
 	import { resolve } from '$app/paths';
 	import * as m from '$lib/paraglide/messages';
+	import ResumeLayout from '$lib/components/ResumeLayout.svelte';
+	import CareerLayout from '$lib/components/CareerLayout.svelte';
 
 	let { data } = $props();
 
@@ -30,7 +32,7 @@
 </script>
 
 <svelte:head>
-	<title>{m.cv_download_title({ title: m[data.titleKey]() })}</title>
+	<title>{m.cv_download_title({ title: data.title })}</title>
 	<meta name="robots" content="noindex, nofollow" />
 </svelte:head>
 
@@ -38,7 +40,7 @@
 	<div class="flex min-h-[60vh] items-center justify-center">
 		<div class="text-center">
 			<h2 class="mb-1 border-none text-xl font-semibold">{m.cv_pdf_download()}</h2>
-			<p class="mb-6 text-sm text-gray-400">{m[data.titleKey]()}</p>
+			<p class="mb-6 text-sm text-gray-400">{data.title}</p>
 			<div class="flex justify-center gap-2">
 				<input
 					type="password"
@@ -73,8 +75,9 @@
 		</button>
 	</div>
 
-	<article>
-		<!-- eslint-disable-next-line svelte/no-at-html-tags -- trusted local markdown rendered at build time -->
-		{@html data.html}
-	</article>
+	{#if data.mode === 'resume'}
+		<ResumeLayout {data} theme={data.theme} />
+	{:else}
+		<CareerLayout {data} theme={data.theme} />
+	{/if}
 {/if}

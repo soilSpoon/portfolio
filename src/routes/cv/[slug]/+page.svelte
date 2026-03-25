@@ -2,8 +2,8 @@
 	import { browser } from '$app/environment';
 	import { resolve } from '$app/paths';
 	import * as m from '$lib/paraglide/messages';
-	import ResumeSidebar from '$lib/components/ResumeSidebar.svelte';
-	import ResumeSidebarToss from '$lib/components/ResumeSidebarToss.svelte';
+	import ResumeLayout from '$lib/components/ResumeLayout.svelte';
+	import CareerLayout from '$lib/components/CareerLayout.svelte';
 	let { data } = $props();
 
 	function handlePrint() {
@@ -12,9 +12,9 @@
 </script>
 
 <svelte:head>
-	<title>{m.cv_detail_title({ title: m[data.titleKey]() })}</title>
+	<title>{m.cv_detail_title({ title: data.title })}</title>
 	<meta name="robots" content="noindex" />
-	{#if data.slug === 'resume' || data.slug === 'resume-toss'}
+	{#if data.mode === 'resume'}
 		{@html `<style>
 			@media print {
 				@page { size: A4; margin: 0; }
@@ -29,43 +29,22 @@
 	{/if}
 </svelte:head>
 
-{#if data.slug === 'resume' || data.slug === 'resume-toss'}
-	<div class="no-print mb-6 flex items-center justify-between">
-		<nav class="flex items-center gap-2 text-sm text-gray-400">
-			<a href={resolve('/cv')} class="text-blue-600 no-underline hover:underline"
-				>{m.cv_list()}</a
-			>
-			<span>/</span>
-			<span>{m[data.titleKey]()}</span>
-		</nav>
-		<button
-			onclick={handlePrint}
-			class="cursor-pointer rounded-md border-none bg-gray-900 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-gray-700"
-		>
-			PDF 저장
-		</button>
-	</div>
-	{#if data.slug === 'resume-toss'}
-		<ResumeSidebarToss />
-	{:else}
-		<ResumeSidebar />
-	{/if}
+<div class="no-print mb-6 flex items-center justify-between">
+	<nav class="flex items-center gap-2 text-sm text-gray-400">
+		<a href={resolve('/cv')} class="text-blue-600 no-underline hover:underline">{m.cv_list()}</a>
+		<span>/</span>
+		<span>{data.title}</span>
+	</nav>
+	<button
+		onclick={handlePrint}
+		class="cursor-pointer rounded-md border-none bg-gray-900 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-gray-700"
+	>
+		PDF 저장
+	</button>
+</div>
+
+{#if data.mode === 'resume'}
+	<ResumeLayout {data} theme={data.theme} />
 {:else}
-	<div class="no-print mb-6 flex items-center justify-between">
-		<nav class="flex items-center gap-2 text-sm text-gray-400">
-			<a href={resolve('/cv')} class="text-blue-600 no-underline hover:underline">{m.cv_list()}</a>
-			<span>/</span>
-			<span>{m[data.titleKey]()}</span>
-		</nav>
-		<button
-			onclick={handlePrint}
-			class="cursor-pointer rounded-md border-none bg-gray-900 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-gray-700"
-		>
-			PDF 저장
-		</button>
-	</div>
-	<article class="cv-markdown">
-		<!-- eslint-disable-next-line svelte/no-at-html-tags -- trusted local markdown rendered at build time -->
-		{@html data.html}
-	</article>
+	<CareerLayout {data} theme={data.theme} />
 {/if}

@@ -126,5 +126,13 @@
 		@apply rounded bg-gray-100 px-1.5 py-0.5 text-sm;
 	}
 
+	/* resume-page가 있으면 cv-root 패딩/최대폭 제거 (화면+프린트 공통) */
+	.cv-root:has(:global(.resume-page)) {
+		max-width: none;
+		padding: 0;
+		margin: 0;
+		background: #f0f1f3;
+	}
+
 	/* 프린트 스타일은 cv.css (글로벌)로 이동 — @page는 scoped에서 무시됨 */
 </style>
