@@ -18,7 +18,7 @@ export function setupHSC({ gsap, ST }: AnimCtx): void {
 	const hscImg = hscTrack.querySelector<HTMLElement>('[hsc-img]');
 	const hscRotate = hscTrack.querySelector<HTMLElement>('[hsc-rotate]');
 	const hscText = hscTrack.querySelector<HTMLElement>('[hsc-text]');
-	const hscTextInner = hscTrack.querySelector<HTMLElement>('.h-c.is-anim');
+	const hscTextInner = hscTrack.querySelector<HTMLElement>('[data-hsc-heading]');
 	const hscWords = hscTrack.querySelectorAll<HTMLElement>('.word');
 
 	if (hscText) gsap.set(hscText, { autoAlpha: 0, x: HSC.textSlideX });
@@ -92,9 +92,9 @@ export function setupHSC({ gsap, ST }: AnimCtx): void {
 		start: 'bottom center',
 		end: 'bottom top',
 		onUpdate: (self: STInstance) => {
-			gsap.to('.s.is-hsc', {
+			gsap.to('[data-hsc-section]', {
 				scale: 1 - HSC.sectionScaleFactor * self.progress,
-				boxShadow: `0 0 0 ${HSC.sectionShadowMax * self.progress}px var(--light-grey)`
+				boxShadow: `0 0 0 ${HSC.sectionShadowMax * self.progress}px rgba(111,111,111,0.2)`
 			});
 		}
 	});
