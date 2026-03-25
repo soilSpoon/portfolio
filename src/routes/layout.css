@@ -39,6 +39,7 @@
 @import './styles/theme.css';
 @import './styles/preloader.css';
 @import './styles/orb.css';
+@import './styles/animation.css';
 
 /* vw 기반 폰트 사이즈 (1em ≈ 1vw) */
 html {
@@ -95,16 +96,6 @@ html.light {
 	text-shadow: none;
 }
 
-/* =============================================
-   유틸리티
-   ============================================= */
-[pointer-none] {
-	pointer-events: none !important;
-	user-select: none;
-}
-[pointer-auto] {
-	pointer-events: auto !important;
-}
 /* =============================================
    섹션 공통
    ============================================= */
@@ -258,21 +249,6 @@ button,
 }
 
 /* =============================================
-   SplitType 스타일
-   ============================================= */
-.word {
-	display: inline-block;
-}
-.char {
-	display: inline-block;
-	will-change: transform, opacity;
-}
-.line {
-	display: block;
-	overflow: hidden;
-}
-
-/* =============================================
    page-w 콘텐츠 래퍼
    ============================================= */
 .page-w {
@@ -304,38 +280,3 @@ html.light ::selection {
 	color: var(--main-light);
 }
 
-/* =============================================
-   FOUC 방지 — GSAP 로드 전 초기 숨김 상태
-   JS(GSAP)가 로드되면 inline style로 override됨.
-   새로고침 시 메인 화면이 잠깐 보이는 현상 방지.
-   ============================================= */
-
-/* HUD: preloader 완료 후 GSAP이 슬라이드인 */
-.hud-brand-w [data-hud-brand] {
-	opacity: 0;
-	transform: translateY(-101%);
-}
-[data-hud-scroll] {
-	opacity: 0;
-}
-.hud-menu-o [data-hud-menu] {
-	opacity: 0;
-	transform: translateY(101%);
-}
-
-/* 히어로 텍스트 블록: x:10em/-10em으로 화면 밖 (body overflow:clip으로 클립)
-   Preloader.svelte runOutro에서 gsap.set으로 확인 후,
-   preloader:done 시 gsap.to(x:0)으로 slide-in */
-[hh-tb='1'],
-[hh-tb='3'] {
-	transform: translateX(10em);
-}
-[hh-tb='2'] {
-	transform: translateX(-10em);
-}
-
-/* =============================================
-   스크롤 애니메이션 초기 상태 (FOUC 방지)
-   - CSS 초기 숨김 제거: GSAP immediateRender로 처리
-   - .word/.line은 GSAP이 로드된 후 gsap.set()으로 초기화
-   ============================================= */
