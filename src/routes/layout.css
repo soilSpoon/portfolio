@@ -36,10 +36,9 @@
 	--color-primary: #ff642f;
 }
 
-@import './styles/theme.css';
-@import './styles/animation.css';
-
-/* vw 기반 폰트 사이즈 (1em ≈ 1vw) */
+/* =============================================
+   리셋
+   ============================================= */
 html {
 	box-sizing: border-box;
 }
@@ -55,6 +54,9 @@ html {
 	padding: 0;
 }
 
+/* =============================================
+   body 기본 스타일
+   ============================================= */
 body:has(.portfolio) {
 	font-size: 1.0582010582010584vw;
 	font-family:
@@ -74,130 +76,48 @@ body:has(.portfolio) {
 }
 
 /* =============================================
-   다크 / 라이트 모드
+   다크 / 라이트 모드 — 시맨틱 변수
+   ============================================= */
+html.dark {
+	--text-color: var(--color-main-light);
+	--bg-color: var(--color-main-dark);
+	--border-color: rgba(218, 218, 218, 0.2);
+}
+html.light {
+	--text-color: var(--color-main-dark);
+	--bg-color: var(--color-main-light);
+	--border-color: rgba(111, 111, 111, 0.2);
+}
+
+/* =============================================
+   다크 / 라이트 모드 — 배경색 + 텍스트
    ============================================= */
 html.dark body:has(.portfolio) {
 	background-color: transparent;
-	color: var(--main-light);
+	color: var(--color-main-light);
 }
 html.light body:has(.portfolio) {
 	background-color: transparent;
-	color: var(--main-dark);
+	color: var(--color-main-dark);
 }
 html.dark:has(.portfolio) {
-	background-color: var(--main-dark);
+	background-color: var(--color-main-dark);
 }
 html.light:has(.portfolio) {
-	background-color: var(--main-light);
+	background-color: var(--color-main-light);
 }
 
-/* 텍스트 선택 */
+/* =============================================
+   텍스트 선택
+   ============================================= */
 .portfolio ::selection {
-	background: var(--main-dark);
-	color: var(--main-light);
+	background: var(--color-main-dark);
+	color: var(--color-main-light);
 	text-shadow: none;
 }
-
-/* =============================================
-   섹션 공통
-   ============================================= */
-.s {
-	width: 100%;
-}
-
-/* =============================================
-   공통 레이아웃 — spacer, grid-main, container
-   ============================================= */
-.c {
-	width: 100%;
-	max-width: 100%;
-	padding-left: 2vw;
-	padding-right: 2vw;
-	margin: 0 auto;
-	position: relative;
-}
-.grid-main {
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	column-gap: 1.25em;
-}
-.spacer-10 {
-	height: 10vw;
-}
-.spacer-5 {
-	height: 5vw;
-}
-
-/* =============================================
-   공통 타이포그래피
-   ============================================= */
-@layer components {
-	.h-a { font-size: var(--font-size-h-a); line-height: 1; }
-	.h-b { font-size: var(--font-size-h-b); line-height: 1; }
-	.h-c { font-size: var(--font-size-h-c); line-height: 1; }
-	.h-eyebrow { font-size: var(--font-size-eyebrow); line-height: 1.4; }
-	.text-small { font-size: var(--font-size-sm); line-height: 1.6; }
-	.text-mini { font-size: var(--font-size-mini); }
-}
-
-
-/* mb-diff 역할: mix-blend-mode difference overlay */
-.mbm-diff {
-	mix-blend-mode: difference;
-	color: var(--main-light);
-	user-select: none;
-}
-
-/* eb-wrap: eyebrow wrap, sticky */
-.eb-wrap {
-	display: flex;
-	flex-direction: column;
-	gap: 0.5em;
-}
-.eb-wrap.is-sticky {
-	position: sticky;
-	top: 2em;
-}
-
-/* 버튼 공통 스타일 */
-.btn-w {
-	display: inline-flex;
-	align-items: center;
-	gap: 0.5em;
-	padding: 0.8em 1.6em;
-	border: 1px solid currentColor;
-	border-radius: var(--large-radius);
-	text-decoration: none;
-	color: inherit;
-	font-size: var(--fs-eyebrow);
-	transition:
-		background var(--dur-fast) ease,
-		color var(--dur-fast) ease;
-	cursor: pointer;
-	background: transparent;
-}
-.btn-w:hover {
-	background: var(--text-color);
-	color: var(--bg-color);
-}
-.btn-inner {
-	display: flex;
-	align-items: center;
-	gap: 0.4em;
-}
-.btn-txt {
-	font-size: 0.85em;
-}
-.btn-icon-w {
-	display: flex;
-	align-items: center;
-	opacity: 0.7;
-}
-
-/* h-eyebrow outline variant */
-.h-eyebrow.is--outline {
-	-webkit-text-stroke: 1px currentColor;
-	color: transparent;
+html.light .portfolio ::selection {
+	background: var(--color-main-dark);
+	color: var(--color-main-light);
 }
 
 /* =============================================
@@ -210,34 +130,14 @@ html.light:has(.portfolio) {
 }
 
 /* =============================================
-   page-w 콘텐츠 래퍼
+   SplitType 런타임 클래스 (글로벌 필수)
    ============================================= */
-.page-w {
-	position: relative;
-	/* z-index: 1 제거 — z-index 지정 시 새로운 stacking context 생성됨.
-     stacking context가 생기면 자식 .s.is-hsc 의 mix-blend-mode: darken 이
-     body 배경색과 블렌딩되지 못하고 context 내부에서만 동작 → 흰 배경 노출.
-     orb(.orb-w z-index:-2)는 음수 z-index이므로 z-index 없이도 콘텐츠 뒤에 위치 */
-	width: 100%;
-	overflow-x: clip;
-}
+.word { display: inline-block; }
+.char { display: inline-block; will-change: transform, opacity; }
+.line { display: block; overflow: hidden; }
 
 /* =============================================
-   page-wipe 트랜지션
+   포인터 유틸리티 (data attribute 기반)
    ============================================= */
-.page-wipe-w {
-	position: fixed;
-	inset: 0;
-	z-index: var(--z-page-wipe);
-	pointer-events: none;
-	opacity: 0;
-}
-
-/* =============================================
-   선택 색상 (라이트 모드)
-   ============================================= */
-html.light .portfolio ::selection {
-	background: var(--main-dark);
-	color: var(--main-light);
-}
-
+.portfolio [pointer-none] { pointer-events: none !important; user-select: none; }
+.portfolio [pointer-auto] { pointer-events: auto !important; }

@@ -72,7 +72,7 @@
 </div>
 
 <!-- ─── 페이지 wipe 트랜지션 레이어 ──────────────────────────────────────── -->
-<div class="page-wipe-w">
+<div class="fixed inset-0 z-[9000] pointer-events-none opacity-0">
 	<div class="page-wipe-inner">
 		<div class="page-wipe-object-w">
 			<div class="page-wipe-path"></div>
@@ -84,7 +84,7 @@
 <Preloader />
 
 <!-- ─── 페이지 콘텐츠 ─────────────────────────────────────────────────────── -->
-<div data-page-wrapper class="page-w">
+<div data-page-wrapper class="relative w-full overflow-x-clip">
 	{@render children()}
 </div>
 </div>
@@ -166,4 +166,11 @@
 		z-index: -2;
 		opacity: 0;
 	}
+
+	/* ── FOUC prevention — initial hidden state before GSAP loads ── */
+	:global(.hud-brand-w [data-hud-brand]) { opacity: 0; transform: translateY(-101%); }
+	:global([data-hud-scroll]) { opacity: 0; }
+	:global(.hud-menu-o [data-hud-menu]) { opacity: 0; transform: translateY(101%); }
+	:global([hh-tb='1']), :global([hh-tb='3']) { transform: translateX(10em); }
+	:global([hh-tb='2']) { transform: translateX(-10em); }
 </style>
