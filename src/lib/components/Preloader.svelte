@@ -188,7 +188,7 @@
 				dispatchIntroDone();
 				onDone?.();
 
-				gsap.to('.preloader', {
+				gsap.to('[data-preloader]', {
 					autoAlpha: 0,
 					duration: PRELOADER.fadeDuration,
 					ease: 'none',
@@ -204,7 +204,7 @@
 </script>
 
 {#if visible}
-	<div class="preloader" aria-hidden="true" aria-label="Loading">
+	<div data-preloader class="preloader" aria-hidden="true" aria-label="Loading">
 		<div class="ob-mask-wrap">
 			<div class="ob-mask-outline">
 				<svg viewBox="0 0 162 162" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -259,6 +259,38 @@
 {/if}
 
 <style>
+	/* ── from preloader.css ── */
+	.preloader {
+		position: fixed;
+		inset: 0;
+		z-index: -5;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: var(--color-main-light);
+	}
+	:global(html.dark) .preloader {
+		background-color: var(--color-main-dark);
+	}
+
+	:global(html.dark) .ob-fill-fill {
+		background-color: var(--color-main-light);
+	}
+	:global(html.light) .ob-fill-fill {
+		background-color: var(--color-main-dark);
+	}
+
+	.pre-svg-path {
+		stroke-dasharray: 1000;
+		stroke-dashoffset: 1000;
+	}
+	:global(html.dark) .pre-svg-path {
+		stroke: var(--color-main-light);
+	}
+	:global(html.light) .pre-svg-path {
+		stroke: var(--color-main-dark);
+	}
+
 	.ob-mask-wrap {
 		position: relative;
 		width: 20em;
@@ -284,6 +316,14 @@
 		width: 100%;
 		height: 100%;
 		clip-path: inset(0% 0% 0% 0%);
+		mask-image: url('/ob-logomark.svg');
+		-webkit-mask-image: url('/ob-logomark.svg');
+		mask-size: contain;
+		-webkit-mask-size: contain;
+		mask-repeat: no-repeat;
+		-webkit-mask-repeat: no-repeat;
+		mask-position: center;
+		-webkit-mask-position: center;
 	}
 
 	.ob-fill-fill {

@@ -37,8 +37,6 @@
 }
 
 @import './styles/theme.css';
-@import './styles/preloader.css';
-@import './styles/orb.css';
 @import './styles/animation.css';
 
 /* vw 기반 폰트 사이즈 (1em ≈ 1vw) */

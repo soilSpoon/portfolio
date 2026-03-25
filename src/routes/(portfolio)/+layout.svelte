@@ -95,3 +95,75 @@
 		<a href={localizeHref(page.url.pathname, { locale })}>{locale}</a>
 	{/each}
 </div>
+
+<style>
+	/* ── Three.js canvas ── */
+	:global(.portfolio canvas) {
+		display: block;
+		border-radius: 50%;
+		background-color: transparent !important;
+	}
+
+	/* ── will-change for animated elements ── */
+	:global([data-orb]),
+	:global([orb-out-w]),
+	:global([orb-outline]),
+	:global([data-cursor]) {
+		will-change: transform;
+	}
+
+	/* ── orb wrapper ── */
+	.orb-w {
+		position: fixed;
+		inset: 0%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: -2;
+		pointer-events: none;
+		overflow-x: clip;
+	}
+
+	/* ── orb element ── */
+	:global(.orb) {
+		position: absolute;
+		border-radius: 100%;
+		width: 0;
+		height: 0;
+		opacity: 0;
+		z-index: -1;
+		overflow: hidden;
+	}
+	:global(.orb canvas) {
+		border-radius: 0;
+		width: 100% !important;
+		height: 100% !important;
+		background-color: transparent !important;
+	}
+
+	/* ── orb outline rings ── */
+	.orb-outline-w {
+		position: absolute;
+		width: 80vh;
+		height: 80vh;
+		z-index: -2;
+	}
+	.orb-outline-w.is-2 {
+		width: 100vh;
+		height: 100vh;
+	}
+	.orb-outline-r {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+	}
+	:global(.orb-outline) {
+		position: absolute;
+		border: 1px dashed rgba(111, 111, 111, 0.4);
+		border-radius: 100%;
+		width: 100%;
+		height: 100%;
+		z-index: -2;
+		opacity: 0;
+	}
+</style>
