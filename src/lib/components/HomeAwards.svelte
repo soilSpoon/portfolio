@@ -30,7 +30,7 @@
 								<p split-text="" stagger-scroll="1" class="text-mini">{award.num}</p>
 							</div>
 							<div class="overflow-hidden">
-								<p split-text="" stagger-scroll="1" class="h-c caps">{award.name}</p>
+								<p split-text="" stagger-scroll="1" class="h-c uppercase">{award.name}</p>
 							</div>
 							<div class="mt-2 flex flex-col gap-[0.3em]">
 								{#each award.items as item (item.label)}

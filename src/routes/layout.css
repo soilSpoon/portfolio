@@ -175,14 +175,6 @@ html.light:has(.portfolio) {
 	}
 }
 
-@layer utilities {
-	.caps {
-		text-transform: uppercase;
-	}
-	.op-60 {
-		opacity: 0.6;
-	}
-}
 
 /* mb-diff 역할: mix-blend-mode difference overlay */
 .mbm-diff {

@@ -58,7 +58,7 @@
 				<div class="grid-main ft-nav-w mbm-diff">
 					<div class="ft-nav-col flex flex-col gap-4">
 						<div class="overflow-hidden">
-							<p split-text="" stagger-scroll="1" class="text-small caps op-60">Sitemap</p>
+							<p split-text="" stagger-scroll="1" class="text-small uppercase opacity-60">Sitemap</p>
 						</div>
 						<div class="ft-nav-link-w flex flex-col gap-2">
 							<a
@@ -79,7 +79,7 @@
 					</div>
 					<div class="ft-nav-col flex flex-col gap-4">
 						<div class="overflow-hidden">
-							<p split-text="" stagger-scroll="1" class="text-small caps op-60">Services</p>
+							<p split-text="" stagger-scroll="1" class="text-small uppercase opacity-60">Services</p>
 						</div>
 						<div class="ft-nav-link-w flex flex-col gap-2">
 							{#each ['Brand Identity', 'Digital Experiences', 'Motion', 'WebGL/VR', 'UX/UI'] as svc (svc)}
@@ -89,7 +89,7 @@
 					</div>
 					<div class="ft-nav-col flex flex-col gap-4">
 						<div class="overflow-hidden">
-							<p split-text="" stagger-scroll="1" class="text-small caps op-60">Social</p>
+							<p split-text="" stagger-scroll="1" class="text-small uppercase opacity-60">Social</p>
 						</div>
 						<div class="ft-nav-link-w flex flex-col gap-2">
 							{#each [['Twitter / X', 'https://twitter.com/itsoffbrand'], ['Instagram', 'https://instagram.com/itsoffbrand'], ['LinkedIn', 'https://linkedin.com/company/itsoffbrand']] as [name, url] (name)}
@@ -116,8 +116,8 @@
 						<LogoSvg />
 					</div>
 					<div class="ft-copy flex flex-col gap-[0.3em] text-right">
-						<p class="text-mini op-60">© 2025 OFF+BRAND. All rights reserved.</p>
-						<p class="text-mini op-60">Glasgow, Scotland · offbrand.studio</p>
+						<p class="text-mini opacity-60">© 2025 OFF+BRAND. All rights reserved.</p>
+						<p class="text-mini opacity-60">Glasgow, Scotland · offbrand.studio</p>
 					</div>
 				</div>
 			</div>
