@@ -1,0 +1,66 @@
+/* =============================================
+   테마 변수 — :root aliases, semantic color vars
+   NOTE: @theme block (Tailwind v4 tokens) stays in
+   layout.css (Tailwind v4 Vite plugin requires it
+   in the root CSS file).
+   ============================================= */
+
+:root {
+	/* ── 색상 aliases (@theme → legacy name) ── */
+	--main-dark: var(--color-main-dark);
+	--main-dark-alt: var(--color-main-dark-alt);
+	--main-light: var(--color-main-light);
+	--main-light-alt: var(--color-main-light-alt);
+	--primary-color: var(--color-primary);
+
+	/* 회색 (투명도 기반 — @theme에 없음) */
+	--dark-grey: rgba(218, 218, 218, 0.2);
+	--dark-grey60: rgba(218, 218, 218, 0.6);
+	--light-grey: rgba(111, 111, 111, 0.2);
+	--light-grey60: rgba(111, 111, 111, 0.6);
+	--grey-rotate: #bfbebe;
+
+	/* ── Border Radius aliases (@theme → legacy name) ── */
+	--large-radius: var(--radius-lg);
+	--med-radius: var(--radius-md);
+	--small-radius: var(--radius-sm);
+
+	/* ── 타이포그래피 aliases (@theme → legacy name) ── */
+	--fs-h-a: var(--font-size-h-a);
+	--fs-h-b: var(--font-size-h-b);
+	--fs-h-c: var(--font-size-h-c);
+	--fs-eyebrow: var(--font-size-eyebrow);
+	--fs-small: var(--font-size-sm);
+	--fs-mini: var(--font-size-mini);
+
+	/* 애니메이션 토큰 (@theme에 없음) */
+	--ease-smooth: cubic-bezier(0.38, 0.005, 0.215, 1);
+	--dur-fast: 0.3s;
+	--dur-med: 0.6s;
+
+	/* z-index 스케일 (@theme에 없음) */
+	--z-preloader: 5000;
+	--z-orb-wrapper: -2;
+	--z-orb-canvas: -1;
+	--z-orb-outline: -2;
+	--z-hud: 1000;
+	--z-cursor: 2000;
+	--z-page-wipe: 9000;
+
+	/* 3D */
+	--perspective: 4000px;
+}
+
+/* =============================================
+   CSS 변수 — 모드별 색상 보조
+   ============================================= */
+html.dark {
+	--text-color: var(--main-light);
+	--bg-color: var(--main-dark);
+	--border-color: rgba(218, 218, 218, 0.2);
+}
+html.light {
+	--text-color: var(--main-dark);
+	--bg-color: var(--main-light);
+	--border-color: rgba(111, 111, 111, 0.2);
+}
