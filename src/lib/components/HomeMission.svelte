@@ -8,15 +8,15 @@
 	//     body text        → grid-column: 5/8
 </script>
 
-<section class="s">
-	<div class="c">
-		<div class="spacer-10"></div>
+<section class="w-full">
+	<div class="w-full max-w-full px-[2vw] mx-auto relative">
+		<div class="h-[10vw]"></div>
 
 		<!-- 메인 태그라인: cols 3-12 -->
-		<div class="grid-main">
-			<div class="mbm-diff col-start-3 col-end-12">
+		<div class="grid grid-cols-12 gap-x-5">
+			<div class="mix-blend-difference text-main-light select-none col-start-3 col-end-12">
 				<div class="overflow-hidden">
-					<h2 stagger-scroll="" split-text="" class="h-b">
+					<h2 stagger-scroll="" split-text="" class="text-h-b font-normal uppercase leading-none tracking-[-0.02em]">
 						<span class="invisible">****</span>
 						With EMOTION + INNOVATION, We push THE BOUNDARIES OF DIGITAL CREATIVITY.
 					</h2>
@@ -24,32 +24,32 @@
 			</div>
 		</div>
 
-		<div class="spacer-10 mob-2"></div>
+		<div class="h-[10vw] mob-2"></div>
 
 		<!-- 설명 텍스트 두 열: left=cols2-4, right=cols5-8 -->
-		<div class="grid-main">
-			<div class="mbm-diff col-start-2 col-end-4">
+		<div class="grid grid-cols-12 gap-x-5">
+			<div class="mix-blend-difference text-main-light select-none col-start-2 col-end-4">
 				<div class="overflow-hidden">
-					<p split-text="" stagger-scroll="1" class="text-small caps">
+					<p split-text="" stagger-scroll="1" class="text-[0.75em] leading-[1.6] uppercase tracking-[0.05em]">
 						We are a founder-led Scottish born, global digital marketing, branding &amp; web design
 						agency.
 					</p>
 				</div>
 				<div link-reveal="" class="link-wrap hide-m overflow-hidden">
 					<div class="overflow-hidden">
-						<a reveal-target="" stagger-el="" href={resolve('/')} class="page-link-w">
+						<a reveal-target="" stagger-el="" href={resolve('/')} class="page-link-w inline-flex items-center gap-2 mt-[1.2em] text-inherit no-underline opacity-60 transition-opacity duration-200 hover:opacity-100">
 							<div class="page-link-inner overflow-hidden">
-								<div split-text="" stagger-text="" class="text-small btn-txt">About Us</div>
-								<div class="btn-icon-w"><div class="text-small btn-txt">-&gt;</div></div>
+								<div split-text="" stagger-text="" class="text-[0.85em]">About Us</div>
+								<div class="flex items-center opacity-70"><div class="text-[0.85em]">-&gt;</div></div>
 							</div>
 							<div class="link-track"><div class="link-track-fill"></div></div>
 						</a>
 					</div>
 				</div>
 			</div>
-			<div class="mbm-diff col-start-5 col-end-8">
+			<div class="mix-blend-difference text-main-light select-none col-start-5 col-end-8">
 				<div class="overflow-hidden">
-					<p stagger-lines="2" split-text="" class="text-small">
+					<p stagger-lines="2" split-text="" class="text-[0.85em] leading-[1.6]">
 						Every brand has a story, from startups finding their voice to titans refining their
 						legacy. We ensure that tale shines brilliantly. With a blend of rapid iteration and
 						collaborative spirit, we empower you to reshape your digital narrative.
@@ -58,44 +58,15 @@
 			</div>
 		</div>
 
-		<div class="spacer-10"></div>
+		<div class="h-[10vw]"></div>
 	</div>
 </section>
 
 <style>
-	/* ─── 타이포그래피 */
-	/* .text-small: overrides global font-size (0.85em vs global 0.8em) for mission section readability */
-	.text-small {
-		font-size: 0.85em;
-		line-height: 1.6;
-	}
-	.text-small.caps {
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-		font-size: 0.75em;
-	}
-
-	/* ─── About Us 링크 */
+	/* hover track animation — parent:hover child, can't express in Tailwind */
 	.page-link-w {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5em;
-		margin-top: 1.2em;
-		text-decoration: none;
-		color: inherit;
-		opacity: 0.6;
-		transition: opacity 0.2s;
 		position: relative;
 	}
-	.page-link-w:hover {
-		opacity: 1;
-	}
-	.page-link-inner {
-		display: flex;
-		align-items: center;
-		gap: 0.3em;
-	}
-	/* ─── link-track hover animation (complex pseudo state — keep in CSS) */
 	.link-track {
 		position: absolute;
 		bottom: -2px;
@@ -114,6 +85,4 @@
 	.page-link-w:hover .link-track-fill {
 		width: 100%;
 	}
-	/* .spacer-10: uses global definition from layout.css */
-	/* overflow-hidden: Tailwind utility (replaces global .o-hidden) */
 </style>
