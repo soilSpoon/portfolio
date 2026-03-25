@@ -6,8 +6,8 @@
 </script>
 
 <!-- home-hero ScrollTrigger 트리거 -->
-<section home-hero="" class="s relative">
-	<div class="c is-home-hero mx-auto h-screen w-full max-w-none px-[2vw]">
+<section home-hero="" class="w-full relative">
+	<div class="is-home-hero mx-auto h-screen w-full max-w-none px-[2vw]">
 		<!-- 그리드: 12열, 7행 -->
 		<div
 			class="grid-main is-home-hero grid h-full w-full grid-cols-12 grid-rows-[1fr_min-content_1fr_min-content_1fr_min-content_1fr] gap-x-5 gap-y-0"
@@ -18,7 +18,7 @@
 					<div class="hh-text-ovf overflow-hidden">
 						<h1
 							split-hero=""
-							class="h-a whitespace-nowrap text-[var(--text-color,inherit)] will-change-transform"
+							class="text-h-a leading-none whitespace-nowrap text-[var(--text-color,inherit)] will-change-transform"
 						>
 							A different
 						</h1>
@@ -32,7 +32,7 @@
 					<div class="hh-text-ovf overflow-hidden">
 						<h1
 							split-hero=""
-							class="h-a whitespace-nowrap text-[var(--text-color,inherit)] will-change-transform"
+							class="text-h-a leading-none whitespace-nowrap text-[var(--text-color,inherit)] will-change-transform"
 						>
 							Creative
 						</h1>
@@ -46,7 +46,7 @@
 					<div class="hh-text-ovf overflow-hidden">
 						<h1
 							split-hero=""
-							class="h-a whitespace-nowrap text-[var(--text-color,inherit)] will-change-transform"
+							class="text-h-a leading-none whitespace-nowrap text-[var(--text-color,inherit)] will-change-transform"
 						>
 							approach
 						</h1>
