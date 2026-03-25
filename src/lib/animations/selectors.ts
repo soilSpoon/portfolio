@@ -4,7 +4,7 @@ export const SELECTORS = {
 	orbOutline1: '[orb-outline="1"]',
 	orbOutline2: '[orb-outline="2"]',
 	pageWrapper: '[data-page-wrapper]',
-	hudBrand: '[data-hud-brand]',
+	/** HUD 브랜드 링크 (좌상단 로고) */
 	hudBrandLink: '[data-hud-brand]',
 	hudScroll: '[data-hud-scroll]',
 	hudMenu: '[data-hud-menu]',

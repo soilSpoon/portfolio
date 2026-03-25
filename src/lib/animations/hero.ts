@@ -1,4 +1,4 @@
-import type { AnimCtx, GsapType, LenisInstance } from './types';
+import type { AnimCtx, GsapType } from './types';
 import { SELECTORS } from './selectors';
 import {
 	ORB,
@@ -19,16 +19,8 @@ const HERO_TEXT_BLOCK_INTRO = [
 	{ selector: SELECTORS.heroTextBlock3, ...HERO_TEXT_BLOCK_OFFSETS[2] }
 ] as const;
 
-// ── 인터페이스 ─────────────────────────────────────────────────────────────────
-export interface HeroIntroOptions extends AnimCtx {
-	lenis: LenisInstance;
-	fromPreloader: boolean;
-	/** [hh-tb] 슬라이드인 완료 시 호출 — setupScrollTriggers 트리거 */
-	onComplete: () => void;
-}
-
 // ── 내부 헬퍼 ─────────────────────────────────────────────────────────────────
-function getOrbEls() {
+export function getOrbEls() {
 	return {
 		orb: document.querySelector<HTMLElement>(SELECTORS.orb),
 		out1: document.querySelector<HTMLElement>(SELECTORS.orbOutline1),
@@ -36,56 +28,194 @@ function getOrbEls() {
 	};
 }
 
-function animateHeroTextBlocks(gsap: GsapType, onComplete: () => void, baseDelay = 0): void {
-	HERO_TEXT_BLOCK_INTRO.forEach(({ selector, delay }, index) => {
-		gsap.to(selector, {
-			x: 0,
-			delay: baseDelay + delay,
-			duration: HERO_TEXT_BLOCK_ANIM.duration,
-			ease: HERO_TEXT_BLOCK_ANIM.ease,
-			onComplete: index === HERO_TEXT_BLOCK_INTRO.length - 1 ? onComplete : undefined
-		});
-	});
+// ── 타임라인 빌더 ─────────────────────────────────────────────────────────────
+
+/**
+ * HUD 슬라이드인 타임라인.
+ * brand, scroll, menu가 동시에 등장.
+ */
+export function buildHudIntro(gsap: GsapType) {
+	const hudMenuEl = document.querySelector<HTMLElement>(SELECTORS.hudMenu);
+	const tl = gsap.timeline();
+
+	tl.to(SELECTORS.hudBrandLink, { y: '0%', opacity: 1, ...HUD_INTRO }, 0)
+		.to(SELECTORS.hudScroll, { opacity: 1, ...HUD_INTRO }, 0);
+
+	if (hudMenuEl) {
+		tl.to(hudMenuEl, { y: '0%', opacity: 1, ...HUD_INTRO }, 0);
+	}
+
+	return tl;
 }
 
 /**
- * outline ring 호흡 애니메이션.
- * Preloader.svelte(첫 방문)와 runHeroIntro(SPA nav) 양쪽에서 공유.
- * delay는 fill complete / SPA intro 시점 기준.
+ * [hh-tb] 텍스트 블록 슬라이드인 타임라인.
+ * 각 블록이 순차적으로 x:0으로 이동.
  */
-export function animateOrbOutlineBreathing(
+export function buildHeroTextBlocksIntro(gsap: GsapType) {
+	const tl = gsap.timeline();
+
+	HERO_TEXT_BLOCK_INTRO.forEach(({ selector, delay }) => {
+		tl.to(
+			selector,
+			{
+				x: 0,
+				duration: HERO_TEXT_BLOCK_ANIM.duration,
+				ease: HERO_TEXT_BLOCK_ANIM.ease
+			},
+			delay
+		);
+	});
+
+	return tl;
+}
+
+/**
+ * Orb outline 호흡 애니메이션 타임라인.
+ * onComplete 중첩 대신 타임라인으로 시퀀스 정의.
+ */
+export function buildOrbOutlineBreathing(
 	gsap: GsapType,
 	out1: HTMLElement,
 	out2: HTMLElement | null
-): void {
-	gsap.to(out1, {
-		scale: ORB_OUTLINE_BREATHING.out1.scale,
-		duration: ORB_OUTLINE_BREATHING.out1.duration,
-		ease: ORB_OUTLINE_BREATHING.out1.ease,
-		delay: ORB_OUTLINE_BREATHING.out1.delay,
-		onComplete: () => {
-			gsap.to(out1, {
-				scale: ORB_OUTLINE_BREATHING.out1Rest.scale,
-				duration: ORB_OUTLINE_BREATHING.out1Rest.duration,
-				ease: ORB_OUTLINE_BREATHING.out1Rest.ease
-			});
-		}
+) {
+	const tl = gsap.timeline();
+
+	// out1: scale 1 → 1.3 → 1.2
+	tl.to(
+		out1,
+		{
+			scale: ORB_OUTLINE_BREATHING.out1.scale,
+			duration: ORB_OUTLINE_BREATHING.out1.duration,
+			ease: ORB_OUTLINE_BREATHING.out1.ease
+		},
+		ORB_OUTLINE_BREATHING.out1.delay
+	).to(out1, {
+		scale: ORB_OUTLINE_BREATHING.out1Rest.scale,
+		duration: ORB_OUTLINE_BREATHING.out1Rest.duration,
+		ease: ORB_OUTLINE_BREATHING.out1Rest.ease
 	});
+
+	// out2: scale 1 → 0.9
 	if (out2) {
-		gsap.to(out2, {
-			scale: ORB_OUTLINE_BREATHING.out2.scale,
-			duration: ORB_OUTLINE_BREATHING.out2.duration,
-			ease: ORB_OUTLINE_BREATHING.out2.ease,
-			delay: ORB_OUTLINE_BREATHING.out2.delay,
-			onComplete: () => {
-				gsap.to(out1, {
-					scale: ORB_OUTLINE_BREATHING.out1Rest.scale,
-					duration: ORB_OUTLINE_BREATHING.out1Rest.duration,
-					ease: ORB_OUTLINE_BREATHING.out1Rest.ease
-				});
-			}
-		});
+		tl.to(
+			out2,
+			{
+				scale: ORB_OUTLINE_BREATHING.out2.scale,
+				duration: ORB_OUTLINE_BREATHING.out2.duration,
+				ease: ORB_OUTLINE_BREATHING.out2.ease
+			},
+			ORB_OUTLINE_BREATHING.out2.delay
+		);
 	}
+
+	return tl;
+}
+
+/**
+ * Orb + Outline + Hero chars 인트로 타임라인.
+ * 도트 위치(8em, 8.1em)에서 시작하여 중앙으로 확장.
+ *
+ * @param fromDotPosition - true면 도트 위치에서 시작 (Preloader), false면 중앙에서 시작 (SPA nav)
+ */
+export function buildOrbHeroIntro(gsap: GsapType, { fromDotPosition = true } = {}) {
+	const { orb, out1, out2 } = getOrbEls();
+	const tl = gsap.timeline();
+
+	if (orb) {
+		if (fromDotPosition) {
+			// Preloader: 도트 위치(8em, 8.1em)에서 시작
+			gsap.set(orb, {
+				autoAlpha: 0,
+				width: '0em',
+				height: '0em',
+				minHeight: 'auto',
+				minWidth: 'auto',
+				x: ORB.INIT_X,
+				y: ORB.INIT_Y
+			});
+
+			// Phase 1 (0~1s): 도트 위치 유지하며 tiny dot 등장
+			tl.to(
+				orb,
+				{
+					autoAlpha: 1,
+					x: ORB.INIT_X,
+					y: ORB.INIT_Y,
+					width: ORB.TINY,
+					height: ORB.TINY,
+					duration: 1
+				},
+				0
+			);
+		} else {
+			// SPA nav: 중앙에서 시작
+			gsap.set(orb, {
+				autoAlpha: 0,
+				width: '0em',
+				height: '0em',
+				minHeight: 'auto',
+				minWidth: 'auto',
+				x: 0,
+				y: 0
+			});
+
+			// Phase 1 (0~1s): 중앙에서 tiny dot 등장
+			tl.to(
+				orb,
+				{
+					autoAlpha: 1,
+					width: ORB.TINY,
+					height: ORB.TINY,
+					duration: 1
+				},
+				0
+			);
+		}
+
+		// Phase 2 (1~2s): 중앙으로 이동하며 full orb로 확장
+		tl.to(
+			orb,
+			{
+				x: 0,
+				y: 0,
+				width: ORB.FULL,
+				height: ORB.FULL,
+				minHeight: ORB.MIN,
+				minWidth: ORB.MIN,
+				duration: 1,
+				ease: 'power2.inOut'
+			},
+			1
+		);
+	}
+
+	// Outline reveal (orb Phase 1과 동시 시작)
+	if (out1) {
+		tl.to(out1, { autoAlpha: 1, scale: 1, ...ORB_OUTLINE_REVEAL }, 0);
+	}
+	if (out2) {
+		tl.to(out2, { autoAlpha: 1, scale: 1, ...ORB_OUTLINE_REVEAL }, 1);
+	}
+
+	// Hero chars (orb Phase 2와 동시 시작, delay:1)
+	tl.to(
+		SELECTORS.heroChars,
+		{
+			y: HERO_CHARS.visibleY,
+			duration: HERO_CHARS.duration,
+			ease: HERO_CHARS.ease,
+			stagger: HERO_CHARS.stagger
+		},
+		1
+	);
+
+	// Outline breathing (reveal 완료 후)
+	if (out1) {
+		tl.add(buildOrbOutlineBreathing(gsap, out1, out2), 0);
+	}
+
+	return tl;
 }
 
 // ── 공개 API ──────────────────────────────────────────────────────────────────
@@ -143,85 +273,32 @@ export function setSpaInitialState(gsap: GsapType): void {
 }
 
 /**
- * Hero 인트로 애니메이션.
+ * Hero 인트로 타임라인.
  *
- * fromPreloader=true  (첫 방문): Preloader가 chars를 이미 y:0으로 올렸으므로
- *   [hh-tb] 슬라이드인만 실행.
- *
- * fromPreloader=false (SPA nav): orb 성장 → chars 등장 → [hh-tb] 슬라이드인
- *   전체 시퀀스를 직접 실행.
+ * @param fromPreloader - true: Preloader가 orb/chars를 이미 처리 → [hh-tb] 슬라이드인만
+ *                        false: SPA nav → orb + chars + [hh-tb] 전체 시퀀스
+ * @returns GSAP Timeline (onComplete 콜백은 호출자가 설정)
  */
-export function runHeroIntro({ gsap, lenis, fromPreloader, onComplete }: HeroIntroOptions): void {
-	// HUD 슬라이드인 (항상)
-	const hudMenuEl = document.querySelector<HTMLElement>(SELECTORS.hudMenu);
-	gsap.to(SELECTORS.hudBrandLink, { y: '0%', opacity: 1, ...HUD_INTRO });
-	gsap.to(SELECTORS.hudScroll, { opacity: 1, ...HUD_INTRO });
-	if (hudMenuEl) gsap.to(hudMenuEl, { y: '0%', opacity: 1, ...HUD_INTRO });
+export function runHeroIntro(
+	{ gsap }: Pick<AnimCtx, 'gsap'>,
+	{ fromPreloader }: { fromPreloader: boolean }
+) {
+	const tl = gsap.timeline();
+
+	// HUD는 항상 등장
+	tl.add(buildHudIntro(gsap), 0);
 
 	if (fromPreloader) {
-		// chars는 화면 밖(x:10em)에서 이미 y:-101%→0% 완료.
-		// [hh-tb]를 x:10em→0으로 슬라이드인하여 텍스트 등장.
-		animateHeroTextBlocks(gsap, () => {
-			lenis.start();
-			onComplete();
-		});
-		return;
+		// Preloader가 orb + chars를 이미 처리 → [hh-tb]만 슬라이드인
+		tl.add(buildHeroTextBlocksIntro(gsap), 0);
+	} else {
+		// SPA nav: orb + outline + chars + [hh-tb] 전체 시퀀스 (중앙에서 시작)
+		tl.add(buildOrbHeroIntro(gsap, { fromDotPosition: false }), 0);
+		// [hh-tb]: orb Phase 2 완료 후 (2s) 슬라이드인
+		tl.add(buildHeroTextBlocksIntro(gsap), 2);
 	}
 
-	// ── SPA nav: 전체 시퀀스 ────────────────────────────────────────────────
-	const { orb, out1, out2 } = getOrbEls();
-
-	if (orb) {
-		// 초기 상태 확인 (orb가 이전 페이지에서 scroll path로 이동해 있을 수 있음)
-		gsap.set(orb, {
-			autoAlpha: 0,
-			width: '0em',
-			height: '0em',
-			minHeight: 'auto',
-			minWidth: 'auto'
-		});
-		// Phase 1 (0~1s): 프리로더 도트 위치(8em, 8.1em)에서 tiny dot 등장
-		gsap.to(orb, { autoAlpha: 1, width: ORB.TINY, height: ORB.TINY, duration: 1 });
-		// Phase 2 (delay:1, 1s): 중앙(0,0)으로 이동하며 full orb로 성장
-		gsap.to(orb, {
-			x: 0,
-			y: 0,
-			width: ORB.FULL,
-			height: ORB.FULL,
-			minHeight: ORB.MIN,
-			minWidth: ORB.MIN,
-			duration: 1,
-			ease: 'power2.inOut',
-			delay: 1
-		});
-	}
-
-	if (out1) {
-		gsap.to(out1, { autoAlpha: 1, scale: 1, ...ORB_OUTLINE_REVEAL });
-		animateOrbOutlineBreathing(gsap, out1, out2);
-	}
-	if (out2) {
-		gsap.to(out2, { delay: 1, autoAlpha: 1, scale: 1, ...ORB_OUTLINE_REVEAL });
-	}
-
-	// chars: orb Phase2와 동시 (delay:1)
-	gsap.to(SELECTORS.heroChars, {
-		y: HERO_CHARS.visibleY,
-		delay: 1,
-		duration: HERO_CHARS.duration,
-		ease: HERO_CHARS.ease,
-		stagger: HERO_CHARS.stagger
-	});
-
-	// [hh-tb]: chars 완료 후 순차 슬라이드인 (delay:2 / 2.1 / 2.2)
-	animateHeroTextBlocks(
-		gsap,
-		() => {
-			lenis.start();
-			onComplete();
-		},
-		2
-	);
+	return tl;
 }
 
 /**
@@ -254,4 +331,25 @@ export function setupHeroScroll({ gsap }: AnimCtx): void {
 			scrollTrigger: trigger
 		});
 	}
+}
+
+// ── Deprecated (하위 호환) ────────────────────────────────────────────────────
+
+/** @deprecated Use buildHudIntro instead */
+export function playHudIntro(gsap: GsapType): void {
+	buildHudIntro(gsap);
+}
+
+/** @deprecated Use buildOrbHeroIntro instead */
+export function playOrbHeroIntro(gsap: GsapType): void {
+	buildOrbHeroIntro(gsap);
+}
+
+/** @deprecated Use buildOrbOutlineBreathing instead */
+export function animateOrbOutlineBreathing(
+	gsap: GsapType,
+	out1: HTMLElement,
+	out2: HTMLElement | null
+): void {
+	buildOrbOutlineBreathing(gsap, out1, out2);
 }

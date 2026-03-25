@@ -11,16 +11,15 @@
 </script>
 
 <svelte:head>
-	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+	<link rel="preconnect" href="https://static.toss.im" crossorigin="anonymous" />
 	<link
-		href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap"
+		href="https://static.toss.im/tps/main.css"
 		rel="stylesheet"
 	/>
 </svelte:head>
 
 <div
-	class="cv-root mx-auto max-w-[800px] px-8 py-12 font-[Noto_Sans_KR,sans-serif] text-base leading-relaxed text-gray-900"
+	class="cv-root mx-auto max-w-[800px] px-8 py-12 font-['Toss_Product_Sans',sans-serif] text-base leading-relaxed text-gray-900"
 >
 	<div class="no-print mb-4 flex justify-end">
 		<button
@@ -39,7 +38,7 @@
 	:global(body) {
 		margin: 0;
 		padding: 0;
-		background: #fff;
+		background: #f0f1f3;
 	}
 
 	/* ── 마크다운 렌더링 스타일 (Tailwind @apply 불가 — :global 필요) ── */
@@ -135,6 +134,10 @@
 		:global(.cv-root a) {
 			color: #111;
 			text-decoration: none;
+		}
+
+		:global(body) {
+			background: #fff;
 		}
 
 		:global(.no-print) {

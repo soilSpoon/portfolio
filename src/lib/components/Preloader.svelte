@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { animateOrbOutlineBreathing } from '$lib/animations/hero';
+	import { buildOrbHeroIntro } from '$lib/animations/hero';
 	import {
 		dispatchIntroDone,
 		isFirstVisit,
@@ -8,13 +8,7 @@
 		markVisited
 	} from '$lib/animations/intro-state';
 	import { HERO_TEXT_BLOCK_SELECTORS, SELECTORS } from '$lib/animations/selectors';
-	import {
-		ORB,
-		ORB_OUTLINE_REVEAL,
-		HERO_CHARS,
-		HERO_TEXT_BLOCK_OFFSETS,
-		PRELOADER
-	} from '$lib/animations/config';
+	import { HERO_CHARS, HERO_TEXT_BLOCK_OFFSETS, PRELOADER } from '$lib/animations/config';
 
 	interface Props {
 		onDone?: () => void;
@@ -43,10 +37,13 @@
 		gsap.registerPlugin(CustomEase);
 
 		const chars = document.querySelectorAll<HTMLElement>('.pre-char');
+
+		// ── 초기 상태 설정 ────────────────────────────────────────────────────
 		gsap.set(chars, { yPercent: 101 });
 		if (prePercentEl) gsap.set(prePercentEl, { yPercent: 101 });
 		if (fillEl) gsap.set(fillEl, { scaleY: 0, transformOrigin: 'bottom center' });
 
+		// ── SVG 드로우인 ──────────────────────────────────────────────────────
 		if (pathX && pathC) {
 			const xLen = pathX.getTotalLength();
 			const cLen = pathC.getTotalLength();
@@ -66,6 +63,7 @@
 			});
 		}
 
+		// ── "build" 텍스트 등장 ───────────────────────────────────────────────
 		gsap.to(chars, {
 			delay: PRELOADER.charsDelay,
 			yPercent: 0,
@@ -83,6 +81,7 @@
 			});
 		}
 
+		// ── 퍼센트 카운터 ─────────────────────────────────────────────────────
 		const counter = { value: 0 };
 		gsap.to(counter, {
 			value: 100,
@@ -94,121 +93,113 @@
 			}
 		});
 
+		// ── Fill 애니메이션 → runOutro 트리거 ─────────────────────────────────
 		if (fillEl) {
 			gsap.to(fillEl, {
 				scaleY: 1,
 				duration: loaderDuration,
 				ease: CustomEase.create('loadEase', PRELOADER.loadEasePath),
 				delay: PRELOADER.fillDelay,
-				onComplete: runOutro
+				onComplete: () => runOutro(gsap, chars)
 			});
 		}
+	});
 
-		function runOutro() {
-			gsap.to(chars, {
-				delay: PRELOADER.outroDelay,
+	function runOutro(gsap: typeof import('gsap').gsap, chars: NodeListOf<HTMLElement>) {
+		// ── Preloader UI 페이드아웃 타임라인 ──────────────────────────────────
+		const outroTl = gsap.timeline();
+
+		// "build" 텍스트 사라짐
+		outroTl.to(
+			chars,
+			{
 				yPercent: -101,
 				duration: HERO_CHARS.duration,
 				ease: HERO_CHARS.ease,
 				stagger: HERO_CHARS.stagger
-			});
-			if (prePercentEl) {
-				gsap.to(prePercentEl, {
-					delay: PRELOADER.outroDelay,
+			},
+			PRELOADER.outroDelay
+		);
+
+		// 퍼센트 사라짐
+		if (prePercentEl) {
+			outroTl.to(
+				prePercentEl,
+				{
 					yPercent: 100,
 					duration: HERO_CHARS.duration,
 					ease: HERO_CHARS.ease
-				});
-			}
-			if (maskEl) {
-				gsap.to(maskEl, {
-					delay: PRELOADER.outroDelay,
+				},
+				PRELOADER.outroDelay
+			);
+		}
+
+		// 마스크 클립
+		if (maskEl) {
+			outroTl.to(
+				maskEl,
+				{
 					clipPath: 'inset(0% 0% 100% 0%)',
 					duration: PRELOADER.maskDuration,
 					ease: 'power2.inOut'
-				});
-			}
-			if (pathX && pathC) {
-				const xLen = pathX.getTotalLength();
-				const cLen = pathC.getTotalLength();
-				gsap.to(pathX, {
-					strokeDashoffset: xLen,
-					delay: PRELOADER.outroDelay,
-					duration: PRELOADER.svgDrawDuration,
-					ease: PRELOADER.svgDrawEase
-				});
-				gsap.to(pathC, {
-					strokeDashoffset: cLen,
-					delay: PRELOADER.outroDelay,
-					duration: PRELOADER.svgDrawDuration,
-					ease: PRELOADER.svgDrawEase
-				});
-			}
+				},
+				PRELOADER.outroDelay
+			);
+		}
 
-			const orbEl = document.querySelector<HTMLElement>(SELECTORS.orb);
-			if (orbEl) {
-				gsap.set(orbEl, { x: ORB.INIT_X, y: ORB.INIT_Y });
-				gsap.to(orbEl, {
-					autoAlpha: 1,
-					x: ORB.INIT_X,
-					y: ORB.INIT_Y,
-					width: ORB.TINY,
-					height: ORB.TINY,
-					duration: 1
-				});
-				gsap.to(orbEl, {
-					x: 0,
-					y: 0,
-					width: ORB.FULL,
-					height: ORB.FULL,
-					minHeight: ORB.MIN,
-					minWidth: ORB.MIN,
-					duration: 1,
-					ease: 'power2.inOut',
-					delay: 1,
+		// SVG 언드로우
+		if (pathX && pathC) {
+			const xLen = pathX.getTotalLength();
+			const cLen = pathC.getTotalLength();
+			outroTl
+				.to(
+					pathX,
+					{
+						strokeDashoffset: xLen,
+						duration: PRELOADER.svgDrawDuration,
+						ease: PRELOADER.svgDrawEase
+					},
+					PRELOADER.outroDelay
+				)
+				.to(
+					pathC,
+					{
+						strokeDashoffset: cLen,
+						duration: PRELOADER.svgDrawDuration,
+						ease: PRELOADER.svgDrawEase
+					},
+					PRELOADER.outroDelay
+				);
+		}
+
+		// ── Hero text blocks 초기 위치 설정 (오프스크린) ──────────────────────
+		HERO_TEXT_BLOCK_SELECTORS.forEach((selector, index) => {
+			gsap.set(selector, { x: HERO_TEXT_BLOCK_OFFSETS[index].x });
+		});
+
+		// ── Orb + Outline + Hero chars 인트로 (공유 타임라인 사용) ────────────
+		const orbIntroTl = buildOrbHeroIntro(gsap);
+
+		// orb Phase 2 완료 시점(2s)에 이벤트 dispatch + preloader fade
+		orbIntroTl.call(
+			() => {
+				markIntroDone();
+				dispatchIntroDone();
+				onDone?.();
+
+				gsap.to('.preloader', {
+					autoAlpha: 0,
+					duration: PRELOADER.fadeDuration,
+					ease: 'none',
 					onComplete: () => {
-						markIntroDone();
-						dispatchIntroDone();
-						onDone?.();
-						gsap.to('.preloader', {
-							autoAlpha: 0,
-							duration: PRELOADER.fadeDuration,
-							ease: 'none',
-							onComplete: () => {
-								visible = false;
-							}
-						});
+						visible = false;
 					}
 				});
-			}
-
-			const outlineEl1 = document.querySelector<HTMLElement>(SELECTORS.orbOutline1);
-			const outlineEl2 = document.querySelector<HTMLElement>(SELECTORS.orbOutline2);
-			if (outlineEl1) {
-				gsap.to(outlineEl1, { autoAlpha: 1, scale: 1, ...ORB_OUTLINE_REVEAL });
-				animateOrbOutlineBreathing(gsap, outlineEl1, outlineEl2);
-			}
-			if (outlineEl2) {
-				gsap.to(outlineEl2, {
-					autoAlpha: 1,
-					scale: 1,
-					...ORB_OUTLINE_REVEAL,
-					delay: 1
-				});
-			}
-
-			HERO_TEXT_BLOCK_SELECTORS.forEach((selector, index) => {
-				gsap.set(selector, { x: HERO_TEXT_BLOCK_OFFSETS[index].x });
-			});
-			gsap.to(SELECTORS.heroChars, {
-				delay: 1,
-				y: HERO_CHARS.visibleY,
-				duration: HERO_CHARS.duration,
-				ease: HERO_CHARS.ease,
-				stagger: HERO_CHARS.stagger
-			});
-		}
-	});
+			},
+			[],
+			2
+		);
+	}
 </script>
 
 {#if visible}

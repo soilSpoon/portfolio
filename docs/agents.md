@@ -8,16 +8,16 @@ AI 에이전트 및 개발자를 위한 코드베이스 문서.
 ## 1. 전역 스태킹 컨텍스트
 
 ```
-z-index 체계 (낮을수록 뒤에 배치):
-  .preloader        z-index: -5   (배경, 로딩 화면)
+z-index 체계:
   .orb-w            z-index: -2   (orb 컨테이너, 고정)
   .orb              z-index: -1   (Three.js WebGL 구체)
   .page-w (없음)    z-index: 없음  (일반 흐름, orb 위에 렌더링)
   .hud-w            z-index: 1000 (항상 최상위 HUD)
+  .preloader        z-index: 5000 (로딩 중 화면 전체 덮음)
 ```
 
-**핵심**: preloader가 `-5`로 가장 뒤에 있어서, orb(`-1`)와 page content(z 없음)가
-preloader 위에 보인다. → 로딩 중에도 hero 텍스트와 orb가 항상 visible.
+**핵심**: preloader가 로딩 중 화면 전체를 덮음. 로딩 완료 후 GSAP이 autoAlpha:0으로
+페이드아웃하면서 아래의 orb, hero 텍스트가 보이게 됨.
 
 ---
 

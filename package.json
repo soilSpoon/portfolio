@@ -29,6 +29,7 @@
 		"prettier": "^3.8.1",
 		"prettier-plugin-svelte": "^3.5.1",
 		"prettier-plugin-tailwindcss": "^0.7.2",
+		"sv-agentation": "^0.2.1",
 		"svelte": "^5.54.0",
 		"svelte-check": "^4.4.5",
 		"tailwindcss": "^4.2.1",
@@ -50,5 +51,6 @@
 		"marked": "^17.0.4",
 		"split-type": "^0.3.4",
 		"three": "^0.183.2"
-	}
+	},
+	"packageManager": "pnpm@10.7.0"
 }

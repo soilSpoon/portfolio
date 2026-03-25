@@ -75,7 +75,7 @@
 	--dur-med: 0.6s;
 
 	/* z-index 스케일 */
-	--z-preloader: -5;
+	--z-preloader: 5000;
 	--z-orb-wrapper: -2;
 	--z-orb-canvas: -1;
 	--z-orb-outline: -2;
@@ -142,21 +142,17 @@ html.light body {
 .preloader {
 	position: fixed;
 	inset: 0;
-	/* 원본과 동일: z-index: -5 (배경 레이어)
-     orb-w(z-index:-2)보다 뒤에 있어서 orb가 프리로더 위에 보임
-     page content(z-index:0)보다 뒤에 있어서 hero 텍스트도 항상 보임
-     → 프리로더 = "배경" / 페이지 콘텐츠 = "항상 위에 보임" */
+	/* 로딩 중 화면 전체를 덮음. 완료 후 GSAP이 autoAlpha:0으로 페이드아웃 */
 	z-index: var(--z-preloader);
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	/* 기본 배경색 (html.light/dark 클래스 적용 전 fallback) */
+	background-color: var(--main-light);
 }
 
 html.dark .preloader {
 	background-color: var(--main-dark);
-}
-html.light .preloader {
-	background-color: var(--main-light);
 }
 
 /* 로고 SVG 마스크 - 해당 모양으로만 내부가 보임 */
@@ -179,7 +175,11 @@ html.light .ob-fill-fill {
 	background-color: var(--main-dark);
 }
 
-/* SVG 선 색상 */
+/* SVG path 초기 상태: 숨김 (GSAP이 draw-in 애니메이션 실행) */
+.pre-svg-path {
+	stroke-dasharray: 1000;
+	stroke-dashoffset: 1000;
+}
 html.dark .pre-svg-path {
 	stroke: var(--main-light);
 }

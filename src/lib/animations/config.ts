@@ -143,8 +143,8 @@ export const GRID = {
 	textSizeTo: '0.7em',
 	/** grid item 초기 autoAlpha */
 	initAlpha: 0.5,
-	/** grid item 최종 autoAlpha */
-	finalAlpha: 2,
+	/** grid item 최종 autoAlpha (GSAP autoAlpha 범위: 0~1) */
+	finalAlpha: 1,
 	/** overlay words reveal */
 	overlayWords: {
 		duration: 2,
