@@ -27,4 +27,8 @@
 </script>
 
 <!-- data-orb: GSAP이 초기에 width:0em + autoAlpha:0 세팅 후 두 단계로 애니메이션 -->
-<div data-orb="" class="absolute rounded-full w-0 h-0 opacity-0 -z-1 overflow-hidden will-change-transform" bind:this={orbEl}></div>
+<div
+	data-orb=""
+	class="absolute -z-1 h-0 w-0 overflow-hidden rounded-full opacity-0 will-change-transform"
+	bind:this={orbEl}
+></div>

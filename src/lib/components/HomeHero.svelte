@@ -5,7 +5,7 @@
 </script>
 
 <!-- home-hero ScrollTrigger 트리거 -->
-<section home-hero="" class="w-full relative">
+<section home-hero="" class="relative w-full">
 	<div data-home-hero class="mx-auto h-screen w-full max-w-none px-[2vw]">
 		<!-- 그리드: 12열, 7행 -->
 		<div
@@ -14,11 +14,11 @@
 			<!-- row 2: 이대희 — 한글 3글자는 영문보다 작으므로 10em으로 스케일업 -->
 			<div class="hh-text-block hh-1 col-[2/11] row-[2/3] justify-self-start overflow-visible">
 				<!-- FOUC 초기값: config.ts HERO_TEXT_BLOCK_OFFSETS[0].x 과 동기화 필수 -->
-			<div hh-tb="1" class="hh-transform will-change-transform translate-x-[10em]">
+				<div hh-tb="1" class="hh-transform translate-x-[10em] will-change-transform">
 					<div class="hh-text-ovf overflow-hidden">
 						<h1
 							split-hero=""
-							class="text-[10em] leading-none whitespace-nowrap text-text will-change-transform tracking-[0.05em]"
+							class="text-[10em] leading-none tracking-[0.05em] whitespace-nowrap text-text will-change-transform"
 						>
 							이대희
 						</h1>
@@ -29,7 +29,7 @@
 			<!-- row 4: Full-stack -->
 			<div class="hh-text-block hh-2 col-[5/12] row-[4/5] justify-self-end overflow-visible">
 				<!-- FOUC 초기값: config.ts HERO_TEXT_BLOCK_OFFSETS[1].x 과 동기화 필수 -->
-			<div hh-tb="2" class="hh-transform will-change-transform -translate-x-[10em]">
+				<div hh-tb="2" class="hh-transform -translate-x-[10em] will-change-transform">
 					<div class="hh-text-ovf overflow-hidden">
 						<h1
 							split-hero=""
@@ -44,7 +44,7 @@
 			<!-- row 6: Developer -->
 			<div class="hh-text-block hh-3 col-[3/11] row-[6/7] justify-self-start overflow-visible">
 				<!-- FOUC 초기값: config.ts HERO_TEXT_BLOCK_OFFSETS[2].x 과 동기화 필수 -->
-			<div hh-tb="3" class="hh-transform will-change-transform translate-x-[10em]">
+				<div hh-tb="3" class="hh-transform translate-x-[10em] will-change-transform">
 					<div class="hh-text-ovf overflow-hidden">
 						<h1
 							split-hero=""
@@ -62,10 +62,7 @@
 			>
 				<div hh-tb="4" class="hh-transform will-change-transform">
 					<div class="hh-text-ovf overflow-hidden">
-						<div
-							split-hero=""
-							class="text-[1.2em] tracking-[0.08em] uppercase opacity-50"
-						>
+						<div split-hero="" class="text-[1.2em] tracking-[0.08em] uppercase opacity-50">
 							scroll ↓
 						</div>
 					</div>

@@ -26,7 +26,7 @@ export const ORB_PHASES = {
 	phase1: 1,
 	/** Phase 2: 중앙 이동 + full size 확장 */
 	phase2: 1,
-	phase2Ease: 'power2.inOut',
+	phase2Ease: 'power2.inOut'
 } as const;
 
 /** Phase 1 + Phase 2 합산 — Preloader와 hero에서 "orb 인트로 완료" 시점으로 사용 */

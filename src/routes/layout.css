@@ -33,11 +33,11 @@
 	--radius-sm: 0.625em;
 
 	/* 색상 — 고정 (Warm Sand + Teal) */
-	--color-main-dark: #1C1814;
-	--color-main-dark-alt: #2A2420;
-	--color-main-light: #E8E0D4;
-	--color-main-light-alt: #F5F0E8;
-	--color-primary: #2A9D8F;
+	--color-main-dark: #1c1814;
+	--color-main-dark-alt: #2a2420;
+	--color-main-light: #e8e0d4;
+	--color-main-light-alt: #f5f0e8;
+	--color-primary: #2a9d8f;
 
 	/* 색상 — 시맨틱 (dark/light 모드에서 재정의됨) */
 	--color-text: var(--color-main-dark);
@@ -50,14 +50,29 @@
 	--animate-loop-gradient: loop-gradient 5s infinite;
 
 	@keyframes scroll-pulse {
-		0% { transform: scale3d(1, 0, 1); opacity: 0; }
-		50% { transform: scale3d(1, 1, 1); opacity: 1; }
-		100% { transform: scale3d(1, 0, 1); opacity: 0; }
+		0% {
+			transform: scale3d(1, 0, 1);
+			opacity: 0;
+		}
+		50% {
+			transform: scale3d(1, 1, 1);
+			opacity: 1;
+		}
+		100% {
+			transform: scale3d(1, 0, 1);
+			opacity: 0;
+		}
 	}
 	@keyframes loop-gradient {
-		0% { opacity: 0; }
-		50% { opacity: 1; }
-		100% { opacity: 0; }
+		0% {
+			opacity: 0;
+		}
+		50% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0;
+		}
 	}
 }
 
@@ -166,7 +181,14 @@ html.light .portfolio ::selection {
 /* =============================================
    SplitType 런타임 클래스 (글로벌 필수)
    ============================================= */
-.word { display: inline-block; }
-.char { display: inline-block; will-change: transform, opacity; }
-.line { display: block; overflow: hidden; }
-
+.word {
+	display: inline-block;
+}
+.char {
+	display: inline-block;
+	will-change: transform, opacity;
+}
+.line {
+	display: block;
+	overflow: hidden;
+}

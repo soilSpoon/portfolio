@@ -26,5 +26,5 @@ export const gridItems: GridItem[] = [
 	{ type: 'tech', label: 'Redis' },
 	{ type: 'stat', label: 'products', value: '3' },
 	{ type: 'tech', label: 'Svelte' },
-	{ type: 'tech', label: 'Three.js' },
+	{ type: 'tech', label: 'Three.js' }
 ];

@@ -33,7 +33,7 @@ experience:
   - company: 주식회사 에브리심
     team: 제품개발
     role: 책임
-    start: "2025.03"
+    start: '2025.03'
     end: 재직중
     description:
       default: 드론/CFD 시뮬레이션 스타트업(everysim.io). OpenCASCADE 3D CAD 엔진의 WASM 브라우저 이식으로 데스크탑 설치 없이 브라우저에서 CAD 모델링 및 시뮬레이션 워크플로우 실행 가능하게 구현.
@@ -43,8 +43,8 @@ experience:
   - company: 씨엠유니버스(주)
     team: 개발
     role: 주임
-    start: "2018.09"
-    end: "2023.11"
+    start: '2018.09'
+    end: '2023.11'
     description:
       default: B2B 산업 솔루션 기업. 근태 SaaS(출근노트, gwnote.com), 포스코 제철소 MES(철판 결함 분석), 하드웨어 모니터링 서비스 등 3개 제품의 프론트엔드 설계·개발·운영.
       instructor: PHP/Laravel, React/TypeScript
@@ -52,14 +52,14 @@ experience:
       - all
   - company: 구름
     role: 프리랜서 강사 및 퍼실리테이터
-    start: "2024.08"
+    start: '2024.08'
     end: 재직중
     tags:
       - instructor
 projects:
   - slug: everydrone
     title: 에브리드론 — 드론/CFD 시뮬레이션 플랫폼
-    start: "2025.03"
+    start: '2025.03'
     end: 진행중
     org: 에브리심
     team: 제품개발
@@ -227,7 +227,7 @@ projects:
           - 안정적인 인증·인프라 체계 위에서 v1.0 릴리즈 완료
   - slug: everydrone-short
     title: 드론 시뮬레이션 플랫폼
-    start: "2025.03"
+    start: '2025.03'
     end: 진행중
     org: 에브리심
     team: 제품개발
@@ -247,8 +247,8 @@ projects:
           - freelancer
   - slug: gwnote
     title: 출근노트 — 근태 및 급여 관리 SaaS
-    start: "2020.08"
-    end: "2025.03"
+    start: '2020.08'
+    end: '2025.03'
     org: 씨엠유니버스
     role: 풀스택 개발자
     url: https://new.gwnote.com/
@@ -498,8 +498,8 @@ projects:
           - 이 아키텍처를 기반으로 디자인 시스템, 성능 최적화, 권한 체계 등 모든 개선 진행
   - slug: gwnote-short
     title: 근태·급여 관리 SaaS
-    start: "2020.08"
-    end: "2025.03"
+    start: '2020.08'
+    end: '2025.03'
     org: 씨엠유니버스
     role: 풀스택 개발자
     url: https://new.gwnote.com/
@@ -507,7 +507,7 @@ projects:
       - instructor
       - freelancer
     bullets:
-      - text: "출근노트: 근태 및 급여 관리 SaaS 풀스택 개발 (B2B2C, 5단계 권한 체계)"
+      - text: '출근노트: 근태 및 급여 관리 SaaS 풀스택 개발 (B2B2C, 5단계 권한 체계)'
         tags:
           - instructor
       - text: B2B2C 5단계 권한 체계 설계, 프로젝트 초기 세팅부터 운영까지
@@ -524,8 +524,8 @@ projects:
           - freelancer
   - slug: esm
     title: ESM — 하드웨어 모니터링 서비스
-    start: "2020.07"
-    end: "2020.12"
+    start: '2020.07'
+    end: '2020.12'
     org: 씨엠유니버스
     role: 풀스택 개발자
     url: https://cmu.kr/product/
@@ -582,20 +582,20 @@ projects:
           - 고객사 커스터마이징을 **설정 파일 수정만으로 처리** — 배포 없이 현장 대응 가능
   - slug: esm-short
     title: ESM — 하드웨어 모니터링 서비스
-    start: "2020.07"
-    end: "2020.12"
+    start: '2020.07'
+    end: '2020.12'
     org: 씨엠유니버스
     role: 풀스택 개발자
     tags:
       - instructor
     bullets:
-      - text: "ESM: 하드웨어 모니터링 Electron 데스크톱 앱 (SNMP/ICMP/SSH 멀티 프로토콜)"
+      - text: 'ESM: 하드웨어 모니터링 Electron 데스크톱 앱 (SNMP/ICMP/SSH 멀티 프로토콜)'
         tags:
           - instructor
   - slug: gss
     title: GSS — 포스코 철판 결함 분석 시스템 (MES)
-    start: "2019.12"
-    end: "2023.11"
+    start: '2019.12'
+    end: '2023.11'
     org: 씨엠유니버스
     role: 풀스택 개발자 (MES 차공정 담당)
     tags:
@@ -671,20 +671,20 @@ projects:
           - 규칙 엔진으로 **신규 공정 대응 시 설정 파일만으로 대응** 가능
   - slug: gss-short
     title: GSS — 포스코 철판 결함 분석 시스템
-    start: "2019.12"
-    end: "2023.11"
+    start: '2019.12'
+    end: '2023.11'
     org: 씨엠유니버스
     role: 풀스택 개발자
     tags:
       - instructor
     bullets:
-      - text: "GSS: 철판 결함 분석 시스템 MES 차공정 개발 (실시간 데이터 처리)"
+      - text: 'GSS: 철판 결함 분석 시스템 MES 차공정 개발 (실시간 데이터 처리)'
         tags:
           - instructor
   - slug: csmnote
     title: CSM 노트 — 모바일 메모 서비스
-    start: "2021.01"
-    end: "2021.07"
+    start: '2021.01'
+    end: '2021.07'
     org: 씨엠유니버스
     role: 풀스택 개발자
     url: https://www.csmnote.com/
@@ -692,7 +692,7 @@ projects:
       - instructor
       - freelancer
     bullets:
-      - text: "CSM 노트: 모바일 메모 서비스 크로스 플랫폼 앱 개발 (Kotlin/Swift/WebView)"
+      - text: 'CSM 노트: 모바일 메모 서비스 크로스 플랫폼 앱 개발 (Kotlin/Swift/WebView)'
         tags:
           - instructor
       - text: Kotlin/Swift WebView 기반 iOS/Android 네이티브 앱
@@ -703,26 +703,26 @@ projects:
           - freelancer
   - slug: network-tools
     title: 네트워크 도구
-    start: "2018.11"
-    end: "2019.11"
+    start: '2018.11'
+    end: '2019.11'
     org: 씨엠유니버스
     role: 풀스택 개발자
     tags:
       - instructor
       - freelancer
     bullets:
-      - text: "IP Scanner / SSMT: Windows Native 네트워크 도구 (C#/WPF, Golang FFI)"
+      - text: 'IP Scanner / SSMT: Windows Native 네트워크 도구 (C#/WPF, Golang FFI)'
         tags:
           - instructor
-      - text: "IP Scanner: C#/WPF + Golang FFI 고속 IP/포트 스캔"
+      - text: 'IP Scanner: C#/WPF + Golang FFI 고속 IP/포트 스캔'
         tags:
           - freelancer
-      - text: "SSMT: 서버 모니터링 Windows Native 앱"
+      - text: 'SSMT: 서버 모니터링 Windows Native 앱'
         tags:
           - freelancer
   - slug: oss
     title: 오픈소스 기여
-    start: "2020"
+    start: '2020'
     end: 현재
     org: 오픈소스
     tags:
@@ -953,24 +953,24 @@ education:
       - all
   - name: 서울여자대학교 정보보호영재교육원
     field: 수료
-    dates: "2017"
+    dates: '2017'
     tags:
       - general
       - toss
 certifications:
   - name: 정보처리기사
-    date: "2022.06"
+    date: '2022.06'
     tags:
       - all
   - name: 정보기기운용기능사
-    date: "2018.07"
+    date: '2018.07'
     tags:
       - general
       - instructor
       - freelancer
       - toss
   - name: 인터넷윤리지도사
-    date: "2017.07"
+    date: '2017.07'
     tags:
       - general
       - instructor
@@ -1003,7 +1003,7 @@ oss:
     - text: Astro · SWC · Jotai · Valtio · Snowpack · Tremor 등에 기여
       tags:
         - toss
-    - text: "laravel-mix: webpack 내부 수정 — React Fast Refresh 구현, dev-server 4.0 마이그레이션 등 직접 기여"
+    - text: 'laravel-mix: webpack 내부 수정 — React Fast Refresh 구현, dev-server 4.0 마이그레이션 등 직접 기여'
       tags:
         - general
         - toss
@@ -1011,19 +1011,19 @@ oss:
       tags:
         - general
         - toss
-    - text: "**laravel-mix** (5.2k stars): React Fast Refresh 기능 추가, webpack-dev-server 4.0 마이그레이션, HMR HTTPS 복구 등 — 라이브러리 HMR 아키텍처에 직접 기여"
+    - text: '**laravel-mix** (5.2k stars): React Fast Refresh 기능 추가, webpack-dev-server 4.0 마이그레이션, HMR HTTPS 복구 등 — 라이브러리 HMR 아키텍처에 직접 기여'
       tags:
         - general_md
-    - text: "**react-refresh-webpack-plugin** (3.2k stars): type-fest 호환성, wds 버전 업데이트"
+    - text: '**react-refresh-webpack-plugin** (3.2k stars): type-fest 호환성, wds 버전 업데이트'
       tags:
         - general_md
-    - text: "**Jotai**(21k) · **SWC**(33k) · **Astro**(57k) · **Valtio**(10k) · **Snowpack**(19k) · **Tremor**(16k) · **laravel/framework**(34k) 등 프론트엔드 핵심 인프라에 지속 기여"
+    - text: '**Jotai**(21k) · **SWC**(33k) · **Astro**(57k) · **Valtio**(10k) · **Snowpack**(19k) · **Tremor**(16k) · **laravel/framework**(34k) 등 프론트엔드 핵심 인프라에 지속 기여'
       tags:
         - general_md
 sideProjects:
   - slug: superwalk
     title: 슈퍼워크 바닥가 — M2E 신발 가격 트래커
-    start: "2022.07"
+    start: '2022.07'
     url: https://superwalk.vercel.app/
     description:
       default: 인프라 비용 0원
@@ -1060,7 +1060,7 @@ teaching:
     - 질의 응답 및 보조 강사로 학습자 개별 지도 경험
   experience:
     company: 구름
-    start: "2024.08"
+    start: '2024.08'
     end: 재직중
     role: 프리랜서 강사 및 퍼실리테이터
     items:

@@ -39,8 +39,6 @@ export const experiences: Experience[] = [
 		company: 'Goorm',
 		role: '프리랜서 강사',
 		dates: '2024.08 – 현재',
-		details: [
-			{ label: '웹 프론트엔드 강의', value: '실무 중심' }
-		]
+		details: [{ label: '웹 프론트엔드 강의', value: '실무 중심' }]
 	}
 ];

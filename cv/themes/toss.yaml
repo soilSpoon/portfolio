@@ -1,14 +1,14 @@
-accent: "#0064FF"
-accent_opacity: "0.4"
-sidebar_bg: "#202632"
-sidebar_border: "#2B3240"
-link_color: "#0064FF"
+accent: '#0064FF'
+accent_opacity: '0.4'
+sidebar_bg: '#202632'
+sidebar_border: '#2B3240'
+link_color: '#0064FF'
 font_family: "'Toss Product Sans', -apple-system, BlinkMacSystemFont, sans-serif"
-main_padding: "28px 28px 24px"
-main_gap: "14px"
-sidebar_padding: "28px 16px 26px"
-sidebar_gap: "20px"
-badge_gap: "5px"
-badge_px: "7px"
-badge_py: "2.5px"
-heading_border_width: "1px"
+main_padding: '28px 28px 24px'
+main_gap: '14px'
+sidebar_padding: '28px 16px 26px'
+sidebar_gap: '20px'
+badge_gap: '5px'
+badge_px: '7px'
+badge_py: '2.5px'
+heading_border_width: '1px'

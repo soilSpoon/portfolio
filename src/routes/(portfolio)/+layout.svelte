@@ -44,36 +44,45 @@
 </svelte:head>
 
 <div class="portfolio">
-<!-- ─── 커스텀 커서 ─────────────────────────────────────────────────────────── -->
-<Cursor />
+	<!-- ─── 커스텀 커서 ─────────────────────────────────────────────────────────── -->
+	<Cursor />
 
-<!-- ─── HUD (fixed nav) ───────────────────────────────────────────────────── -->
-<HUD {currentPath} />
+	<!-- ─── HUD (fixed nav) ───────────────────────────────────────────────────── -->
+	<HUD {currentPath} />
 
-<!-- ─── 전역 Orb (fixed, z-index:-2) ──────────────────────────────────────── -->
-<div data-orb-wrap class="fixed inset-0 flex items-center justify-center -z-2 pointer-events-none select-none overflow-x-clip">
-	<Orb />
-	<!-- 첫 번째 outline ring (80vh) -->
-	<div orb-out-w="1" class="absolute h-[80vh] w-[80vh] -z-2 will-change-transform">
-		<div orb-out-r="1" class="absolute h-full w-full">
-			<div orb-outline="1" class="absolute rounded-full w-full h-full -z-2 opacity-0 border border-dashed border-border-strong will-change-transform"></div>
+	<!-- ─── 전역 Orb (fixed, z-index:-2) ──────────────────────────────────────── -->
+	<div
+		data-orb-wrap
+		class="pointer-events-none fixed inset-0 -z-2 flex items-center justify-center overflow-x-clip select-none"
+	>
+		<Orb />
+		<!-- 첫 번째 outline ring (80vh) -->
+		<div orb-out-w="1" class="absolute -z-2 h-[80vh] w-[80vh] will-change-transform">
+			<div orb-out-r="1" class="absolute h-full w-full">
+				<div
+					orb-outline="1"
+					class="absolute -z-2 h-full w-full rounded-full border border-dashed border-border-strong opacity-0 will-change-transform"
+				></div>
+			</div>
+		</div>
+		<!-- 두 번째 outline ring (100vh) -->
+		<div orb-out-w="2" class="absolute -z-2 h-[100vh] w-[100vh] will-change-transform">
+			<div orb-out-r="2" class="absolute h-full w-full">
+				<div
+					orb-outline="2"
+					class="absolute -z-2 h-full w-full rounded-full border border-dashed border-border-strong opacity-0 will-change-transform"
+				></div>
+			</div>
 		</div>
 	</div>
-	<!-- 두 번째 outline ring (100vh) -->
-	<div orb-out-w="2" class="absolute h-[100vh] w-[100vh] -z-2 will-change-transform">
-		<div orb-out-r="2" class="absolute h-full w-full">
-			<div orb-outline="2" class="absolute rounded-full w-full h-full -z-2 opacity-0 border border-dashed border-border-strong will-change-transform"></div>
-		</div>
+
+	<!-- ─── 프리로더 ──────────────────────────────────────────────────────────── -->
+	<Preloader />
+
+	<!-- ─── 페이지 콘텐츠 ─────────────────────────────────────────────────────── -->
+	<div data-page-wrapper class="relative w-full overflow-x-clip">
+		{@render children()}
 	</div>
-</div>
-
-<!-- ─── 프리로더 ──────────────────────────────────────────────────────────── -->
-<Preloader />
-
-<!-- ─── 페이지 콘텐츠 ─────────────────────────────────────────────────────── -->
-<div data-page-wrapper class="relative w-full overflow-x-clip">
-	{@render children()}
-</div>
 </div>
 
 <style>

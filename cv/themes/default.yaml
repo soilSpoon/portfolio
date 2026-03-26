@@ -1,14 +1,14 @@
-accent: "#3182F6"
-accent_opacity: "1"
-sidebar_bg: "#191F28"
-sidebar_border: "#2B3240"
-link_color: "#3182F6"
+accent: '#3182F6'
+accent_opacity: '1'
+sidebar_bg: '#191F28'
+sidebar_border: '#2B3240'
+link_color: '#3182F6'
 font_family: "'Toss Product Sans', -apple-system, BlinkMacSystemFont, sans-serif"
-main_padding: "22px 24px 18px"
-main_gap: "12px"
-sidebar_padding: "28px 16px 26px"
-sidebar_gap: "20px"
-badge_gap: "4px"
-badge_px: "6px"
-badge_py: "2px"
-heading_border_width: "2px"
+main_padding: '22px 24px 18px'
+main_gap: '12px'
+sidebar_padding: '28px 16px 26px'
+sidebar_gap: '20px'
+badge_gap: '4px'
+badge_px: '6px'
+badge_py: '2px'
+heading_border_width: '2px'

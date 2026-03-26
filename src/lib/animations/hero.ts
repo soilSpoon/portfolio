@@ -40,8 +40,11 @@ export function buildHudIntro(gsap: GsapType) {
 	const hudMenuEl = document.querySelector<HTMLElement>(SELECTORS.hudMenu);
 	const tl = gsap.timeline();
 
-	tl.to(SELECTORS.hudBrandLink, { y: '0%', opacity: 1, ...HUD_INTRO }, 0)
-		.to(SELECTORS.hudScroll, { opacity: 1, ...HUD_INTRO }, 0);
+	tl.to(SELECTORS.hudBrandLink, { y: '0%', opacity: 1, ...HUD_INTRO }, 0).to(
+		SELECTORS.hudScroll,
+		{ opacity: 1, ...HUD_INTRO },
+		0
+	);
 
 	if (hudMenuEl) {
 		tl.to(hudMenuEl, { y: '0%', opacity: 1, ...HUD_INTRO }, 0);

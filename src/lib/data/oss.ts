@@ -14,5 +14,5 @@ export const ossProjects: OSSProject[] = [
 	{ name: 'Snowpack', stars: '19k', prs: 1 },
 	{ name: 'Tremor', stars: '16k', prs: 1 },
 	{ name: 'Valtio', stars: '10k', prs: 2 },
-	{ name: 'laravel-mix', stars: '5.2k', prs: 12 },
+	{ name: 'laravel-mix', stars: '5.2k', prs: 12 }
 ];
