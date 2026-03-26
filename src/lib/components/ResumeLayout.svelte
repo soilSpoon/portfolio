@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { FilteredData, ThemeConfig } from '$lib/data/cv-schema.js';
-	import { formatDates, computeDuration, resolveVariantString } from '$lib/data/cv-schema.js';
+	import { formatDates, computeDuration } from '$lib/data/cv-schema.js';
+	import { resolve } from '$app/paths';
 
 	let { data, theme }: { data: FilteredData; theme: ThemeConfig } = $props();
 
@@ -101,14 +102,15 @@
 		{#if data.sidebar.skills.length > 0}
 			<div>
 				<div class="sidebar-heading">Skills</div>
-				{#each data.sidebar.skills as cat}
+				{#each data.sidebar.skills as cat (cat.label)}
 					<div class="mb-[6px]">
 						<div class="mb-[3px] text-[8px] font-bold tracking-[0.5px] text-[#6B7684] uppercase">
 							{cat.label}
 						</div>
 						<div class="badge-wrap flex flex-wrap">
-							{#each cat.items as item}
-								<span class="badge rounded-full bg-[#2B3240] text-[7.8px] font-medium text-[#DDE3EA]"
+							{#each cat.items as item (item)}
+								<span
+									class="badge rounded-full bg-[#2B3240] text-[7.8px] font-medium text-[#DDE3EA]"
 									>{item}</span
 								>
 							{/each}
@@ -122,10 +124,19 @@
 		{#if data.sidebar.education.length > 0}
 			<div>
 				<div class="sidebar-heading">Education</div>
-				{#each data.sidebar.education as edu, i}
-					<div class={i < data.sidebar.education.length - 2 ? 'mb-[6px]' : (i === data.sidebar.education.length - 2 ? 'mb-[4px]' : '')}>
+				{#each data.sidebar.education as edu, i (edu.name)}
+					<div
+						class={i < data.sidebar.education.length - 2
+							? 'mb-[6px]'
+							: i === data.sidebar.education.length - 2
+								? 'mb-[4px]'
+								: ''}
+					>
 						<div class="text-[9.5px] font-bold text-[#D1D6DB]">{edu.name}</div>
-						<div class="text-[8.5px] text-[#8B95A1]">{edu.field}{#if edu.dates} | {edu.dates}{/if}</div>
+						<div class="text-[8.5px] text-[#8B95A1]">
+							{edu.field}{#if edu.dates}
+								| {edu.dates}{/if}
+						</div>
 					</div>
 				{/each}
 			</div>
@@ -136,7 +147,7 @@
 			<div>
 				<div class="sidebar-heading">Certifications</div>
 				<div class="flex flex-col gap-[3px] text-[9.5px] text-[#B0B8C1]">
-					{#each data.sidebar.certifications as cert}
+					{#each data.sidebar.certifications as cert (cert.name)}
 						<span>{cert.name} <span class="text-[#6B7684]">{cert.date}</span></span>
 					{/each}
 				</div>
@@ -148,7 +159,7 @@
 			<div>
 				<div class="sidebar-heading">Other</div>
 				<div class="text-[9px] leading-[1.6] text-[#8B95A1]">
-					{#each data.sidebar.other as item, i}{#if i > 0}<br />{/if}{item.text}{/each}
+					{#each data.sidebar.other as item, i (i)}{#if i > 0}<br />{/if}{item.text}{/each}
 				</div>
 			</div>
 		{/if}
@@ -159,11 +170,12 @@
 		<!-- Profile: summary + highlights -->
 		<div class="min-w-0 border-b border-[#E5E8EB] pb-[8px] break-keep">
 			<p class="m-0 mb-[9px] text-[11px] leading-[1.65] text-[#4E5968]">
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -- trusted YAML content rendered at build time -->
 				{@html data.summary}
 			</p>
 			{#if data.highlightBullets.length > 0}
 				<ul class="bullet-list">
-					{#each data.highlightBullets as bullet}
+					{#each data.highlightBullets as bullet (bullet)}
 						<li>{bullet}</li>
 					{/each}
 				</ul>
@@ -172,60 +184,69 @@
 
 		<!-- Sections -->
 		<div class="main-grid grid flex-1 auto-rows-max content-between">
-			{#each data.sections as section}
+			{#each data.sections as section (section.type)}
 				{#if section.type === 'experience'}
 					<section class="min-w-0 space-y-[5px]">
 						<h2 class="section-heading">{sectionHeading(section.type)}</h2>
-						{#each section.data as exp}
+						{#each section.data as exp (exp.company)}
 							<div class="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-[8px]">
 								<span class="min-w-0 text-[11.5px] font-bold text-[#333D4B]"
-									>{exp.company} — <span class="font-normal text-[#6B7684]">{exp.team ? `${exp.team} ${exp.role}` : exp.role}</span></span
+									>{exp.company} —
+									<span class="font-normal text-[#6B7684]"
+										>{exp.team ? `${exp.team} ${exp.role}` : exp.role}</span
+									></span
 								>
-								<span class="shrink-0 pl-[8px] text-right text-[9px] text-[#8B95A1]">{formatDates(exp.start, exp.end)}{#if computeDuration(exp.start, exp.end)} ({computeDuration(exp.start, exp.end)}){/if}</span>
+								<span class="shrink-0 pl-[8px] text-right text-[9px] text-[#8B95A1]"
+									>{formatDates(exp.start, exp.end)}{#if computeDuration(exp.start, exp.end)}
+										({computeDuration(exp.start, exp.end)}){/if}</span
+								>
 							</div>
 						{/each}
 					</section>
-
 				{:else if section.type === 'projects'}
 					<section class="min-w-0 space-y-[8px]">
 						<h2 class="section-heading">{sectionHeading(section.type)}</h2>
 						<div class="flex flex-col gap-[12px]">
-							{#each section.data as project}
+							{#each section.data as project (project.title)}
 								<article class="space-y-[3px]">
 									<div class="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-[8px]">
-										<span class="min-w-0 text-[12px] font-bold text-[#333D4B]"
-											>{project.title}</span
+										<span class="min-w-0 text-[12px] font-bold text-[#333D4B]">{project.title}</span
 										>
 										<span class="shrink-0 pl-[8px] text-right text-[9px] text-[#8B95A1]"
 											>{formatDates(project.start, project.end)}</span
 										>
 									</div>
-									<div class="text-[9px] text-[#8B95A1] [overflow-wrap:anywhere]">
-										{project.org}{#if project.role} · {project.team ? `${project.team} ${project.role}` : project.role}{/if}{#if project.url} · <a
-												href={project.url}
-												class="project-link"
+									<div class="text-[9px] [overflow-wrap:anywhere] text-[#8B95A1]">
+										{project.org}{#if project.role}
+											· {project.team
+												? `${project.team} ${project.role}`
+												: project.role}{/if}{#if project.url}
+											· <a href={resolve(project.url)} class="project-link"
 												>{project.url.replace(/^https?:\/\//, '')}</a
 											>{/if}
 									</div>
 									{#if project.bullets && project.bullets.length > 0}
 										<ul class="bullet-list">
-											{#each project.bullets as bullet}
+											{#each project.bullets as bullet (bullet.text)}
 												<li>{bullet.text}</li>
 											{/each}
 										</ul>
 									{/if}
 									{#if data.mode === 'career' && project.details && project.details.length > 0}
-										{#each project.details as detail}
+										{#each project.details as detail (detail.title)}
 											<div class="mt-[4px]">
 												<div class="text-[10px] font-bold text-[#333D4B]">{detail.title}</div>
-												<div class="text-[9px] leading-[1.6] text-[#4E5968] [overflow-wrap:anywhere]">
-													{@html detail.content}
+												<div
+													class="text-[9px] leading-[1.6] [overflow-wrap:anywhere] text-[#4E5968]"
+												>
+													<!-- eslint-disable-next-line svelte/no-at-html-tags -- trusted YAML content rendered at build time -->
+												{@html detail.content}
 												</div>
 											</div>
 										{/each}
 									{/if}
 									{#if project.tech && Array.isArray(project.tech) && project.tech.length > 0}
-										<div class="text-[8px] text-[#8B95A1] [overflow-wrap:anywhere]">
+										<div class="text-[8px] [overflow-wrap:anywhere] text-[#8B95A1]">
 											{project.tech.join(' · ')}
 										</div>
 									{/if}
@@ -233,96 +254,95 @@
 							{/each}
 						</div>
 					</section>
-
 				{:else if section.type === 'oss'}
 					<section class="min-w-0 space-y-[5px]">
 						<h2 class="section-heading">{sectionHeading(section.type)}</h2>
 						<ul class="bullet-list">
-							{#each section.data.highlights as highlight}
+							{#each section.data.highlights as highlight (highlight.text)}
 								<li>{highlight.text}</li>
 							{/each}
 						</ul>
 					</section>
-
 				{:else if section.type === 'sideProjects'}
 					<section class="min-w-0 space-y-[5px]">
 						<h2 class="section-heading">{sectionHeading(section.type)}</h2>
-						{#each section.data as sp}
+						{#each section.data as sp (sp.title)}
 							<div class="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-[8px]">
 								<span class="min-w-0 text-[11.5px] font-bold text-[#333D4B]">{sp.title}</span>
-								<span class="shrink-0 pl-[8px] text-right text-[9px] text-[#8B95A1]">{formatDates(sp.start, sp.end)}</span>
+								<span class="shrink-0 pl-[8px] text-right text-[9px] text-[#8B95A1]"
+									>{formatDates(sp.start, sp.end)}</span
+								>
 							</div>
 							{#if sp.url}
-								<div class="text-[9px] text-[#8B95A1] [overflow-wrap:anywhere]">
-									<a href={sp.url} class="project-link"
-										>{sp.url.replace(/^https?:\/\//, '')}</a
-									>
+								<div class="text-[9px] [overflow-wrap:anywhere] text-[#8B95A1]">
+									<a href={resolve(sp.url)} class="project-link">{sp.url.replace(/^https?:\/\//, '')}</a>
 								</div>
 							{/if}
 							{#if sp.bullets.length > 0}
 								<ul class="bullet-list">
-									{#each sp.bullets as bullet}
+									{#each sp.bullets as bullet (bullet)}
 										<li>{bullet}</li>
 									{/each}
 								</ul>
 							{/if}
 						{/each}
 					</section>
-
 				{:else if section.type === 'skills'}
 					<section class="min-w-0 space-y-[5px]">
 						<h2 class="section-heading">{sectionHeading(section.type)}</h2>
-						{#each section.data as cat}
+						{#each section.data as cat (cat.label)}
 							<div class="mb-[4px]">
 								<div class="text-[9px] font-bold text-[#333D4B]">{cat.label}</div>
 								<div class="text-[9px] text-[#4E5968]">{cat.items.join(', ')}</div>
 							</div>
 						{/each}
 					</section>
-
 				{:else if section.type === 'teaching_capabilities'}
 					<section class="min-w-0 space-y-[5px]">
 						<h2 class="section-heading">{sectionHeading(section.type)}</h2>
 						<ul class="bullet-list">
-							{#each section.data as cap}
+							{#each section.data as cap (cap)}
 								<li>{cap}</li>
 							{/each}
 						</ul>
 					</section>
-
 				{:else if section.type === 'teaching_experience'}
 					<section class="min-w-0 space-y-[5px]">
 						<h2 class="section-heading">{sectionHeading(section.type)}</h2>
-						{#each section.data as exp}
+						{#each section.data as exp (exp.company)}
 							<div class="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-[8px]">
 								<span class="min-w-0 text-[11.5px] font-bold text-[#333D4B]"
-									>{exp.company} — <span class="font-normal text-[#6B7684]">{exp.team ? `${exp.team} ${exp.role}` : exp.role}</span></span
+									>{exp.company} —
+									<span class="font-normal text-[#6B7684]"
+										>{exp.team ? `${exp.team} ${exp.role}` : exp.role}</span
+									></span
 								>
-								<span class="shrink-0 pl-[8px] text-right text-[9px] text-[#8B95A1]">{formatDates(exp.start, exp.end)}{#if computeDuration(exp.start, exp.end)} ({computeDuration(exp.start, exp.end)}){/if}</span>
+								<span class="shrink-0 pl-[8px] text-right text-[9px] text-[#8B95A1]"
+									>{formatDates(exp.start, exp.end)}{#if computeDuration(exp.start, exp.end)}
+										({computeDuration(exp.start, exp.end)}){/if}</span
+								>
 							</div>
 						{/each}
 					</section>
-
 				{:else if section.type === 'services'}
 					<section class="min-w-0 space-y-[5px]">
 						<h2 class="section-heading">{sectionHeading(section.type)}</h2>
-						{#each section.data as cat}
+						{#each section.data as cat (cat.category)}
 							<div class="mb-[4px]">
 								<div class="text-[9px] font-bold text-[#333D4B]">{cat.category}</div>
 								<ul class="bullet-list">
-									{#each cat.items as item}
+									{#each cat.items as item (item)}
 										<li>{item}</li>
 									{/each}
 								</ul>
 							</div>
 						{/each}
 					</section>
-
 				{:else if section.type === 'workTerms'}
 					<section class="min-w-0 space-y-[5px]">
 						<h2 class="section-heading">{sectionHeading(section.type)}</h2>
 						<ul class="bullet-list">
-							{#each section.data as term}
+							{#each section.data as term (term)}
 								<li>{term}</li>
 							{/each}
 						</ul>
@@ -396,7 +416,11 @@
 		margin: 0 0 6px;
 		border-bottom-style: solid;
 		border-bottom-width: var(--heading-border-width);
-		border-bottom-color: color-mix(in srgb, var(--accent) calc(var(--accent-opacity) * 100%), transparent);
+		border-bottom-color: color-mix(
+			in srgb,
+			var(--accent) calc(var(--accent-opacity) * 100%),
+			transparent
+		);
 		padding-bottom: 4px;
 		font-size: 14px;
 		font-weight: 700;
