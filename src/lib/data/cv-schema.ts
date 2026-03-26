@@ -134,7 +134,7 @@ export const VariantSchema = z.object({
 	career_title: z.string().optional(),
 	subtitle: z.string().optional(),
 	career_subtitle: z.string().optional(),
-	summary: z.string(),
+	summary: z.string().optional(),
 	highlight_bullets: z.string().optional(),
 	theme: z.string(),
 	modes: z.array(z.enum(['resume', 'career'])).default(['resume', 'career']),
