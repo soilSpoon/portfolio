@@ -1,8 +1,7 @@
 /**
  * OrbClass — Three.js WebGL 반구형 구체 렌더러
  *
- * offbrand-orb.iife.js 역분석 기반.
- * FBO[0]=256×256 (interaction out), FBO[1]=128×128 (simulation out / render input)
+ * FBO 2패스 파이프라인: FBO[0]=256×256 (interaction), FBO[1]=128×128 (simulation → render)
  * Camera: PerspectiveCamera(60, aspect, 0.1, 2), z=2.4
  */
 export class OrbClass {
@@ -113,7 +112,7 @@ export class OrbClass {
 		>;
 		this.fboScene.add(this.fboPlane);
 
-		// ─ Shader Materials (exact shaders from offbrand-orb.iife.js)
+		// ─ Shader Materials
 		this.interactionMaterial = this.buildInteractionMaterial(THREE);
 		this.simulationMaterial = this.buildSimulationMaterial(THREE);
 		this.renderingMaterial = this.buildRenderingMaterial(THREE);
@@ -170,7 +169,7 @@ export class OrbClass {
 		});
 	}
 
-	// ── InteractionMaterial shader (offbrand-orb.iife.js에서 추출) ────────────
+	// ── InteractionMaterial shader ───────────────────────────────────────────
 	private buildInteractionMaterial(THREE: typeof import('three')): import('three').ShaderMaterial {
 		return new THREE.ShaderMaterial({
 			vertexShader: /* glsl */ `

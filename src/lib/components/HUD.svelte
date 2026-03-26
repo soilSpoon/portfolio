@@ -49,8 +49,8 @@
 				<a
 					href={resolve('/')}
 					data-hud-brand
-					class="hud-brand-link block h-[2.2em] w-[2.2em] no-underline opacity-0 -translate-y-full"
-					aria-label="OFF+BRAND home"
+					class="hud-brand-link block h-[2.2em] w-[2.2em] -translate-y-full no-underline opacity-0"
+					aria-label="Home"
 				>
 					<div class="hud-brand-img w-embed">
 						<LogoSvg class="h-full w-full" />
@@ -66,16 +66,14 @@
 				aria-hidden="true"
 			>
 				<div class="flex flex-col items-center gap-y-[0.2em]">
-					<div class="h-[5em] w-px bg-current opacity-40 origin-top animate-scroll-pulse"></div>
+					<div class="h-[5em] w-px origin-top animate-scroll-pulse bg-current opacity-40"></div>
 					<div class="h-[0.5em] w-[0.5em] rounded-full bg-current opacity-50"></div>
 					<div class="h-[3.5em] w-px bg-current opacity-40"></div>
 				</div>
 			</div>
 
 			<!-- ─── 우상단 네비게이션 링크 ─────────────────────────────────── -->
-			<div
-				class="pointer-events-auto absolute top-6 right-16 flex items-center gap-8"
-			></div>
+			<div class="pointer-events-auto absolute top-6 right-16 flex items-center gap-8"></div>
 
 			<!-- ─── 메뉴 오버레이 ── -->
 			<div
@@ -90,7 +88,7 @@
 					aria-label="menu"
 					aria-expanded={menuOpen}
 					data-hud-menu
-					class="pointer-events-auto absolute right-0 bottom-6 z-[1001] cursor-pointer border-none bg-none p-[0.76rem_0.48rem] opacity-0 translate-y-full"
+					class="pointer-events-auto absolute right-0 bottom-6 z-[1001] translate-y-full cursor-pointer border-none bg-none p-[0.76rem_0.48rem] opacity-0"
 					onclick={toggleMenu}
 				>
 					<div class="relative flex h-[1.5rem] w-[2rem] flex-col justify-between">
@@ -121,7 +119,7 @@
 
 				<!-- 메뉴 콘텐츠 -->
 				<div
-					class="fixed inset-0 z-1 flex flex-col items-start justify-center gap-[2.5rem] pl-[4vw] transition-opacity duration-300 ease-[ease] delay-100"
+					class="fixed inset-0 z-1 flex flex-col items-start justify-center gap-[2.5rem] pl-[4vw] transition-opacity delay-100 duration-300 ease-[ease]"
 					class:opacity-0={!menuOpen}
 					class:opacity-100={menuOpen}
 					class:pointer-events-none={!menuOpen}
@@ -130,10 +128,10 @@
 					<nav class="flex flex-col gap-[0.2em]" aria-label="Main navigation">
 						<a
 							href={resolve('/')}
-							class="block overflow-hidden no-underline text-h-b font-normal uppercase text-text leading-none tracking-[-0.02em] transition-opacity duration-200 ease-[ease] hover:opacity-100"
+							class="text-h-b block overflow-hidden leading-none font-normal tracking-[-0.02em] text-text uppercase no-underline transition-opacity duration-200 ease-[ease] hover:opacity-100"
 							class:opacity-50={currentPath !== '/'}
-							class:opacity-100={currentPath === '/'}
-						>Home</a>
+							class:opacity-100={currentPath === '/'}>Home</a
+						>
 					</nav>
 
 					<!-- 다크/라이트 토글 -->
@@ -146,7 +144,9 @@
 							class="pointer-events-auto cursor-pointer border-none bg-none p-0"
 							onclick={toggleMode}
 						>
-							<div class="h-[1.2em] w-[2.4em] overflow-hidden rounded-[6em] border border-current opacity-60">
+							<div
+								class="h-[1.2em] w-[2.4em] overflow-hidden rounded-[6em] border border-current opacity-60"
+							>
 								<div class="relative h-full w-full">
 									<div
 										class="absolute top-1/2 h-[0.8em] w-[0.8em] -translate-y-1/2 rounded-full bg-current transition-[left] duration-300 ease-[ease]"
@@ -160,22 +160,21 @@
 					<!-- 소셜 링크 -->
 					<div class="flex gap-8">
 						<a
-							href="https://twitter.com/itsoffbrand"
-							class="text-sm uppercase tracking-[0.1em] text-current no-underline opacity-50 transition-opacity duration-200 ease-[ease] hover:opacity-100"
+							href="https://github.com/soilSpoon"
+							class="text-sm tracking-[0.1em] text-current uppercase no-underline opacity-50 transition-opacity duration-200 ease-[ease] hover:opacity-100"
 							target="_blank"
-							rel="noopener noreferrer">Twitter</a
+							rel="noopener noreferrer">GitHub</a
 						>
 						<a
-							href="https://instagram.com/itsoffbrand"
-							class="text-sm uppercase tracking-[0.1em] text-current no-underline opacity-50 transition-opacity duration-200 ease-[ease] hover:opacity-100"
-							target="_blank"
-							rel="noopener noreferrer">Instagram</a
-						>
-						<a
-							href="https://linkedin.com/company/itsoffbrand"
-							class="text-sm uppercase tracking-[0.1em] text-current no-underline opacity-50 transition-opacity duration-200 ease-[ease] hover:opacity-100"
+							href="https://linkedin.com/in/mlz37"
+							class="text-sm tracking-[0.1em] text-current uppercase no-underline opacity-50 transition-opacity duration-200 ease-[ease] hover:opacity-100"
 							target="_blank"
 							rel="noopener noreferrer">LinkedIn</a
+						>
+						<a
+							href="mailto:lee111dae11@proton.me"
+							class="text-sm tracking-[0.1em] text-current uppercase no-underline opacity-50 transition-opacity duration-200 ease-[ease] hover:opacity-100"
+							>Email</a
 						>
 					</div>
 				</div>
@@ -183,4 +182,3 @@
 		</div>
 	</div>
 </div>
-

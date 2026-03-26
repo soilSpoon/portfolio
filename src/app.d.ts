@@ -9,7 +9,7 @@ declare global {
 		// interface Platform {}
 	}
 
-	// itsoffbrand.com 클론 — 커스텀 HTML 데이터 속성 타입 선언
+	// 커스텀 HTML 데이터 속성 타입 선언
 	namespace svelteHTML {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		interface HTMLAttributes<T> {

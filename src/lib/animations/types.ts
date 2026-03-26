@@ -14,12 +14,3 @@ export interface AnimCtx {
 	gsap: GsapType;
 	ST: STType;
 }
-
-/** Lenis 인스턴스 — 실제로 사용하는 메서드만 정의 */
-export interface LenisInstance {
-	on(event: string, fn: (...args: unknown[]) => void): void;
-	raf(time: number): void;
-	start(): void;
-	stop(): void;
-	destroy(): void;
-}
