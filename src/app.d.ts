@@ -14,8 +14,6 @@ declare global {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		interface HTMLAttributes<T> {
 			// 커스텀 속성 (data-* 없이 직접 사용)
-			'pointer-none'?: boolean | string;
-			'pointer-auto'?: boolean | string;
 			'home-hero'?: boolean | string;
 			'hh-tb'?: string;
 			'split-hero'?: boolean | string;

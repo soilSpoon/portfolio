@@ -7,7 +7,7 @@
 		<div class="h-[10vw]"></div>
 
 		<!-- 텍스트 오버레이 -->
-		<div data-grid-overlay pointer-none="" class="overlay-text pointer-events-none absolute inset-0 z-10">
+		<div data-grid-overlay class="overlay-text pointer-events-none absolute inset-0 z-10">
 			<div class="sticky top-0 h-screen">
 				<div class="absolute bottom-[3em] left-0 w-full px-[2vw]">
 					<h2 split-text="" class="text-[6em] font-normal uppercase leading-none tracking-[-0.02em]">

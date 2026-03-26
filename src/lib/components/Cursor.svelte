@@ -75,6 +75,6 @@
 	wrapper: fixed full-screen, mix-blend-mode: difference
 	dot: absolute position, GSAP moves it
 -->
-<div data-cursor-wrap="" pointer-none="" class="fixed inset-0 z-[2000] pointer-events-none select-none mix-blend-difference" aria-hidden="true">
+<div data-cursor-wrap class="fixed inset-0 z-[2000] pointer-events-none select-none mix-blend-difference" aria-hidden="true">
 	<div data-cursor="" class="absolute h-[2em] w-[2em] rounded-full bg-white/60 will-change-transform"></div>
 </div>

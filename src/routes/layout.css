@@ -170,8 +170,3 @@ html.light .portfolio ::selection {
 .char { display: inline-block; will-change: transform, opacity; }
 .line { display: block; overflow: hidden; }
 
-/* =============================================
-   포인터 유틸리티 (data attribute 기반)
-   ============================================= */
-.portfolio [pointer-none] { pointer-events: none !important; user-select: none; }
-.portfolio [pointer-auto] { pointer-events: auto !important; }

@@ -32,6 +32,8 @@
 	<meta property="og:title" content={META_TITLE} />
 	<meta property="og:description" content={META_DESC} />
 	<meta property="og:type" content="website" />
+	<meta property="og:url" content={page.url.href} />
+	<!-- TODO: og:image 추가 — SNS 공유 썸네일 (1200×630 PNG 권장) -->
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={META_TITLE} />
 	<meta name="twitter:description" content={META_DESC} />
@@ -49,7 +51,7 @@
 <HUD {currentPath} />
 
 <!-- ─── 전역 Orb (fixed, z-index:-2) ──────────────────────────────────────── -->
-<div data-orb-wrap="" pointer-none="" class="fixed inset-0 flex items-center justify-center -z-2 pointer-events-none overflow-x-clip">
+<div data-orb-wrap class="fixed inset-0 flex items-center justify-center -z-2 pointer-events-none select-none overflow-x-clip">
 	<Orb />
 	<!-- 첫 번째 outline ring (80vh) -->
 	<div orb-out-w="1" class="absolute h-[80vh] w-[80vh] -z-2 will-change-transform">
@@ -74,18 +76,16 @@
 </div>
 </div>
 
-
 <style>
-	/* Three.js canvas — runtime injected, :global required */
+	/* Three.js canvas — runtime injected, :global required
+	   width/height !important: Three.js renderer.setSize()가 인라인 스타일 주입 → 오버라이드 필수 */
 	:global(.portfolio canvas) {
 		display: block;
 		border-radius: 50%;
-		background-color: transparent !important;
 	}
 	:global(.portfolio canvas.orb-canvas) {
 		border-radius: 0;
 		width: 100% !important;
 		height: 100% !important;
-		background-color: transparent !important;
 	}
 </style>
