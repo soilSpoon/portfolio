@@ -170,6 +170,7 @@
 		<!-- Profile: summary + highlights -->
 		<div class="min-w-0 border-b border-[#E5E8EB] pb-[8px] break-keep">
 			<p class="m-0 mb-[9px] text-[11px] leading-[1.65] text-[#4E5968]">
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -- 빌드타임 YAML 마크다운, @html이 유일한 수단 -->
 				{@html data.summary}
 			</p>
 			{#if data.highlightBullets.length > 0}
@@ -220,7 +221,7 @@
 											· {project.team
 												? `${project.team} ${project.role}`
 												: project.role}{/if}{#if project.url}
-										· <a href={project.url} class="project-link"
+										· <a href={project.url} rel="external" class="project-link"
 												>{project.url.replace(/^https?:\/\//, '')}</a
 											>{/if}
 									</div>
@@ -238,6 +239,7 @@
 												<div
 													class="text-[9px] leading-[1.6] [overflow-wrap:anywhere] text-[#4E5968]"
 												>
+												<!-- eslint-disable-next-line svelte/no-at-html-tags -- 빌드타임 YAML 마크다운, @html이 유일한 수단 -->
 												{@html detail.content}
 												</div>
 											</div>
@@ -273,7 +275,7 @@
 							</div>
 							{#if sp.url}
 								<div class="text-[9px] [overflow-wrap:anywhere] text-[#8B95A1]">
-								<a href={sp.url} class="project-link">{sp.url.replace(/^https?:\/\//, '')}</a>
+								<a href={sp.url} rel="external" class="project-link">{sp.url.replace(/^https?:\/\//, '')}</a>
 								</div>
 							{/if}
 							{#if sp.bullets.length > 0}

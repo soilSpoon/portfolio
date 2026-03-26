@@ -130,7 +130,7 @@
 								<a
 									href={url}
 									target="_blank"
-									rel="noopener"
+									rel="external noopener"
 									class="flex items-center gap-[0.3em] text-[0.75em] text-inherit no-underline opacity-70 transition-opacity duration-200 hover:opacity-100"
 								>
 									<span class="text-[0.75em]">{name}</span>

@@ -40,6 +40,7 @@
 				{i + 1}. {detail.title}
 			</h2>
 			<div class="career-prose">
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -- 빌드타임 YAML 마크다운, @html이 유일한 수단 -->
 				{@html marked(detail.content, { breaks: true })}
 			</div>
 		</section>
