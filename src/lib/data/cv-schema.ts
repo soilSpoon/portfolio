@@ -19,7 +19,8 @@ const BulletSchema = z.object({
 const DetailSchema = z.object({
 	title: z.string(),
 	tags: z.array(z.string()),
-	content: z.string()
+	content: z.string(),
+	career_order: z.number().optional()
 });
 
 const ExperienceSchema = z.object({

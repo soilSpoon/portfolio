@@ -10,6 +10,7 @@
 			.flatMap((s) =>
 				s.data.flatMap((project) => (project.details ?? []).map((detail) => ({ detail, project })))
 			)
+			.sort((a, b) => (a.detail.career_order ?? 99) - (b.detail.career_order ?? 99))
 	);
 </script>
 
