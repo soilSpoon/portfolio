@@ -106,7 +106,6 @@
 	});
 
 	function runOutro(gsap: typeof import('gsap').gsap, chars: NodeListOf<HTMLElement>) {
-		console.log('[Preloader runOutro] starting');
 		// ── Preloader UI 페이드아웃 타임라인 ──────────────────────────────────
 		const outroTl = gsap.timeline();
 

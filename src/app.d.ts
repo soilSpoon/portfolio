@@ -12,10 +12,6 @@ declare global {
 	// itsoffbrand.com 클론 — 커스텀 HTML 데이터 속성 타입 선언
 	namespace svelteHTML {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		interface SVGAttributes<T> {
-			'hsc-scale'?: boolean | string;
-		}
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		interface HTMLAttributes<T> {
 			// 커스텀 속성 (data-* 없이 직접 사용)
 			'pointer-none'?: boolean | string;
@@ -25,11 +21,6 @@ declare global {
 			'split-hero'?: boolean | string;
 			'split-text'?: boolean | string;
 			'grid-anim'?: boolean | string;
-			'hsc-track'?: boolean | string;
-			'hsc-scale'?: boolean | string;
-			'hsc-img'?: boolean | string;
-			'hsc-rotate'?: boolean | string;
-			'hsc-text'?: boolean | string;
 			'home-work'?: boolean | string;
 			'work-hero'?: boolean | string;
 			'orb-out-w'?: string;

@@ -71,7 +71,6 @@
 
 			// ── 인트로 실행 + Lenis 시작 ───────────────────────────────────────
 			const runIntroAndStartScroll = (fromPreloader: boolean) => {
-				console.log('[+page.svelte] runIntroAndStartScroll, fromPreloader:', fromPreloader);
 				if (cancelled || !lenisController) return;
 
 				const introTl = runHeroIntro({ gsap }, { fromPreloader });

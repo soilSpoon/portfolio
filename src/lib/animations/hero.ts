@@ -121,12 +121,10 @@ export function buildOrbOutlineBreathing(
 export function buildOrbHeroIntro(gsap: GsapType, { fromDotPosition = true } = {}) {
 	const { orb, out1, out2 } = getOrbEls();
 	const tl = gsap.timeline();
-	console.log('[buildOrbHeroIntro] called, fromDotPosition:', fromDotPosition, 'orb:', !!orb);
 
 	if (orb) {
 		if (fromDotPosition) {
 			// Preloader: 도트 위치(8em, 8.1em)에서 시작
-			console.log('[buildOrbHeroIntro] Setting orb initial state (fromDotPosition=true)');
 			gsap.set(orb, {
 				autoAlpha: 0,
 				width: '0em',
@@ -146,9 +144,7 @@ export function buildOrbHeroIntro(gsap: GsapType, { fromDotPosition = true } = {
 					y: ORB.INIT_Y,
 					width: ORB.TINY,
 					height: ORB.TINY,
-					duration: 1,
-					onStart: () => console.log('[orb Phase1] started'),
-					onComplete: () => console.log('[orb Phase1] complete')
+					duration: 1
 				},
 				0
 			);
@@ -188,9 +184,7 @@ export function buildOrbHeroIntro(gsap: GsapType, { fromDotPosition = true } = {
 				minHeight: ORB.MIN,
 				minWidth: ORB.MIN,
 				duration: 1,
-				ease: 'power2.inOut',
-				onStart: () => console.log('[orb Phase2] started'),
-				onComplete: () => console.log('[orb Phase2] complete, autoAlpha:', window.getComputedStyle(orb).opacity)
+				ease: 'power2.inOut'
 			},
 			1
 		);
@@ -233,12 +227,10 @@ export function buildOrbHeroIntro(gsap: GsapType, { fromDotPosition = true } = {
 export function setHeroInitialState(gsap: GsapType): void {
 	const { orb, out1, out2 } = getOrbEls();
 	const allChars = document.querySelectorAll<HTMLElement>(SELECTORS.heroChars);
-	console.log('[setHeroInitialState] preloaderDone:', document.documentElement.dataset.preloaderDone);
 
 	if (allChars.length) gsap.set(allChars, { y: HERO_CHARS.hiddenY });
 
 	if (orb && document.documentElement.dataset.preloaderDone === 'true') {
-		orb.classList.remove('is-pre');
 		gsap.set(orb, {
 			autoAlpha: 0,
 			width: '0em',
@@ -338,25 +330,4 @@ export function setupHeroScroll({ gsap }: AnimCtx): void {
 			scrollTrigger: trigger
 		});
 	}
-}
-
-// ── Deprecated (하위 호환) ────────────────────────────────────────────────────
-
-/** @deprecated Use buildHudIntro instead */
-export function playHudIntro(gsap: GsapType): void {
-	buildHudIntro(gsap);
-}
-
-/** @deprecated Use buildOrbHeroIntro instead */
-export function playOrbHeroIntro(gsap: GsapType): void {
-	buildOrbHeroIntro(gsap);
-}
-
-/** @deprecated Use buildOrbOutlineBreathing instead */
-export function animateOrbOutlineBreathing(
-	gsap: GsapType,
-	out1: HTMLElement,
-	out2: HTMLElement | null
-): void {
-	buildOrbOutlineBreathing(gsap, out1, out2);
 }

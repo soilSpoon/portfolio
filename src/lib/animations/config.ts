@@ -159,21 +159,6 @@ export const GRID = {
 	}
 } as const;
 
-// ── HSC (Logo Reveal Scroll) ───────────────────────────────────────────────────
-export const HSC = {
-	logoScale: 29,
-	logoRotation: 180,
-	imgSize: '20.5em',
-	imgRotation: 45,
-	textSlideX: '50vw',
-	textExitY: '20vh',
-	textInnerY: '2em',
-	/** 섹션 scale-down 최대 감소치 */
-	sectionScaleFactor: 0.1,
-	/** boxShadow 최대 px */
-	sectionShadowMax: 1.5
-} as const;
-
 // ── Work (HomeWork) ────────────────────────────────────────────────────────────
 export const WORK = {
 	/** 홀수/짝수 카드 parallax 거리 */
