@@ -328,7 +328,7 @@ projects:
         tags:
           - general
           - toss
-      - text: Self-hosted → ARC 전환, CI 3단계 병렬화, Husky + lint-staged로 커밋 전 린트 자동화
+      - text: Self-hosted → ARC 전환, CI 3단계 병렬화, PHPStan 정적 분석 + Husky + lint-staged 자동화
         tags:
           - general
       - text: jQuery/PHP 5 → React/Laravel 전면 전환 — 컴포넌트 기반 UI 개발 체계 구축
@@ -349,7 +349,7 @@ projects:
       - text: React Native + WebView 하이브리드 모바일 앱 (Android/iOS) 개발 및 스토어 배포
         tags:
           - general_md
-      - text: Self-hosted runner → ARC(Actions Runner Controller) 전환, CI 3단계 병렬화, Husky + lint-staged로 커밋 전 린트 자동화
+      - text: Self-hosted runner → ARC(Actions Runner Controller) 전환, CI 3단계 병렬화, PHPStan 정적 분석 + Husky + lint-staged 자동화
         tags:
           - general_md
     details:
@@ -473,7 +473,7 @@ projects:
           #### 개선 사항
 
           - Self-hosted runner 도입 → ARC(Actions Runner Controller) 업그레이드로 Kubernetes 기반 러너 관리
-          - CI를 Frontend·Backend lint·정적 분석 3단계 병렬 실행 구조로 재설계, 동일 브랜치 중복 실행 방지
+          - CI를 Frontend lint·Backend lint·PHPStan 정적 분석 3단계 병렬 실행 구조로 재설계, 동일 브랜치 중복 실행 방지
           - Husky + lint-staged 도입으로 커밋 전 파일 타입별 자동 검사
           - Node.js 20 업그레이드로 빌드 성능 향상
 
