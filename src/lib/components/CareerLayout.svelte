@@ -8,36 +8,34 @@
 		data.sections
 			.filter((s): s is Extract<typeof s, { type: 'projects' }> => s.type === 'projects')
 			.flatMap((s) =>
-				s.data.flatMap((project) =>
-					(project.details ?? []).map((detail) => ({ detail, project }))
-				)
+				s.data.flatMap((project) => (project.details ?? []).map((detail) => ({ detail, project })))
 			)
 	);
 </script>
 
 <article
 	class="mx-auto max-w-3xl px-8 py-8 text-base leading-relaxed text-gray-900
-		print:max-w-none print:p-0 print:m-0 print:text-[9.5pt] print:leading-snug print:text-black
+		print:m-0 print:max-w-none print:p-0 print:text-[9.5pt] print:leading-snug print:text-black
 		print:[-webkit-print-color-adjust:exact] print:[print-color-adjust:exact]"
 	style:--accent={theme.accent}
 	style:--heading-border-width={theme.heading_border_width}
 	style="font-family: var(--font-family, 'Toss Product Sans', sans-serif)"
 >
-	<header class="mb-6 pb-4 border-b-2 border-blue-500 print:mb-2 print:pb-1.5">
-		<h1 class="mb-1 text-4xl font-extrabold leading-tight text-gray-900 tracking-tight print:text-[17pt]">
+	<header class="mb-6 border-b-2 border-blue-500 pb-4 print:mb-2 print:pb-1.5">
+		<h1
+			class="mb-1 text-4xl leading-tight font-extrabold tracking-tight text-gray-900 print:text-[17pt]"
+		>
 			{data.basics.name}
 			<span class="font-normal text-gray-400 print:text-gray-500">|</span>
 			{data.title}
 		</h1>
 	</header>
 
-	{#each allIssues as { detail }, i}
-		<section
-			class="cv-section py-5 border-t border-gray-400 first-of-type:border-t-0 print:py-2"
-		>
+	{#each allIssues as { detail }, i (i)}
+		<section class="cv-section border-t border-gray-400 py-5 first-of-type:border-t-0 print:py-2">
 			<h2
-				class="mb-2 text-xl font-bold text-blue-500 pb-1 border-b-2 border-blue-500
-					print:text-[12pt] print:[break-after:avoid] print:mb-1 print:pb-0.5"
+				class="mb-2 border-b-2 border-blue-500 pb-1 text-xl font-bold text-blue-500
+					print:mb-1 print:[break-after:avoid] print:pb-0.5 print:text-[12pt]"
 			>
 				{i + 1}. {detail.title}
 			</h2>

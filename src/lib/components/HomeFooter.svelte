@@ -3,7 +3,7 @@
 	import LogoSvg from './LogoSvg.svelte';
 </script>
 
-<section class="w-full relative">
+<section class="relative w-full">
 	<div class="w-full max-w-full px-[2vw]">
 		<div class="border-t border-border">
 			<div class="h-[5vw]"></div>
@@ -13,23 +13,41 @@
 				<div class="flex flex-col gap-[0.1em]">
 					<div class="overlay-text">
 						<div class="overflow-hidden">
-							<div stagger-scroll="" split-text="" class="text-[6em] font-normal uppercase leading-none tracking-[-0.02em] overflow-hidden">Let's build</div>
+							<div
+								stagger-scroll=""
+								split-text=""
+								class="overflow-hidden text-[6em] leading-none font-normal tracking-[-0.02em] uppercase"
+							>
+								Let's build
+							</div>
 						</div>
 					</div>
 					<div class="overlay-text">
 						<div class="overflow-hidden">
-							<div stagger-scroll="" split-text="" class="text-[6em] font-normal uppercase leading-none tracking-[-0.02em] overflow-hidden">something</div>
+							<div
+								stagger-scroll=""
+								split-text=""
+								class="overflow-hidden text-[6em] leading-none font-normal tracking-[-0.02em] uppercase"
+							>
+								something
+							</div>
 						</div>
 					</div>
 					<div class="flex flex-wrap items-center gap-8">
 						<div class="overlay-text">
 							<div class="overflow-hidden">
-								<div stagger-scroll="" split-text="" class="text-[6em] font-normal uppercase leading-none tracking-[-0.02em] overflow-hidden">efficient,</div>
+								<div
+									stagger-scroll=""
+									split-text=""
+									class="overflow-hidden text-[6em] leading-none font-normal tracking-[-0.02em] uppercase"
+								>
+									efficient,
+								</div>
 							</div>
 						</div>
 						<a
 							href="mailto:lee111dae11@proton.me"
-							class="inline-flex items-center gap-2 rounded-[var(--radius-lg)] border border-current px-[1.6em] py-[0.8em] text-eyebrow text-inherit no-underline transition-[background,color] duration-300 ease-[ease] hover:bg-text hover:text-bg"
+							class="text-eyebrow inline-flex items-center gap-2 rounded-[var(--radius-lg)] border border-current px-[1.6em] py-[0.8em] text-inherit no-underline transition-[background,color] duration-300 ease-[ease] hover:bg-text hover:text-bg"
 						>
 							<div class="flex items-center gap-2">
 								<div class="overflow-hidden">
@@ -41,7 +59,13 @@
 					</div>
 					<div class="overlay-text">
 						<div class="overflow-hidden">
-							<div stagger-scroll="" split-text="" class="text-[6em] font-normal uppercase leading-none tracking-[-0.02em] overflow-hidden">To+Gether</div>
+							<div
+								stagger-scroll=""
+								split-text=""
+								class="overflow-hidden text-[6em] leading-none font-normal tracking-[-0.02em] uppercase"
+							>
+								To+Gether
+							</div>
 						</div>
 					</div>
 				</div>
@@ -50,7 +74,13 @@
 				<div class="grid grid-cols-4 gap-8 overlay-text">
 					<div class="flex flex-col gap-4">
 						<div class="overflow-hidden">
-							<p split-text="" stagger-scroll="1" class="text-[0.75em] leading-[1.6] uppercase tracking-[0.08em] opacity-60">Sitemap</p>
+							<p
+								split-text=""
+								stagger-scroll="1"
+								class="text-[0.75em] leading-[1.6] tracking-[0.08em] uppercase opacity-60"
+							>
+								Sitemap
+							</p>
 						</div>
 						<div class="flex flex-col gap-2">
 							<a
@@ -71,7 +101,13 @@
 					</div>
 					<div class="flex flex-col gap-4">
 						<div class="overflow-hidden">
-							<p split-text="" stagger-scroll="1" class="text-[0.75em] leading-[1.6] uppercase tracking-[0.08em] opacity-60">Skills</p>
+							<p
+								split-text=""
+								stagger-scroll="1"
+								class="text-[0.75em] leading-[1.6] tracking-[0.08em] uppercase opacity-60"
+							>
+								Skills
+							</p>
 						</div>
 						<div class="flex flex-col gap-2">
 							{#each ['React / TypeScript', 'Next.js / SvelteKit', 'C++ / WASM', 'Nest.js / Laravel', 'AI Agents'] as skill (skill)}
@@ -81,11 +117,17 @@
 					</div>
 					<div class="flex flex-col gap-4">
 						<div class="overflow-hidden">
-							<p split-text="" stagger-scroll="1" class="text-[0.75em] leading-[1.6] uppercase tracking-[0.08em] opacity-60">Links</p>
+							<p
+								split-text=""
+								stagger-scroll="1"
+								class="text-[0.75em] leading-[1.6] tracking-[0.08em] uppercase opacity-60"
+							>
+								Links
+							</p>
 						</div>
 						<div class="flex flex-col gap-2">
 							{#each [['GitHub', 'https://github.com/soilSpoon'], ['LinkedIn', 'https://linkedin.com/in/mlz37']] as [name, url] (name)}
-								<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external URL -->
+								<!-- eslint-disable svelte/no-navigation-without-resolve -- external URL -->
 								<a
 									href={url}
 									target="_blank"
@@ -95,6 +137,7 @@
 									<span class="text-[0.75em]">{name}</span>
 									<span class="opacity-60"><span class="text-[0.75em]">↗</span></span>
 								</a>
+								<!-- eslint-enable svelte/no-navigation-without-resolve -->
 							{/each}
 						</div>
 					</div>
@@ -102,14 +145,18 @@
 
 				<!-- ─── 하단 바 ───────────────────────── -->
 				<div
-					class="overlay-text flex items-center justify-between border-t border-border pt-6 pb-8"
+					class="flex items-center justify-between border-t border-border pt-6 pb-8 overlay-text"
 				>
 					<div class="h-8 w-8 opacity-40">
 						<LogoSvg class="h-full w-full" />
 					</div>
 					<div class="flex flex-col gap-[0.3em] text-right">
-						<p class="text-[var(--font-size-mini)] tracking-[0.03em] opacity-60">© 2025 이대희. All rights reserved.</p>
-						<p class="text-[var(--font-size-mini)] tracking-[0.03em] opacity-60">lee111dae11@proton.me</p>
+						<p class="tracking-[0.03em] text-[var(--font-size-mini)] opacity-60">
+							© 2025 이대희. All rights reserved.
+						</p>
+						<p class="tracking-[0.03em] text-[var(--font-size-mini)] opacity-60">
+							lee111dae11@proton.me
+						</p>
 					</div>
 				</div>
 			</div>

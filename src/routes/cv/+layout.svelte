@@ -12,10 +12,8 @@
 
 <svelte:head>
 	<link rel="preconnect" href="https://static.toss.im" crossorigin="anonymous" />
-	<link
-		href="https://static.toss.im/tps/main.css"
-		rel="stylesheet"
-	/>
+	<link href="https://static.toss.im/tps/main.css" rel="stylesheet" />
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -- trusted content rendered at build time -->
 	{@html `<style>
 		@media print {
 			@page { size: A4; margin: 18mm 20mm; }

@@ -7,7 +7,7 @@
 		markIntroDone,
 		markVisited
 	} from '$lib/animations/intro-state';
-	import { HERO_TEXT_BLOCK_SELECTORS, SELECTORS } from '$lib/animations/selectors';
+	import { HERO_TEXT_BLOCK_SELECTORS } from '$lib/animations/selectors';
 	import {
 		HERO_CHARS,
 		HERO_TEXT_BLOCK_OFFSETS,
@@ -216,10 +216,15 @@
 	>
 		<div class="relative h-[20em] w-[20em]">
 			<div class="absolute inset-0 h-full w-full">
-				<svg class="h-full w-full overflow-visible" viewBox="0 0 162 162" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+				<svg
+					class="h-full w-full overflow-visible"
+					viewBox="0 0 162 162"
+					xmlns="http://www.w3.org/2000/svg"
+					aria-hidden="true"
+				>
 					<path
 						bind:this={pathX}
-						class="pre-svg-path stroke-main-dark dark:stroke-main-light [stroke-dasharray:1000] [stroke-dashoffset:1000]"
+						class="pre-svg-path stroke-main-dark [stroke-dasharray:1000] [stroke-dashoffset:1000] dark:stroke-main-light"
 						fill="none"
 						stroke-width="0.5"
 						stroke-miterlimit="10"
@@ -232,7 +237,7 @@
 					/>
 					<path
 						bind:this={pathC}
-						class="pre-svg-path stroke-main-dark dark:stroke-main-light [stroke-dasharray:1000] [stroke-dashoffset:1000]"
+						class="pre-svg-path stroke-main-dark [stroke-dasharray:1000] [stroke-dashoffset:1000] dark:stroke-main-light"
 						fill="none"
 						stroke-width="0.5"
 						stroke-miterlimit="10"
@@ -244,10 +249,13 @@
 			</div>
 
 			<div
-				class="absolute inset-0 h-full w-full mask-[url('/ob-logomark.svg')] mask-contain mask-no-repeat mask-center [clip-path:inset(0%_0%_0%_0%)]"
+				class="absolute inset-0 h-full w-full mask-[url('/ob-logomark.svg')] mask-contain mask-center mask-no-repeat [clip-path:inset(0%_0%_0%_0%)]"
 				bind:this={maskEl}
 			>
-				<div class="h-full w-full scale-y-0 origin-bottom bg-main-dark dark:bg-main-light" bind:this={fillEl}></div>
+				<div
+					class="h-full w-full origin-bottom scale-y-0 bg-main-dark dark:bg-main-light"
+					bind:this={fillEl}
+				></div>
 			</div>
 		</div>
 
@@ -256,12 +264,18 @@
 				<div class="overflow-hidden">
 					<div class="flex gap-[0.05em]">
 						{#each BUILD_CHARS as char, i (i)}
-							<span class="pre-char inline-block text-[0.75em] tracking-[0.1em] uppercase opacity-60">{char}</span>
+							<span
+								class="pre-char inline-block text-[0.75em] tracking-[0.1em] uppercase opacity-60"
+								>{char}</span
+							>
 						{/each}
 					</div>
 				</div>
 				<div class="overflow-hidden">
-					<div class="text-[0.75em] tracking-[0.05em] tabular-nums opacity-60" bind:this={prePercentEl}>
+					<div
+						class="text-[0.75em] tracking-[0.05em] tabular-nums opacity-60"
+						bind:this={prePercentEl}
+					>
 						{percentValue}%
 					</div>
 				</div>
@@ -269,4 +283,3 @@
 		</div>
 	</div>
 {/if}
-

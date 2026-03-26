@@ -15,6 +15,7 @@
 	<title>{m.cv_detail_title({ title: data.title })}</title>
 	<meta name="robots" content="noindex" />
 	{#if data.mode === 'resume'}
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -- trusted content rendered at build time -->
 		{@html `<style>
 			@media print {
 				@page { size: A4; margin: 0; }

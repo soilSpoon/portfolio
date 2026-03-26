@@ -5,8 +5,6 @@ import {
 	MasterSchema,
 	VariantSchema,
 	ThemeSchema,
-	formatDates,
-	computeDuration,
 	resolveVariantString,
 	type MasterData,
 	type VariantConfig,
@@ -125,15 +123,16 @@ function resolveSection(
 						if (Array.isArray(p.tech)) {
 							tech = p.tech;
 						} else if (typeof p.tech === 'object') {
-							tech = (p.tech as Record<string, string[]>)[variantName] ?? (p.tech as Record<string, string[]>).default ?? undefined;
+							tech =
+								(p.tech as Record<string, string[]>)[variantName] ??
+								(p.tech as Record<string, string[]>).default ??
+								undefined;
 						}
 					}
 
 					if (mode === 'resume') {
 						// Filter bullets by tags
-						const bullets: Bullet[] = (p.bullets ?? []).filter((b) =>
-							matchesTags(b.tags, filter)
-						);
+						const bullets: Bullet[] = (p.bullets ?? []).filter((b) => matchesTags(b.tags, filter));
 						if (bullets.length === 0) return null;
 						return {
 							slug: p.slug,
@@ -150,12 +149,8 @@ function resolveSection(
 						};
 					} else {
 						// Career mode: filter details by tags
-						const details = (p.details ?? []).filter((d) =>
-							matchesTags(d.tags, filter)
-						);
-						const bullets: Bullet[] = (p.bullets ?? []).filter((b) =>
-							matchesTags(b.tags, filter)
-						);
+						const details = (p.details ?? []).filter((d) => matchesTags(d.tags, filter));
+						const bullets: Bullet[] = (p.bullets ?? []).filter((b) => matchesTags(b.tags, filter));
 						if (details.length === 0 && bullets.length === 0) return null;
 						return {
 							slug: p.slug,
@@ -195,15 +190,15 @@ function resolveSection(
 		case 'sideProjects': {
 			const items = (master.sideProjects ?? [])
 				.filter((sp) => matchesTags(sp.tags, filter))
-				.map((sp): ResolvedSideProject => ({
-					title: sp.title,
-					dates: sp.dates,
-					url: sp.url,
-					tags: sp.tags,
-					bullets: sp.bullets
-						.filter((b) => matchesTags(b.tags, filter))
-						.map((b) => b.text)
-				}));
+				.map(
+					(sp): ResolvedSideProject => ({
+						title: sp.title,
+						dates: sp.dates,
+						url: sp.url,
+						tags: sp.tags,
+						bullets: sp.bullets.filter((b) => matchesTags(b.tags, filter)).map((b) => b.text)
+					})
+				);
 			if (items.length === 0) return null;
 			return { type: 'sideProjects', style, data: items };
 		}
@@ -262,7 +257,9 @@ export function loadCvData(slug: string): { data: FilteredData; theme: ThemeConf
 	// Resolve highlight bullets: inline overrides key lookup
 	const highlightBullets =
 		variant.highlight_bullets_text ??
-		(variant.highlight_bullets ? (master.highlight_bullets?.[variant.highlight_bullets] ?? []) : []);
+		(variant.highlight_bullets
+			? (master.highlight_bullets?.[variant.highlight_bullets] ?? [])
+			: []);
 
 	// Build sidebar data filtered by variant tags
 	// Collect all filter tags from variant sections for sidebar filtering
@@ -271,7 +268,9 @@ export function loadCvData(slug: string): { data: FilteredData; theme: ThemeConf
 		.filter((v, i, a) => a.indexOf(v) === i);
 
 	const sidebar: SidebarData = {
-		skills: master.skills.filter((s) => matchesTags(s.tags, allFilterTags.length > 0 ? allFilterTags : undefined)),
+		skills: master.skills.filter((s) =>
+			matchesTags(s.tags, allFilterTags.length > 0 ? allFilterTags : undefined)
+		),
 		education: master.education
 			.filter((e) => matchesTags(e.tags, allFilterTags.length > 0 ? allFilterTags : undefined))
 			.map((e) => ({
@@ -303,7 +302,8 @@ export function loadCvData(slug: string): { data: FilteredData; theme: ThemeConf
 			sections,
 			mode,
 			title: mode === 'career' ? (variant.career_title ?? variant.title) : variant.title,
-			subtitle: mode === 'career' ? (variant.career_subtitle ?? variant.subtitle) : variant.subtitle,
+			subtitle:
+				mode === 'career' ? (variant.career_subtitle ?? variant.subtitle) : variant.subtitle,
 			slug
 		},
 		theme
