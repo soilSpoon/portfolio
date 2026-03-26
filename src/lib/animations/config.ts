@@ -20,6 +20,18 @@ export const ORB = {
 	MIN: '45em'
 } as const;
 
+/** Orb 인트로 phase 타이밍 — hero.ts, Preloader.svelte 모두 이 값 참조 */
+export const ORB_PHASES = {
+	/** Phase 1: 도트 위치에서 tiny orb 성장 */
+	phase1: 1,
+	/** Phase 2: 중앙 이동 + full size 확장 */
+	phase2: 1,
+	phase2Ease: 'power2.inOut',
+} as const;
+
+/** Phase 1 + Phase 2 합산 — Preloader와 hero에서 "orb 인트로 완료" 시점으로 사용 */
+export const ORB_INTRO_TOTAL = ORB_PHASES.phase1 + ORB_PHASES.phase2;
+
 // ── Orb Outline Breathing ──────────────────────────────────────────────────────
 export const ORB_OUTLINE_BREATHING = {
 	out1: { scale: 1.3, duration: 2, ease: 'power2.inOut', delay: 2 },

@@ -8,7 +8,12 @@
 		markVisited
 	} from '$lib/animations/intro-state';
 	import { HERO_TEXT_BLOCK_SELECTORS, SELECTORS } from '$lib/animations/selectors';
-	import { HERO_CHARS, HERO_TEXT_BLOCK_OFFSETS, PRELOADER } from '$lib/animations/config';
+	import {
+		HERO_CHARS,
+		HERO_TEXT_BLOCK_OFFSETS,
+		ORB_INTRO_TOTAL,
+		PRELOADER
+	} from '$lib/animations/config';
 
 	interface Props {
 		onDone?: () => void;
@@ -180,7 +185,7 @@
 		// ── Orb + Outline + Hero chars 인트로 (공유 타임라인 사용) ────────────
 		const orbIntroTl = buildOrbHeroIntro(gsap);
 
-		// orb Phase 2 완료 시점(2s)에 이벤트 dispatch + preloader fade
+		// orb Phase 2 완료 시점에 이벤트 dispatch + preloader fade
 		orbIntroTl.call(
 			() => {
 				markIntroDone();
@@ -197,7 +202,7 @@
 				});
 			},
 			[],
-			2
+			ORB_INTRO_TOTAL
 		);
 	}
 </script>

@@ -2,6 +2,8 @@ import type { AnimCtx, GsapType } from './types';
 import { SELECTORS } from './selectors';
 import {
 	ORB,
+	ORB_PHASES,
+	ORB_INTRO_TOTAL,
 	ORB_OUTLINE_BREATHING,
 	ORB_OUTLINE_REVEAL,
 	ORB_ROTATION,
@@ -144,7 +146,7 @@ export function buildOrbHeroIntro(gsap: GsapType, { fromDotPosition = true } = {
 					y: ORB.INIT_Y,
 					width: ORB.TINY,
 					height: ORB.TINY,
-					duration: 1
+					duration: ORB_PHASES.phase1
 				},
 				0
 			);
@@ -167,7 +169,7 @@ export function buildOrbHeroIntro(gsap: GsapType, { fromDotPosition = true } = {
 					autoAlpha: 1,
 					width: ORB.TINY,
 					height: ORB.TINY,
-					duration: 1
+					duration: ORB_PHASES.phase1
 				},
 				0
 			);
@@ -183,10 +185,10 @@ export function buildOrbHeroIntro(gsap: GsapType, { fromDotPosition = true } = {
 				height: ORB.FULL,
 				minHeight: ORB.MIN,
 				minWidth: ORB.MIN,
-				duration: 1,
-				ease: 'power2.inOut'
+				duration: ORB_PHASES.phase2,
+				ease: ORB_PHASES.phase2Ease
 			},
-			1
+			ORB_PHASES.phase1
 		);
 	}
 
@@ -195,10 +197,10 @@ export function buildOrbHeroIntro(gsap: GsapType, { fromDotPosition = true } = {
 		tl.to(out1, { autoAlpha: 1, scale: 1, ...ORB_OUTLINE_REVEAL }, 0);
 	}
 	if (out2) {
-		tl.to(out2, { autoAlpha: 1, scale: 1, ...ORB_OUTLINE_REVEAL }, 1);
+		tl.to(out2, { autoAlpha: 1, scale: 1, ...ORB_OUTLINE_REVEAL }, ORB_PHASES.phase1);
 	}
 
-	// Hero chars (orb Phase 2와 동시 시작, delay:1)
+	// Hero chars (orb Phase 2와 동시 시작)
 	tl.to(
 		SELECTORS.heroChars,
 		{
@@ -207,7 +209,7 @@ export function buildOrbHeroIntro(gsap: GsapType, { fromDotPosition = true } = {
 			ease: HERO_CHARS.ease,
 			stagger: HERO_CHARS.stagger
 		},
-		1
+		ORB_PHASES.phase1
 	);
 
 	// Outline breathing (reveal 완료 후)
@@ -293,8 +295,8 @@ export function runHeroIntro(
 	} else {
 		// SPA nav: orb + outline + chars + [hh-tb] 전체 시퀀스 (중앙에서 시작)
 		tl.add(buildOrbHeroIntro(gsap, { fromDotPosition: false }), 0);
-		// [hh-tb]: orb Phase 2 완료 후 (2s) 슬라이드인
-		tl.add(buildHeroTextBlocksIntro(gsap), 2);
+		// [hh-tb]: orb Phase 2 완료 후 슬라이드인
+		tl.add(buildHeroTextBlocksIntro(gsap), ORB_INTRO_TOTAL);
 	}
 
 	return tl;
