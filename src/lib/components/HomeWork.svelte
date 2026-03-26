@@ -66,7 +66,7 @@
 									<div class="mt-[0.5em] flex flex-wrap gap-[0.4em]">
 										{#each project.tags as tag (tag)}
 											<span
-												class="rounded-full border border-white/30 px-[0.6em] py-[0.15em] text-[0.65em] font-normal tracking-[0.05em] uppercase opacity-60"
+												class="rounded-full border border-white/30 px-[0.6em] py-[0.15em] text-[0.75em] font-normal tracking-[0.05em] uppercase opacity-60"
 												>{tag}</span
 											>
 										{/each}

@@ -41,7 +41,7 @@
 					>
 						<div class="text-[1.1em] font-medium tracking-[-0.01em]">{project.name}</div>
 						<div
-							class="mt-[0.3em] flex items-center gap-[0.4em] text-[0.65em] tracking-[0.05em] opacity-60"
+							class="mt-[0.3em] flex items-center gap-[0.4em] text-[0.75em] tracking-[0.05em] opacity-60"
 						>
 							<span>★ {project.stars}</span>
 							<span>·</span>

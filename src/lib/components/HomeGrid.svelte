@@ -40,7 +40,7 @@
 								<div class="text-[1.4em] leading-none font-medium tracking-[-0.02em]">
 									{item.value}
 								</div>
-								<div class="mt-[0.3em] text-[0.5em] tracking-[0.1em] uppercase opacity-50">
+								<div class="mt-[0.3em] text-[0.65em] tracking-[0.1em] uppercase opacity-50">
 									{item.label}
 								</div>
 							</div>
@@ -49,7 +49,7 @@
 								data-grid-item
 								class="relative flex [aspect-ratio:14/9] items-center justify-center overflow-hidden rounded-sm bg-[rgba(140,140,140,0.05)] will-change-transform"
 							>
-								<div class="text-[0.7em] tracking-[0.05em] uppercase opacity-40">{item.label}</div>
+								<div class="text-[0.8em] tracking-[0.05em] uppercase opacity-40">{item.label}</div>
 							</div>
 						{/if}
 					{/each}

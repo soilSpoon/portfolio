@@ -31,7 +31,7 @@
 					<p
 						split-text=""
 						stagger-scroll="1"
-						class="text-[0.75em] leading-[1.6] font-medium tracking-[0.05em] uppercase"
+						class="text-[0.85em] leading-[1.6] font-medium tracking-[0.05em] uppercase"
 					>
 						7년차 풀스택 개발자. B2B SaaS부터 3D CAD 엔진, 오픈소스까지.
 					</p>
@@ -45,9 +45,9 @@
 							class="group/link relative mt-[1.2em] inline-flex items-center gap-2 text-inherit no-underline opacity-60 transition-opacity duration-200 hover:opacity-100"
 						>
 							<div class="overflow-hidden">
-								<div split-text="" stagger-text="" class="text-[0.85em]">View CV</div>
+								<div split-text="" stagger-text="" class="text-[1em]">View CV</div>
 								<div class="flex items-center opacity-70">
-									<div class="text-[0.85em]">-&gt;</div>
+									<div class="text-[1em]">-&gt;</div>
 								</div>
 							</div>
 							<div class="absolute -bottom-px left-0 h-px w-full bg-current opacity-30">
@@ -61,7 +61,7 @@
 			</div>
 			<div class="col-start-5 col-end-8">
 				<div class="overflow-hidden">
-					<p stagger-lines="2" split-text="" class="text-[0.85em] leading-[1.6] font-medium">
+					<p stagger-lines="2" split-text="" class="text-[1em] leading-[1.6] font-medium">
 						React·TypeScript를 주력으로 하되, C++, Rust, PHP 등 필요한 언어는 가리지 않습니다.
 						Claude Code, Codex 등 AI 코딩 도구를 적극 활용해 효율적으로 개발하며, 제품의 설계부터
 						운영까지 전 주기를 주도해왔습니다.

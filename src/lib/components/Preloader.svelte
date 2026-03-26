@@ -265,7 +265,7 @@
 					<div class="flex gap-[0.05em]">
 						{#each BUILD_CHARS as char, i (i)}
 							<span
-								class="pre-char inline-block text-[0.75em] tracking-[0.1em] uppercase opacity-60"
+								class="pre-char inline-block text-[0.85em] tracking-[0.1em] uppercase opacity-60"
 								>{char}</span
 							>
 						{/each}
@@ -273,7 +273,7 @@
 				</div>
 				<div class="overflow-hidden">
 					<div
-						class="text-[0.75em] tracking-[0.05em] tabular-nums opacity-60"
+						class="text-[0.85em] tracking-[0.05em] tabular-nums opacity-60"
 						bind:this={prePercentEl}
 					>
 						{percentValue}%

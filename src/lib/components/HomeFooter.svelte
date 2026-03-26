@@ -53,7 +53,7 @@
 								<div class="overflow-hidden">
 									<div split-text="" stagger-text="">Get in touch</div>
 								</div>
-								<div class="opacity-60"><div class="text-[0.75em]">→</div></div>
+								<div class="opacity-60"><div class="text-[0.85em]">→</div></div>
 							</div>
 						</a>
 					</div>
@@ -77,7 +77,7 @@
 							<p
 								split-text=""
 								stagger-scroll="1"
-								class="text-[0.75em] leading-[1.6] tracking-[0.08em] uppercase opacity-60"
+								class="text-[0.85em] leading-[1.6] tracking-[0.08em] uppercase opacity-60"
 							>
 								Sitemap
 							</p>
@@ -85,17 +85,17 @@
 						<div class="flex flex-col gap-2">
 							<a
 								href={resolve('/')}
-								class="flex items-center gap-[0.3em] text-[0.75em] text-inherit no-underline opacity-70 transition-opacity duration-200 hover:opacity-100"
+								class="flex items-center gap-[0.3em] text-[0.85em] text-inherit no-underline opacity-70 transition-opacity duration-200 hover:opacity-100"
 							>
-								<span class="text-[0.75em]">Home</span>
-								<span class="opacity-60"><span class="text-[0.75em]">→</span></span>
+								<span>Home</span>
+								<span class="opacity-60">→</span>
 							</a>
 							<a
 								href={resolve('/cv')}
-								class="flex items-center gap-[0.3em] text-[0.75em] text-inherit no-underline opacity-70 transition-opacity duration-200 hover:opacity-100"
+								class="flex items-center gap-[0.3em] text-[0.85em] text-inherit no-underline opacity-70 transition-opacity duration-200 hover:opacity-100"
 							>
-								<span class="text-[0.75em]">CV</span>
-								<span class="opacity-60"><span class="text-[0.75em]">→</span></span>
+								<span>CV</span>
+								<span class="opacity-60">→</span>
 							</a>
 						</div>
 					</div>
@@ -104,14 +104,14 @@
 							<p
 								split-text=""
 								stagger-scroll="1"
-								class="text-[0.75em] leading-[1.6] tracking-[0.08em] uppercase opacity-60"
+								class="text-[0.85em] leading-[1.6] tracking-[0.08em] uppercase opacity-60"
 							>
 								Skills
 							</p>
 						</div>
 						<div class="flex flex-col gap-2">
 							{#each ['React / TypeScript', 'Next.js / SvelteKit', 'C++ / WASM', 'Nest.js / Laravel', 'AI Agents'] as skill (skill)}
-								<span class="block text-[0.75em] opacity-50">{skill}</span>
+								<span class="block text-[0.85em] opacity-50">{skill}</span>
 							{/each}
 						</div>
 					</div>
@@ -120,7 +120,7 @@
 							<p
 								split-text=""
 								stagger-scroll="1"
-								class="text-[0.75em] leading-[1.6] tracking-[0.08em] uppercase opacity-60"
+								class="text-[0.85em] leading-[1.6] tracking-[0.08em] uppercase opacity-60"
 							>
 								Links
 							</p>
@@ -131,10 +131,10 @@
 									href={url}
 									target="_blank"
 									rel="external noopener"
-									class="flex items-center gap-[0.3em] text-[0.75em] text-inherit no-underline opacity-70 transition-opacity duration-200 hover:opacity-100"
+									class="flex items-center gap-[0.3em] text-[0.85em] text-inherit no-underline opacity-70 transition-opacity duration-200 hover:opacity-100"
 								>
-									<span class="text-[0.75em]">{name}</span>
-									<span class="opacity-60"><span class="text-[0.75em]">↗</span></span>
+									<span>{name}</span>
+									<span class="opacity-60">↗</span>
 								</a>
 								<!-- eslint-enable svelte/no-navigation-without-resolve -->
 							{/each}
