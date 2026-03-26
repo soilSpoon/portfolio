@@ -24,8 +24,7 @@ export const zIndex = {
 	orbOutline: -2, // --z-orb-outline
 	pageContent: 'auto', // .page-w — stacking context 생성 방지
 	hud: 1000, // --z-hud
-	cursor: 2000, // --z-cursor
-	pageWipe: 9000 // --z-page-wipe
+	cursor: 2000 // --z-cursor
 } as const;
 
 /** 타이포그래피 스케일 (단위: em — body font-size ≈ 1vw) */

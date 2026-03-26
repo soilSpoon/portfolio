@@ -43,6 +43,7 @@
 	--color-text: var(--color-main-dark);
 	--color-bg: var(--color-main-light);
 	--color-border: rgba(111, 111, 111, 0.2);
+	--color-border-strong: rgba(111, 111, 111, 0.4);
 
 	/* 애니메이션 */
 	--animate-scroll-pulse: scroll-pulse 4s infinite ease-in-out;

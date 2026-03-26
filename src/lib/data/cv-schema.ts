@@ -24,17 +24,21 @@ const DetailSchema = z.object({
 
 const ExperienceSchema = z.object({
 	company: z.string(),
+	team: z.string().optional(),
 	role: z.string(),
-	dates: z.string(),
-	duration: z.string().optional(),
+	start: z.string(),
+	end: z.string().optional(),
+	description: z.union([z.string(), z.record(z.string(), z.string())]).optional(),
 	tags: z.array(z.string())
 });
 
 const ProjectSchema = z.object({
 	slug: z.string(),
 	title: z.string(),
-	dates: z.string(),
+	start: z.string(),
+	end: z.string().optional(),
 	org: z.string(),
+	team: z.string().optional(),
 	role: z.string().optional(),
 	url: z.string().optional(),
 	contributor_info: z.string().optional(),
@@ -53,7 +57,7 @@ const SkillCategorySchema = z.object({
 const EducationSchema = z.object({
 	name: z.string(),
 	field: z.string(),
-	dates: z.string(),
+	dates: z.union([z.string(), z.record(z.string(), z.string())]).optional(),
 	tags: z.array(z.string())
 });
 
@@ -65,6 +69,7 @@ const CertificationSchema = z.object({
 
 const OtherItemSchema = z.object({
 	text: z.string(),
+	dates: z.union([z.string(), z.record(z.string(), z.string())]).optional(),
 	tags: z.array(z.string())
 });
 
@@ -74,9 +79,12 @@ const OssSchema = z.object({
 });
 
 const SideProjectSchema = z.object({
+	slug: z.string().optional(),
 	title: z.string(),
-	dates: z.string(),
+	start: z.string(),
+	end: z.string().optional(),
 	url: z.string().optional(),
+	description: z.union([z.string(), z.record(z.string(), z.string())]).optional(),
 	tags: z.array(z.string()),
 	bullets: z.array(BulletSchema)
 });
@@ -213,3 +221,37 @@ export type FilteredData = {
 	subtitle?: string;
 	slug: string;
 };
+
+// ── Helpers ──────────────────────────────────────────────────
+
+export function formatDates(start: string, end?: string): string {
+	return end ? `${start} – ${end}` : start;
+}
+
+export function computeDuration(start: string, end?: string): string | null {
+	const parseDate = (s: string): Date | null => {
+		const m = s.match(/^(\d{4})\.(\d{2})$/);
+		if (!m) return null;
+		return new Date(Number(m[1]), Number(m[2]) - 1);
+	};
+	const s = parseDate(start);
+	if (!s) return null;
+	const e = end && !['재직중', '진행중', '현재'].includes(end) ? parseDate(end) : new Date();
+	if (!e) return null;
+	let months = (e.getFullYear() - s.getFullYear()) * 12 + (e.getMonth() - s.getMonth());
+	if (months < 0) return null;
+	const years = Math.floor(months / 12);
+	months = months % 12;
+	if (years > 0 && months > 0) return `${years}년 ${months}개월`;
+	if (years > 0) return `${years}년`;
+	return `${months}개월`;
+}
+
+export function resolveVariantString(
+	value: string | Record<string, string> | undefined,
+	variantName: string
+): string | undefined {
+	if (!value) return undefined;
+	if (typeof value === 'string') return value;
+	return value[variantName] ?? value.default ?? undefined;
+}

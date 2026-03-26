@@ -5,6 +5,9 @@ import {
 	MasterSchema,
 	VariantSchema,
 	ThemeSchema,
+	formatDates,
+	computeDuration,
+	resolveVariantString,
 	type MasterData,
 	type VariantConfig,
 	type ThemeConfig,
@@ -135,8 +138,10 @@ function resolveSection(
 						return {
 							slug: p.slug,
 							title: p.title,
-							dates: p.dates,
+							start: p.start,
+							end: p.end,
 							org: p.org,
+							team: p.team,
 							role: p.role,
 							url: p.url,
 							tags: p.tags,
@@ -155,8 +160,10 @@ function resolveSection(
 						return {
 							slug: p.slug,
 							title: p.title,
-							dates: p.dates,
+							start: p.start,
+							end: p.end,
 							org: p.org,
+							team: p.team,
 							role: p.role,
 							url: p.url,
 							contributor_info: p.contributor_info,
@@ -265,9 +272,12 @@ export function loadCvData(slug: string): { data: FilteredData; theme: ThemeConf
 
 	const sidebar: SidebarData = {
 		skills: master.skills.filter((s) => matchesTags(s.tags, allFilterTags.length > 0 ? allFilterTags : undefined)),
-		education: master.education.filter((e) =>
-			matchesTags(e.tags, allFilterTags.length > 0 ? allFilterTags : undefined)
-		),
+		education: master.education
+			.filter((e) => matchesTags(e.tags, allFilterTags.length > 0 ? allFilterTags : undefined))
+			.map((e) => ({
+				...e,
+				dates: resolveVariantString(e.dates, variantName)
+			})),
 		certifications: master.certifications.filter((c) =>
 			matchesTags(c.tags, allFilterTags.length > 0 ? allFilterTags : undefined)
 		),

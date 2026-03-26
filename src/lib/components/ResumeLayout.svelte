@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { FilteredData, ThemeConfig } from '$lib/data/cv-schema.js';
+	import { formatDates, computeDuration, resolveVariantString } from '$lib/data/cv-schema.js';
 
 	let { data, theme }: { data: FilteredData; theme: ThemeConfig } = $props();
 
@@ -124,7 +125,7 @@
 				{#each data.sidebar.education as edu, i}
 					<div class={i < data.sidebar.education.length - 2 ? 'mb-[6px]' : (i === data.sidebar.education.length - 2 ? 'mb-[4px]' : '')}>
 						<div class="text-[9.5px] font-bold text-[#D1D6DB]">{edu.name}</div>
-						<div class="text-[8.5px] text-[#8B95A1]">{edu.field} | {edu.dates}</div>
+						<div class="text-[8.5px] text-[#8B95A1]">{edu.field}{#if edu.dates} | {edu.dates}{/if}</div>
 					</div>
 				{/each}
 			</div>
@@ -178,9 +179,9 @@
 						{#each section.data as exp}
 							<div class="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-[8px]">
 								<span class="min-w-0 text-[11.5px] font-bold text-[#333D4B]"
-									>{exp.company} — <span class="font-normal text-[#6B7684]">{exp.role}</span></span
+									>{exp.company} — <span class="font-normal text-[#6B7684]">{exp.team ? `${exp.team} ${exp.role}` : exp.role}</span></span
 								>
-								<span class="shrink-0 pl-[8px] text-right text-[9px] text-[#8B95A1]">{exp.dates}{#if exp.duration} ({exp.duration}){/if}</span>
+								<span class="shrink-0 pl-[8px] text-right text-[9px] text-[#8B95A1]">{formatDates(exp.start, exp.end)}{#if computeDuration(exp.start, exp.end)} ({computeDuration(exp.start, exp.end)}){/if}</span>
 							</div>
 						{/each}
 					</section>
@@ -196,11 +197,11 @@
 											>{project.title}</span
 										>
 										<span class="shrink-0 pl-[8px] text-right text-[9px] text-[#8B95A1]"
-											>{project.dates}</span
+											>{formatDates(project.start, project.end)}</span
 										>
 									</div>
 									<div class="text-[9px] text-[#8B95A1] [overflow-wrap:anywhere]">
-										{project.org}{#if project.role} · {project.role}{/if}{#if project.url} · <a
+										{project.org}{#if project.role} · {project.team ? `${project.team} ${project.role}` : project.role}{/if}{#if project.url} · <a
 												href={project.url}
 												class="project-link"
 												>{project.url.replace(/^https?:\/\//, '')}</a
@@ -249,7 +250,7 @@
 						{#each section.data as sp}
 							<div class="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-[8px]">
 								<span class="min-w-0 text-[11.5px] font-bold text-[#333D4B]">{sp.title}</span>
-								<span class="shrink-0 pl-[8px] text-right text-[9px] text-[#8B95A1]">{sp.dates}</span>
+								<span class="shrink-0 pl-[8px] text-right text-[9px] text-[#8B95A1]">{formatDates(sp.start, sp.end)}</span>
 							</div>
 							{#if sp.url}
 								<div class="text-[9px] text-[#8B95A1] [overflow-wrap:anywhere]">
@@ -295,9 +296,9 @@
 						{#each section.data as exp}
 							<div class="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-[8px]">
 								<span class="min-w-0 text-[11.5px] font-bold text-[#333D4B]"
-									>{exp.company} — <span class="font-normal text-[#6B7684]">{exp.role}</span></span
+									>{exp.company} — <span class="font-normal text-[#6B7684]">{exp.team ? `${exp.team} ${exp.role}` : exp.role}</span></span
 								>
-								<span class="shrink-0 pl-[8px] text-right text-[9px] text-[#8B95A1]">{exp.dates}{#if exp.duration} ({exp.duration}){/if}</span>
+								<span class="shrink-0 pl-[8px] text-right text-[9px] text-[#8B95A1]">{formatDates(exp.start, exp.end)}{#if computeDuration(exp.start, exp.end)} ({computeDuration(exp.start, exp.end)}){/if}</span>
 							</div>
 						{/each}
 					</section>
