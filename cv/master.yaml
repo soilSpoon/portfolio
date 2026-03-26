@@ -7,28 +7,29 @@ basics:
   linkedin: mlz37
 summaries:
   default: |
-    React·TypeScript 기반 7년차 프론트엔드 엔지니어. B2B SaaS 아키텍처 설계부터 성능 최적화까지 수행.
-    OpenCASCADE 3D CAD 엔진의 WASM 브라우저 이식, Astro·Goose·laravel-mix 등 23개 오픈소스 프로젝트에 직접 기여.
+    React·TypeScript 기반 7년차 프론트엔드 엔지니어. B2B SaaS 프론트엔드를 4년간 설계·운영하며 디자인 시스템으로 개발 시간 50% 단축, 수천 명 급여 정산 UI 프리징을 해소.
+    OpenCASCADE 3D CAD 엔진의 WASM 브라우저 이식으로 사용자 진입 장벽을 제거하고, 23개 오픈소스 프로젝트에 소스 분석 후 PR로 직접 기여.
   general_md: |
-    React·TypeScript 기반 **7년차** 프론트엔드 엔지니어. B2B SaaS(출근노트) 프론트엔드를 4년간 설계·운영하며 디자인 시스템, 상태관리 아키텍처, 대량 데이터 최적화를 수행. OpenCASCADE 3D CAD 엔진의 WASM 브라우저 이식으로 프론트엔드의 경계를 넓혀왔습니다. Jotai·SWC·Astro 등 **23개 오픈소스 프로젝트에 직접 기여**.
+    React·TypeScript 기반 **7년차** 프론트엔드 엔지니어. B2B SaaS(출근노트) 프론트엔드를 4년간 설계·운영하며 디자인 시스템으로 **개발 시간 50% 단축**, 수천 명 급여 정산 **UI 프리징 해소**. OpenCASCADE 3D CAD 엔진의 WASM 브라우저 이식으로 **사용자 진입 장벽 제거**. Jotai·SWC·Astro 등 **23개 오픈소스 프로젝트에 직접 기여**.
   instructor: |
     7년간 실무 풀스택 개발 경험을 기반으로 웹 프론트엔드 강의를 진행하고 있습니다. 프로젝트 초기 설계부터 운영까지 전 과정을 경험한 실무 중심의 강의가 가능하며, 학습자 수준에 맞는 눈높이 교육에 강점이 있습니다.
   freelancer: |
     7년간 B2B/SaaS 서비스를 설계부터 운영까지 수행해온 풀스택 개발자입니다. 프로젝트 초기 구성, 기술 스택 선정, 아키텍처 설계, 성능 최적화, CI/CD 구축까지 서비스 전체 생명주기를 독립적으로 수행할 수 있습니다. 원격 근무 기반으로 외주 및 프리랜서 프로젝트를 수행합니다.
   toss: |
     React·TypeScript 기반 7년차 프론트엔드 엔지니어.
-    Jotai·Emotion·React Query 등 상태관리 아키텍처 설계, 디자인 시스템 구축, 대량 데이터 렌더링 최적화,
-    웹 접근성까지 수행해왔습니다.
+    디자인 시스템으로 개발 시간 50% 단축, 3계층 상태관리 아키텍처 설계, 수천 명 급여 정산 UI 프리징 해소,
+    WAI-ARIA 접근성까지 수행해왔습니다.
 highlight_bullets:
   default:
-    - B2B SaaS(출근노트) 프론트엔드 설계·운영 — 디자인 시스템, 상태관리 아키텍처, 대량 데이터 렌더링 최적화
-    - OpenCASCADE 3D CAD 엔진의 WASM 브라우저 이식 — 데스크탑 설치 없이 브라우저에서 CAD 모델링 실현
-    - Astro·SWC·Jotai 등 오픈소스에 직접 기여 — 필요한 기능이나 버그를 소스 분석 후 PR로 해결
-    - Claude Code·Codex·ampcode 등 AI 코딩 도구를 적극 활용한 개발 워크플로우 구축
+    - B2B SaaS(출근노트) 프론트엔드 4년 설계·운영 — 53개 공통 컴포넌트 디자인 시스템으로 개발 시간 50% 단축
+    - 수천 명 급여 정산 UI 프리징 해소 — react-window 가상화 + N+1 해소 + Redis 캐싱
+    - OpenCASCADE 3D CAD 엔진 WASM 브라우저 이식 — 사용자 진입 장벽 제거, 데스크탑 설치 없이 CAD 모델링 실현
+    - Astro·Goose·laravel-mix 등 23개 오픈소스에 PR 직접 기여 — webpack 내부 수정으로 React Fast Refresh 구현
   toss:
-    - B2B SaaS 프론트엔드 — Chakra UI 디자인 시스템, React Query/Jotai/Zustand 3계층 상태관리, 수천 행 가상화 최적화
-    - webpack 내부 수정으로 React Fast Refresh 구현 — laravel-mix에 직접 기여, SWC·Jotai·Valtio 등 오픈소스 기여
-    - OpenCASCADE WASM 브라우저 이식 + Next.js SSR 호환 — AI 챗봇 UI로 복잡한 워크플로우 단순화
+    - B2B SaaS 프론트엔드 — Chakra UI 53개 컴포넌트 디자인 시스템으로 개발 시간 50% 단축, 3계층 상태관리로 리렌더링 제거
+    - 수천 명 급여 정산 UI 프리징 해소 — react-window 가상화 + React.memo + Redis 캐싱 + N+1 해소
+    - OpenCASCADE WASM 브라우저 이식 — 사용자 진입 장벽 제거, AI 챗봇으로 시뮬레이션 워크플로우 단순화
+    - webpack 내부 수정으로 React Fast Refresh 구현 — laravel-mix 12 PRs merged, 23개 오픈소스에 직접 기여
 experience:
   - company: 주식회사 에브리심
     team: 제품개발

@@ -35,7 +35,9 @@ cv/*.pdf
 cv/*.html
 cv/*.css
 cv/*.md
+cv/.browser-profile/
 cv/output/
 cv/original/
 cv/benchmark/
 !cv/master.yaml
+scripts/groupby-analyze.mjs
