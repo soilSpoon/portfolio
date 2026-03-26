@@ -7,33 +7,33 @@ basics:
   linkedin: mlz37
 summaries:
   default: |
-    공식 문서 기반으로 기술을 빠르게 습득하고, 문제가 있으면 소스 레벨까지 파고들어 해결하는 7년차 풀스택 개발자.
-    React/TypeScript 프론트엔드부터 Laravel/Nest.js 백엔드, C++/WASM, 모바일까지 제품에 필요한 영역을 직접 구축.
+    사용자 업무 프로세스를 이해하고 비효율을 구조적으로 제거하는 데 집중하는 7년차 풀스택 개발자.
+    새로운 기술을 프로덕트에 가장 먼저 도입하되, 표면 적용에 그치지 않고 소스 레벨까지 파고들어 근본 개선.
     23개 오픈소스 프로젝트에 소스 분석 후 PR로 직접 기여.
   general_md: |
-    공식 문서 기반으로 기술을 빠르게 습득하고, 문제가 있으면 소스 레벨까지 파고들어 해결하는 **7년차 풀스택 개발자**. B2B SaaS(출근노트) 프론트엔드를 4년간 설계·운영하며 디자인 시스템으로 **개발 시간 50% 단축**, 수천 명 급여 정산 **UI 프리징 해소**. React/TypeScript부터 Laravel/Nest.js, C++/WASM, 모바일까지 제품에 필요한 영역을 직접 구축. Jotai·SWC·Astro 등 **23개 오픈소스 프로젝트에 직접 기여**.
+    사용자 업무 프로세스를 이해하고 비효율을 구조적으로 제거하는 데 집중하는 **7년차 풀스택 개발자**. B2B SaaS(출근노트) 프론트엔드를 4년간 설계·운영하며 디자인 시스템으로 **개발 시간 50% 단축**, 수천 명 급여 정산 **UI 프리징 해소**. 새로운 기술을 프로덕트에 가장 먼저 도입하되, 소스 레벨까지 파고들어 근본 개선. Jotai·SWC·Astro 등 **23개 오픈소스 프로젝트에 직접 기여**.
   instructor: |
     7년간 실무 풀스택 개발 경험 기반 웹 프론트엔드 강의 진행.
     프로젝트 초기 설계부터 운영까지 전 과정을 경험한 실무 중심 강의, 학습자 수준에 맞는 눈높이 교육에 강점.
   freelancer: |
-    공식 문서 기반으로 기술을 빠르게 습득하고, 문제가 있으면 소스 레벨까지 파고들어 해결하는 7년차 풀스택 개발자.
+    사용자 업무 프로세스를 이해하고 비효율을 구조적으로 제거하는 데 집중하는 7년차 풀스택 개발자.
     기술 스택 선정, 아키텍처 설계, 성능 최적화, CI/CD 구축까지 서비스 전체 생명주기를 독립적으로 수행.
     원격 근무 기반 외주 및 프리랜서 프로젝트 수행.
   toss: |
-    공식 문서 기반으로 기술을 빠르게 습득하고, 문제가 있으면 소스 레벨까지 파고들어 해결하는 7년차 풀스택 개발자.
+    사용자 업무 프로세스를 이해하고 비효율을 구조적으로 제거하는 데 집중하는 7년차 풀스택 개발자.
     디자인 시스템으로 개발 시간 50% 단축, 3계층 상태관리 아키텍처 설계, 수천 명 급여 정산 UI 프리징 해소,
     WAI-ARIA 접근성까지 수행.
 highlight_bullets:
   default:
-    - B2B SaaS(출근노트) 프론트엔드 4년 설계·운영 — 53개 공통 컴포넌트 디자인 시스템으로 개발 시간 50% 단축
-    - 수천 명 급여 정산 UI 프리징 해소 — react-window 가상화 + N+1 해소 + Redis 캐싱
-    - OpenCASCADE 3D CAD 엔진 WASM 브라우저 이식 — 사용자 진입 장벽 제거, 데스크탑 설치 없이 CAD 모델링 실현
-    - Astro·Goose·laravel-mix 등 23개 오픈소스에 PR 직접 기여 — webpack 내부 수정으로 React Fast Refresh 구현
+    - jQuery→React 전환부터 Chakra UI 53개 공통 컴포넌트 디자인 시스템까지 — 프로덕트 아키텍처를 처음부터 설계하고 4년간 운영
+    - 수천 명 급여 정산 UI 프리징 해소 — react-window 가상화 + Redis 캐싱 + N+1 해소로 프론트·백엔드 양단 병목 제거
+    - C++ CAD 엔진 WASM 브라우저 이식 + AI SDK v5 챗봇으로 시뮬레이션 진입 장벽 제거
+    - webpack 소스 수정으로 React Fast Refresh 구현 — laravel-mix 12 PRs merged, 23개 오픈소스에 직접 기여
   toss:
-    - B2B SaaS 프론트엔드 — Chakra UI 53개 컴포넌트 디자인 시스템으로 개발 시간 50% 단축, 3계층 상태관리로 리렌더링 제거
+    - jQuery→React 전환부터 Chakra UI 53개 공통 컴포넌트 디자인 시스템까지 — 3계층 상태관리로 리렌더링 제거, 개발 시간 50% 단축
     - 수천 명 급여 정산 UI 프리징 해소 — react-window 가상화 + React.memo + Redis 캐싱 + N+1 해소
-    - OpenCASCADE WASM 브라우저 이식 — 사용자 진입 장벽 제거, AI 챗봇으로 시뮬레이션 워크플로우 단순화
-    - webpack 내부 수정으로 React Fast Refresh 구현 — laravel-mix 12 PRs merged, 23개 오픈소스에 직접 기여
+    - C++ CAD 엔진 WASM 브라우저 이식 + AI SDK v5 챗봇으로 시뮬레이션 진입 장벽 제거
+    - webpack 소스 수정으로 React Fast Refresh 구현 — laravel-mix 12 PRs merged, 23개 오픈소스에 직접 기여
 experience:
   - company: 주식회사 에브리심
     team: 제품개발
@@ -126,10 +126,58 @@ projects:
         tags:
           - general_md
     details:
-      - title: OpenCASCADE WASM 브라우저 이식 — 설치 과정 제거
+      - title: PostHog 이벤트 추적 파이프라인 구축으로 운영 대시보드 기반 데이터 의사결정 체계 수립
+        career_order: 4
         tags:
           - general
           - toss
+        content: |
+          #### 이슈 사항
+
+          기능 우선순위, 다국어 대응 시기 등 제품 방향성 결정이 감에 의존하는 상태. 사용자 행동 데이터가 전혀 없음 — 클라이언트·서버 양쪽 모두 이벤트 추적 부재
+
+          #### 개선 사항
+
+          - PostHog 분석 파이프라인을 처음부터 구축: 클라이언트 초기화 → 사용자 식별 → 서버 사이드 이벤트 추적
+          - Slack 웹훅 알림을 PostHog 서버 사이드 이벤트로 전환 — 핵심 이벤트를 통합 대시보드에서 분석
+          - 클라이언트 IP 추적으로 지역별·언어별 사용 패턴 분석 기능 추가
+
+          #### 적용 결과
+
+          - 사용자 이탈 단계를 정량적으로 파악 — **데이터 기반 제품 방향성 결정 체계 확립**
+          - 국가·언어별 유입 패턴 파악으로 다국어 대응 및 타겟 시장 우선순위 도출
+      - title: C++/WASM 브라우저 이식과 AI 챗봇을 통한 CAE 시뮬레이션 진입 장벽 제거 — 설치 과정 제거부터 자연어 인터페이스까지
+        career_order: 5
+        tags:
+          - general
+          - toss
+        content: |
+          #### 이슈 사항
+
+          3D CAD/시뮬레이션 도구가 데스크탑 설치 필수 + 5단계 파이프라인에 CAE 도메인 전문 지식 필요 — 두 가지 진입 장벽으로 비전문가의 독립 사용 불가
+
+          #### 의사 결정
+
+          - Emscripten 업그레이드: 3→5 일괄 vs 3→4→5 단계적 → 단계적 접근 선택 (버전 간 breaking change가 많아 일괄 업그레이드 시 디버깅 불가)
+          - SSR 호환: dynamic import + Suspense 조합으로 Next.js hydration 경고 제거
+          - 시뮬레이션 워크플로우를 WASM 모듈과 분리된 상태 관리 계층으로 재설계 — 각 단계 독립 실행·테스트 가능하도록 의존성 역전
+
+          #### 개선 사항
+
+          - C++ 3D CAD 엔진(OpenCASCADE)을 WASM 컴파일하여 브라우저 실행 환경 구축, 64비트 메모리 지원 활성화
+          - d.ts 자동 생성 파이프라인으로 프론트엔드-WASM 간 타입 안전 인터페이스 확보
+          - WASM-JS 계층 분리로 시뮬레이션 각 단계의 독립적 개발·테스트 가능한 아키텍처 구현
+          - AI SDK v5 기반 챗봇 프론트엔드 구축 — 스트리밍 응답, 도구 실행 상태, 대화 히스토리
+          - 클라이언트 사이드 도구 실행 구조 설계 — 챗봇에서 메시 실행·시뮬레이션 직접 제어
+
+          #### 적용 결과
+
+          - 데스크탑 설치 없이 브라우저에서 3D CAD 모델링 가능 — **설치 장벽 완전 제거**
+          - 비전문가도 자연어로 시뮬레이션 파이프라인 조작 가능 — **지식 장벽 대폭 감소**
+          - WASM-JS 분리로 워크플로우 단계 간 **독립적 개발·테스트 가능**
+      - title: OpenCASCADE WASM 브라우저 이식 — 설치 과정 제거
+        tags:
+          - merged-into-5
         content: |
           #### 이슈 사항
 
@@ -158,8 +206,7 @@ projects:
           - 64비트 지원으로 대형 모델 처리 시 메모리 제한 해소
       - title: AI 챗봇으로 시뮬레이션 워크플로우 단순화
         tags:
-          - general
-          - toss
+          - merged-into-5
         content: |
           #### 이슈 사항
 
@@ -182,7 +229,7 @@ projects:
           - 모듈러 도구 아키텍처로 신규 기능 추가 시 도구 구현만으로 챗봇 자동 활용
       - title: C++ 메시 엔진 리팩토링 — Policy-based design으로 CAD 형식 확장성 확보
         tags:
-          - general
+          - cpp
         content: |
           #### 이슈 사항
 
@@ -200,8 +247,7 @@ projects:
           - 신규 CAD 형식 지원 시 기존 코드 변경 없이 정책만 추가
       - title: PostHog 제품 분석 체계 구축 — 데이터 기반 의사결정
         tags:
-          - general
-          - toss
+          - merged-into-4
         content: |
           #### 이슈 사항
 
@@ -224,8 +270,7 @@ projects:
           - 국가·언어별 유입 패턴 파악으로 다국어 대응 및 타겟 시장 우선순위 도출
       - title: 프로토타입 → 상용 아키텍처 재설계 — WASM-JS 분리 + 디자인 시스템 표준화
         tags:
-          - general
-          - toss
+          - merged-into-5
         content: |
           #### 이슈 사항
 
@@ -353,9 +398,101 @@ projects:
         tags:
           - general_md
     details:
-      - title: React 디자인 시스템 구축 — 53개 공통 컴포넌트로 개발 시간 50% 단축
+      - title: React, TypeScript, Next.js 기반 프로덕트 아키텍처 설계 — jQuery 레거시 전환부터 Chakra UI 53개 공통 컴포넌트 체계까지
+        career_order: 1
         tags:
           - general
+          - toss
+        content: |
+          #### 이슈 사항
+
+          입사 당시 jQuery + PHP 5(프레임워크 미사용) 기반. MVC 패턴 없이 비즈니스 로직과 뷰 렌더링이 한 파일에 혼재. 동일한 테이블·폼이 페이지마다 제각각 구현되어 수정 시 10곳 이상을 일일이 수정해야 하는 비효율
+
+          #### 의사 결정
+
+          - jQuery 기반 프로젝트의 한계를 경험하고 React + Laravel 도입을 직접 건의, 관철
+          - 상태관리 3계층 설계:
+            - React Query(서버 상태) vs SWR → React Query 선택 (mutation + cache invalidation 우위)
+            - 전역 상태: Redux vs Zustand → Zustand 선택 (보일러플레이트 최소)
+            - 로컬 상태: useState vs Jotai → Jotai 선택 (atom 기반 세밀한 리렌더링 제어)
+          - Chakra UI 선택: WAI-ARIA 접근성 내장, 커스텀 토큰 시스템
+
+          #### 개선 사항
+
+          - 프론트엔드를 React로 전면 전환, 컴포넌트 기반 UI 개발 체계 구축
+          - 백엔드를 Laravel로 마이그레이션, MVC·ORM·라우팅 등 체계적 환경 확보
+          - Chakra UI 기반 디자인 시스템 도입, 프로젝트 전용 53개 공통 컴포넌트 추출·표준화
+          - WAI-ARIA 접근성 지원으로 키보드 내비게이션, 스크린리더 호환, 포커스 관리 표준화
+          - React Query/Zustand/Jotai/Zod 4계층 상태관리 아키텍처 적용
+          - Self-hosted runner → ARC 전환, CI 3단계 병렬화, PHPStan 정적 분석 + Husky + lint-staged 자동화
+          - React Native + WebView 하이브리드 모바일 앱으로 iOS/Android/웹 3개 플랫폼 확장
+
+          #### 적용 결과
+
+          - 공통 컴포넌트 조합만으로 신규 페이지 구성 — 개발 시간 **50% 단축**
+          - 이 아키텍처 위에 노무법인 시스템 **6개 모듈** 안정적 신규 개발 완료
+          - 상태관리 계층 분리로 불필요한 리렌더링 제거
+          - 단일 코드베이스로 웹 + Android + iOS **3개 플랫폼 서비스** 운영
+      - title: React-Query·Zustand·Jotai 3계층 상태 관리 설계 및 react-window + Redis 양단 성능 최적화
+        career_order: 2
+        tags:
+          - general
+          - toss
+        content: |
+          #### 이슈 사항
+
+          수천 명 규모 사업장 유입 후 급여 정산 화면에서 테이블 렌더링 시 UI가 수 초간 프리징. "화면이 멈췄다"는 CS 반복 접수
+
+          #### 문제점
+
+          - 프론트엔드: 전체 행을 한 번에 렌더링하는 구조에 가상화 미적용
+          - 백엔드: N+1 쿼리로 응답 지연
+          - 프론트·백엔드 양쪽의 병목이 겹쳐 체감 지연 가중
+
+          #### 개선 사항
+
+          - react-window 기반 가상화 → 화면에 보이는 행만 렌더링
+          - React.memo + useMemo → 행 단위 메모이제이션, React Query staleTime/cacheTime 조정으로 중복 API 호출 제거
+          - Redis 캐싱 도입 + N+1 쿼리 해소 + Eager Loading 전환
+          - 20명 이하 소규모 사업장은 캐시 바이패스 로직 추가
+
+          #### 다른 프로젝트에서의 동일 역량
+
+          포스코 MES(GSS) 프로젝트에서도 유사한 대량 데이터 성능 문제 해결:
+          - WebSocket 데이터 유입 속도가 클라이언트 가공 속도를 초과하는 문제 → 전처리 필터링 + 배치 렌더링으로 DOM 업데이트 최소화
+          - 중간 데이터를 메모리 파이프라인으로 전환, 최종 결과만 영구 저장하여 디스크 누적 문제 해결
+          - 코일 등급 판정 로직을 규칙 엔진으로 추상화 — 설정 파일 기반, 코드 수정 없이 대응
+
+          #### 적용 결과
+
+          - 수천 명 급여 정산 화면에서 **UI 프리징 완전 해소**, 관련 CS 문의 해소
+          - GSS 프로젝트에서 데이터 유입 속도에 밀리지 않는 **실시간 처리 성능 확보**
+          - 규칙 엔진으로 **신규 공정 대응 시 설정 파일만으로 처리**
+      - title: B2B2C 5단계 권한 체계 설계 및 어드민·노무법인 시스템 6개 모듈 신규 개발
+        career_order: 3
+        tags:
+          - general
+          - toss
+        content: |
+          #### 이슈 사항
+
+          어드민→노무법인→사업주→중간관리자→근로자 5단계 권한이 존재하나, 권한 분기 로직이 컴포넌트 곳곳에 산재. 신규 권한 레벨 추가 시 기존 전체 페이지 검토 필요
+
+          #### 개선 사항
+
+          - PermissionGate 컴포넌트 + usePermission 훅으로 선언적 권한 기반 렌더링 구현
+          - 라우트 레벨 권한 가드 미들웨어 적용 — 접근 불가 페이지는 자동 리디렉션
+          - 백엔드 Policy/Gate 패턴과 연동, API 레벨 이중 권한 검증
+          - 이 아키텍처 위에 노무법인 시스템 전체 신규 개발: 대시보드, 부관리자 관리, 기본정보 관리, 계정 찾기, 근로자 정보 관리, 사업장 검색
+
+          #### 적용 결과
+
+          - 권한 로직 **중앙 집중화**로 노무법인 전체 시스템(**6개 모듈**) 안정적 추가 완료
+          - 신규 권한 레벨 추가 시 설정만 변경 — **영향 범위 최소화**
+          - API + 프론트 이중 검증으로 데이터 접근 보안 확보
+      - title: React 디자인 시스템 구축 — 53개 공통 컴포넌트로 개발 시간 50% 단축
+        tags:
+          - merged-into-1
           - toss
         content: |
           #### 이슈 사항
@@ -385,8 +522,7 @@ projects:
           - WAI-ARIA 기반 접근성 적용으로 키보드만으로 주요 업무 수행 가능
       - title: 대량 데이터 렌더링 최적화 — UI 프리징 완전 해소
         tags:
-          - general
-          - toss
+          - merged-into-2
         content: |
           #### 이슈 사항
 
@@ -411,8 +547,7 @@ projects:
           - 정산 기간 중 관련 **CS 문의 해소**
       - title: B2B2C 5단계 권한 체계 설계 — 노무법인 6개 모듈 신규 개발
         tags:
-          - general
-          - toss
+          - merged-into-3
         content: |
           #### 이슈 사항
 
@@ -432,7 +567,7 @@ projects:
           - API + 프론트 이중 검증으로 데이터 접근 보안 확보
       - title: jQuery/PHP 5 → React/Laravel 전환 — 기술 스택 선정부터 마이그레이션
         tags:
-          - general
+          - merged-into-1
         content: |
           #### 이슈 사항
 
@@ -459,7 +594,7 @@ projects:
           - 이 전환을 기반으로 디자인 시스템, 성능 최적화, 권한 체계 등 이후 모든 개선 진행
       - title: CI/CD 최적화 — Self-hosted → ARC 전환, 3단계 병렬화
         tags:
-          - general
+          - devops
         content: |
           #### 이슈 사항
 
@@ -483,7 +618,7 @@ projects:
           - 커밋 전 자동 검사로 스타일·타입 오류가 **로컬에서 사전 차단**
       - title: React Native + WebView 하이브리드 모바일 앱 — 3개 플랫폼 서비스
         tags:
-          - general
+          - mobile
         content: |
           #### 이슈 사항
 
@@ -501,7 +636,7 @@ projects:
           - Android/iOS 스토어 배포 및 운영 완료
       - title: React 도입 건의 및 기술 스택 선정
         tags:
-          - toss
+          - merged-into-1
         content: |
           #### 이슈 사항
 
@@ -589,7 +724,7 @@ projects:
     details:
       - title: 멀티 프로토콜 수집기 플러그인 아키텍처 — 설정 파일만으로 고객사 대응
         tags:
-          - general
+          - iot
         content: |
           #### 이슈 사항
 
@@ -670,8 +805,7 @@ projects:
     details:
       - title: 실시간 WebSocket 대량 데이터 처리 — 포스코 MES
         tags:
-          - general
-          - toss
+          - merged-into-2
         content: |
           #### 이슈 사항
 
@@ -753,10 +887,37 @@ projects:
       - general
       - toss
     details:
-      - title: webpack 내부 수정으로 React Fast Refresh 구현 — laravel-mix 12 PRs merged
+      - title: Webpack·SWC·Babel 빌드 체계 소스 레벨 수정 및 오픈소스 코어 기여 (laravel-mix 12 PRs, Goose, CLIProxyAPI)
+        career_order: 6
         tags:
           - general
           - toss
+        content: |
+          사용 중 불편함이나 비효율을 발견하면 라이브러리 소스를 직접 분석하고 수정하여 PR로 제출. 실무 문제 해결이 동기이며, 업무 시간 외에도 동일한 방식으로 오픈소스에 기여.
+
+          #### webpack 내부 수정으로 React Fast Refresh 구현
+
+          출근노트 프로젝트의 Laravel Mix 환경에서 코드 변경마다 전체 페이지 새로고침 → 폼 상태 초기화로 개발 생산성 저하. webpack 내부 설정을 직접 분석하여 근본 원인 파악 후 수정:
+
+          - laravel-mix/laravel-mix (5.2k stars)에 **12개 PR merged**:
+            - [#2661](https://github.com/laravel-mix/laravel-mix/pull/2661) React Fast Refresh 기능 추가
+            - [#2797](https://github.com/laravel-mix/laravel-mix/pull/2797) BabelConfig 아키텍처 수준 변경 (+305/-121, 12파일)
+            - [#2660](https://github.com/laravel-mix/laravel-mix/pull/2660) webpack-dev-server 4.0 마이그레이션
+          - react-refresh-webpack-plugin (3.2k stars)에 3개 PR merged
+
+          #### AI 도구 생태계 기여
+
+          - CLIProxyAPI (18.8k stars) — Gemini↔Claude API 호환 프록시에 **5개 PR merged**, **30+ 포크** 파생. Claude thinking 모델 시그니처 캐싱(+2,162/-80), JSON 스키마 호환성(+927/-24) 등 핵심 기능 구현
+          - Goose (33.5k stars, Block 사) — local-inference Cargo feature flag 도입으로 클라우드 전용 빌드 시 **~200MB+ 절감** ([#7976](https://github.com/block/goose/pull/7976) merged, +372/-100)
+
+          #### 프론트엔드 인프라 기여
+
+          - Astro (57.7k stars): Vercel 어댑터 정적 에셋 캐시 헤더 추가
+          - Tremor (16.5k stars): 차트 null 값 구간 연결 옵션 추가
+          - 기타: SWC, Jotai, Valtio, twin.macro, laravel/framework, vite-plugin-checker 등
+      - title: webpack 내부 수정으로 React Fast Refresh 구현 — laravel-mix 12 PRs merged
+        tags:
+          - merged-into-6
         content: |
           #### 이슈 사항
 
@@ -780,8 +941,7 @@ projects:
           - laravel-mix 전체 사용자에게 React Fast Refresh 기능 제공
       - title: CLIProxyAPI 메인테이너 — Claude/Gemini 프록시 안정성 확보
         tags:
-          - general
-          - toss
+          - merged-into-6
         content: |
           #### 이슈 사항
 
@@ -802,8 +962,7 @@ projects:
           - **30+ 포크**가 파생될 정도로 생태계 기여
       - title: Goose AI 에이전트 — 로컬 추론 의존성 분리로 ~200MB 빌드 절감
         tags:
-          - general
-          - toss
+          - merged-into-6
         content: |
           #### 이슈 사항
 
@@ -819,8 +978,7 @@ projects:
           - 클라우드 프로바이더만 필요한 다운스트림에서 **~200MB+ 빌드 비용 절감**
       - title: 프론트엔드 인프라 및 프레임워크 기여 — Astro, Tremor, SWC, laravel/framework 등
         tags:
-          - general
-          - toss
+          - merged-into-6
         content: |
           #### 개선 사항
 
