@@ -62,7 +62,7 @@ export class OrbClass {
 		const w = Math.max(initPx, 300);
 		const h = w;
 
-		// ─ Renderer (updateStyle:false → CSS width:100% !important가 display 크기 제어)
+		// ─ Renderer (updateStyle:false → 인라인 스타일 미주입, CSS가 display 크기 제어)
 		this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 		this.renderer.setSize(w, h, false);
 		this.renderer.setPixelRatio(window.devicePixelRatio || 1);
@@ -517,7 +517,7 @@ void main(){
 	resize(): void {
 		const { offsetWidth: w, offsetHeight: h } = this.el;
 		if (w === 0 || h === 0) return;
-		// updateStyle:false → CSS(width:100% !important)가 display 크기 제어
+		// updateStyle:false → 인라인 스타일 미주입, CSS가 display 크기 제어
 		this.renderer.setSize(w, h, false);
 		this.camera.aspect = w / h;
 		this.camera.updateProjectionMatrix();

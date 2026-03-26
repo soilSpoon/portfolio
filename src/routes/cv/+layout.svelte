@@ -112,5 +112,18 @@
 		background: #f0f1f3;
 	}
 
-	/* 프린트 스타일은 cv.css (글로벌)로 이동 — @page는 scoped에서 무시됨 */
+	/* 프린트 — @page는 cv.css(글로벌), .cv-root 오버라이드는 여기서(scoped → !important 불필요) */
+	@media print {
+		.cv-root {
+			max-width: none;
+			padding: 0;
+			margin: 0;
+			font-size: 10pt;
+			line-height: 1.45;
+			background: #fff;
+		}
+		.cv-root:has(:global(.resume-page)) {
+			background: #fff;
+		}
+	}
 </style>

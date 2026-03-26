@@ -87,14 +87,14 @@
 
 <style>
 	/* Three.js canvas — runtime injected, :global required
-	   width/height !important: Three.js renderer.setSize()가 인라인 스타일 주입 → 오버라이드 필수 */
+	   setSize(w, h, false) → 인라인 스타일 미주입, CSS가 display 크기 제어 */
 	:global(.portfolio canvas) {
 		display: block;
 		border-radius: 50%;
 	}
 	:global(.portfolio canvas.orb-canvas) {
 		border-radius: 0;
-		width: 100% !important;
-		height: 100% !important;
+		width: 100%;
+		height: 100%;
 	}
 </style>
