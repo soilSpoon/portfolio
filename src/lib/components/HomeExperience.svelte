@@ -47,7 +47,7 @@
 								</p>
 							</div>
 							<div class="overflow-hidden">
-								<p split-text="" stagger-scroll="1" class="text-[0.85em] leading-[1.4] opacity-70">
+								<p split-text="" stagger-scroll="1" class="text-[0.85em] leading-[1.4] font-medium opacity-70">
 									{exp.role} — {exp.dates}
 								</p>
 							</div>
@@ -58,7 +58,7 @@
 											<p
 												split-text=""
 												stagger-scroll="1"
-												class="text-[0.75em] leading-[1.6] tracking-[0.05em] uppercase"
+												class="text-[0.75em] leading-[1.6] font-medium tracking-[0.05em] uppercase"
 											>
 												{detail.label}
 											</p>

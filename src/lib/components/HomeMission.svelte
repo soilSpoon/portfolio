@@ -26,12 +26,12 @@
 
 		<!-- 설명 텍스트 두 열 -->
 		<div class="grid grid-cols-12 gap-x-5">
-			<div class="col-start-2 col-end-4 overlay-text">
+			<div class="col-start-2 col-end-4">
 				<div class="overflow-hidden">
 					<p
 						split-text=""
 						stagger-scroll="1"
-						class="text-[0.75em] leading-[1.6] tracking-[0.05em] uppercase"
+						class="text-[0.75em] leading-[1.6] font-medium tracking-[0.05em] uppercase"
 					>
 						7년차 풀스택 개발자. B2B SaaS부터 3D CAD 엔진, 오픈소스까지.
 					</p>
@@ -59,9 +59,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-start-5 col-end-8 overlay-text">
+			<div class="col-start-5 col-end-8">
 				<div class="overflow-hidden">
-					<p stagger-lines="2" split-text="" class="text-[0.85em] leading-[1.6]">
+					<p stagger-lines="2" split-text="" class="text-[0.85em] leading-[1.6] font-medium">
 						React·TypeScript를 주력으로 하되, C++, Rust, PHP 등 필요한 언어는 가리지 않습니다.
 						Claude Code, Codex 등 AI 코딩 도구를 적극 활용해 효율적으로 개발하며, 제품의 설계부터
 						운영까지 전 주기를 주도해왔습니다.

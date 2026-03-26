@@ -1,8 +1,8 @@
 /* =============================================
-   폰트 (Ataero Retina OB Edition 대체 — 시스템 폰트)
-   실제 폰트는 라이센스 필요 → DM Sans / Inter로 대체
+   폰트 — Pretendard (한영 통합)
+   Inter 기반 한글 지원, Variable font, SIL OFL 라이선스
    ============================================= */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
 
 @import 'tailwindcss';
 
@@ -100,7 +100,8 @@ html {
 body:has(.portfolio) {
 	font-size: 1.0582010582010584vw;
 	font-family:
-		'DM Sans',
+		'Pretendard Variable',
+		Pretendard,
 		system-ui,
 		-apple-system,
 		sans-serif;
