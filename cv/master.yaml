@@ -99,6 +99,10 @@ projects:
       - text: 유체 영역 생성기 구현 — 파라메트릭/이산 Box Fluid Zone 생성, face 매핑 + Boolean 연산으로 경계 탐지
         tags:
           - general
+      - text: FluidZone·AoA 회전 등 시뮬레이션 핵심 로직 unit test 작성, 파라미터 validation 자동화
+        tags:
+          - general
+          - toss
       - text: PostHog 분석 파이프라인 구축 — 클라이언트·서버 이벤트 추적, IP 기반 지역별 사용 패턴 분석
         tags:
           - general
@@ -826,7 +830,7 @@ projects:
           - vite-plugin-checker (1.2k stars): [#188](https://github.com/fi3ework/vite-plugin-checker/pull/188) 소켓 URL 해석 로직 수정 — Laravel Vite 환경 WebSocket 버그 수정
           - twin.macro (8.0k stars): [#200](https://github.com/ben-rogerson/twin.macro/pull/200) transform-gpu, transform-none 유틸리티 추가 (+41/-7)
           - laravel/framework (34.6k stars): [#35480](https://github.com/laravel/framework/pull/35480) PHPUnit 9 deprecated API 리팩토링
-          - SWC, Jotai, Valtio, Snowpack, webpack/less-loader 등 지속 기여
+          - SWC, Jotai, Valtio, Snowpack, Aleph.js, webpack/less-loader 등 지속 기여
           - Rust 한국어 번역, NAVER FE News, Laravel 한국어 매뉴얼 등 한국어 오픈소스 기여
 skills:
   - label: Frontend
@@ -844,6 +848,8 @@ skills:
       - shadcn/ui
       - Emotion
       - Chakra UI
+      - Svelte
+      - Astro
       - Electron
       - React Native
   - label: Build & Tooling
