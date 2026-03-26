@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { experiences } from '$lib/data/awards';
+	import { experiences } from '$lib/data/experience';
 </script>
 
 <section class="w-full">

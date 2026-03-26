@@ -3,10 +3,10 @@
 	import { INTRO_DONE_EVENT, isIntroDone } from '$lib/animations/intro-state';
 	import HomeHero from '$lib/components/HomeHero.svelte';
 	import HomeMission from '$lib/components/HomeMission.svelte';
-	import HomeClients from '$lib/components/HomeClients.svelte';
+	import HomeOSS from '$lib/components/HomeOSS.svelte';
 	import HomeWork from '$lib/components/HomeWork.svelte';
 	import HomeGrid from '$lib/components/HomeGrid.svelte';
-	import HomeAwards from '$lib/components/HomeAwards.svelte';
+	import HomeExperience from '$lib/components/HomeExperience.svelte';
 	import HomeFooter from '$lib/components/HomeFooter.svelte';
 
 	import { initLenis } from '$lib/animations/lenis';
@@ -122,12 +122,12 @@
 <main data-taxi="" class="main-w">
 	<HomeHero />
 	<HomeMission />
-	<HomeClients />
+	<HomeOSS />
 	<HomeWork />
 	{#if mounted}
 		<HomeGrid />
 	{/if}
-	<HomeAwards />
+	<HomeExperience />
 	<HomeFooter />
 </main>
 
