@@ -7,7 +7,6 @@
 	import HomeWork from '$lib/components/HomeWork.svelte';
 	import HomeGrid from '$lib/components/HomeGrid.svelte';
 	import HomeAwards from '$lib/components/HomeAwards.svelte';
-	import HomeHSC from '$lib/components/HomeHSC.svelte';
 	import HomeFooter from '$lib/components/HomeFooter.svelte';
 
 	import { initLenis } from '$lib/animations/lenis';
@@ -22,7 +21,6 @@
 	import { setupOrbPath } from '$lib/animations/orb';
 	import { waitForOrbCanvas } from '$lib/animations/orb-utils';
 	import { setupGrid } from '$lib/animations/grid';
-	import { setupHSC } from '$lib/animations/hsc';
 	import { setupWork } from '$lib/animations/work';
 	import { setupCommonReveal } from '$lib/animations/common';
 	import type { LenisController } from '$lib/animations/lenis';
@@ -66,7 +64,6 @@
 				setupHeroScroll(ctx);
 				setupOrbPath(ctx);
 				setupGrid(ctx);
-				setupHSC(ctx);
 				setupWork(ctx);
 				setupCommonReveal(ctx);
 				ScrollTrigger.refresh();
@@ -132,7 +129,6 @@
 		<HomeGrid />
 	{/if}
 	<HomeAwards />
-	<HomeHSC />
 	<HomeFooter />
 </main>
 

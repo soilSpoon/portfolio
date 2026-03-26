@@ -48,7 +48,7 @@
 				<a
 					href={resolve('/')}
 					data-hud-brand
-					class="hud-brand-link block h-[2.2em] w-[2.2em] no-underline"
+					class="hud-brand-link block h-[2.2em] w-[2.2em] no-underline opacity-0 -translate-y-full"
 					aria-label="OFF+BRAND home"
 				>
 					<div class="hud-brand-img w-embed">
@@ -60,7 +60,7 @@
 			<!-- ─── 스크롤 인디케이터 (bottom-right) ──────── -->
 			<div
 				data-hud-scroll
-				class="pointer-events-none absolute inset-[auto_4em_0%_auto] flex items-end pb-6"
+				class="pointer-events-none absolute inset-[auto_4em_0%_auto] flex items-end pb-6 opacity-0"
 				aria-hidden="true"
 			>
 				<div class="flex flex-col items-center gap-y-[0.2em]">
@@ -87,7 +87,7 @@
 					aria-label="menu"
 					aria-expanded={menuOpen}
 					data-hud-menu
-					class="pointer-events-auto absolute right-0 bottom-6 z-[1001] cursor-pointer border-none bg-none p-[0.76rem_0.48rem]"
+					class="pointer-events-auto absolute right-0 bottom-6 z-[1001] cursor-pointer border-none bg-none p-[0.76rem_0.48rem] opacity-0 translate-y-full"
 					onclick={toggleMenu}
 				>
 					<div class="relative flex h-[1.5rem] w-[2rem] flex-col justify-between">

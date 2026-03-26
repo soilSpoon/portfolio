@@ -8,44 +8,148 @@ body:has(.cv-root) {
 	background: #f0f1f3;
 }
 
-/* ── 프린트 스타일 (@page, body, .cv-root, .no-print는 svelte:head 인라인으로 이동) ── */
+/* ── 경력기술서 마크다운 콘텐츠 ── */
+@layer components {
+	.career-prose {
+		h4 {
+			margin: 0.75rem 0 0.2rem;
+			padding-left: 0.625rem;
+			border-left: 3px solid var(--accent, #3182f6);
+			font-size: 0.875rem;
+			font-weight: 700;
+			color: var(--accent, #3182f6);
+		}
+		p {
+			margin: 0.25rem 0;
+			font-size: 0.9rem;
+		}
+		ul,
+		ol {
+			margin: 0.2rem 0;
+			padding-left: 1rem;
+		}
+		li {
+			margin: 0.1rem 0;
+			font-size: 0.875rem;
+		}
+		strong {
+			font-weight: 600;
+		}
+		a {
+			color: var(--accent, #3182f6);
+			text-decoration: none;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+		code {
+			padding: 0.125rem 0.375rem;
+			font-size: 0.8125rem;
+			background: #f3f4f6;
+			border-radius: 0.25rem;
+		}
+		blockquote {
+			margin: 0.2rem 0;
+			padding: 0.2rem 0 0.2rem 0.625rem;
+			border-left: 3px solid #9ca3af;
+			font-size: 0.875rem;
+			color: #6b7280;
+		}
+		hr {
+			margin: 1.25rem 0;
+			border: none;
+			border-top: 1px solid #9ca3af;
+		}
+	}
+}
+
+/* ── 프린트 — 공통 ── */
 @media print {
+	/* 마크다운 (이력서/경력기술서 공통) */
 	.cv-markdown h1 {
 		font-size: 16pt;
 		margin-bottom: 4pt;
 	}
-
 	.cv-markdown h2 {
 		font-size: 12pt;
 		break-after: avoid;
 		margin-top: 14pt;
 		margin-bottom: 4pt;
 	}
-
 	.cv-markdown h3 {
 		font-size: 10.5pt;
 		break-after: avoid;
 		margin-top: 10pt;
 	}
-
 	.cv-markdown h4 {
 		font-size: 9.5pt;
 		break-after: avoid;
 		margin-top: 5pt;
 		margin-bottom: 2pt;
 	}
-
 	.cv-markdown p,
 	.cv-markdown li {
 		font-size: 9.5pt;
 	}
-
 	.cv-markdown ul,
 	.cv-markdown ol {
 		break-inside: avoid;
 	}
+	.cv-markdown h3 + h4,
+	.cv-markdown h4 + p,
+	.cv-markdown h4 + ul {
+		break-before: avoid;
+	}
+	.cv-markdown h4 ~ p,
+	.cv-markdown h4 ~ ul {
+		orphans: 3;
+		widows: 3;
+	}
+	.cv-markdown a {
+		color: #111;
+		text-decoration: none;
+	}
 
-	/* 프로젝트 섹션 단위 페이지 넘김 */
+	/* 경력기술서 마크다운 */
+	.career-prose h4 {
+		font-size: 9.5pt;
+		break-after: avoid;
+		margin: 4pt 0 1pt;
+	}
+	.career-prose p {
+		font-size: 9pt;
+		margin: 1.5pt 0;
+		orphans: 3;
+		widows: 3;
+	}
+	.career-prose li {
+		font-size: 9pt;
+		margin: 0.5pt 0;
+	}
+	.career-prose ul,
+	.career-prose ol {
+		margin: 1pt 0;
+		padding-left: 12pt;
+		break-inside: avoid;
+	}
+	.career-prose h4 + p,
+	.career-prose h4 + ul {
+		break-before: avoid;
+	}
+	.career-prose blockquote {
+		margin: 1pt 0;
+		padding: 1pt 0 1pt 6pt;
+		font-size: 8.5pt;
+	}
+	.career-prose hr {
+		margin: 8pt 0;
+	}
+	.career-prose a {
+		color: #111;
+		text-decoration: none;
+	}
+
+	/* 섹션 단위 페이지 넘김 */
 	.cv-section {
 		break-inside: auto;
 	}
@@ -54,23 +158,5 @@ body:has(.cv-root) {
 		margin-top: 0;
 		border-top: none;
 		padding-top: 0;
-	}
-
-	/* h3(세부 섹션) 아래 h4·p·ul이 다음 페이지로 밀리지 않도록 */
-	.cv-markdown h3 + h4,
-	.cv-markdown h4 + p,
-	.cv-markdown h4 + ul {
-		break-before: avoid;
-	}
-
-	.cv-markdown h4 ~ p,
-	.cv-markdown h4 ~ ul {
-		orphans: 3;
-		widows: 3;
-	}
-
-	.cv-markdown a {
-		color: #111;
-		text-decoration: none;
 	}
 }

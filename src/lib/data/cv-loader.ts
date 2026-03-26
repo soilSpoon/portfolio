@@ -159,6 +159,7 @@ function resolveSection(
 							org: p.org,
 							role: p.role,
 							url: p.url,
+							contributor_info: p.contributor_info,
 							tags: p.tags,
 							tech,
 							bullets: bullets.length > 0 ? bullets : undefined,
@@ -291,8 +292,8 @@ export function loadCvData(slug: string): { data: FilteredData; theme: ThemeConf
 			sidebar,
 			sections,
 			mode,
-			title: variant.title,
-			subtitle: variant.subtitle,
+			title: mode === 'career' ? (variant.career_title ?? variant.title) : variant.title,
+			subtitle: mode === 'career' ? (variant.career_subtitle ?? variant.subtitle) : variant.subtitle,
 			slug
 		},
 		theme

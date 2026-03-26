@@ -67,6 +67,7 @@ export class OrbClass {
 		this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 		this.renderer.setSize(w, h, false);
 		this.renderer.setPixelRatio(window.devicePixelRatio || 1);
+		this.renderer.domElement.classList.add('orb-canvas');
 		this.el.appendChild(this.renderer.domElement);
 
 		// ─ Camera (구체 + FBO passes 공통 사용)
@@ -387,12 +388,12 @@ void main(){
 
   // Fresnel rim accent (subtle blue glow at edges)
   float fresnel=pow(1.0-max(dot(normalize(eye),normal),0.0),3.0);
-  vec3 fresnelColor=vec3(0.15,0.35,0.75);
+  vec3 fresnelColor=vec3(0.16,0.62,0.56);
   color+=fresnelColor*fresnel*0.12;
 
   // Lighting
   float light=lambert(normal,lightDirection);
-  vec3 specColor=vec3(0.20,0.40,0.85);
+  vec3 specColor=vec3(0.16,0.62,0.56);
   vec3 viewDir=normalize(eye-vPosition);
   vec3 reflectDir=reflect(lightDirection,normal);
   float spec=pow(max(dot(viewDir,reflectDir),0.0),12.0);
@@ -526,6 +527,7 @@ void main(){
 	// ── 다크/라이트 모드 전환 (procedural — 텍스처 불필요) ─────────────────
 	/** textureMix: 0=dark palette, 1=light palette. 300ms crossfade. */
 	setMode(isDark: boolean): void {
+		if (!this._initialized) return;
 		const target = isDark ? 0 : 1;
 		const u = this.renderingMaterial.uniforms;
 		const start = performance.now();

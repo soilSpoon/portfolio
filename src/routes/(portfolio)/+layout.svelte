@@ -58,15 +58,15 @@
 <div data-orb-wrap="" pointer-none="" class="fixed inset-0 flex items-center justify-center -z-2 pointer-events-none overflow-x-clip">
 	<Orb />
 	<!-- 첫 번째 outline ring (80vh) -->
-	<div orb-out-w="1" class="absolute h-[80vh] w-[80vh] -z-2">
+	<div orb-out-w="1" class="absolute h-[80vh] w-[80vh] -z-2 will-change-transform">
 		<div orb-out-r="1" class="absolute h-full w-full">
-			<div orb-outline="1" class="orb-outline"></div>
+			<div orb-outline="1" class="absolute rounded-full w-full h-full -z-2 opacity-0 border border-dashed border-[rgba(111,111,111,0.4)] will-change-transform"></div>
 		</div>
 	</div>
 	<!-- 두 번째 outline ring (100vh) -->
-	<div orb-out-w="2" class="absolute h-[100vh] w-[100vh] -z-2">
+	<div orb-out-w="2" class="absolute h-[100vh] w-[100vh] -z-2 will-change-transform">
 		<div orb-out-r="2" class="absolute h-full w-full">
-			<div orb-outline="2" class="orb-outline is-2"></div>
+			<div orb-outline="2" class="absolute rounded-full w-full h-full -z-2 opacity-0 border border-dashed border-[rgba(111,111,111,0.4)] will-change-transform"></div>
 		</div>
 	</div>
 </div>
@@ -97,53 +97,16 @@
 </div>
 
 <style>
-	/* ── Three.js canvas ── */
+	/* Three.js canvas — runtime injected, :global required */
 	:global(.portfolio canvas) {
 		display: block;
 		border-radius: 50%;
 		background-color: transparent !important;
 	}
-
-	/* ── will-change for animated elements ── */
-	:global([data-orb]),
-	:global([orb-out-w]),
-	:global([orb-outline]),
-	:global([data-cursor]) {
-		will-change: transform;
-	}
-
-	/* ── orb element ── */
-	:global(.orb) {
-		position: absolute;
-		border-radius: 100%;
-		width: 0;
-		height: 0;
-		opacity: 0;
-		z-index: -1;
-		overflow: hidden;
-	}
-	:global(.orb canvas) {
+	:global(.portfolio canvas.orb-canvas) {
 		border-radius: 0;
 		width: 100% !important;
 		height: 100% !important;
 		background-color: transparent !important;
 	}
-
-	/* ── orb outline rings ── */
-	:global(.orb-outline) {
-		position: absolute;
-		border: 1px dashed rgba(111, 111, 111, 0.4);
-		border-radius: 100%;
-		width: 100%;
-		height: 100%;
-		z-index: -2;
-		opacity: 0;
-	}
-
-	/* ── FOUC prevention — initial hidden state before GSAP loads ── */
-	:global(.hud-brand-w [data-hud-brand]) { opacity: 0; transform: translateY(-101%); }
-	:global([data-hud-scroll]) { opacity: 0; }
-	:global(.hud-menu-o [data-hud-menu]) { opacity: 0; transform: translateY(101%); }
-	:global([hh-tb='1']), :global([hh-tb='3']) { transform: translateX(10em); }
-	:global([hh-tb='2']) { transform: translateX(-10em); }
 </style>

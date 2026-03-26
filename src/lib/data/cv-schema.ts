@@ -37,6 +37,7 @@ const ProjectSchema = z.object({
 	org: z.string(),
 	role: z.string().optional(),
 	url: z.string().optional(),
+	contributor_info: z.string().optional(),
 	tags: z.array(z.string()),
 	tech: z.union([z.array(z.string()), z.record(z.string(), z.array(z.string()))]).optional(),
 	bullets: z.array(BulletSchema).optional(),
@@ -122,7 +123,9 @@ const SectionConfigSchema = z.object({
 export const VariantSchema = z.object({
 	variant: z.string(),
 	title: z.string(),
+	career_title: z.string().optional(),
 	subtitle: z.string().optional(),
+	career_subtitle: z.string().optional(),
 	summary: z.string(),
 	highlight_bullets: z.string().optional(),
 	theme: z.string(),
