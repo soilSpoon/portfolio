@@ -45,6 +45,7 @@
 		<div class="pointer-events-none relative h-full w-full">
 			<!-- ─── 브랜드 로고 (top-left) ──────────────────────────────────── -->
 			<div class="hud-brand-w pointer-events-auto absolute inset-[0%_auto_auto_0%] pt-6">
+				<!-- FOUC: GSAP buildHudIntro가 y:0%, opacity:1 로 애니메이션 -->
 				<a
 					href={resolve('/')}
 					data-hud-brand
@@ -58,6 +59,7 @@
 			</div>
 
 			<!-- ─── 스크롤 인디케이터 (bottom-right) ──────── -->
+			<!-- FOUC: GSAP buildHudIntro가 opacity:1 로 애니메이션 -->
 			<div
 				data-hud-scroll
 				class="pointer-events-none absolute inset-[auto_4em_0%_auto] flex items-end pb-6 opacity-0"
@@ -82,6 +84,7 @@
 				class:pointer-events-auto={menuOpen}
 			>
 				<!-- 메뉴 햄버거 버튼 -->
+				<!-- FOUC: GSAP buildHudIntro가 y:0%, opacity:1 로 애니메이션 -->
 				<button
 					type="button"
 					aria-label="menu"

@@ -246,11 +246,8 @@ export function setHeroInitialState(gsap: GsapType): void {
 	if (out1) gsap.set(out1, { autoAlpha: 0, scale: 0 });
 	if (out2) gsap.set(out2, { autoAlpha: 0, scale: 0 });
 
-	// HUD — 프리로더 완료 시 GSAP이 slide-in
-	gsap.set(SELECTORS.hudBrandLink, { y: '-101%', opacity: 0 });
-	gsap.set(SELECTORS.hudScroll, { opacity: 0 });
-	const hudMenuEl = document.querySelector<HTMLElement>(SELECTORS.hudMenu);
-	if (hudMenuEl) gsap.set(hudMenuEl, { y: '101%', opacity: 0 });
+	// HUD — CSS 클래스가 FOUC 방지 초기상태 처리 (HUD.svelte 참조)
+	// GSAP은 buildHudIntro에서 현재 CSS 값에서 animate
 }
 
 /**
