@@ -63,7 +63,34 @@ body:has(.cv-root) {
 	}
 }
 
-/* ── 프린트 — 공통 ── */
+/* ── 프린트 — 레이아웃 공통 ── */
+@media print {
+	@page { size: A4; margin: 18mm 20mm; }
+	body { background: #fff !important; margin: 0; }
+	.no-print, .inspector-root { display: none !important; }
+	.cv-root {
+		max-width: none !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		font-size: 10pt !important;
+		line-height: 1.45 !important;
+		background: #fff !important;
+	}
+}
+
+/* ── 프린트 — 이력서(resume) @page 오버라이드 ── */
+@media print {
+	body:has(.resume-page) {
+		margin: 0; padding: 0; width: 210mm; height: 297mm;
+	}
+	.cv-root:has(.resume-page) {
+		padding: 0 !important;
+		margin: 0 !important;
+		max-width: none !important;
+	}
+}
+
+/* ── 프린트 — 마크다운 콘텐츠 ── */
 @media print {
 	/* 마크다운 (이력서/경력기술서 공통) */
 	.cv-markdown h1 {

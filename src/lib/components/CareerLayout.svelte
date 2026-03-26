@@ -40,7 +40,6 @@
 				{i + 1}. {detail.title}
 			</h2>
 			<div class="career-prose">
-				<!-- eslint-disable-next-line svelte/no-at-html-tags -- trusted YAML content rendered at build time -->
 				{@html marked(detail.content, { breaks: true })}
 			</div>
 		</section>

@@ -127,7 +127,6 @@
 						</div>
 						<div class="flex flex-col gap-2">
 							{#each [['GitHub', 'https://github.com/soilSpoon'], ['LinkedIn', 'https://linkedin.com/in/mlz37']] as [name, url] (name)}
-								<!-- eslint-disable svelte/no-navigation-without-resolve -- external URL -->
 								<a
 									href={url}
 									target="_blank"

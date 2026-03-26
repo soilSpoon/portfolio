@@ -14,20 +14,6 @@
 <svelte:head>
 	<title>{m.cv_detail_title({ title: data.title })}</title>
 	<meta name="robots" content="noindex" />
-	{#if data.mode === 'resume'}
-		<!-- eslint-disable-next-line svelte/no-at-html-tags -- trusted content rendered at build time -->
-		{@html `<style>
-			@media print {
-				@page { size: A4; margin: 0; }
-				html, body { margin: 0; padding: 0; width: 210mm; height: 297mm; }
-				.cv-root:has(.resume-page) {
-					padding: 0 !important;
-					margin: 0 !important;
-					max-width: none !important;
-				}
-			}
-		</style>`}
-	{/if}
 </svelte:head>
 
 <div class="no-print mb-6 flex items-center justify-between">

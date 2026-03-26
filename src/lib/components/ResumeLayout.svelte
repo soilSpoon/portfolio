@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { FilteredData, ThemeConfig } from '$lib/data/cv-schema.js';
 	import { formatDates, computeDuration } from '$lib/data/cv-schema.js';
-	import { resolve } from '$app/paths';
+
 
 	let { data, theme }: { data: FilteredData; theme: ThemeConfig } = $props();
 
@@ -170,7 +170,6 @@
 		<!-- Profile: summary + highlights -->
 		<div class="min-w-0 border-b border-[#E5E8EB] pb-[8px] break-keep">
 			<p class="m-0 mb-[9px] text-[11px] leading-[1.65] text-[#4E5968]">
-				<!-- eslint-disable-next-line svelte/no-at-html-tags -- trusted YAML content rendered at build time -->
 				{@html data.summary}
 			</p>
 			{#if data.highlightBullets.length > 0}
@@ -221,7 +220,7 @@
 											· {project.team
 												? `${project.team} ${project.role}`
 												: project.role}{/if}{#if project.url}
-											· <a href={resolve(project.url)} class="project-link"
+										· <a href={project.url} class="project-link"
 												>{project.url.replace(/^https?:\/\//, '')}</a
 											>{/if}
 									</div>
@@ -239,7 +238,6 @@
 												<div
 													class="text-[9px] leading-[1.6] [overflow-wrap:anywhere] text-[#4E5968]"
 												>
-													<!-- eslint-disable-next-line svelte/no-at-html-tags -- trusted YAML content rendered at build time -->
 												{@html detail.content}
 												</div>
 											</div>
@@ -275,7 +273,7 @@
 							</div>
 							{#if sp.url}
 								<div class="text-[9px] [overflow-wrap:anywhere] text-[#8B95A1]">
-									<a href={resolve(sp.url)} class="project-link">{sp.url.replace(/^https?:\/\//, '')}</a>
+								<a href={sp.url} class="project-link">{sp.url.replace(/^https?:\/\//, '')}</a>
 								</div>
 							{/if}
 							{#if sp.bullets.length > 0}

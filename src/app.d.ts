@@ -11,7 +11,6 @@ declare global {
 
 	// 커스텀 HTML 데이터 속성 타입 선언
 	namespace svelteHTML {
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		interface HTMLAttributes<T> {
 			// 커스텀 속성 (data-* 없이 직접 사용)
 			'home-hero'?: boolean | string;

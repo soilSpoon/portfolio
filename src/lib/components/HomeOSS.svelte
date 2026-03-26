@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { ossProjects } from '$lib/data/oss';
-
-	const CORNER_SVG = `<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 0V8M0 4H8" stroke="currentColor" stroke-width="0.8" opacity="0.4"/></svg>`;
 </script>
+
+{#snippet cornerSvg()}
+<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 0V8M0 4H8" stroke="currentColor" stroke-width="0.8" opacity="0.4"/></svg>
+{/snippet}
 
 <section class="w-full">
 	<div class="relative mx-auto w-full max-w-full px-[2vw]">
@@ -45,19 +47,18 @@
 							<span>·</span>
 							<span>{project.prs} PRs</span>
 						</div>
-						<!-- eslint-disable svelte/no-at-html-tags -- trusted static SVG constant -->
 						<div class="pointer-events-none absolute inset-0">
 							<span class="absolute top-0 left-0 block h-[0.6em] w-[0.6em] opacity-40"
-								>{@html CORNER_SVG}</span
+								>{@render cornerSvg()}</span
 							>
 							<span class="absolute top-0 right-0 block h-[0.6em] w-[0.6em] opacity-40"
-								>{@html CORNER_SVG}</span
+								>{@render cornerSvg()}</span
 							>
 							<span class="absolute bottom-0 left-0 block h-[0.6em] w-[0.6em] opacity-40"
-								>{@html CORNER_SVG}</span
+								>{@render cornerSvg()}</span
 							>
 							<span class="absolute right-0 bottom-0 block h-[0.6em] w-[0.6em] opacity-40"
-								>{@html CORNER_SVG}</span
+								>{@render cornerSvg()}</span
 							>
 							<div class="absolute inset-0 border border-border"></div>
 						</div>

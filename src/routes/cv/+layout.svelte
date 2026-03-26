@@ -13,22 +13,6 @@
 <svelte:head>
 	<link rel="preconnect" href="https://static.toss.im" crossorigin="anonymous" />
 	<link href="https://static.toss.im/tps/main.css" rel="stylesheet" />
-	<!-- eslint-disable-next-line svelte/no-at-html-tags -- trusted content rendered at build time -->
-	{@html `<style>
-		@media print {
-			@page { size: A4; margin: 18mm 20mm; }
-			body { background: #fff !important; margin: 0; }
-			.no-print, .inspector-root { display: none !important; }
-			.cv-root {
-				max-width: none !important;
-				padding: 0 !important;
-				margin: 0 !important;
-				font-size: 10pt !important;
-				line-height: 1.45 !important;
-				background: #fff !important;
-			}
-		}
-	</style>`}
 </svelte:head>
 
 <div

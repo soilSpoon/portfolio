@@ -192,9 +192,12 @@ function resolveSection(
 				.filter((sp) => matchesTags(sp.tags, filter))
 				.map(
 					(sp): ResolvedSideProject => ({
+						slug: sp.slug,
 						title: sp.title,
-						dates: sp.dates,
+						start: sp.start,
+						end: sp.end,
 						url: sp.url,
+						description: sp.description,
 						tags: sp.tags,
 						bullets: sp.bullets.filter((b) => matchesTags(b.tags, filter)).map((b) => b.text)
 					})
