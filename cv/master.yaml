@@ -813,7 +813,7 @@ projects:
           #### 적용 결과
 
           - 클라우드 프로바이더만 필요한 다운스트림에서 **~200MB+ 빌드 비용 절감**
-      - title: Astro·Tremor·laravel/framework 등 인기 라이브러리 기여
+      - title: 프론트엔드 인프라 및 프레임워크 기여 — Astro, Tremor, SWC, laravel/framework 등
         tags:
           - general
           - toss
@@ -827,13 +827,7 @@ projects:
           - twin.macro (8.0k stars): [#200](https://github.com/ben-rogerson/twin.macro/pull/200) transform-gpu, transform-none 유틸리티 추가 (+41/-7)
           - laravel/framework (34.6k stars): [#35480](https://github.com/laravel/framework/pull/35480) PHPUnit 9 deprecated API 리팩토링
           - SWC, Jotai, Valtio, Snowpack, webpack/less-loader 등 지속 기여
-      - title: 한국어 오픈소스 기여
-        tags:
-          - general
-        content: |
-          - Rust 프로그래밍 언어 한국어 번역: 오타 수정, 원본 레포 동기화, 코드 리스팅 추가
-          - NAVER FE News: FE 기술 뉴스레터 오타 수정
-          - Laravel 한국어 매뉴얼: 공식 문서 한국어 번역 기여
+          - Rust 한국어 번역, NAVER FE News, Laravel 한국어 매뉴얼 등 한국어 오픈소스 기여
 skills:
   - label: Frontend
     tags:
