@@ -155,6 +155,15 @@ html.light .portfolio ::selection {
 }
 
 /* =============================================
+   컴포넌트 유틸리티 — 반복 패턴 축약
+   ============================================= */
+@utility overlay-text {
+	mix-blend-mode: difference;
+	color: var(--color-main-light);
+	user-select: none;
+}
+
+/* =============================================
    SplitType 런타임 클래스 (글로벌 필수)
    ============================================= */
 .word { display: inline-block; }

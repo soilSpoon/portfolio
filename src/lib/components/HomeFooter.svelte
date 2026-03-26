@@ -11,18 +11,18 @@
 			<div class="flex flex-col gap-16">
 				<!-- ─── CTA 영역 ───────────────────────── -->
 				<div class="flex flex-col gap-[0.1em]">
-					<div class="mix-blend-difference text-main-light select-none">
+					<div class="overlay-text">
 						<div class="overflow-hidden">
 							<div stagger-scroll="" split-text="" class="text-[6em] font-normal uppercase leading-none tracking-[-0.02em] overflow-hidden">Let's build</div>
 						</div>
 					</div>
-					<div class="mix-blend-difference text-main-light select-none">
+					<div class="overlay-text">
 						<div class="overflow-hidden">
 							<div stagger-scroll="" split-text="" class="text-[6em] font-normal uppercase leading-none tracking-[-0.02em] overflow-hidden">something</div>
 						</div>
 					</div>
 					<div class="flex flex-wrap items-center gap-8">
-						<div class="mix-blend-difference text-main-light select-none">
+						<div class="overlay-text">
 							<div class="overflow-hidden">
 								<div stagger-scroll="" split-text="" class="text-[6em] font-normal uppercase leading-none tracking-[-0.02em] overflow-hidden">efficient,</div>
 							</div>
@@ -39,7 +39,7 @@
 							</div>
 						</a>
 					</div>
-					<div class="mix-blend-difference text-main-light select-none">
+					<div class="overlay-text">
 						<div class="overflow-hidden">
 							<div stagger-scroll="" split-text="" class="text-[6em] font-normal uppercase leading-none tracking-[-0.02em] overflow-hidden">To+Gether</div>
 						</div>
@@ -47,7 +47,7 @@
 				</div>
 
 				<!-- ─── 네비게이션 그리드 ───────────────── -->
-				<div class="grid grid-cols-4 gap-8 mix-blend-difference text-main-light select-none">
+				<div class="grid grid-cols-4 gap-8 overlay-text">
 					<div class="flex flex-col gap-4">
 						<div class="overflow-hidden">
 							<p split-text="" stagger-scroll="1" class="text-[0.75em] leading-[1.6] uppercase tracking-[0.08em] opacity-60">Sitemap</p>
@@ -102,7 +102,7 @@
 
 				<!-- ─── 하단 바 ───────────────────────── -->
 				<div
-					class="mix-blend-difference text-main-light select-none flex items-center justify-between border-t border-border pt-6 pb-8"
+					class="overlay-text flex items-center justify-between border-t border-border pt-6 pb-8"
 				>
 					<div class="h-8 w-8 opacity-40">
 						<LogoSvg class="h-full w-full" />

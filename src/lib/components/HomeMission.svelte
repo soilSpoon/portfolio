@@ -8,7 +8,7 @@
 
 		<!-- 메인 태그라인: cols 3-12 -->
 		<div class="grid grid-cols-12 gap-x-5">
-			<div class="mix-blend-difference text-main-light select-none col-start-3 col-end-12">
+			<div class="overlay-text col-start-3 col-end-12">
 				<div class="overflow-hidden">
 					<h2 stagger-scroll="" split-text="" class="text-h-b font-normal uppercase leading-none tracking-[-0.02em]">
 						<span class="invisible">****</span>
@@ -22,7 +22,7 @@
 
 		<!-- 설명 텍스트 두 열 -->
 		<div class="grid grid-cols-12 gap-x-5">
-			<div class="mix-blend-difference text-main-light select-none col-start-2 col-end-4">
+			<div class="overlay-text col-start-2 col-end-4">
 				<div class="overflow-hidden">
 					<p split-text="" stagger-scroll="1" class="text-[0.75em] leading-[1.6] uppercase tracking-[0.05em]">
 						7년차 풀스택 개발자. B2B SaaS부터 3D CAD 엔진, 오픈소스까지.
@@ -42,7 +42,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="mix-blend-difference text-main-light select-none col-start-5 col-end-8">
+			<div class="overlay-text col-start-5 col-end-8">
 				<div class="overflow-hidden">
 					<p stagger-lines="2" split-text="" class="text-[0.85em] leading-[1.6]">
 						React·TypeScript를 주력으로 하되, C++, Rust, PHP 등 필요한 언어는 가리지 않습니다.
