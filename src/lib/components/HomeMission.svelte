@@ -26,7 +26,7 @@
 
 		<!-- 설명 텍스트 두 열 -->
 		<div class="grid grid-cols-12 gap-x-5">
-			<div class="col-start-2 col-end-4">
+			<div class="col-start-2 col-end-4 overlay-text">
 				<div class="overflow-hidden">
 					<p
 						split-text=""
@@ -59,7 +59,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-start-5 col-end-8">
+			<div class="col-start-5 col-end-8 overlay-text">
 				<div class="overflow-hidden">
 					<p stagger-lines="2" split-text="" class="text-[1em] leading-[1.6] font-medium">
 						React·TypeScript를 주력으로 하되, C++, Rust, PHP 등 필요한 언어는 가리지 않습니다.

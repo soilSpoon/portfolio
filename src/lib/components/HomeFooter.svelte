@@ -71,7 +71,7 @@
 				</div>
 
 				<!-- ─── 네비게이션 그리드 ───────────────── -->
-				<div class="grid grid-cols-4 gap-8">
+				<div class="grid grid-cols-4 gap-8 overlay-text">
 					<div class="flex flex-col gap-4">
 						<div class="overflow-hidden">
 							<p
@@ -144,7 +144,7 @@
 
 				<!-- ─── 하단 바 ───────────────────────── -->
 				<div
-					class="flex items-center justify-between border-t border-border pt-6 pb-8"
+					class="flex items-center justify-between border-t border-border pt-6 pb-8 overlay-text"
 				>
 					<div class="h-8 w-8 opacity-40">
 						<LogoSvg class="h-full w-full" />

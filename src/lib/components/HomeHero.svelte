@@ -18,7 +18,7 @@
 					<div class="hh-text-ovf overflow-hidden">
 						<h1
 							split-hero=""
-							class="text-[10em] leading-none tracking-[0.05em] whitespace-nowrap text-text will-change-transform"
+							class="text-[10em] leading-none tracking-[0.05em] whitespace-nowrap overlay-text will-change-transform"
 						>
 							이대희
 						</h1>
@@ -33,7 +33,7 @@
 					<div class="hh-text-ovf overflow-hidden">
 						<h1
 							split-hero=""
-							class="text-h-a leading-none whitespace-nowrap text-text will-change-transform"
+							class="text-h-a leading-none whitespace-nowrap overlay-text will-change-transform"
 						>
 							Full-stack
 						</h1>
@@ -48,7 +48,7 @@
 					<div class="hh-text-ovf overflow-hidden">
 						<h1
 							split-hero=""
-							class="text-h-a leading-none whitespace-nowrap text-text will-change-transform"
+							class="text-h-a leading-none whitespace-nowrap overlay-text will-change-transform"
 						>
 							Developer
 						</h1>
