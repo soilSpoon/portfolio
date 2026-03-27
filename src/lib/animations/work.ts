@@ -56,22 +56,28 @@ export function setupWork({ gsap, ST }: AnimCtx): void {
 		const svgPath = item.querySelector<SVGPathElement>('[data-work-cross]');
 		const words = item.querySelectorAll<HTMLElement>('[data-work-title] .word');
 
-		gsap.set(words, { y: WORK.wordOffsetY });
+		if (words.length) {
+			gsap.set(words, { y: WORK.wordOffsetY });
+		}
 
 		item.addEventListener('mouseenter', () => {
 			if (svgPath && morphSVG) {
 				gsap.to(svgPath, { morphSVG: MORPH_ARROW_PATH, duration: duration.med });
 			}
-			gsap.killTweensOf(words);
-			gsap.to(words, { y: 0, stagger: WORK.enterStagger, duration: duration.fast });
+			if (words.length) {
+				gsap.killTweensOf(words);
+				gsap.to(words, { y: 0, stagger: WORK.enterStagger, duration: duration.fast });
+			}
 		});
 
 		item.addEventListener('mouseleave', () => {
 			if (svgPath && morphSVG) {
 				gsap.to(svgPath, { morphSVG: svgPath, duration: duration.med });
 			}
-			gsap.killTweensOf(words);
-			gsap.to(words, { y: WORK.wordOffsetY, stagger: WORK.leaveStagger, duration: duration.med });
+			if (words.length) {
+				gsap.killTweensOf(words);
+				gsap.to(words, { y: WORK.wordOffsetY, stagger: WORK.leaveStagger, duration: duration.med });
+			}
 		});
 	});
 }

@@ -15,13 +15,10 @@ export function setupGrid({ gsap }: AnimCtx): void {
 	const gridItemsInner = [...gridItems]
 		.map((item) => item.querySelector<HTMLElement>('[data-grid-inner]'))
 		.filter((el): el is HTMLElement => el !== null);
-	const gridTexts = gridWrap.querySelectorAll<HTMLElement>('[data-grid-text]');
 	const overlayHeading = document.querySelector<HTMLElement>('[data-grid-overlay] [split-text]');
 	const wordElems = document.querySelectorAll<HTMLElement>(
 		'[data-grid-overlay] [split-text] .word'
 	);
-
-	gsap.set(gridTexts, { fontSize: GRID.textSizeInit });
 
 	const gridTL = gsap.timeline({
 		defaults: { ease: 'none' },
@@ -56,7 +53,6 @@ export function setupGrid({ gsap }: AnimCtx): void {
 	if (gridItemsInner.length) {
 		gridTL.fromTo(gridItemsInner, { scale: GRID.innerScaleFrom }, { scale: GRID.innerScaleTo }, 0);
 	}
-	gridTL.fromTo(gridTexts, { fontSize: GRID.textSizeFrom }, { fontSize: GRID.textSizeTo }, 0);
 
 	if (!wordElems.length) return;
 
