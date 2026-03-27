@@ -150,10 +150,10 @@
 						<LogoSvg class="h-full w-full" />
 					</div>
 					<div class="flex flex-col gap-[0.3em] text-right">
-						<p class="tracking-[0.03em] text-[var(--font-size-mini)] opacity-60">
+						<p class="tracking-[0.03em] text-mini opacity-60">
 							© 2025 이대희. All rights reserved.
 						</p>
-						<p class="tracking-[0.03em] text-[var(--font-size-mini)] opacity-60">
+						<p class="tracking-[0.03em] text-mini opacity-60">
 							lee111dae11@proton.me
 						</p>
 					</div>

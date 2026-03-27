@@ -19,13 +19,13 @@
 @theme {
 	--spacing: 0.25em;
 
-	/* 타이포그래피 */
-	--font-size-h-a: 8.5em;
-	--font-size-h-b: 3.5em;
-	--font-size-h-c: 1.8em;
-	--font-size-eyebrow: 1em;
-	--font-size-sm: 0.9em;
-	--font-size-mini: 0.75em;
+	/* 타이포그래피 — Tailwind v4: --text-* 네임스페이스로 text-* 유틸리티 생성 */
+	--text-h-a: 8.5em;
+	--text-h-b: 3.5em;
+	--text-h-c: 1.8em;
+	--text-eyebrow: 1em;
+	--text-sm: 0.9em;
+	--text-mini: 0.75em;
 
 	/* Border radius */
 	--radius-lg: 6.25em;
@@ -174,8 +174,7 @@ html.light .portfolio ::selection {
    컴포넌트 유틸리티 — 반복 패턴 축약
    ============================================= */
 @utility overlay-text {
-	mix-blend-mode: difference;
-	color: var(--color-main-light);
+	color: var(--color-text);
 	user-select: none;
 }
 
