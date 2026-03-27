@@ -32,18 +32,16 @@
 			</div>
 
 			<!-- OSS 프로젝트 그리드 -->
-			<div class="[grid-column:3/13] grid grid-cols-3 items-stretch gap-0">
+			<div class="[grid-column:3/11] grid grid-cols-5 items-stretch gap-[1px]">
 				{#each ossProjects as project (project.name)}
 					<div
 						data-client-item={project.name}
-						class="relative flex cursor-default items-center justify-between p-[1.2em_1.4em] opacity-70 transition-opacity duration-300 ease-in-out hover:opacity-100"
+						class="relative flex cursor-default flex-col justify-center gap-[0.2em] p-[1em_1.5em] opacity-70 transition-opacity duration-300 ease-in-out hover:opacity-100"
 					>
-						<div class="flex items-center gap-[0.6em]">
-							<div class="text-[1.1em] font-medium tracking-[-0.01em]">{project.name}</div>
-							<span class="text-[0.75em] tracking-[0.05em] opacity-50">{project.prs} PRs</span>
-						</div>
-						<div class="text-[0.9em] font-medium tabular-nums tracking-[-0.01em] opacity-80">
-							★ {project.stars}
+						<div class="text-[1em] font-medium tracking-[-0.01em]">{project.name}</div>
+						<div class="flex items-center gap-[0.5em] text-[0.7em] tracking-[0.02em] opacity-50">
+							<span>{project.prs} PRs</span>
+							<span class="tabular-nums">★ {project.stars}</span>
 						</div>
 						<div class="pointer-events-none absolute inset-0">
 							<span class="absolute top-0 left-0 block h-[0.6em] w-[0.6em] opacity-40"
