@@ -12,9 +12,6 @@ export function setupGrid({ gsap }: AnimCtx): void {
 	if (!gridWrap) return;
 
 	const gridItems = gridWrap.querySelectorAll<HTMLElement>('[data-grid-item]');
-	const gridItemsInner = [...gridItems]
-		.map((item) => item.querySelector<HTMLElement>('[data-grid-inner]'))
-		.filter((el): el is HTMLElement => el !== null);
 	const overlayHeading = document.querySelector<HTMLElement>('[data-grid-overlay] [split-text]');
 	const wordElems = document.querySelectorAll<HTMLElement>(
 		'[data-grid-overlay] [split-text] .word'
@@ -50,9 +47,6 @@ export function setupGrid({ gsap }: AnimCtx): void {
 			0
 		)
 		.to(gridWrap, { z: GRID.wrapZ }, 0);
-	if (gridItemsInner.length) {
-		gridTL.fromTo(gridItemsInner, { scale: GRID.innerScaleFrom }, { scale: GRID.innerScaleTo }, 0);
-	}
 
 	if (!wordElems.length) return;
 

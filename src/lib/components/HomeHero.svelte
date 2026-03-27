@@ -6,7 +6,7 @@
 
 <!-- home-hero ScrollTrigger 트리거 -->
 <section home-hero="" class="relative w-full">
-	<div data-home-hero class="mx-auto h-screen w-full max-w-none px-[2vw]">
+	<div data-home-hero class="mx-auto h-screen w-full max-w-none page-px">
 		<!-- 그리드: 12열, 7행 -->
 		<div
 			class="grid h-full w-full grid-cols-12 grid-rows-[1fr_min-content_1fr_min-content_1fr_min-content_1fr] gap-x-5 gap-y-0"

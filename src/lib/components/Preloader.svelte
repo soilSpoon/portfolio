@@ -212,7 +212,6 @@
 		data-preloader
 		class="fixed inset-0 -z-5 flex items-center justify-center bg-main-light dark:bg-main-dark"
 		aria-hidden="true"
-		aria-label="Loading"
 	>
 		<div class="relative h-[20em] w-[20em]">
 			<div class="absolute inset-0 h-full w-full">

@@ -10,29 +10,3 @@ export const duration = {
 	fast: 0.3, // --dur-fast
 	med: 0.6 // --dur-med
 } as const;
-
-/** CSS transition 및 GSAP ease 문자열 */
-export const ease = {
-	smooth: 'cubic-bezier(0.38, 0.005, 0.215, 1)' // --ease-smooth
-} as const;
-
-/** 전역 z-index 스케일 (CSS 변수 --z-* 와 동기화) */
-export const zIndex = {
-	preloader: -5, // --z-preloader
-	orbWrapper: -2, // --z-orb-wrapper
-	orbCanvas: -1, // --z-orb-canvas
-	orbOutline: -2, // --z-orb-outline
-	pageContent: 'auto', // .page-w — stacking context 생성 방지
-	hud: 1000, // --z-hud
-	cursor: 2000 // --z-cursor
-} as const;
-
-/** 타이포그래피 스케일 (단위: em — body font-size ≈ 1vw) */
-export const fs = {
-	hA: 6.75, // --fs-h-a
-	hB: 3.5, // --fs-h-b
-	hC: 1.8, // --fs-h-c
-	eyebrow: 0.85, // --fs-eyebrow
-	small: 0.8, // --fs-small
-	mini: 0.65 // --fs-mini
-} as const;

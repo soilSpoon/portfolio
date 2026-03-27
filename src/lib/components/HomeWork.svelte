@@ -5,8 +5,8 @@
 
 <!-- home-work ScrollTrigger 트리거 -->
 <section home-work="" class="relative w-full">
-	<div class="relative mx-auto w-full max-w-full px-[2vw]">
-		<div class="h-[10vw]"></div>
+	<div class="relative mx-auto w-full max-w-full page-px">
+		<div class="section-spacer"></div>
 		<div class="grid w-full grid-cols-12 gap-5">
 			<!-- ─── Left: sticky eyebrow + CTA ── -->
 			<div class="sticky top-20 col-span-2 flex flex-col gap-2 self-start">
@@ -87,6 +87,6 @@
 				{/each}
 			</div>
 		</div>
-		<div class="h-[10vw]"></div>
+		<div class="section-spacer"></div>
 	</div>
 </section>

@@ -3,8 +3,8 @@
 </script>
 
 <section class="w-full">
-	<div class="relative mx-auto w-full max-w-full px-[2vw]">
-		<div class="h-[10vw]"></div>
+	<div class="relative mx-auto w-full max-w-full page-px">
+		<div class="section-spacer"></div>
 
 		<!-- 메인 태그라인: cols 3-12 -->
 		<div class="grid grid-cols-12 gap-x-5">
@@ -22,7 +22,7 @@
 			</div>
 		</div>
 
-		<div class="h-[10vw]"></div>
+		<div class="section-spacer"></div>
 
 		<!-- 설명 텍스트 두 열 -->
 		<div class="grid grid-cols-12 gap-x-5">
@@ -70,6 +70,6 @@
 			</div>
 		</div>
 
-		<div class="h-[10vw]"></div>
+		<div class="section-spacer"></div>
 	</div>
 </section>

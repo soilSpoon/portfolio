@@ -7,12 +7,12 @@
 {/snippet}
 
 <section class="w-full">
-	<div class="relative mx-auto w-full max-w-full px-[2vw]">
-		<div data-hide="m" class="h-[10vw]"></div>
+	<div class="relative mx-auto w-full max-w-full page-px">
+		<div data-hide="m" class="section-spacer"></div>
 		<div data-client-section="" class="grid grid-cols-12 items-start gap-x-5 overlay-text">
 			<!-- 헤딩 -->
 			<div class="[grid-column:1/3] flex flex-col gap-[0.3em]">
-				<div class="t-flex overflow-hidden">
+				<div class="overflow-hidden">
 					<h2
 						split-text=""
 						stagger-scroll="1"
@@ -21,7 +21,7 @@
 						Open Source
 					</h2>
 				</div>
-				<div class="t-flex overflow-hidden">
+				<div class="overflow-hidden">
 					<h2
 						data-client-tag=""
 						class="text-eyebrow leading-[1.2] font-normal tracking-[0.1em] uppercase stroke-text"

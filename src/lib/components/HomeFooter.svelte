@@ -4,7 +4,7 @@
 </script>
 
 <section class="relative w-full">
-	<div class="w-full max-w-full px-[2vw]">
+	<div class="w-full max-w-full page-px">
 		<div class="border-t border-border">
 			<div class="h-[5vw]"></div>
 
@@ -16,7 +16,7 @@
 							<div
 								stagger-scroll=""
 								split-text=""
-								class="overflow-hidden text-[6em] leading-none font-normal tracking-[-0.02em] uppercase"
+								class="overflow-hidden text-h-display leading-none font-normal tracking-[-0.02em] uppercase"
 							>
 								Let's build
 							</div>
@@ -27,7 +27,7 @@
 							<div
 								stagger-scroll=""
 								split-text=""
-								class="overflow-hidden text-[6em] leading-none font-normal tracking-[-0.02em] uppercase"
+								class="overflow-hidden text-h-display leading-none font-normal tracking-[-0.02em] uppercase"
 							>
 								something
 							</div>
@@ -39,7 +39,7 @@
 								<div
 									stagger-scroll=""
 									split-text=""
-									class="overflow-hidden text-[6em] leading-none font-normal tracking-[-0.02em] uppercase"
+									class="overflow-hidden text-h-display leading-none font-normal tracking-[-0.02em] uppercase"
 								>
 									efficient,
 								</div>
@@ -62,7 +62,7 @@
 							<div
 								stagger-scroll=""
 								split-text=""
-								class="overflow-hidden text-[6em] leading-none font-normal tracking-[-0.02em] uppercase"
+								class="overflow-hidden text-h-display leading-none font-normal tracking-[-0.02em] uppercase"
 							>
 								To+Gether
 							</div>
@@ -136,8 +136,7 @@
 									<span>{name}</span>
 									<span class="opacity-60">↗</span>
 								</a>
-								<!-- eslint-enable svelte/no-navigation-without-resolve -->
-							{/each}
+								{/each}
 						</div>
 					</div>
 				</div>
@@ -151,7 +150,7 @@
 					</div>
 					<div class="flex flex-col gap-[0.3em] text-right">
 						<p class="tracking-[0.03em] text-mini opacity-60">
-							© 2025 이대희. All rights reserved.
+							© {new Date().getFullYear()} 이대희. All rights reserved.
 						</p>
 						<p class="tracking-[0.03em] text-mini opacity-60">
 							lee111dae11@proton.me

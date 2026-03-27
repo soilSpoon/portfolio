@@ -3,13 +3,13 @@
 </script>
 
 <section class="w-full">
-	<div class="relative mx-auto w-full max-w-full px-[2vw]">
-		<div class="h-[10vw]"></div>
+	<div class="relative mx-auto w-full max-w-full page-px">
+		<div class="section-spacer"></div>
 
 		<div class="grid grid-cols-12 items-start gap-x-5 overlay-text">
 			<!-- 좌측 sticky 헤딩 -->
 			<div class="sticky top-8 col-start-1 col-end-4 flex flex-col gap-2">
-				<div class="t-flex overflow-hidden">
+				<div class="overflow-hidden">
 					<div class="overflow-hidden">
 						<h2
 							split-text=""

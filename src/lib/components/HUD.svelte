@@ -41,7 +41,7 @@
 	    menu overlay   — 버튼 + bg + nav + toggle
 -->
 <div class="pointer-events-none fixed inset-0 z-[1000]">
-	<div class="relative h-full w-full px-[2vw]">
+	<div class="relative h-full w-full page-px">
 		<div class="pointer-events-none relative h-full w-full">
 			<!-- ─── 브랜드 로고 (top-left) ──────────────────────────────────── -->
 			<div class="hud-brand-w pointer-events-auto absolute inset-[0%_auto_auto_0%] pt-6">
@@ -71,9 +71,6 @@
 					<div class="h-[3.5em] w-px bg-current opacity-40"></div>
 				</div>
 			</div>
-
-			<!-- ─── 우상단 네비게이션 링크 ─────────────────────────────────── -->
-			<div class="pointer-events-auto absolute top-6 right-16 flex items-center gap-8"></div>
 
 			<!-- ─── 메뉴 오버레이 ── -->
 			<div

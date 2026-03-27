@@ -146,9 +146,6 @@ export const GRID = {
 	wrapScale: 0.8,
 	/** 래퍼 z 이동 */
 	wrapZ: 6500,
-	/** inner scale */
-	innerScaleFrom: 2,
-	innerScaleTo: 1,
 	/** text font-size */
 	textSizeInit: '3em',
 	textSizeFrom: '1.2em',

@@ -27,6 +27,7 @@
 	--text-eyebrow: 1em;
 	--text-sm: 0.9em;
 	--text-mini: 0.75em;
+	--text-h-display: 6em;
 
 	/* Border radius */
 	--radius-lg: 6.25em;
@@ -35,20 +36,16 @@
 
 	/* 색상 — 고정 (Warm Sand + Teal) */
 	--color-main-dark: #1c1814;
-	--color-main-dark-alt: #2a2420;
 	--color-main-light: #e8e0d4;
-	--color-main-light-alt: #f5f0e8;
 	--color-primary: #2a9d8f;
 
 	/* 색상 — 시맨틱 (dark/light 모드에서 재정의됨) */
 	--color-text: var(--color-main-dark);
 	--color-bg: var(--color-main-light);
 	--color-border: rgba(111, 111, 111, 0.2);
-	--color-border-strong: rgba(111, 111, 111, 0.4);
 
 	/* 애니메이션 */
 	--animate-scroll-pulse: scroll-pulse 4s infinite ease-in-out;
-	--animate-loop-gradient: loop-gradient 5s infinite;
 
 	@keyframes scroll-pulse {
 		0% {
@@ -64,30 +61,11 @@
 			opacity: 0;
 		}
 	}
-	@keyframes loop-gradient {
-		0% {
-			opacity: 0;
-		}
-		50% {
-			opacity: 1;
-		}
-		100% {
-			opacity: 0;
-		}
-	}
 }
 
 /* =============================================
    리셋
    ============================================= */
-html {
-	box-sizing: border-box;
-}
-*,
-*::before,
-*::after {
-	box-sizing: inherit;
-}
 .portfolio *,
 .portfolio *::before,
 .portfolio *::after {
@@ -125,11 +103,6 @@ html.dark {
 	--color-bg: var(--color-main-dark);
 	--color-border: rgba(232, 224, 212, 0.15);
 }
-html.light {
-	--color-text: var(--color-main-dark);
-	--color-bg: var(--color-main-light);
-	--color-border: rgba(44, 36, 24, 0.12);
-}
 
 /* =============================================
    다크 / 라이트 모드 — 배경색 + 텍스트
@@ -154,6 +127,11 @@ html.light:has(.portfolio) {
 	color: var(--color-main-light);
 	text-shadow: none;
 }
+html.dark .portfolio ::selection {
+	background: var(--color-main-light);
+	color: var(--color-main-dark);
+	text-shadow: none;
+}
 
 /* =============================================
    cursor: none 전역 (커스텀 커서 사용)
@@ -175,6 +153,15 @@ html.light:has(.portfolio) {
 @utility stroke-text {
 	-webkit-text-stroke: 1px var(--color-text);
 	color: transparent;
+}
+
+@utility page-px {
+	padding-left: 2vw;
+	padding-right: 2vw;
+}
+
+@utility section-spacer {
+	height: 10vw;
 }
 
 /* =============================================

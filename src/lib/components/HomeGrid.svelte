@@ -3,16 +3,16 @@
 </script>
 
 <section class="relative w-full">
-	<div class="relative w-full px-[2vw]">
-		<div class="h-[10vw]"></div>
+	<div class="relative w-full page-px">
+		<div class="section-spacer"></div>
 
 		<!-- 텍스트 오버레이 -->
 		<div data-grid-overlay class="pointer-events-none absolute inset-0 z-10 overlay-text">
 			<div class="sticky top-0 h-screen">
-				<div class="absolute bottom-[3em] left-0 w-full px-[2vw]">
+				<div class="absolute bottom-[3em] left-0 w-full page-px">
 					<h2
 						split-text=""
-						class="text-[6em] leading-none font-normal tracking-[-0.02em] uppercase"
+						class="text-h-display leading-none font-normal tracking-[-0.02em] uppercase"
 					>
 						<span class="invisible">****</span>
 						Build Efficiently. Ship Relentlessly.
@@ -23,7 +23,7 @@
 
 		<!-- 그리드 콘텐츠 -->
 		<div class="relative">
-			<div class="h-[10vw]"></div>
+			<div class="section-spacer"></div>
 			<div
 				class="relative mx-auto grid w-full max-w-[40vw] place-items-center will-change-transform [perspective:4000px]"
 			>
