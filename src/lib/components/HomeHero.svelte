@@ -11,14 +11,14 @@
 		<div
 			class="grid h-full w-full grid-cols-12 grid-rows-[1fr_min-content_1fr_min-content_1fr_min-content_1fr] gap-x-5 gap-y-0"
 		>
-			<!-- row 2: 이대희 — 한글 3글자는 영문보다 작으므로 10em으로 스케일업 -->
+			<!-- row 2: 이대희 — 한글 3글자는 영문보다 작으므로 h-name(10em)으로 스케일업 -->
 			<div class="hh-text-block hh-1 col-[2/11] row-[2/3] justify-self-start overflow-visible">
 				<!-- FOUC 초기값: config.ts HERO_TEXT_BLOCK_OFFSETS[0].x 과 동기화 필수 -->
 				<div hh-tb="1" class="hh-transform translate-x-[10em] will-change-transform">
 					<div class="hh-text-ovf overflow-hidden">
 						<h1
 							split-hero=""
-							class="text-[10em] leading-none tracking-[0.05em] font-semibold whitespace-nowrap overlay-text will-change-transform"
+							class="text-h-name leading-none tracking-[0.05em] font-semibold whitespace-nowrap overlay-text"
 						>
 							이대희
 						</h1>
@@ -33,7 +33,7 @@
 					<div class="hh-text-ovf overflow-hidden">
 						<h1
 							split-hero=""
-							class="text-h-a leading-none font-semibold whitespace-nowrap overlay-text will-change-transform"
+							class="text-h-a leading-none font-semibold whitespace-nowrap overlay-text"
 						>
 							Full-stack
 						</h1>
@@ -48,7 +48,7 @@
 					<div class="hh-text-ovf overflow-hidden">
 						<h1
 							split-hero=""
-							class="text-h-a leading-none font-semibold whitespace-nowrap overlay-text will-change-transform"
+							class="text-h-a leading-none font-semibold whitespace-nowrap overlay-text"
 						>
 							Developer
 						</h1>

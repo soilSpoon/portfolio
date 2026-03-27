@@ -24,8 +24,7 @@
 				<div class="t-flex overflow-hidden">
 					<h2
 						data-client-tag=""
-						class="text-eyebrow leading-[1.2] font-normal tracking-[0.1em] uppercase"
-						style="-webkit-text-stroke: 1px var(--color-text); color: transparent;"
+						class="text-eyebrow leading-[1.2] font-normal tracking-[0.1em] uppercase stroke-text"
 					>
 						Contributions
 					</h2>

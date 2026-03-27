@@ -20,6 +20,7 @@
 	--spacing: 0.25em;
 
 	/* 타이포그래피 — Tailwind v4: --text-* 네임스페이스로 text-* 유틸리티 생성 */
+	--text-h-name: 10em;
 	--text-h-a: 8.5em;
 	--text-h-b: 3.5em;
 	--text-h-c: 1.8em;
@@ -126,20 +127,17 @@ html.dark {
 }
 html.light {
 	--color-text: var(--color-main-dark);
-	--color-bg: var(--color-main-light-alt);
+	--color-bg: var(--color-main-light);
 	--color-border: rgba(44, 36, 24, 0.12);
 }
 
 /* =============================================
    다크 / 라이트 모드 — 배경색 + 텍스트
    ============================================= */
-html.dark body:has(.portfolio) {
-	background-color: transparent;
-	color: var(--color-main-light);
-}
+html.dark body:has(.portfolio),
 html.light body:has(.portfolio) {
 	background-color: transparent;
-	color: var(--color-main-dark);
+	color: var(--color-text);
 }
 html.dark:has(.portfolio) {
 	background-color: var(--color-main-dark);
@@ -155,10 +153,6 @@ html.light:has(.portfolio) {
 	background: var(--color-main-dark);
 	color: var(--color-main-light);
 	text-shadow: none;
-}
-html.light .portfolio ::selection {
-	background: var(--color-main-dark);
-	color: var(--color-main-light);
 }
 
 /* =============================================
@@ -176,6 +170,11 @@ html.light .portfolio ::selection {
 @utility overlay-text {
 	color: var(--color-text);
 	user-select: none;
+}
+
+@utility stroke-text {
+	-webkit-text-stroke: 1px var(--color-text);
+	color: transparent;
 }
 
 /* =============================================
